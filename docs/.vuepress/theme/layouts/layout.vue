@@ -1,0 +1,22 @@
+
+<style lang="css">
+.adsbygoogle-box {
+  margin: 0 auto;
+  box-sizing: border-box;
+  padding: 0.5rem 2.5rem;
+  max-width: var(--content-width);
+  text-align: center;
+}
+
+@media (max-width: 959px) {
+  .adsbygoogle-box {
+    padding: 0.5rem 2rem;
+  }
+}
+
+@media (max-width: 419px) {
+  .adsbygoogle-box {
+    padding: 0.5rem 1.5rem;
+  }
+}
+</style>
