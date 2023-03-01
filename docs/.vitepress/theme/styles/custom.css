@@ -1,0 +1,169 @@
+/* slim scroll bar for windows based web browsers - works on firefox */
+* {
+    scrollbar-color: var(--vp-c-divider-light) var(--vp-button-alt-bg);
+    scrollbar-width: thin;
+}
+
+/* slim scroll bar for windows based web browsers - works on chrome, edge, and safari */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+/* scrolling handle */
+::-webkit-scrollbar-thumb {
+    background: var(--vp-c-mute);
+}
+
+/* handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--vp-button-alt-hover-bg);
+}
+
+/* scrolling track/backgronund color */
+::-webkit-scrollbar-track {
+    background: var(--vp-button-alt-bg);
+}
+
+/* tweak for removing webkit scrollbar's small corner square at the right buttom */
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+/* slim scrollbar styles end */
+
+/* responsible katex style with horizontal scroll on small screen devices */
+/* .katex-display > .katex {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: scroll;
+    text-align: auto;
+    overflow-y: hidden;
+}
+
+.katex-display > ::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+
+.katex {
+    font: normal 19px KaTeX_Main, Times New Roman, serif;
+    line-height: 1.2;
+    white-space: normal;
+    text-indent: 0;
+}
+
+@media (min-width: 640px) {
+    .katex-display > ::-webkit-scrollbar {
+        width: 0px;
+        height: 2px;
+    }
+}
+
+@media (min-width: 960px) {
+    .katex-display > ::-webkit-scrollbar {
+        width: 0px;
+        height: 2px;
+    }
+} */
+
+.katex {
+    font-size: 1.05em;
+    direction: ltr;
+}
+
+.katex-display > ::-webkit-scrollbar {
+    overflow: auto hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    height: 3px;
+}
+
+.katex-error {
+    color: #f00;
+}
+
+.katex-display > .katex {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: scroll;
+    text-align: auto;
+    overflow-y: hidden;
+}
+/* katex styles end */
+
+/* custom responsive medium zoom component style */
+.medium-zoom-overlay {
+    z-index: 20;
+}
+
+.medium-zoom-image {
+    z-index: 21;
+}
+
+.medium-zoom-image {
+    /* border-radius: 5px; */
+    align-items: center;
+}
+/* medium zoom style ends */
+
+/* global border radius style for image within article container */
+.VPDoc .content-container img {
+    border-radius: 5px;
+}
+/* image style ends */
+
+/* fontawesome heart pumping styles */
+.heart {
+    animation: heart 5s ease infinite;
+    color: red;
+}
+
+@keyframes heart {
+    0% {
+        transform: scale(1);
+    }
+    5% {
+        transform: scale(1.25);
+    }
+    20% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1);
+    }
+    35% {
+        transform: scale(1.25);
+    }
+    50% {
+        transform: scale(1);
+    }
+    55% {
+        transform: scale(1.25);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+/* font awesome heart pumping style ends */
+
+/* glonal code font styles */
+pre,
+code,
+kbd,
+samp {
+    font-family: var(--vp-font-family-mono);
+}
+/* global code font styles ends */
+
+/* specify vitepress home hero image's width to 300 px for preventing image overlapping on text */
+img.VPImage.image-src {
+    width: 300px;
+}
+/* hero image sytles ends */
+
+/* aligning homepage team member section vertically in straight line */
+.vp-doc > div {
+    width: 100%;
+}
+/* team member section styles end */

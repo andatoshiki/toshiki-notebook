@@ -1,0 +1,40 @@
+module.exports = {
+  tabWidth: 4,
+  printWidth: 120,
+  proseWrap: 'preserve',
+  semi: false,
+  trailingComma: 'es5',
+  singleQuote: true,
+  arrowParens: 'avoid',
+  overrides: [
+    {
+      files: '{*.md,.prettierrc,.stylelintrc,.babelrc,.html}',
+      options: {
+        tabWidth: 4
+      }
+    },
+    {
+      files: '{*.js?(on),*.js, *.ts, *.vue}',
+      options: {
+        trailingComma: 'none',
+        tabWidth: 2
+      }
+    },
+    {
+      files: '{**/.vscode/*.json,**/tsconfig.json,**/tsconfig.*.json}',
+      options: {
+        parser: 'json5',
+        quoteProps: 'preserve',
+        singleQuote: false,
+        trailingComma: 'all',
+        tabWidth: '2'
+      }
+    },
+    {
+      files: '*.y?(a)ml,',
+      options: {
+        singleQuote: true
+      }
+    }
+  ]
+}
