@@ -1,5 +1,5 @@
 {
-  "index_name": "",
+  "index_name": "toshiki-notebook",
   "start_urls": ["https://note.toshiki.dev/"],
   "rateLimit": 8,
   "maxDepth": 10,
