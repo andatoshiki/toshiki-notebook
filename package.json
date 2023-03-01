@@ -10,6 +10,7 @@
   "devDependencies": {
     "@types/node": "^18.14.2",
     "@vitejs/plugin-vue": "^4.0.0",
+    "conventional-changelog-cli": "^2.2.2",
     "husky": "^8.0.3",
     "medium-zoom": "^1.0.8",
     "mermaid": "^9.3.0",
@@ -27,9 +28,10 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "docs:host": "vitepress dev docs --host",
-    "lint": "prettier --write .",
     "rm:dist": "rm -rf /docs/.vitepress/dist",
-    "rm:cache": "rm -rf /docs/.vitepress/cache"
+    "rm:cache": "rm -rf /docs/.vitepress/cache",
+    "lint": "prettier --write .",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
     "@andatoshiki/markdown-it-katex": "^0.0.2",
