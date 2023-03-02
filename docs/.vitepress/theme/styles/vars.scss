@@ -1,4 +1,4 @@
-/* global tweak styles for hero image gradient filter */
+// global tweak styles for hero image gradient filter
 :root {
     --vp-home-hero-name-color: transparent;
     --vp-home-hero-name-background: -webkit-linear-gradient(315deg, #42d392 25%, #647eff);
@@ -18,4 +18,4 @@
         --vp-home-hero-image-filter: blur(72px);
     }
 }
-/* hero image gradient styles end */
+// hero image gradient styles end
