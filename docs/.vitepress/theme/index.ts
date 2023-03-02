@@ -19,6 +19,28 @@ import AsideSponsors from './components/AsideSponsors.vue'
 // @ts-ignore
 import Copyright from './components/Copyright.vue'
 
+if (typeof window !== 'undefined') {
+    // unregister PWA service
+    if (window.navigator && navigator.serviceWorker) {
+        navigator.serviceWorker.getRegistrations().then(function (registrations) {
+            for (let registration of registrations) {
+                registration.unregister()
+            }
+        })
+    }
+
+    // delete the cache preserved in browser
+    if ('caches' in window) {
+        caches.keys().then(function (keyList) {
+            return Promise.all(
+                keyList.map(function (key) {
+                    return caches.delete(key)
+                })
+            )
+        })
+    }
+}
+
 export default {
     ...DefaultTheme,
     Layout: () => {
