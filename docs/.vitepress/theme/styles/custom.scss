@@ -147,50 +147,50 @@ img.VPImage.image-src {
 // maximum document width style ends
 
 // vitepress navbar title line breaking issue tweak
-@media (max-width: 1080px) {
-    :root {
-        --vp-sidebar-width: 260px;
-    }
-    .VPNav {
-        // refering solutions by https://cn.vuejs.org
-        .DocSearch-Button-Placeholder {
-            display: none;
-        }
-        .VPNavBarMenuLink,
-        .VPNavBarMenuGroup .button {
-            padding-left: 10px;
-            padding-right: 10px;
-        }
-    }
-}
-@media (max-width: 992px) {
-    .VPNav {
-        .VPNavBar {
-            padding-left: 24px;
-            padding-right: 24px;
-        }
-        .VPNavBarMenuLink,
-        .VPNavBarMenuGroup .button {
-            padding-left: 8px;
-            padding-right: 8px;
-        }
-    }
-}
-@media (max-width: 800px) {
-    .VPNav {
-        .VPNavBarSearch {
-            padding-left: 16px;
-        }
-        .VPNavBarMenuLink,
-        .VPNavBarMenuGroup .button {
-            padding-left: 6px;
-            padding-right: 6px;
-        }
-    }
-}
+// @media (max-width: 1080px) {
+//     :root {
+//         --vp-sidebar-width: 260px;
+//     }
+//     .VPNav {
+//         // refering solutions by https://cn.vuejs.org
+//         .DocSearch-Button-Placeholder {
+//             display: none;
+//         }
+//         .VPNavBarMenuLink,
+//         .VPNavBarMenuGroup .button {
+//             padding-left: 10px;
+//             padding-right: 10px;
+//         }
+//     }
+// }
+// @media (max-width: 992px) {
+//     .VPNav {
+//         .VPNavBar {
+//             padding-left: 24px;
+//             padding-right: 24px;
+//         }
+//         .VPNavBarMenuLink,
+//         .VPNavBarMenuGroup .button {
+//             padding-left: 8px;
+//             padding-right: 8px;
+//         }
+//     }
+// }
+// @media (max-width: 800px) {
+//     .VPNav {
+//         .VPNavBarSearch {
+//             padding-left: 16px;
+//         }
+//         .VPNavBarMenuLink,
+//         .VPNavBarMenuGroup .button {
+//             padding-left: 6px;
+//             padding-right: 6px;
+//         }
+//     }
+// }
 
-// menu new-lining issue on title
-.VPMenuGroup .title {
-    white-space: nowrap;
-}
+// // menu new-lining issue on title
+// .VPMenuGroup .title {
+//     white-space: nowrap;
+// }
 // vitepress navbar style ends
