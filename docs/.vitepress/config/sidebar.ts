@@ -22,8 +22,8 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
             text: 'Problems & Solutions',
             collapsed: true,
             items: [
-                { text: 'Problem: 2-20', link: '/academic/chemistry/problems/2-20' },
-                { text: 'Problem: 3-2', link: '/academic/chemistry/problems/3-2' },
+                { text: 'Problem: 02-20', link: '/academic/chemistry/problems/2-20' },
+                { text: 'Problem: 03-02', link: '/academic/chemistry/problems/3-2' },
             ],
         },
     ],
