@@ -31,7 +31,7 @@ features:
       details: An epiphany, derived from the Latin word "epiphania," is a moment of sudden and brilliant realization or insight. These moments of clarity and inspiration are precious and should be treated as such; to ensure that we don't forget these valuable ideas.
 ---
 
-<script setup>
+<!-- <script setup>
 import { VPTeamMembers } from 'vitepress/theme'
 
 const khanacademySVG = {
@@ -115,4 +115,4 @@ const members = [
     line-height: 32px;
     font-size: 24px;
 }
-</style>
+</style> -->
