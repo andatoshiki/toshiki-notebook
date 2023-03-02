@@ -10,7 +10,7 @@ import mediumZoom from 'medium-zoom'
 
 // custom styles import
 import './styles/index.scss'
-import './styles/vars.css'
+
 // @ts-ignore
 // custom components and vue template layouts
 import CustomLayout from './CustomLayout.vue'
