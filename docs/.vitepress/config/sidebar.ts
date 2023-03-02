@@ -23,7 +23,8 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
             collapsed: true,
             items: [
                 { text: 'Problem: 02-20', link: '/academic/chemistry/problems/02-20' },
-                { text: 'Problem: 03-02', link: '/academic/chemistry/problems/03-02' },
+                { text: 'Problem: 03-02-1', link: '/academic/chemistry/problems/03-02' },
+                { text: 'Problem: 03-02-2', link: '' },
             ],
         },
     ],
