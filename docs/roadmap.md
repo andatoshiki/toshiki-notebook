@@ -19,7 +19,7 @@
         -   [ ] Wikibooks
         -   [ ] Wikipedia
         -   [ ] Bookboon
-        -   [ ] 
+        -   [ ]
 
 ## Footer
 
