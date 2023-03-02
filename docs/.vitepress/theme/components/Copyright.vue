@@ -84,13 +84,12 @@ const homepageLink = `https://www.toshiki.dev`
                     <!-- svg icon for documentation license list line ends -->
                     <span class="copyrightText">Licensing: </span>
                     <span>
-                        本博客所有文章除特别声明外，均采用
+                        This documentation and all content contained herein, including but not limited to text, graphics, images, and logos, are licensed under
                         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noreferrer" target="_blank"
-                            >CC BY-NC-SA 4.0</a
-                        >
-                        许可协议。转载请注明来自
-                        <a href="https://chodocs.cn/" rel="noreferrer" target="_blank">ChoDocs</a></span
-                    >！
+                            >CC BY-NC 4.0</a
+                        >,
+                         unless specifically noted, attribute the source when reprint.
+                    </span>
                 </div>
             </div>
         </div>
