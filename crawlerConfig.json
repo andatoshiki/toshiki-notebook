@@ -20,9 +20,9 @@
       "global": true
     }
   },
-  "selectors_exclude": ["aside", ".page-footer", ".next-and-prev-link", ".table-of-contents"],
+  "strip_chars": " .,;:#",
+  "selectors_exclude": [".sr-only"],
   "custom_settings": {
     "attributesForFaceting": ["lang", "tags"]
-  },
-  "js_render": true
+  }
 }
