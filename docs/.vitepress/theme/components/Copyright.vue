@@ -84,11 +84,11 @@ const homepageLink = `https://www.toshiki.dev`
                     <!-- svg icon for documentation license list line ends -->
                     <span class="copyrightText">Licensing: </span>
                     <span>
-                        This documentation and all content contained herein, including but not limited to text, graphics, images, and logos, are licensed under
+                        This documentation and all content contained herein, including but not limited to text,
+                        graphics, images, and logos, are licensed under
                         <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noreferrer" target="_blank"
                             >CC BY-NC 4.0</a
-                        >,
-                         unless specifically noted, attribute the source when reprint.
+                        >, unless specifically noted, attribute the source when reprint.
                     </span>
                 </div>
             </div>
