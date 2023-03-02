@@ -21,7 +21,7 @@ export const themeConfig: DefaultTheme.Config = {
     },
     // documentation edit link
     editLink: {
-        pattern: 'https://github.com/andatoshiki/toshiki-note/edit/master/docs/:path',
+        pattern: 'https://github.com/andatoshiki/toshiki-notebook/edit/master/docs/:path',
         text: 'Edit this page on GitHub',
     },
 
