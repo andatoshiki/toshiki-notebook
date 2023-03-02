@@ -106,4 +106,18 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
             ],
         },
     ],
+
+    '/application/': [
+        {
+            text: 'markdown-it-katex',
+            collapsed: true,
+            items: [
+                { text: '1: How to use?', link: '/application/markdown-it-katex/index' },
+                { text: '2: KaTeX supported functions', link: '/application/markdown-it-katex/support-function' },
+                { text: '3: KaTeX support tables', link: '/application/markdown-it-katex/support-table' },
+                // { text: 'Chapter 5: ', link: '/save/reading/outliers/5' },
+                // { text: 'Chapter 6: ', link: '/save/reading/outliers/6' },
+            ],
+        },
+    ],
 }
