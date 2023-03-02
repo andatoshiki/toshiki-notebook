@@ -71,7 +71,7 @@ a:hover {
 }
 .container {
     margin: 0 auto;
-    max-width: var(--vp-layout-max-width);
+    /* max-width: var(--vp-layout-max-width); */
     text-align: center;
 }
 .recordCode,
