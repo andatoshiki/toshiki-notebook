@@ -1,6 +1,6 @@
 {
   "installCommand": "yarn install --frozen-lockfile",
-  "buildCommand": "yarn docs:biuld",
+  "buildCommand": "yarn docs:build",
   "devCommand": "yarn docs:dev",
   "cleanUrls": true,
   "framework": "vite",
