@@ -32,31 +32,6 @@
 /* slim scrollbar styles end */
 
 /* responsible katex style with horizontal scroll on small screen devices */
-// katex fix
-.katex {
-    font-size: 1.05em;
-    direction: ltr;
-}
-
-.katex-display {
-    overflow: auto hidden;
-    -webkit-overflow-scrolling: touch;
-    padding-top: 0.2em;
-    padding-bottom: 0.2em;
-
-    &::-webkit-scrollbar {
-        height: 3px;
-    }
-
-    .katex {
-        font-size: 1.21em;
-    }
-}
-
-.katex-error {
-    color: #f00;
-}
-
 /* .katex-display > .katex {
     display: inline-block;
     max-width: 100%;
@@ -91,30 +66,30 @@
     }
 } */
 
-// .katex {
-//     font-size: 1.05em;
-//     direction: ltr;
-//   }
+.katex {
+    font-size: 1.05em;
+    direction: ltr;
+}
 
-//   .katex-display > ::-webkit-scrollbar {
-//     overflow: auto hidden;
-//     -webkit-overflow-scrolling: touch;
-//     padding-top: 0.2em;
-//     padding-bottom: 0.2em;
-//     height: 3px;
-//   }
+.katex-display > ::-webkit-scrollbar {
+    overflow: auto hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    height: 3px;
+}
 
-//   .katex-error {
-//     color: #f00;
-//   }
+.katex-error {
+    color: #f00;
+}
 
-//   .katex-display > .katex {
-//     display: inline-block;
-//     max-width: 100%;
-//     overflow-x: scroll;
-//     text-align: auto;
-//     overflow-y: hidden;
-// }
+.katex-display > .katex {
+    display: inline-block;
+    max-width: 100%;
+    overflow-x: scroll;
+    text-align: auto;
+    overflow-y: hidden;
+}
 /* katex styles end */
 
 /* custom responsive medium zoom component style */
