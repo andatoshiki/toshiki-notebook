@@ -19,9 +19,12 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
             ],
         },
         {
-            text: 'Presentation Problems',
+            text: 'Problems & Solutions',
             collapsed: true,
-            items: [{ text: 'Presentation Problem 2-20', link: '/academic/chemistry/presentation-problems/pp-2-20' }],
+            items: [
+                { text: 'Problem: 2-20', link: '/academic/chemistry/problems/2-20' },
+                { text: 'Problem: 3-2', link: '/academic/chemistry/problems/3-2' },
+            ],
         },
     ],
     // chemistry sidebar end
