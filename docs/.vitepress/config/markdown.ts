@@ -10,7 +10,6 @@ export const markdown: MarkdownOptions = {
     lineNumbers: true,
     config: md => {
         // use more markdown-it plugins!
-        md.use(mdkatex),
-        md.use(mdTasklist)
+        md.use(mdkatex), md.use(mdTasklist)
     },
 }
