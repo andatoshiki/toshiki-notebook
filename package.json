@@ -12,6 +12,7 @@
     "@vitejs/plugin-vue": "^4.0.0",
     "conventional-changelog-cli": "^2.2.2",
     "husky": "^8.0.3",
+    "markdown-it-task-lists": "^2.1.1",
     "medium-zoom": "^1.0.8",
     "mermaid": "^9.3.0",
     "prettier": "2.8.4",
