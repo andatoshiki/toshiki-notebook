@@ -14,7 +14,7 @@ module.exports = {
       }
     },
     {
-      files: '{*.js?(on),*.js, *.ts, *.vue}',
+      files: '{*.js?(on),*.js, *.ts, *.vue, *.css, *.scss}',
       options: {
         trailingComma: 'none',
         tabWidth: 2
