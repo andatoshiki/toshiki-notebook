@@ -134,4 +134,10 @@ img.VPImage.image-src {
 }
 // team member section styles end
 
-//
+// set maximum document width for better mobile viewing experience instead of letting text clustered altogether at a small width
+@media (min-width: 1440px) {
+    .VPDoc.has-aside .content-container.content-container {
+        max-width: 100%;
+    }
+}
+// maximum document width style ends
