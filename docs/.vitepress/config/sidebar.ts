@@ -25,6 +25,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 { text: 'Problem: 02-20', link: '/academic/chemistry/problems/02-20' },
                 { text: 'Problem: 03-02-1', link: '/academic/chemistry/problems/03-02-1' },
                 { text: 'Problem: 03-02-2', link: '/academic/chemistry/problems/03-02-2' },
+                { text: 'Problem: 03-02-3', link: '/academic/chemistry/problems/03-02-3' },
             ],
         },
     ],
