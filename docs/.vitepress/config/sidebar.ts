@@ -110,7 +110,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     '/application/': [
         {
             text: 'markdown-it-katex',
-            collapsed: true,
+            collapsed: false,
             items: [
                 { text: '1: How to use?', link: '/application/markdown-it-katex/index' },
                 { text: '2: KaTeX supported functions', link: '/application/markdown-it-katex/support-function' },
