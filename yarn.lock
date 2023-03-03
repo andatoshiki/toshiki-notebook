@@ -133,10 +133,10 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@andatoshiki/markdown-it-katex@^0.0.2":
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/@andatoshiki/markdown-it-katex/-/markdown-it-katex-0.0.2.tgz#546ce916c2c07750883826c9b0eda14a5c4ec0db"
-  integrity sha512-eBx75ZyfHJnadWGA26WK3VMZqmV8nBt/aputAZDPYg7kRvExGOXyX0W3hT6ubRF/6Qus21vMB4ac9a52pZNKqw==
+"@andatoshiki/markdown-it-katex@^0.0.3":
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@andatoshiki/markdown-it-katex/-/markdown-it-katex-0.0.3.tgz#898a504c0260f781be9eb6ec33f1c305052fb87e"
+  integrity sha512-DTYMLzSG3WobuZFvrOIOchOd3cmFK+zsDc2Tje+5rCxCAOMVtTyHkDbWlnsKX2/beiuWotTO4r8NZZjSXrB0Vg==
   dependencies:
     katex "^0.16.0"
 
