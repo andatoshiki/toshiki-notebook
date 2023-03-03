@@ -35,7 +35,7 @@
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "dependencies": {
-    "@andatoshiki/markdown-it-katex": "^0.0.2",
+    "@andatoshiki/markdown-it-katex": "^0.0.3",
     "markdown-it": "^13.0.1"
   }
 }
