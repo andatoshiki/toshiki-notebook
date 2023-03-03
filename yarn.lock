@@ -519,6 +519,20 @@
     "@jridgewell/resolve-uri" "3.1.0"
     "@jridgewell/sourcemap-codec" "1.4.14"
 
+"@mdit-vue/shared@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.npmjs.org/@mdit-vue/shared/-/shared-0.12.0.tgz#e4e7d5ffb362dedb92b161fcbf05e81a3d2ac143"
+  integrity sha512-E+sGSubhvnp+Gmb2hJXFDxdLwwQD1H52EVbA4yrxxI5q/cwtnPIN2eJU3zlZB9KcvzXYDFFwt/x2mfhK8RZKBg==
+  dependencies:
+    "@mdit-vue/types" "0.12.0"
+    "@types/markdown-it" "^12.2.3"
+    markdown-it "^13.0.1"
+
+"@mdit-vue/types@0.12.0":
+  version "0.12.0"
+  resolved "https://registry.npmjs.org/@mdit-vue/types/-/types-0.12.0.tgz#096ff57d3590d076f7d7561dbc9956fb0bb89fe1"
+  integrity sha512-mrC4y8n88BYvgcgzq9bvTlDgFyi2zuvzmPilRvRc3Uz1iIvq8mDhxJ0rHKFUNzPEScpDvJdIujqiDrulMqiudA==
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -596,6 +610,24 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.0.tgz#5fb2e536c1ae9bf35366eed879e827fa59ca41c2"
   integrity sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==
+
+"@types/linkify-it@*":
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/@types/linkify-it/-/linkify-it-3.0.2.tgz#fd2cd2edbaa7eaac7e7f3c1748b52a19143846c9"
+  integrity sha512-HZQYqbiFVWufzCwexrvh694SOim8z2d+xJl5UNamcvQFejLY/2YUtzXHYi3cHdI7PMlS8ejH2slRAOJQ32aNbA==
+
+"@types/markdown-it@^12.2.3":
+  version "12.2.3"
+  resolved "https://registry.npmjs.org/@types/markdown-it/-/markdown-it-12.2.3.tgz#0d6f6e5e413f8daaa26522904597be3d6cd93b51"
+  integrity sha512-GKMHFfv3458yYy+v/N8gjufHO6MSZKCOXpZc5GXIWWy8uldwfmPn98vp81gZ5f9SVw8YYBctgfJ22a2d7AOMeQ==
+  dependencies:
+    "@types/linkify-it" "*"
+    "@types/mdurl" "*"
+
+"@types/mdurl@*":
+  version "1.0.2"
+  resolved "https://registry.npmjs.org/@types/mdurl/-/mdurl-1.0.2.tgz#e2ce9d83a613bacf284c7be7d491945e39e1f8e9"
+  integrity sha512-eC4U9MlIcu2q0KQmXszyn5Akca/0jrQmwDRgpAMJai7qBWq4amIQhZyNau4VYGtCeALvW1/NtjzJJ567aZxfKA==
 
 "@types/minimist@^1.2.0":
   version "1.2.2"
@@ -3101,6 +3133,11 @@ vite@^4.0.4, vite@^4.1.2:
     rollup "^3.10.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+vitepress-plugin-auto-sidebar@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.npmjs.org/vitepress-plugin-auto-sidebar/-/vitepress-plugin-auto-sidebar-1.0.6.tgz#4ec8820dc9947564907b2b61f8a009c153082efa"
+  integrity sha512-/qCfzaeHkCn3G/ziCCSoEKp1uJWyfYhM+gLhi9rKSUSDdW82tOl+23b6X9ZqfyYIUjo7rs5Q0g5VKlrnfd+PNw==
 
 vitepress@^1.0.0-alpha.46:
   version "1.0.0-alpha.46"
