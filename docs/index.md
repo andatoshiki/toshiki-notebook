@@ -17,7 +17,7 @@ hero:
           link: /getting-started
         - theme: alt
           text: '🗒️ View on GitHub'
-          link: https://github.com/andatohsiki/toshiki-notebook
+          link: https://github.com/andatoshiki/toshiki-notebook
 
 features:
     - icon: 🕒
