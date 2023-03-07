@@ -3122,10 +3122,10 @@ validate-npm-package-license@^3.0.1:
     spdx-correct "^3.0.0"
     spdx-expression-parse "^3.0.0"
 
-vite@^4.0.4, vite@^4.1.2:
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-4.1.2.tgz#6908882984e490c44c28e784a2c52de556f04b41"
-  integrity sha512-MWDb9Rfy3DI8omDQySbMK93nQqStwbsQWejXRY2EBzEWKmLAXWb1mkI9Yw2IJrc+oCvPCI1Os5xSSIBYY6DEAw==
+vite@^4.0.4, vite@^4.1.4:
+  version "4.1.4"
+  resolved "https://registry.npmjs.org/vite/-/vite-4.1.4.tgz#170d93bcff97e0ebc09764c053eebe130bfe6ca0"
+  integrity sha512-3knk/HsbSTKEin43zHu7jTwYWv81f8kgAL99G5NWBcA1LKvtvcVAC4JjBH1arBunO9kQka+1oGbrMKOjk4ZrBg==
   dependencies:
     esbuild "^0.16.14"
     postcss "^8.4.21"
@@ -3133,11 +3133,6 @@ vite@^4.0.4, vite@^4.1.2:
     rollup "^3.10.0"
   optionalDependencies:
     fsevents "~2.3.2"
-
-vitepress-plugin-auto-sidebar@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/vitepress-plugin-auto-sidebar/-/vitepress-plugin-auto-sidebar-1.0.6.tgz#4ec8820dc9947564907b2b61f8a009c153082efa"
-  integrity sha512-/qCfzaeHkCn3G/ziCCSoEKp1uJWyfYhM+gLhi9rKSUSDdW82tOl+23b6X9ZqfyYIUjo7rs5Q0g5VKlrnfd+PNw==
 
 vitepress@^1.0.0-alpha.46:
   version "1.0.0-alpha.46"
