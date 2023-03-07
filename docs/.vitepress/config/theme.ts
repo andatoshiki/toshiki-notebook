@@ -5,7 +5,7 @@ import { footer } from './footer'
 
 export const themeConfig: DefaultTheme.Config = {
     nav, // documentation navigation bar config
-    sidebar, // cocumentation sidebar config
+    sidebar, // documentation sidebar config
     footer, // site global footer config
 
     logo: '/logos/logo.png',
