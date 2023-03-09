@@ -634,10 +634,10 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.2.tgz#ee771e2ba4b3dc5b372935d549fd9617bf345b8c"
   integrity sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==
 
-"@types/node@*", "@types/node@^18.14.2":
-  version "18.14.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.2.tgz#c076ed1d7b6095078ad3cf21dfeea951842778b1"
-  integrity sha512-1uEQxww3DaghA0RxqHx0O0ppVlo43pJhepY51OxuQIKHpjbnYLA7vcdwioNPzIqmC2u3I/dmylcqjlh0e7AyUA==
+"@types/node@*", "@types/node@^18.15.0":
+  version "18.15.0"
+  resolved "https://registry.npmjs.org/@types/node/-/node-18.15.0.tgz#286a65e3fdffd691e170541e6ecb0410b16a38be"
+  integrity sha512-z6nr0TTEOBGkzLGmbypWOGnpSpSIBorEhC4L+4HeQ2iezKCi4f77kyslRwvHeNitymGQ+oFyIWGP96l/DPSV9w==
 
 "@types/node@^17.0.5":
   version "17.0.45"
@@ -3133,11 +3133,6 @@ vite@^4.0.4, vite@^4.1.2:
     rollup "^3.10.0"
   optionalDependencies:
     fsevents "~2.3.2"
-
-vitepress-plugin-auto-sidebar@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.npmjs.org/vitepress-plugin-auto-sidebar/-/vitepress-plugin-auto-sidebar-1.0.6.tgz#4ec8820dc9947564907b2b61f8a009c153082efa"
-  integrity sha512-/qCfzaeHkCn3G/ziCCSoEKp1uJWyfYhM+gLhi9rKSUSDdW82tOl+23b6X9ZqfyYIUjo7rs5Q0g5VKlrnfd+PNw==
 
 vitepress@^1.0.0-alpha.46:
   version "1.0.0-alpha.46"
