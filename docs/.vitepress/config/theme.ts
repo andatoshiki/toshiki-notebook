@@ -17,7 +17,7 @@ export const themeConfig: DefaultTheme.Config = {
     algolia: {
         appId: 'G9IUR45K98',
         apiKey: '8528cc91281d8112b28f508317a96dd3',
-        indexName: 'toshiki-note',
+        indexName: 'toshiki-notebook',
     },
     // documentation edit link
     editLink: {
