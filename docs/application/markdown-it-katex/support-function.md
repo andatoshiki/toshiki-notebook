@@ -3,7 +3,7 @@ title: 'KaTeX: Supported functions'
 description: 'Supported functions within KaTeX syntaxes.'
 ---
 
-# KaTeX: Supported functions <Badge type='tip' />
+# KaTeX: Supported function
 
 ::: tip note
 
