@@ -194,3 +194,14 @@ img.VPImage.image-src {
 //     white-space: nowrap;
 // }
 // vitepress navbar style ends
+
+// VP Footer
+.VPFooter {
+    z-index: none;
+}
+
+// remove search box footer text
+
+.DocSearch-Logo {
+    display: none;
+}
