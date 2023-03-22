@@ -10,7 +10,7 @@
   "devDependencies": {
     "@andatoshiki/markdown-it-image-caption": "0.0.2",
     "@mdit-vue/shared": "^0.12.0",
-    "@types/node": "^18.14.2",
+    "@types/node": "^18.15.5",
     "@vitejs/plugin-vue": "^4.0.0",
     "conventional-changelog-cli": "^2.2.2",
     "husky": "^8.0.3",
