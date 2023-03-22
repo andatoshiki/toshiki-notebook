@@ -6,6 +6,7 @@ module.exports = {
   trailingComma: 'es5',
   singleQuote: true,
   arrowParens: 'avoid',
+  endOfLine: "lf",
   overrides: [
     {
       files: '{*.md,.prettierrc,.stylelintrc,.babelrc,.html}',
