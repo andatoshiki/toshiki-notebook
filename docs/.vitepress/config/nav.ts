@@ -2,6 +2,10 @@ import { DefaultTheme } from 'vitepress/theme'
 
 export const nav: DefaultTheme.Config['nav'] = [
     {
+        text: 'Development',
+        link: '/development/',
+    },
+    {
         text: 'Academic',
         items: [
             {
@@ -11,6 +15,12 @@ export const nav: DefaultTheme.Config['nav'] = [
                     { text: 'Discrete Math.', link: '/discrete-math/index', activeMatch: '/categories/fragments/' },
                     { text: 'Literature', link: '/academic/literature/index', activeMatch: '/academic/literature/' },
                 ],
+            },
+            {
+                text: 'Tools',
+                items: [
+                    { text: 'Formulas for IPhO JPN.', link: '/academic/physics/ipho-formulas-jpn/1', activeMatch: '/academic/physics/ipho-formulas-jpn/' },
+                ]
             },
             { text: '', link: '', activeMatch: '' },
             { text: '', link: '', activeMatch: '' },
@@ -31,7 +41,7 @@ export const nav: DefaultTheme.Config['nav'] = [
                 items: [
                     {
                         text: 'markdown-it-katex',
-                        link: '/application/markdown-it-katex/index',
+                        link: '/application/markdown-it-katex/how-to-use',
                         activeMatch: '/application/markdown-it-katex/',
                     },
                     { text: '', link: '', activeMatch: '' },
