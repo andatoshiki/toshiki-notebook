@@ -20,9 +20,6 @@ import CustomLayout from './CustomLayout.vue'
 import AsideSponsors from './components/AsideSponsors.vue'
 // @ts-ignore
 import Copyright from './components/Copyright.vue'
-// @ts-ignore
-// import LinkPreview from './components/CardLink.vue'
-import CardLink from './components/CardLink.vue'
 
 if (typeof window !== 'undefined') {
     // unregister PWA service
