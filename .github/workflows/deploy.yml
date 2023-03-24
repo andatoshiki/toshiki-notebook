@@ -1,4 +1,4 @@
-name: ✅ Build and Deploy Vitepress Doc Pages to GitHub Pages
+name: Build and Deploy Vitepress Doc Pages to GitHub Pages
 on:
     push:
         branches:
@@ -11,12 +11,13 @@ jobs:
             - name: Perform check out
               uses: actions/checkout@v3
 
-            - name: ⚒️ Install dependencies and build/compile the site # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
+            - name: Install dependencies and build/compile the site # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
               run: |
                   yarn install --frozen-lockfile
+                  yarn prepare
                   yarn lint
                   yarn docs:build
-            - name: 🪗 Deploy to GitHub pages
+            - name: Deploy to GitHub pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                   folder: dist # The folder the action should deploy.
