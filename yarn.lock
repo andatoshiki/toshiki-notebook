@@ -145,6 +145,13 @@
   dependencies:
     katex "^0.16.0"
 
+"@andatoshiki/vitepress-plugin-nprogress@^0.0.1":
+  version "0.0.1"
+  resolved "https://registry.npmjs.org/@andatoshiki/vitepress-plugin-nprogress/-/vitepress-plugin-nprogress-0.0.1.tgz#ef7ee6e2a8f9dc0b31306064e74aaf8efc0040ae"
+  integrity sha512-paDDheLnntny7iPFck4D6vzJgC7BKBqgpXFG6aMXHRDpH/YlxvH32xCgVYZ8lHmcoLZc084Rk/Ik4FwL8M2qgQ==
+  dependencies:
+    nprogress "^0.2.0"
+
 "@antfu/utils@^0.7.2":
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/@antfu/utils/-/utils-0.7.2.tgz#3bb6f37a6b188056fe9e2f363b6aa735ed65d7ca"

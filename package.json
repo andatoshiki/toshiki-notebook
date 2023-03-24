@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "@andatoshiki/markdown-it-image-caption": "0.0.2",
+    "@andatoshiki/vitepress-plugin-nprogress": "^0.0.1",
     "@mdit-vue/shared": "^0.12.0",
     "@types/node": "^18.14.2",
     "@vitejs/plugin-vue": "^4.0.0",

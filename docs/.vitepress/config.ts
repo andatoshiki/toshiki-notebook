@@ -4,8 +4,6 @@ import { markdown } from './config/markdown'
 import { metaData } from './config/constants'
 import { head } from './config/head'
 import { themeConfig } from './config/theme'
-// import { buildDocsRSS } from './theme/rss'
-// import { generateSitemap as sitemap } from 'sitemap-ts'
 
 export default defineConfig({
     lang: metaData.lang, // i18n default english translation
@@ -25,11 +23,6 @@ export default defineConfig({
             },
         },
     },
-
-    // buildEnd: buildDocsRSS,
-    // async buildEnd() {
-    //     await sitemap({ hostname: 'https://note.toshiki.dev/' })
-    // },
 })
 
 customElements // custom element tags of markdown-it-katex in vitepress
