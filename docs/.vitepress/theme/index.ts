@@ -78,7 +78,7 @@ export default {
 
     enhanceApp(ctx) {
         // custom component tag/slot
-        ctx.app.component('Link', CardLink)
+        // ctx.app.component('Link', CardLink)
 
         // external plugin for vitepress hack performance
         vitepressNprogress(ctx) // nprogress plugin for vitepress
