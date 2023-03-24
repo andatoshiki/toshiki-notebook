@@ -5,6 +5,7 @@ export const head: HeadConfig[] = [
     // stylesheets loaded from thrid-party cdns
     ['link', { rel: 'stylesheet', href: 'https://cdnjs.toshiki.dev/ajax/libs/KaTeX/0.16.0/katex.min.css' }],
     ['link', { rel: 'stylesheet', href: 'https://cdnjs.toshiki.dev/ajax/libs/font-awesome/6.3.0/css/all.min.css' }],
+    // <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
 
     ['link', { rel: 'icon', href: '/favicon.ico' }],
     ['meta', { name: 'author', content: 'Anda Toshiki' }],
@@ -34,7 +35,7 @@ export const head: HeadConfig[] = [
     [
         'script',
         {},
-        `function siteruntime() {window.setTimeout("siteruntime()", 1000);        X = new Date("8/24/2021 10:28:00");        Y = new Date();        T = (Y.getTime() - X.getTime());        M = 24 * 60 * 60 * 1000;        a = T / M;        A = Math.floor(a);        b = (a - A) * 24;        B = Math.floor(b);        c = (b - B) * 60;        C = Math.floor((b - B) * 60);        D = Math.floor((c - C) * 60);        siteruntime_span.innerHTML = "This site has been running for: " + A + " " + "day(s)" + " " + B + "hour(s)" + C + "minute(s)" + D + "second(s)"    }siteruntime();
+        `function siteruntime() {window.setTimeout("siteruntime()", 1000);        X = new Date("8/24/2021 10:28:00");        Y = new Date();        T = (Y.getTime() - X.getTime());        M = 24 * 60 * 60 * 1000;        a = T / M;        A = Math.floor(a);        b = (a - A) * 24;        B = Math.floor(b);        c = (b - B) * 60;        C = Math.floor((b - B) * 60);        D = Math.floor((c - C) * 60);        siteruntime_span.innerHTML = "This site has been running for: " + A + " " + "day(s)" + " " + B + " " + "hour(s)" + " " + C +  " " + "minute(s)" + " " + D + " " + "second(s)"    }siteruntime();
         `,
     ],
 
@@ -48,4 +49,10 @@ export const head: HeadConfig[] = [
             src: 'https://umami.toshiki.dev/umami.js',
         },
     ],
+    // [
+    //     'script',
+    //     {
+    //         src: 'https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js'
+    //     }
+    // ]
 ]
