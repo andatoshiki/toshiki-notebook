@@ -8,5 +8,10 @@ export default defineConfig({
             include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
         }),
     ],
-    ssr: { noExternal: ['@arco-design/web-vue'] },
+    ssr: {
+        noExternal: [
+            '@andatoshiki/vitepress-plugin-nprogress',
+            '@arco-design/web-vue'
+        ]
+      },
 })
