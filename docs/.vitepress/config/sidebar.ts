@@ -1,11 +1,19 @@
 import { DefaultTheme } from 'vitepress/theme'
 
 export const sidebar: DefaultTheme.Config['sidebar'] = {
-    // sidebar configs for academic realted documents
+    // development related documents
+    '/development/': [
+        {
+            text: 'Wiki Database',
+            collapsed: false,
+            items: [{ text: '', link: '' }],
+        },
+    ],
+    // sidebar configs for academic related documents
     // chemistry
     '/academic/chemistry/': [
         {
-            text: 'Notes',
+            text: 'Textbook',
             collapsed: true,
             items: [
                 { text: '12-5: Reaction Mechanism', link: '/academic/chemistry/notes/12-5' },
@@ -13,6 +21,17 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 { text: '', link: '' },
                 { text: '', link: '' },
                 { text: '', link: '' },
+                { text: '', link: '' },
+                { text: '', link: '' },
+                { text: '', link: '' },
+            ],
+        },
+        {
+            text: 'Kinetics',
+            collapsed: false,
+            items: [
+                { text: 'Rate determining steps', link: '/academic/chemistry/notes/kinetics/rate-determining-step' },
+                // docs/academic/chemistry/notes/kinetics/rate-determining-step.md
                 { text: '', link: '' },
                 { text: '', link: '' },
                 { text: '', link: '' },
@@ -34,7 +53,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
     '/academic/physics': [
         {
             text: 'IPhO Formulas: JP Ver.',
-            collapsed: true,
+            collapsed: false,
             items: [
                 { text: '1: 数学', link: '/academic/physics/ipho-formulas-jpn/1' },
                 { text: '2: 一般的な推奨事', link: '/academic/physics/ipho-formulas-jpn/2' },
@@ -112,9 +131,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
             text: 'markdown-it-katex',
             collapsed: false,
             items: [
-                { text: '1: How to use?', link: '/application/markdown-it-katex/index' },
+                { text: '1: How to use?', link: '/application/markdown-it-katex/how-to-use' },
                 { text: '2: KaTeX supported functions', link: '/application/markdown-it-katex/support-function' },
                 { text: '3: KaTeX support tables', link: '/application/markdown-it-katex/support-table' },
+                { text: '4: Tips', link: '/application/markdown-it-katex/tips' },
                 // { text: 'Chapter 5: ', link: '/save/reading/outliers/5' },
                 // { text: 'Chapter 6: ', link: '/save/reading/outliers/6' },
             ],
