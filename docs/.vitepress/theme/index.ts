@@ -7,6 +7,8 @@ import { useData } from 'vitepress'
 import Theme from 'vitepress/theme'
 import DefaultTheme from 'vitepress/theme'
 import mediumZoom from 'medium-zoom'
+import vitepressNprogress from '@andatoshiki/vitepress-plugin-nprogress'
+import '@andatoshiki/vitepress-plugin-nprogress/lib/css/index.css'
 
 // custom styles import
 import './styles/index.scss'
@@ -18,6 +20,9 @@ import CustomLayout from './CustomLayout.vue'
 import AsideSponsors from './components/AsideSponsors.vue'
 // @ts-ignore
 import Copyright from './components/Copyright.vue'
+// @ts-ignore
+// import LinkPreview from './components/CardLink.vue'
+import CardLink from './components/CardLink.vue'
 
 if (typeof window !== 'undefined') {
     // unregister PWA service
@@ -65,13 +70,20 @@ export default {
     // medium zoom custom markdown attributes components
     setup() {
         onMounted(() => {
-            mediumZoom('[data-zoomable]', {
-                background: 'var(--vp-c-bg)',
-                scrollOffset: 40,
-            })
+            // medium zoom for images manually added with data-zoomable attribute
+            // mediumZoom('[data-zoomable]', {
+            //     background: 'var(--vp-c-bg)',
+            //     scrollOffset: 40,
+            // })
+            mediumZoom('.main img', { background: 'var(--vp-c-bg)' }) // register global component to make image zoom globally with the class
         })
     },
-    // enhanceApp({ app }: { app: App }) {
-    //     app.provide('DEV', process.env.NODE_ENV === 'development')
-    // },
+
+    enhanceApp(ctx) {
+        // custom component tag/slot
+        ctx.app.component('Link', CardLink)
+
+        // external plugin for vitepress hack performance
+        vitepressNprogress(ctx) // nprogress plugin for vitepress
+    },
 }
