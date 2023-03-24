@@ -9,9 +9,6 @@ export default defineConfig({
         }),
     ],
     ssr: {
-        noExternal: [
-            '@andatoshiki/vitepress-plugin-nprogress',
-            '@arco-design/web-vue'
-        ]
-      },
+        noExternal: ['@andatoshiki/vitepress-plugin-nprogress', '@arco-design/web-vue'],
+    },
 })
