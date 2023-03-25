@@ -13,8 +13,8 @@ module.exports = {
     const postDir = path.join(cwd, 'docs')
     return fs
       .readdirSync(postDir)
-      .filter((file) => file.endsWith('.md'))
-      .map((file) => getPost(md, file, postDir, asFeed))
+      .filter(file => file.endsWith('.md'))
+      .map(file => getPost(md, file, postDir, asFeed))
       .sort((a, b) => b.create - a.create)
   }
 }

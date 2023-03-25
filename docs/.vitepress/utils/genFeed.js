@@ -19,15 +19,13 @@ async function genFeed() {
     language: siteData.lang,
     image: `${url}/logos/logo-308px.png`,
     favicon: `${url}/favicon.ico`,
-    copyright: siteData.themeConfig.name || '-',
+    copyright: siteData.themeConfig.name || '-'
   })
 
-  posts.forEach((post) => {
+  posts.forEach(post => {
     const file = path.resolve(cwd, `dist/${post.href}`)
     const rendered = fs.readFileSync(file, 'utf-8')
-    const content = rendered.match(
-      /<body>([\s\S]*)<\/body>/
-    )
+    const content = rendered.match(/<body>([\s\S]*)<\/body>/)
 
     feed.addItem({
       title: post.title,
@@ -38,11 +36,9 @@ async function genFeed() {
       author: [
         {
           name: post.data.author,
-          link: post.data.twitter
-            ? `https://twitter.com/${post.data.twitter}`
-            : undefined
+          link: post.data.twitter ? `https://twitter.com/${post.data.twitter}` : undefined
         }
-      ],
+      ]
     })
   })
 
