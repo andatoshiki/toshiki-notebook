@@ -2,24 +2,22 @@ const fs = require('fs')
 const path = require('path')
 const { Feed } = require('feed')
 const { load } = require('./posts.data')
-const { resolveSiteData } = require('vitepress')
 const url = `https://note.toshiki.dev`
 
 genFeed()
 
 async function genFeed() {
-  const siteData = await resolveSiteData('.')
   const posts = await load(true)
   const cwd = process.cwd()
   const feed = new Feed({
-    title: siteData.title,
-    description: siteData.description,
+    title: "Toshiki's Notebook",
+    description: "Toshiki's web notebook served via Vitepress!",
     id: url,
     link: url,
-    language: siteData.lang,
+    language: 'en-US',
     image: `${url}/logos/logo-308px.png`,
     favicon: `${url}/favicon.ico`,
-    copyright: siteData.themeConfig.name || '-'
+    copyright: 'Copyright © 2023-2023 Anda Toshiki, LoliLab and Toshiki Dev present'
   })
 
   posts.forEach(post => {
