@@ -1,28 +1,4 @@
-ハンズオンで使うプログラムや教科書のソースコードは以下のウェブページで公開している．
-
-<https://github.com/tomomano/learn-aws-by-coding>
-
-**📗 告知 📗**
-
-各方面でご好評をいただいている本講義資料ですが，この度増補・改訂のうえ**書籍として出版することが決定いたしました！** **書籍限定の書き下ろしの３章 (約 100 ページ分！)を新たに追加**して，**2021 年 9 月 27 日**に発売予定です． この資料を気に入っていただいた方は，手に取っていただけるとありがたいです． ここで公開している資料は引き続きオンラインで無料で読めますので，ご安心ください 🙇
-
-書籍名: **AWS ではじめる クラウド開発入門** (真野智之著，マイナビ出版，360 ページ)
-
--   **Amazon (紙媒体 or Kindle)** ⇒ <https://www.amazon.co.jp/dp/4839977607/>
-
--   **マイナビブックス (紙媒体 or PDF)** ⇒ <https://book.mynavi.jp/ec/products/detail/id=124113>
-
-**CDK v2 への対応**
-
-オリジナルの講義資料は CDK v1 で作成されました． が， AWS は 2023 年 6 月 1 日で v1 のサポートを終了し，CDK v2 への移行を推奨しています． ([記事](https://aws.amazon.com/blogs/developer/version-1-of-the-aws-cloud-development-kit-aws-cdk-is-now-in-maintenance-mode/))．
-
-このたび， [@takashi-uchida](https://github.com/takashi-uchida) により， CDK v2 に対応したバージョンができました ([PR\#49](https://github.com/tomomano/learn-aws-by-coding/pull/49))． こちらのブランチでその中身を見ることができます． <https://github.com/takashi-uchida/learn-aws-by-coding/tree/feature/to_cdkv2>
-
-現在，コードをレビュー中なので，メインブランチにマージされるのはもう少し先になります． もうしばらくお待ちください！
-
-**🌎 英語バージョン 🌎** [こちら](https://tomomano.github.io/learn-aws-by-coding/en/) のリンクにて鋭意作成中！
-
-# はじめに
+# はじめに!
 
 ## 本書の目的・内容
 
@@ -92,7 +68,9 @@ Python, Node.js, AWS CDK など，ハンズオンのプログラムを実行す�
 
 次のコマンドで起動する．
 
-    $ docker run -it tomomano/labc
+```shell
+$ docker run -it tomomano/labc
+```
 
 この Docker image の使い方や詳細は [ハンズオン実行用の Docker image の使い方](#sec_handson_docker) に記載している．
 
@@ -322,39 +300,47 @@ AWS のアカウントにログインすると，まず最初に表示される�
 
 S3 に新しい保存領域 (`Bucket (バケット)` とよばれる) を追加したいとしよう． AWS CLI を使った場合は，次のようなコマンドを打てばよい．
 
-    $ aws s3 mb s3://my-bucket --region ap-northeast-1
+```shell
+$ aws s3 mb s3://my-bucket --region ap-northeast-1
+```
 
 上記のコマンドは， `my-bucket` という名前のバケットを， `ap-northeast-1` のリージョンに作成する．
 
 Python からこれと同じ操作を実行するには， `boto3` ライブラリを使って，次のようなスクリプトを実行する．
 
-    import boto3
+```python
+import boto3
 
-    s3_client = boto3.client("s3", region_name="ap-northeast-1")
-    s3_client.create_bucket(Bucket="my-bucket")
+s3_client = boto3.client("s3", region_name="ap-northeast-1")
+s3_client.create_bucket(Bucket="my-bucket")
+```
 
 もう一つ例をあげよう．
 
 新しい EC2 のインスタンス(インスタンスとは，起動状態にある仮想サーバーの意味である)を起動するには，次のようなコマンドを打てば良い．
 
-    $ aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
+```shell
+$ aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
+```
 
 このコマンドにより， [t2.micro](https://aws.amazon.com/ec2/instance-types/t2/) というタイプ (1 vCPU, 1.0 GB RAM) のインスタンスが起動する． ここではその他のパラメータの詳細の説明は省略する (ハンズオン ([Hands-on \#1: 初めての EC2 インスタンスを起動する](#sec_first_ec2)) で詳しく解説する)．
 
 Python から上記と同じ操作を実行するには，以下のようなスクリプトを使う．
 
-    import boto3
+```python
+import boto3
 
-    ec2_client = boto3.client("ec2")
-    ec2_client.run_instances(
-        ImageId="ami-xxxxxxxxx",
-        MinCount=1,
-        MaxCount=1,
-        KeyName="MyKeyPair",
-        InstanceType="t2.micro",
-        SecurityGroupIds=["sg-903004f8"],
-        SubnetId="subnet-6e7f829e",
-    )
+ec2_client = boto3.client("ec2")
+ec2_client.run_instances(
+    ImageId="ami-xxxxxxxxx",
+    MinCount=1,
+    MaxCount=1,
+    KeyName="MyKeyPair",
+    InstanceType="t2.micro",
+    SecurityGroupIds=["sg-903004f8"],
+    SubnetId="subnet-6e7f829e",
+)
+```
 
 以上の例を通じて，API によるクラウドのリソースの操作のイメージがつかめてきただろうか？ コマンド一つで，新しい仮想サーバーを起動したり，データの保存領域を追加したり，任意の操作を実行できるわけである． 基本的に，このようなコマンドを複数組み合わせていくことで，自分の望む CPU・RAM・ネットワーク・ストレージが備わった計算環境を構築することができる． もちろん，逆の操作 (リソースの削除) も API を使って実行できる．
 
@@ -370,17 +356,21 @@ AWS CLI のインストールについては， [AWS CLI のインストール](
 
 まずは，S3 にデータの格納領域 (`Bucket` とよばれる．一般的な OS での"ドライブ"に相当する) を作成するところから始めよう．
 
-    $ bucketName="mybucket-$(openssl rand -hex 12)"
-    $ echo $bucketName
-    $ aws s3 mb "s3://${bucketName}"
+```shell
+$ bucketName="mybucket-$(openssl rand -hex 12)"
+$ echo $bucketName
+$ aws s3 mb "s3://${bucketName}"
+```
 
 S3 のバケットの名前は， AWS 全体で一意的でなければならないことから，前述のコマンドではランダムな文字列を含んだバケットの名前を生成し，`bucketName` という変数に格納している． そして， `aws s3 mb` (`mb` は make bucket の略) によって，新しいバケットを作成する．
 
 次に，バケットの一覧を取得してみよう．
 
-    $ aws s3 ls
+```shell
+$ aws s3 ls
 
-    2020-06-07 23:45:44 mybucket-c6f93855550a72b5b66f5efe
+2020-06-07 23:45:44 mybucket-c6f93855550a72b5b66f5efe
+```
 
 先ほど作成したバケットがリストにあることを確認できる．
 
@@ -388,22 +378,28 @@ S3 のバケットの名前は， AWS 全体で一意的でなければならな
 
 次に，バケットにファイルをアップロードする．
 
-    $ echo "Hello world" > hello_world.txt
-    $ aws s3 cp hello_world.txt "s3://${bucketName}/hello_world.txt"
+```shell
+$ echo "Hello world" > hello_world.txt
+$ aws s3 cp hello_world.txt "s3://${bucketName}/hello_world.txt"
+```
 
 上では `hello_world.txt` というダミーのファイルを作成して，それをアップロードした．
 
 それでは，バケットの中にあるファイルの一覧を取得してみる．
 
-    $ aws s3 ls "s3://${bucketName}" --human-readable
+```shell
+$ aws s3 ls "s3://${bucketName}" --human-readable
 
-    2020-06-07 23:54:19   13 Bytes hello_world.txt
+2020-06-07 23:54:19   13 Bytes hello_world.txt
+```
 
 先ほどアップロードしたファイルがたしかに存在することがわかる．
 
 最後に，使い終わったバケットを削除する．
 
-    $ aws s3 rb "s3://${bucketName}" --force
+```shell
+$ aws s3 rb "s3://${bucketName}" --force
+```
 
 `rb` は remove bucket の略である． デフォルトでは，バケットの中にファイルが存在すると削除できない． 空でないバケットを強制的に削除するには `--force` のオプションを付ける．
 
@@ -435,36 +431,38 @@ AWS での静的リソースを管理するための仕組みが， [CloudFormat
 
 CloudFormation を記述するには，基本的に **JSON** (JavaScript Object Notation) とよばれるフォーマットを使う． 次のコードは，JSON で記述された CloudFormation ファイルの一例 (抜粋) である．
 
-    "Resources" : {
-      ...
-      "WebServer": {
-        "Type" : "AWS::EC2::Instance",
-        "Properties": {
-          "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
-                            { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "InstanceType" }, "Arch" ] } ] },
-          "InstanceType"   : { "Ref" : "InstanceType" },
-          "SecurityGroups" : [ {"Ref" : "WebServerSecurityGroup"} ],
-          "KeyName"        : { "Ref" : "KeyName" },
-          "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
-                         "#!/bin/bash -xe\n",
-                         "yum update -y aws-cfn-bootstrap\n",
+```json
+"Resources" : {
+  ...
+  "WebServer": {
+    "Type" : "AWS::EC2::Instance",
+    "Properties": {
+      "ImageId" : { "Fn::FindInMap" : [ "AWSRegionArch2AMI", { "Ref" : "AWS::Region" },
+                        { "Fn::FindInMap" : [ "AWSInstanceType2Arch", { "Ref" : "InstanceType" }, "Arch" ] } ] },
+      "InstanceType"   : { "Ref" : "InstanceType" },
+      "SecurityGroups" : [ {"Ref" : "WebServerSecurityGroup"} ],
+      "KeyName"        : { "Ref" : "KeyName" },
+      "UserData" : { "Fn::Base64" : { "Fn::Join" : ["", [
+                     "#!/bin/bash -xe\n",
+                     "yum update -y aws-cfn-bootstrap\n",
 
-                         "/opt/aws/bin/cfn-init -v ",
-                         "         --stack ", { "Ref" : "AWS::StackName" },
-                         "         --resource WebServer ",
-                         "         --configsets wordpress_install ",
-                         "         --region ", { "Ref" : "AWS::Region" }, "\n",
+                     "/opt/aws/bin/cfn-init -v ",
+                     "         --stack ", { "Ref" : "AWS::StackName" },
+                     "         --resource WebServer ",
+                     "         --configsets wordpress_install ",
+                     "         --region ", { "Ref" : "AWS::Region" }, "\n",
 
-                         "/opt/aws/bin/cfn-signal -e $? ",
-                         "         --stack ", { "Ref" : "AWS::StackName" },
-                         "         --resource WebServer ",
-                         "         --region ", { "Ref" : "AWS::Region" }, "\n"
-          ]]}}
-        },
-        ...
-      },
-      ...
+                     "/opt/aws/bin/cfn-signal -e $? ",
+                     "         --stack ", { "Ref" : "AWS::StackName" },
+                     "         --resource WebServer ",
+                     "         --region ", { "Ref" : "AWS::Region" }, "\n"
+      ]]}}
     },
+    ...
+  },
+  ...
+},
+```
 
 ここでは， "WebServer" という名前のつけられた EC2 インスタンスを定義している．かなり長大で複雑な記述であるが，これによって所望のスペック・OS をもつ EC2 インスタンスを自動的に生成することが可能になる．
 
@@ -478,31 +476,33 @@ CDK を使うことで，CloudFormation に相当するクラウドリソース�
 
 以下に Python を使った CDK のコードの一例 (抜粋) を示す．
 
-    from aws_cdk import (
-        core,
-        aws_ec2 as ec2,
-    )
+```python
+from aws_cdk import (
+    core,
+    aws_ec2 as ec2,
+)
 
-    class MyFirstEc2(core.Stack):
+class MyFirstEc2(core.Stack):
 
-        def __init__(self, scope, name, **kwargs):
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope, name, **kwargs):
+        super().__init__(scope, name, **kwargs)
 
-            vpc = ec2.Vpc(
-                ... # some parameters
-            )
+        vpc = ec2.Vpc(
+            ... # some parameters
+        )
 
-            sg = ec2.SecurityGroup(
-                ... # some parameters
-            )
+        sg = ec2.SecurityGroup(
+            ... # some parameters
+        )
 
-            host = ec2.Instance(
-                self, "MyGreatEc2",
-                instance_type=ec2.InstanceType("t2.micro"),
-                machine_image=ec2.MachineImage.latest_amazon_linux(),
-                vpc=vpc,
-                ...
-            )
+        host = ec2.Instance(
+            self, "MyGreatEc2",
+            instance_type=ec2.InstanceType("t2.micro"),
+            machine_image=ec2.MachineImage.latest_amazon_linux(),
+            vpc=vpc,
+            ...
+        )
+```
 
 このコードは，一つ前に示した JSON を使った CloudFormation と実質的に同じことを記述している． とても煩雑だった CloudFormation ファイルに比べて， CDK と Python を使うことで格段に短く，わかりやすく記述できることができるのがわかるだろう．
 
@@ -523,18 +523,16 @@ CDK を使うことで，CloudFormation に相当するクラウドリソース�
 まずは，ハンズオンを実行するための環境を整える． これらの環境整備は，後のハンズオンでも前提となるものなので確実にミスなく行っていただきたい．
 
 -   **AWS Account**: ハンズオンを実行するには個人の AWS アカウントが必要である． AWS アカウントの取得については [AWS アカウントの取得](#sec:create_aws_account) を参照のこと．
-
 -   **Python と Node.js**: 本ハンズオンを実行するには，Python (3.6 以上)，Node.js (12.0 以上) がインストールされていなければならない．
-
 -   **AWS CLI**: AWS CLI のインストールについては， [AWS CLI のインストール](#aws_cli_install) を参照． ここに記載されている認証鍵の設定も済ませておくこと．
-
 -   **AWS CDK**: AWS CDK のインストールについては， [AWS CDK のインストール](#aws_cdk_install) を参照．
-
 -   **ソースコードのダウンロード**: 本ハンズオンで使用するプログラムのソースコードを，以下のコマンドを使って GitHub からダウンロードする．
 
-    $ git clone https://github.com/tomomano/learn-aws-by-coding.git
+```shell
+$ git clone https://github.com/tomomano/learn-aws-by-coding.git
+```
 
-あるいは， <https://github.com/tomomano/learn-aws-by-coding> のページに行って，右上のダウンロードボタンからダウンロードすることもできる．
+あるいは， `https://github.com/tomomano/learn-aws-by-coding` のページに行って，右上のダウンロードボタンからダウンロードすることもできる．
 
 **Docker を使用する場合**
 
@@ -550,13 +548,17 @@ SSH による通信はすべて暗号化されているので，機密情報を�
 
 SSH コマンドの基本的な使い方を次に示す． `<host name>` はアクセスする先のサーバーの IP アドレスや DNS によるホストネームが入る． `<user name>` は接続する先のユーザー名である．
 
-    $ ssh <user name>@<host name>
+```shell
+$ ssh <user name>@<host name>
+```
 
 SSH は平文のパスワードによる認証を行うこともできるが，より強固なセキュリティを施すため，**公開鍵暗号方式(Public Key Cryptography)による認証**を行うことが強く推奨されており， EC2 はこの方法でしかアクセスを許していない． 公開鍵暗号方式の仕組みについては各自勉強してほしい． 本ハンズオンにおいて大事なことは，**EC2 インスタンスが公開鍵(Public key)を保持し，クライアントとなるコンピュータ(読者自身のコンピュータ)が秘密鍵(Private key)を保持する**，という点である． EC2 のインスタンスには秘密鍵を持ったコンピュータのみがアクセスすることができる．逆に言うと，秘密鍵が漏洩すると第三者もサーバーにアクセスできることになるので，**秘密鍵は絶対に漏洩することのないよう注意して管理する**．
 
 SSH コマンドでは，ログインのために使用する秘密鍵ファイルを `-i` もしくは `--identity_file` のオプションで指定することができる． たとえば，次のように使う．
 
-    $ ssh -i Ec2SecretKey.pem <user name>@<host name>
+```shell
+$ ssh -i Ec2SecretKey.pem <user name>@<host name>
+```
 
 ## アプリケーションの説明
 
@@ -570,46 +572,48 @@ SSH コマンドでは，ログインのために使用する秘密鍵ファイ�
 
 早速ではあるが，今回のハンズオンで使用するプログラムを見てみよう ([handson/ec2-get-started/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/ec2-get-started/app.py))．
 
-    class MyFirstEc2(core.Stack):
+```python
+class MyFirstEc2(core.Stack):
 
-        def __init__(self, scope: core.App, name: str, key_name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope: core.App, name: str, key_name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            #
-            vpc = ec2.Vpc(
-                self, "MyFirstEc2-Vpc",
-                max_azs=1,
-                cidr="10.10.0.0/23",
-                subnet_configuration=[
-                    ec2.SubnetConfiguration(
-                        name="public",
-                        subnet_type=ec2.SubnetType.PUBLIC,
-                    )
-                ],
-                nat_gateways=0,
-            )
+        #
+        vpc = ec2.Vpc(
+            self, "MyFirstEc2-Vpc",
+            max_azs=1,
+            cidr="10.10.0.0/23",
+            subnet_configuration=[
+                ec2.SubnetConfiguration(
+                    name="public",
+                    subnet_type=ec2.SubnetType.PUBLIC,
+                )
+            ],
+            nat_gateways=0,
+        )
 
-            #
-            sg = ec2.SecurityGroup(
-                self, "MyFirstEc2Vpc-Sg",
-                vpc=vpc,
-                allow_all_outbound=True,
-            )
-            sg.add_ingress_rule(
-                peer=ec2.Peer.any_ipv4(),
-                connection=ec2.Port.tcp(22),
-            )
+        #
+        sg = ec2.SecurityGroup(
+            self, "MyFirstEc2Vpc-Sg",
+            vpc=vpc,
+            allow_all_outbound=True,
+        )
+        sg.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            connection=ec2.Port.tcp(22),
+        )
 
-            #
-            host = ec2.Instance(
-                self, "MyFirstEc2Instance",
-                instance_type=ec2.InstanceType("t2.micro"),
-                machine_image=ec2.MachineImage.latest_amazon_linux(),
-                vpc=vpc,
-                vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-                security_group=sg,
-                key_name=key_name
-            )
+        #
+        host = ec2.Instance(
+            self, "MyFirstEc2Instance",
+            instance_type=ec2.InstanceType("t2.micro"),
+            machine_image=ec2.MachineImage.latest_amazon_linux(),
+            vpc=vpc,
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+            security_group=sg,
+            key_name=key_name
+        )
+```
 
 -   まず最初に，VPC を定義する．
 
@@ -631,18 +635,20 @@ VPC は AWS 上にプライベートな仮想ネットワーク環境を構築�
 
 興味のある読者のために，VPC のコードについてもう少し詳しく説明しよう．
 
-    vpc = ec2.Vpc(
-        self, "MyFirstEc2-Vpc",
-        max_azs=1,
-        cidr="10.10.0.0/23",
-        subnet_configuration=[
-            ec2.SubnetConfiguration(
-                name="public",
-                subnet_type=ec2.SubnetType.PUBLIC,
-            )
-        ],
-        nat_gateways=0,
-    )
+```python
+vpc = ec2.Vpc(
+    self, "MyFirstEc2-Vpc",
+    max_azs=1,
+    cidr="10.10.0.0/23",
+    subnet_configuration=[
+        ec2.SubnetConfiguration(
+            name="public",
+            subnet_type=ec2.SubnetType.PUBLIC,
+        )
+    ],
+    nat_gateways=0,
+)
+```
 
 -   `max_azs=1` : このパラメータは，前章で説明した avaialibility zone (AZ) を設定している． このハンズオンでは，特にデータセンターの障害などを気にする必要はないので `1` にしている．
 
@@ -658,15 +664,17 @@ Security group (SG) は， EC2 インスタンスに付与することのでき�
 
 コードの該当部分を見てみよう．
 
-    sg = ec2.SecurityGroup(
-        self, "MyFirstEc2Vpc-Sg",
-        vpc=vpc,
-        allow_all_outbound=True,
-    )
-    sg.add_ingress_rule(
-        peer=ec2.Peer.any_ipv4(),
-        connection=ec2.Port.tcp(22),
-    )
+```python
+sg = ec2.SecurityGroup(
+    self, "MyFirstEc2Vpc-Sg",
+    vpc=vpc,
+    allow_all_outbound=True,
+)
+sg.add_ingress_rule(
+    peer=ec2.Peer.any_ipv4(),
+    connection=ec2.Port.tcp(22),
+)
+```
 
 本ハンズオンでは， SSH による外部からの接続を許容するため， `sg.add_ingress_rule(peer=ec2.Peer.any_ipv4(), connection=ec2.Port.tcp(22))` により，すべての IPv4 アドレスからのポート 22 番へのアクセスを許容している． また， SSH で EC2 インスタンスにログインしたのち，インターネットからプログラムなどをダウンロードできるよう， `allow_all_outbound=True` のパラメータを設定している．
 
@@ -696,15 +704,17 @@ AWS には [無料利用枠](https://aws.amazon.com/free/?all-free-tier.sort-by=
 
 EC2 インスタンスを定義しているコードの該当部分を見てみよう．
 
-    host = ec2.Instance(
-        self, "MyFirstEc2Instance",
-        instance_type=ec2.InstanceType("t2.micro"),
-        machine_image=ec2.MachineImage.latest_amazon_linux(),
-        vpc=vpc,
-        vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-        security_group=sg,
-        key_name=key_name
-    )
+```python
+host = ec2.Instance(
+    self, "MyFirstEc2Instance",
+    instance_type=ec2.InstanceType("t2.micro"),
+    machine_image=ec2.MachineImage.latest_amazon_linux(),
+    vpc=vpc,
+    vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+    security_group=sg,
+    key_name=key_name
+)
+```
 
 ここでは， `t2.micro` というインスタンスタイプを選択している． さらに， `machine_image` として， [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) を選択している (Machine image は OS と似た概念である． Machine image については， [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning) でより詳しく触れる)． さらに，上で定義した VPC, SG をこのインスタンスに付与している．
 
@@ -720,13 +730,17 @@ EC2 インスタンスを定義しているコードの該当部分を見てみ�
 
 まずは， `handson/ec2-get-started` のディレクトリに移動しよう．
 
-    $ cd handson/ec2-get-started
+```shell
+$ cd handson/ec2-get-started
+```
 
 ディレクトリを移動したら， `venv` で新しい仮想環境を作成し，インストールを実行する．
 
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+```shell
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
+```
 
 これで Python の環境構築は完了だ．
 
@@ -746,19 +760,25 @@ EC2 インスタンスには SSH を使ってログインする． EC2 インス
 
 次の AWS CLI コマンドにより， `HirakeGoma` という名前のついた鍵を生成する．
 
-    $ export KEY_NAME="HirakeGoma"
-    $ aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}.pem
+```shell
+$ export KEY_NAME="HirakeGoma"
+$ aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}.pem
+```
 
 このコマンドを実行すると，現在のディレクトリに `HirakeGoma.pem` というファイルが作成される．これが，サーバーにアクセスするための秘密鍵である． SSH でこの鍵を使うため， `~/.ssh/` のディレクトリに鍵を移動する． さらに，秘密鍵が書き換えられたり第三者に閲覧されないよう，ファイルのアクセス権限を `400` に設定する．
 
-    $ mv HirakeGoma.pem ~/.ssh/
-    $ chmod 400 ~/.ssh/HirakeGoma.pem
+```shell
+$ mv HirakeGoma.pem ~/.ssh/
+$ chmod 400 ~/.ssh/HirakeGoma.pem
+```
 
 ### デプロイを実行
 
 これまでのステップで， EC2 インスタンスをデプロイするための準備が整った！ 早速，次のコマンドによりアプリケーションを AWS にデプロイしよう． `-c key_name="HirakeGoma"` というオプションで，先ほど生成した `HirakeGoma` という名前の鍵を使うよう指定している．
 
-    $ cdk deploy -c key_name="HirakeGoma"
+```shell
+$ cdk deploy -c key_name="HirakeGoma"
+```
 
 このコマンドを実行すると， VPC， EC2 などが AWS 上に展開される． そして，コマンドの出力の最後に [figure_title](#handson_01_cdk_output) のような出力が得られるはずである． **出力の中で `InstancePublicIp` に続く数字が，起動したインスタンスのパブリック IP アドレスである．** IP アドレスはデプロイごとにランダムなアドレスが割り当てられる．
 
@@ -768,7 +788,9 @@ EC2 インスタンスには SSH を使ってログインする． EC2 インス
 
 早速，SSH 　で接続してみよう．
 
-    $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
+```shell
+$ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
+```
 
 `-i` オプションで，先ほど生成した秘密鍵を指定している． EC2 インスタンスにはデフォルトで `ec2-user` という名前のユーザーが作られているので，それを使用する． 最後に， `<IP address>` の部分は自身が作成した EC2 インスタンスの IP アドレスで置き換える (`12.345.678.9` など）．
 
@@ -784,53 +806,63 @@ EC2 インスタンスには SSH を使ってログインする． EC2 インス
 
 ログインした EC2 インスタンスで，次のコマンドを実行してみよう． CPU の情報を取得することができる．
 
-    $ cat /proc/cpuinfo
+```shell
+$ cat /proc/cpuinfo
 
-    processor       : 0
-    vendor_id       : GenuineIntel
-    cpu family      : 6
-    model           : 63
-    model name      : Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
-    stepping        : 2
-    microcode       : 0x43
-    cpu MHz         : 2400.096
-    cache size      : 30720 KB
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 63
+model name      : Intel(R) Xeon(R) CPU E5-2676 v3 @ 2.40GHz
+stepping        : 2
+microcode       : 0x43
+cpu MHz         : 2400.096
+cache size      : 30720 KB
+```
 
 次に，実行中のプロセスやメモリの消費を見てみよう．
 
-    $  top -n 1
+```shell
+$  top -n 1
 
-    top - 09:29:19 up 43 min,  1 user,  load average: 0.00, 0.00, 0.00
-    Tasks:  76 total,   1 running,  51 sleeping,   0 stopped,   0 zombie
-    Cpu(s):  0.3%us,  0.3%sy,  0.1%ni, 98.9%id,  0.2%wa,  0.0%hi,  0.0%si,  0.2%st
-    Mem:   1009140k total,   270760k used,   738380k free,    14340k buffers
-    Swap:        0k total,        0k used,        0k free,   185856k cached
+top - 09:29:19 up 43 min,  1 user,  load average: 0.00, 0.00, 0.00
+Tasks:  76 total,   1 running,  51 sleeping,   0 stopped,   0 zombie
+Cpu(s):  0.3%us,  0.3%sy,  0.1%ni, 98.9%id,  0.2%wa,  0.0%hi,  0.0%si,  0.2%st
+Mem:   1009140k total,   270760k used,   738380k free,    14340k buffers
+Swap:        0k total,        0k used,        0k free,   185856k cached
 
-      PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
-        1 root      20   0 19696 2596 2268 S  0.0  0.3   0:01.21 init
-        2 root      20   0     0    0    0 S  0.0  0.0   0:00.00 kthreadd
-        3 root      20   0     0    0    0 I  0.0  0.0   0:00.00 kworker/0:0
+  PID USER      PR  NI  VIRT  RES  SHR S %CPU %MEM    TIME+  COMMAND
+    1 root      20   0 19696 2596 2268 S  0.0  0.3   0:01.21 init
+    2 root      20   0     0    0    0 S  0.0  0.0   0:00.00 kthreadd
+    3 root      20   0     0    0    0 I  0.0  0.0   0:00.00 kworker/0:0
+```
 
 `t2.micro` インスタンスなので， 1009140k = 1GB のメモリーがあることがわかる．
 
 今回起動したインスタンスには Python 2 はインストール済みだが， Python 3 は入っていない． Python 3.6 のインストールを行ってみよう． インストールは簡単である．
 
-    $ sudo yum update -y
-    $ sudo yum install -y python36
+```shell
+$ sudo yum update -y
+$ sudo yum install -y python36
+```
 
 インストールした Python を起動してみよう．
 
-    $ python3
-    Python 3.6.10 (default, Feb 10 2020, 19:55:14)
-    [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>>
+```shell
+$ python3
+Python 3.6.10 (default, Feb 10 2020, 19:55:14)
+[GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
 
 Python のインタープリタが起動した！ `Ctrl + D` あるいは `exit()` と入力することで，インタープリタを閉じることができる．
 
 さて，サーバーでのお遊びはこんなところにしておこう (興味があれば各自いろいろと試してみると良い) ． 次のコマンドでログアウトする．
 
-    $ exit
+```shell
+$ exit
+```
 
 ### AWS コンソールから確認
 
@@ -858,7 +890,9 @@ Python のインタープリタが起動した！ `Ctrl + D` あるいは `exit(
 
 二つ目の方法は，コマンドラインから行う方法である． 先ほど，デプロイを行ったコマンドラインに戻ろう． そうしたら，次のコマンドを実行する．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 このコマンドを実行すると，スタックの削除が始まる． 削除した後は，VPC, EC2 など，すべて跡形もなく消え去っていることを自身で確かめよう． CloudFormation を用いることで関連するすべての AWS リソースを一度に管理・削除することができるので，大変便利である．
 
@@ -872,11 +906,15 @@ Python のインタープリタが起動した！ `Ctrl + D` あるいは `exit(
 
 コマンドラインから実行するには，次のコマンドを使う．
 
-    $ aws ec2 delete-key-pair --key-name "HirakeGoma"
+```shell
+$ aws ec2 delete-key-pair --key-name "HirakeGoma"
+```
 
 最後に，ローカルのコンピュータから鍵を削除する．
 
-    $ rm -f ~/.ssh/HirakeGoma.pem
+```shell
+$ rm -f ~/.ssh/HirakeGoma.pem
+```
 
 これで，クラウドの片付けもすべて終了だ．
 
@@ -982,46 +1020,48 @@ AWS Educate Starter Account を使用している読者へ: 執筆時点にお�
 
 ハンズオンで使用するプログラムのコードをみてみよう [handson/mnist/app.py](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/mnist/app.py))． コードは第一回目とほとんど共通である．変更点のみ解説を行う．
 
-    class Ec2ForDl(core.Stack):
+```python
+class Ec2ForDl(core.Stack):
 
-        def __init__(self, scope: core.App, name: str, key_name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope: core.App, name: str, key_name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            vpc = ec2.Vpc(
-                self, "Ec2ForDl-Vpc",
-                max_azs=1,
-                cidr="10.10.0.0/23",
-                subnet_configuration=[
-                    ec2.SubnetConfiguration(
-                        name="public",
-                        subnet_type=ec2.SubnetType.PUBLIC,
-                    )
-                ],
-                nat_gateways=0,
-            )
+        vpc = ec2.Vpc(
+            self, "Ec2ForDl-Vpc",
+            max_azs=1,
+            cidr="10.10.0.0/23",
+            subnet_configuration=[
+                ec2.SubnetConfiguration(
+                    name="public",
+                    subnet_type=ec2.SubnetType.PUBLIC,
+                )
+            ],
+            nat_gateways=0,
+        )
 
-            sg = ec2.SecurityGroup(
-                self, "Ec2ForDl-Sg",
-                vpc=vpc,
-                allow_all_outbound=True,
-            )
-            sg.add_ingress_rule(
-                peer=ec2.Peer.any_ipv4(),
-                connection=ec2.Port.tcp(22),
-            )
+        sg = ec2.SecurityGroup(
+            self, "Ec2ForDl-Sg",
+            vpc=vpc,
+            allow_all_outbound=True,
+        )
+        sg.add_ingress_rule(
+            peer=ec2.Peer.any_ipv4(),
+            connection=ec2.Port.tcp(22),
+        )
 
-            host = ec2.Instance(
-                self, "Ec2ForDl-Instance",
-                instance_type=ec2.InstanceType("g4dn.xlarge"), #
-                machine_image=ec2.MachineImage.generic_linux({
-                    "us-east-1": "ami-060f07284bb6f9faf",
-                    "ap-northeast-1": "ami-09c0c16fc46a29ed9"
-                }), #
-                vpc=vpc,
-                vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
-                security_group=sg,
-                key_name=key_name
-            )
+        host = ec2.Instance(
+            self, "Ec2ForDl-Instance",
+            instance_type=ec2.InstanceType("g4dn.xlarge"), #
+            machine_image=ec2.MachineImage.generic_linux({
+                "us-east-1": "ami-060f07284bb6f9faf",
+                "ap-northeast-1": "ami-09c0c16fc46a29ed9"
+            }), #
+            vpc=vpc,
+            vpc_subnets=ec2.SubnetSelection(subnet_type=ec2.SubnetType.PUBLIC),
+            security_group=sg,
+            key_name=key_name
+        )
+```
 
 -   ここで， `g4dn.xlarge` インスタンスタイプを選択している (第一回では， CPU のみの `t2.micro` だった)． `g4dn.xlarge` のインスタンスタイプは， [クラウドで行う科学計算・機械学習](#sec_scientific_computing) ですでに触れた通り， `NVIDIA T4` と呼ばれる廉価版モデルの GPU を搭載したインスタンスである． CPU は 4 core, メインメモリーは 16GB が割り当てあられている．
 
@@ -1039,13 +1079,17 @@ AMI が `us-east-1` と `ap-northeast-1` でしか定義されていないので
 
 AMI は， AWS 公式のものに加えて，サードパーティから提供されているものもある． また，自分自身の AMI を作って登録することも可能である ([参考](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html))． AMI は EC2 のコンソールから検索することが可能である． あるいは，AWS CLI を使って，次のコマンドでリストを取得することができる ([参考](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html))．
 
-    $ aws ec2 describe-images --owners amazon
+```shell
+$ aws ec2 describe-images --owners amazon
+```
 
 ディープラーニングで頻繁に使われるプログラムがあらかじめインストールしてある AMI が， [DLAMI (Deep Learning AMI)](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html) である． DLAMI には `TensorFlow`, `PyTorch` などの人気の高いディープラーニングのフレームワーク・ライブラリがすでにインストールされているため， EC2 インスタンスを起動してすぐさまディープラーニングの計算を実行できる．
 
 本ハンズオンでは， Amazon Linux 2 をベースにした DLAMI を使用する (AMI ID = ami-09c0c16fc46a29ed9．この AMI は ap-northeast-1 でしか使用できない点に注意)． AWS CLI を使って，この AMI の詳細情報を取得してみよう．
 
-    $ aws ec2 describe-images --owners amazon --image-ids "ami-09c0c16fc46a29ed9" --region ap-northeast-1
+```shell
+$ aws ec2 describe-images --owners amazon --image-ids "ami-09c0c16fc46a29ed9" --region ap-northeast-1
+```
 
 ![AMI ID = ami-09c0c16fc46a29ed9 の詳細情報](imgs/handson-jupyter/ami-info.png)
 
@@ -1063,22 +1107,24 @@ DLAMI には具体的には何がインストールされているのだろう�
 
 デプロイの手順は，ハンズオン 1 とほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれのコマンドの意味を忘れてしまった場合は，ハンズオン 1 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd handson/mnist
+```shell
+# プロジェクトのディレクトリに移動
+$ cd handson/mnist
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # SSH鍵を生成
-    $ export KEY_NAME="HirakeGoma"
-    $ aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}.pem
-    $ mv HirakeGoma.pem ~/.ssh/
-    $ chmod 400 ~/.ssh/HirakeGoma.pem
+# SSH鍵を生成
+$ export KEY_NAME="HirakeGoma"
+$ aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}.pem
+$ mv HirakeGoma.pem ~/.ssh/
+$ chmod 400 ~/.ssh/HirakeGoma.pem
 
-    # デプロイを実行
-    $ cdk deploy -c key_name="HirakeGoma"
+# デプロイを実行
+$ cdk deploy -c key_name="HirakeGoma"
+```
 
 ハンズオン 1 で作成した SSH 鍵の削除を行わなかった場合は， SSH 鍵を改めて作成する必要はない． 逆に言うと，同じ名前の SSH がすでに存在する場合は，鍵生成のコマンドはエラーを出力する．
 
@@ -1090,7 +1136,9 @@ DLAMI には具体的には何がインストールされているのだろう�
 
 早速，デプロイしたインスタンスに SSH でログインしてみよう． ここでは，この後で使う Jupyter Notebook に接続するため，**ポートフォワーディング (port forwarding)** のオプション (`-L`) をつけてログインする．
 
-    $ ssh -i ~/.ssh/HirakeGoma.pem -L localhost:8931:localhost:8888 ec2-user@<IP address>
+```shell
+$ ssh -i ~/.ssh/HirakeGoma.pem -L localhost:8931:localhost:8888 ec2-user@<IP address>
+```
 
 ポートフォワーディングとは，クライアントマシンの特定のアドレスへの接続を， SSH の暗号化された通信を介して，リモートマシンの特定のアドレスへ転送する，という意味である． このコマンドの `-L localhost:8931:localhost:8888` は，自分のローカルマシンの `localhost:8931` へのアクセスを，リモートサーバーの `localhost:8888` のアドレスに転送せよ，という意味である (`:` につづく数字は TCP/IP ポートの番号を意味している)． リモートサーバーのポート 8888 には，後述する Jupyter Notebook が起動している． したがって，ローカルマシンの `localhost:8931` にアクセスすることで，リモートサーバーの Jupyter Notebook にアクセスすることができるのである ([figure_title](#fig:ssh_port_forwarding))． このような SSH による接続方式を**トンネル接続**とよぶ．
 
@@ -1108,7 +1156,9 @@ SSH によるログインは， **Docker の外** (すなわちクライアン�
 
 SSH によるログインができたら，早速， GPU の状態を確認してみよう． 次のコマンドを実行する．
 
-    $ nvidia-smi
+```shell
+$ nvidia-smi
+```
 
 [figure_title](#handson_02_nvidia-smi) のような出力が得られるはずである． 出力を見ると， Tesla T4 型の GPU が 1 台搭載されていることが確認できる． その他，GPU Driver や CUDA のバージョン， GPU の負荷・メモリー使用率などの情報を確認することができる．
 
@@ -1124,8 +1174,10 @@ SSH によるログインができたら，早速， GPU の状態を確認し�
 
 早速， Jupyter を起動しよう． SSH でログインした先の EC2 インスタンスで，次のコマンドを実行すればよい．
 
-    $ cd ~ # go to home directory
-    $ jupyter notebook
+```shell
+$ cd ~ # go to home directory
+$ jupyter notebook
+```
 
 このコマンドを実行すると， [figure_title](#handson_02_jupyter_launch) のような出力が確認できるだろう． この出力から，Jupyter のサーバーが EC2 インスタンスの `localhost:8888` というアドレスに起動していることがわかる． また， `localhost:8888` に続く `?token=XXXX` は，アクセスに使うための一時的なトークンである．
 
@@ -1177,8 +1229,10 @@ Facebook は PyTorch のほかに Caffe2 とよばれるディープラーニン
 
 まずは， PyTorch をインポートする．さらに， GPU が使える環境にあるか，確認する．
 
-    import torch
-    print("Is CUDA ready?", torch.cuda.is_available())
+```python
+import torch
+print("Is CUDA ready?", torch.cuda.is_available())
+```
 
 出力:
 
@@ -1186,8 +1240,10 @@ Is CUDA ready? True&lt;/programlisting&gt;
 
 次に，3x3 のランダムな行列を **CPU** 上に作ってみよう．
 
-    x = torch.rand(3,3)
-    print(x)
+```python
+x = torch.rand(3,3)
+print(x)
+```
 
 出力:
 
@@ -1195,13 +1251,17 @@ tensor(\[\[0.6896, 0.2428, 0.3269\], \[0.0533, 0.3594, 0.9499\], \[0.9764, 0.588
 
 次に，行列を **GPU** 上に作成する．
 
-    y = torch.ones_like(x, device="cuda")
-    x = x.to("cuda")
+```python
+y = torch.ones_like(x, device="cuda")
+x = x.to("cuda")
+```
 
 そして，行列 `x` と `y` の加算を，**GPU 上で実行する**．
 
-    z = x + y
-    print(z)
+```python
+z = x + y
+print(z)
+```
 
 出力:
 
@@ -1209,8 +1269,10 @@ tensor(\[\[1.6896, 1.2428, 1.3269\], \[1.0533, 1.3594, 1.9499\], \[1.9764, 1.588
 
 最後に， GPU 上にある行列を， CPU に戻す．
 
-    z = z.to("cpu")
-    print(z)
+```python
+z = z.to("cpu")
+print(z)
+```
 
 出力:
 
@@ -1226,12 +1288,14 @@ tensor(\[\[1.6896, 1.2428, 1.3269\], \[1.0533, 1.3594, 1.9499\], \[1.9764, 1.588
 
 まずは CPU を使用して，10000x10000 の行列の行列積を計算した場合の速度を測ってみよう． 先ほどのノートブックの続きに，次のコードを実行する．
 
-    s = 10000
-    device = "cpu"
-    x = torch.rand(s, s, device=device, dtype=torch.float32)
-    y = torch.rand(s, s, device=device, dtype=torch.float32)
+```python
+s = 10000
+device = "cpu"
+x = torch.rand(s, s, device=device, dtype=torch.float32)
+y = torch.rand(s, s, device=device, dtype=torch.float32)
 
-    %time z = torch.matmul(x,y)
+%time z = torch.matmul(x,y)
+```
 
 出力は以下のようなものが得られるだろう． これは，行列積の計算に実時間で 5.8 秒かかったことを意味する (実行のたびに計測される時間はばらつくことに留意)．
 
@@ -1239,13 +1303,15 @@ CPU times: user 11.5 s, sys: 140 ms, total: 11.6 s Wall time: 5.8 s&lt;/programl
 
 次に， GPU を使用して，同じ演算を行った場合の速度を計測しよう．
 
-    s = 10000
-    device = "cuda"
-    x = torch.rand(s, s, device=device, dtype=torch.float32)
-    y = torch.rand(s, s, device=device, dtype=torch.float32)
-    torch.cuda.synchronize()
+```python
+s = 10000
+device = "cuda"
+x = torch.rand(s, s, device=device, dtype=torch.float32)
+y = torch.rand(s, s, device=device, dtype=torch.float32)
+torch.cuda.synchronize()
 
-    %time z = torch.matmul(x,y); torch.cuda.synchronize()
+%time z = torch.matmul(x,y); torch.cuda.synchronize()
+```
 
 出力は以下のようなものになるだろう． GPU では 553 ミリ秒 で計算を終えることができた！
 
@@ -1275,51 +1341,59 @@ PyTorch において， GPU での演算は asynchronous (非同期) で実行�
 
 新しいノートブックが起動したら，まずは必要なライブラリをインポートしよう．
 
-    import torch
-    import torch.optim as optim
-    import torchvision
-    from torchvision import datasets, transforms
-    from matplotlib import pyplot as plt
+```python
+import torch
+import torch.optim as optim
+import torchvision
+from torchvision import datasets, transforms
+from matplotlib import pyplot as plt
 
-    # custom functions and classes
-    from simple_mnist import Model, train, evaluate
+# custom functions and classes
+from simple_mnist import Model, train, evaluate
+```
 
 [torchvision](https://pytorch.org/docs/stable/torchvision/index.html) パッケージには，MNIST データセットをロードするなどの便利な関数が含まれている． また，今回のハンズオンで使うカスタムのクラス・関数 (`Model`, `train`, `evaluate`) のインポートを行っている．
 
 次に，MNIST テストデータをダウンロードしよう． 同時に，画像データの輝度の正規化も行っている．
 
-    transf = transforms.Compose([transforms.ToTensor(),
-                                 transforms.Normalize((0.1307,), (0.3081,))])
+```python
+transf = transforms.Compose([transforms.ToTensor(),
+                             transforms.Normalize((0.1307,), (0.3081,))])
 
-    trainset = datasets.MNIST(root='./data', train=True, download=True, transform=transf)
-    trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
+trainset = datasets.MNIST(root='./data', train=True, download=True, transform=transf)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=64, shuffle=True)
 
-    testset = datasets.MNIST(root='./data', train=False, download=True, transform=transf)
-    testloader = torch.utils.data.DataLoader(testset, batch_size=1000, shuffle=True)
+testset = datasets.MNIST(root='./data', train=False, download=True, transform=transf)
+testloader = torch.utils.data.DataLoader(testset, batch_size=1000, shuffle=True)
+```
 
 今回扱う MNIST データは 28x28 ピクセルの正方形の画像(モノクロ)と，それぞれのラベル(0 - 9 の数字)の組で構成されている． いくつかのデータを抽出して，可視化してみよう． [figure_title](#handson_02_mnist_ground_truth) のような出力が得られるはずである．
 
-    examples = iter(testloader)
-    example_data, example_targets = examples.next()
+```python
+examples = iter(testloader)
+example_data, example_targets = examples.next()
 
-    print("Example data size:", example_data.shape)
+print("Example data size:", example_data.shape)
 
-    fig = plt.figure(figsize=(10,4))
-    for i in range(10):
-        plt.subplot(2,5,i+1)
-        plt.tight_layout()
-        plt.imshow(example_data[i][0], cmap='gray', interpolation='none')
-        plt.title("Ground Truth: {}".format(example_targets[i]))
-        plt.xticks([])
-        plt.yticks([])
-    plt.show()
+fig = plt.figure(figsize=(10,4))
+for i in range(10):
+    plt.subplot(2,5,i+1)
+    plt.tight_layout()
+    plt.imshow(example_data[i][0], cmap='gray', interpolation='none')
+    plt.title("Ground Truth: {}".format(example_targets[i]))
+    plt.xticks([])
+    plt.yticks([])
+plt.show()
+```
 
 ![MNIST の手書き数字画像とその教師ラベル](imgs/handson-jupyter/mnist_ground_truth.png)
 
 次に， CNN のモデルを定義する．
 
-    model = Model()
-    model.to("cuda") # load to GPU
+```python
+model = Model()
+model.to("cuda") # load to GPU
+```
 
 今回使う `Model` は `simple_mnist.py` の中で定義されている． このモデルは，[figure_title](#handson_02_cnn_architecture) に示したような，２層の畳み込み層と 2 層の全結合層からなるネットワークである． 出力層 (output layer) には Softmax 関数を使用し，損失関数 (Loss function) には 負の対数尤度関数 (Negative log likelyhood; NLL) を使用している．
 
@@ -1327,22 +1401,26 @@ PyTorch において， GPU での演算は asynchronous (非同期) で実行�
 
 続いて， CNN のパラメータを更新する最適化アルゴリズムを定義する． ここでは， **確率的勾配降下法 (Stochastic Gradient Descent; SGD)** を使用している．
 
-    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
+```python
+optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
+```
 
 これで，準備が整った． CNN の学習ループを開始しよう!
 
-    train_losses = []
-    for epoch in range(5):
-        losses = train(model, trainloader, optimizer, epoch)
-        train_losses = train_losses + losses
-        test_loss, test_accuracy = evaluate(model, testloader)
-        print(f"\nTest set: Average loss: {test_loss:.4f}, Accuracy: {test_accuracy:.1f}%\n")
+```python
+train_losses = []
+for epoch in range(5):
+    losses = train(model, trainloader, optimizer, epoch)
+    train_losses = train_losses + losses
+    test_loss, test_accuracy = evaluate(model, testloader)
+    print(f"\nTest set: Average loss: {test_loss:.4f}, Accuracy: {test_accuracy:.1f}%\n")
 
-    plt.figure(figsize=(7,5))
-    plt.plot(train_losses)
-    plt.xlabel("Iterations")
-    plt.ylabel("Train loss")
-    plt.show()
+plt.figure(figsize=(7,5))
+plt.plot(train_losses)
+plt.xlabel("Iterations")
+plt.ylabel("Train loss")
+plt.show()
+```
 
 ここでは 5 エポック分の学習を行っている． GPU を使えば，これくらいの計算であれば 1 分程度で完了するだろう．
 
@@ -1356,26 +1434,30 @@ PyTorch において， GPU での演算は asynchronous (非同期) で実行�
 
 学習した CNN の推論結果を可視化してみよう． 次のコードを実行することで， [figure_title](#handson_02_mnist_mnist_prediction) のような出力が得られるだろう． この図で，下段右から二番目は，"1"に近い見た目をしているが，きちんと"9"と推論できている． なかなか賢い CNN を作り出すことができたようだ！
 
-    model.eval()
+```python
+model.eval()
 
-    with torch.no_grad():
-        output = model(example_data.to("cuda"))
+with torch.no_grad():
+    output = model(example_data.to("cuda"))
 
-    fig = plt.figure(figsize=(10,4))
-    for i in range(10):
-        plt.subplot(2,5,i+1)
-        plt.tight_layout()
-        plt.imshow(example_data[i][0], cmap='gray', interpolation='none')
-        plt.title("Prediction: {}".format(output.data.max(1, keepdim=True)[1][i].item()))
-        plt.xticks([])
-        plt.yticks([])
-    plt.show()
+fig = plt.figure(figsize=(10,4))
+for i in range(10):
+    plt.subplot(2,5,i+1)
+    plt.tight_layout()
+    plt.imshow(example_data[i][0], cmap='gray', interpolation='none')
+    plt.title("Prediction: {}".format(output.data.max(1, keepdim=True)[1][i].item()))
+    plt.xticks([])
+    plt.yticks([])
+plt.show()
+```
 
 ![学習した CNN による，MNIST画像の推論結果](imgs/handson-jupyter/mnist_prediction.png)
 
 最後に，学習したニューラルネットワークのパラメータを `mnist_cnn.pt` というファイル名で保存しておこう． これで，将来いつでも今回学習したモデルを再現し，別の実験に使用することができる．
 
-    torch.save(model.state_dict(), "mnist_cnn.pt")
+```python
+torch.save(model.state_dict(), "mnist_cnn.pt")
+```
 
 以上が， AWS クラウドの仮想サーバーを立ち上げ，最初のディープラーニングの計算を行う一連の流れである． MNIST 文字認識のタスクを行うニューラルネットを，クラウド上の GPU を使って高速に学習させ，現実的な問題を一つ解くことができたのである． 興味のある読者は，今回のハンズオンを雛形に，自分の所望の計算を走らせてみるとよいだろう．
 
@@ -1385,7 +1467,9 @@ PyTorch において， GPU での演算は asynchronous (非同期) で実行�
 
 ハンズオン第一回と同様に， AWS の CloudFormation コンソールか， AWS CLI により削除を実行する (詳細は [スタックを削除](#handson_01_delete_stack) 参照)．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 **スタックの削除は各自で必ず行うこと！** 行わなかった場合，EC2 インスタンスの料金が発生し続けることになる！ `g4dn.xlarge` は $0.71 / hour の料金設定なので，一日起動しつづけると約$17 の請求が発生することになる！
 
@@ -1463,7 +1547,9 @@ Docker を起動する際の大まかなステップを示したのが [figure_t
 
 たとえば， Ubuntu のイメージは [Ubuntu の公式リポジトリ](https://hub.docker.com/_/ubuntu) で公開されており， `pull` コマンドを使うことでローカルにダウンロードすることができる．
 
-    $ docker pull ubuntu:18.04
+```shell
+$ docker pull ubuntu:18.04
+```
 
 ここで，イメージ名の `:` (コロン) 以降に続く文字列を **タグ (tag)** と呼び，主にバージョンを指定するなどの目的で使われる．
 
@@ -1473,7 +1559,9 @@ Docker を起動する際の大まかなステップを示したのが [figure_t
 
 Pull してきたイメージを起動するには， `run` コマンドを使う．
 
-    $ docker run -it ubuntu:18.04
+```shell
+$ docker run -it ubuntu:18.04
+```
 
 ここで， `-it` とは，インタラクティブな shell のセッションを開始するために必要なオプションである．
 
@@ -1485,19 +1573,23 @@ Pull してきたイメージを起動するには， `run` コマンドを使�
 
 これを起動してみよう．
 
-    $ docker run -it pytorch/pytorch
+```shell
+$ docker run -it pytorch/pytorch
+```
 
 `docker run` を実行したとき，ローカルに該当するイメージが見つからない場合は，自動的に Docker Hub からダウンロードされる．
 
 pytorch のコンテナが起動したら， Python のシェルを立ち上げて， pytorch をインポートしてみよう．
 
-    $ python3
-    Python 3.7.7 (default, May  7 2020, 21:25:33)
-    [GCC 7.3.0] :: Anaconda, Inc. on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import torch
-    >>> torch.cuda.is_available()
-    False
+```shell
+$ python3
+Python 3.7.7 (default, May  7 2020, 21:25:33)
+[GCC 7.3.0] :: Anaconda, Inc. on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import torch
+>>> torch.cuda.is_available()
+False
+```
 
 このように， Docker を使うことで簡単に特定の OS・プログラムの入った計算環境を再現することが可能になる．
 
@@ -1511,33 +1603,35 @@ pytorch のコンテナが起動したら， Python のシェルを立ち上げ�
 
 具体例として，本書で提供している Docker イメージのレシピを見てみよう ([docker/Dockerfile](https://github.com/tomomano/learn-aws-by-coding/blob/main/docker/Dockerfile))．
 
-    FROM node:12
-    LABEL maintainer="Tomoyuki Mano"
+```python
+FROM node:12
+LABEL maintainer="Tomoyuki Mano"
 
-    RUN apt-get update \
-        && apt-get install nano
+RUN apt-get update \
+    && apt-get install nano
 
-    #
-    RUN cd /opt \
-        && curl -q "https://www.python.org/ftp/python/3.7.6/Python-3.7.6.tgz" -o Python-3.7.6.tgz \
-        && tar -xzf Python-3.7.6.tgz \
-        && cd Python-3.7.6 \
-        && ./configure --enable-optimizations \
-        && make install
+#
+RUN cd /opt \
+    && curl -q "https://www.python.org/ftp/python/3.7.6/Python-3.7.6.tgz" -o Python-3.7.6.tgz \
+    && tar -xzf Python-3.7.6.tgz \
+    && cd Python-3.7.6 \
+    && ./configure --enable-optimizations \
+    && make install
 
-    RUN cd /opt \
-        && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-        && unzip awscliv2.zip \
-        && ./aws/install
+RUN cd /opt \
+    && curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+    && ./aws/install
 
-    #
-    RUN npm install -g aws-cdk@1.100
+#
+RUN npm install -g aws-cdk@1.100
 
-    # clean up unnecessary files
-    RUN rm -rf /opt/*
+# clean up unnecessary files
+RUN rm -rf /opt/*
 
-    # copy hands-on source code in /root/
-    COPY handson/ /root/handson
+# copy hands-on source code in /root/
+COPY handson/ /root/handson
+```
 
 `Dockerfile` の中身の説明は詳しくは行わないが，たとえば上のコードで &lt;1&gt; で示したところは， Python 3.7 のインストールを実行している． また， &lt;2&gt; で示したところは， AWS CDK のインストールを行っていることがわかるだろう． このように，リアルな OS で行うのと同じ流れでインストールのコマンドを逐一記述していくことで，自分だけの Docker イメージを作成することができる． 一度イメージを作成すれば，それを配布することで，他者も同一の計算環境を簡単に再構成することができる．
 
@@ -1605,13 +1699,17 @@ Fargate では， EC2 と同様に CPU とメモリーのサイズを必要な�
 
 このハンズオンで開発する，自動質問回答システムをより具体的に定義しよう． 次のような文脈 (context) と質問 (question) が与えられた状況を想定する．
 
-    context: Albert Einstein (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence on the philosophy of science. He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed \"the world's most famous equation\". He received the 1921 Nobel Prize in Physics \"for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect\", a pivotal step in the development of quantum theory.
+```txt
+context: Albert Einstein (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence on the philosophy of science. He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed \"the world's most famous equation\". He received the 1921 Nobel Prize in Physics \"for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect\", a pivotal step in the development of quantum theory.
 
-    question: In what year did Einstein win the Nobel prize?
+question: In what year did Einstein win the Nobel prize?
+```
 
 今回作成する自動回答システムは，このような問題に対して， context に含まれる文字列から正解となる言葉を見つけ出すものとする． 上の問題では，次のような回答を返すべきである．
 
-    answer: 1921
+```shell
+answer: 1921
+```
 
 人間にとっては，このような文章を理解することは容易であるが，コンピュータにそれを解かせるのは難しいことは容易に想像ができるだろう． しかし，近年の深層学習を使った自然言語処理の進歩は著しく，上で示したような例題などは極めて高い正答率で回答できるモデルを作ることができる．
 
@@ -1623,33 +1721,45 @@ Fargate では， EC2 と同様に CPU とメモリーのサイズを必要な�
 
 次のコマンドで，今回使う Docker image を ローカルにダウンロード (pull) してこよう．
 
-    $ docker pull tomomano/qabot:latest
+```shell
+$ docker pull tomomano/qabot:latest
+```
 
 pull できたら，早速この Docker に質問を投げかけてみよう． まずは context と question をコマンドラインの変数として定義する．
 
-    $ context="Albert Einstein (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence on the philosophy of science. He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed the world's most famous equation. He received the 1921 Nobel Prize in Physics for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect, a pivotal step in the development of quantum theory."
-    $ question="In what year did Einstein win the Nobel prize ?"
+```shell
+$ context="Albert Einstein (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence on the philosophy of science. He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed the world's most famous equation. He received the 1921 Nobel Prize in Physics for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect, a pivotal step in the development of quantum theory."
+$ question="In what year did Einstein win the Nobel prize ?"
+```
 
 そうしたら，次のコマンドによってコンテナを実行する．
 
-    $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
+```shell
+$ docker run tomomano/qabot "${context}" "${question}" foo --no_save
+```
 
 今回用意した Docker image は，第一引数に context となる文字列を，第二引数に question に相当する文字列を受けつける． 第三引数，第四引数については，クラウドに展開するときの実装上の都合なので，いまは気にしなくてよい．
 
 このコマンドを実行すると，次のような出力が得られるはずである．
 
-    {'score': 0.9881729286683587, 'start': 437, 'end': 441, 'answer': '1921'}
+```shell
+{'score': 0.9881729286683587, 'start': 437, 'end': 441, 'answer': '1921'}
+```
 
 "score" は正解の自信度を表す数字で， \[0,1\] の範囲で与えられる． "start", "end" は， context 中の何文字目が正解に相当するかを示しており， "answer" が正解と予測された文字列である． 1921 年という，正しい答えが返ってきていることに注目してほしい．
 
 もう少し難しい質問を投げかけてみよう．
 
-    $ question="Why did Einstein win the Nobel prize ?"
-    $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
+```shell
+$ question="Why did Einstein win the Nobel prize ?"
+$ docker run tomomano/qabot "${context}" "${question}" foo --no_save
+```
 
 出力：
 
-    {'score': 0.5235594527494207, 'start': 470, 'end': 506, 'answer': 'his services to theoretical physics,'}
+```shell
+{'score': 0.5235594527494207, 'start': 470, 'end': 506, 'answer': 'his services to theoretical physics,'}
+```
 
 今度は， score が 0.52 と，少し自信がないようだが，それでも正しい答えにたどりつけていることがわかる．
 
@@ -1685,58 +1795,60 @@ pull できたら，早速この Docker に質問を投げかけてみよう． 
 
 それでは，プログラムのソースコードを見てみよう ([handson/qa-bot/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/app.py))．
 
-    class EcsClusterQaBot(core.Stack):
+```shell
+class EcsClusterQaBot(core.Stack):
 
-        def __init__(self, scope: core.App, name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope: core.App, name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            #
-            # dynamoDB table to store questions and answers
-            table = dynamodb.Table(
-                self, "EcsClusterQaBot-Table",
-                partition_key=dynamodb.Attribute(
-                    name="item_id", type=dynamodb.AttributeType.STRING
-                ),
-                billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
-                removal_policy=core.RemovalPolicy.DESTROY
+        #
+        # dynamoDB table to store questions and answers
+        table = dynamodb.Table(
+            self, "EcsClusterQaBot-Table",
+            partition_key=dynamodb.Attribute(
+                name="item_id", type=dynamodb.AttributeType.STRING
+            ),
+            billing_mode=dynamodb.BillingMode.PAY_PER_REQUEST,
+            removal_policy=core.RemovalPolicy.DESTROY
+        )
+
+        #
+        vpc = ec2.Vpc(
+            self, "EcsClusterQaBot-Vpc",
+            max_azs=1,
+        )
+
+        #
+        cluster = ecs.Cluster(
+            self, "EcsClusterQaBot-Cluster",
+            vpc=vpc,
+        )
+
+        #
+        taskdef = ecs.FargateTaskDefinition(
+            self, "EcsClusterQaBot-TaskDef",
+            cpu=1024, # 1 CPU
+            memory_limit_mib=4096, # 4GB RAM
+        )
+
+        # grant permissions
+        table.grant_read_write_data(taskdef.task_role)
+        taskdef.add_to_task_role_policy(
+            iam.PolicyStatement(
+                effect=iam.Effect.ALLOW,
+                resources=["*"],
+                actions=["ssm:GetParameter"]
             )
+        )
 
-            #
-            vpc = ec2.Vpc(
-                self, "EcsClusterQaBot-Vpc",
-                max_azs=1,
-            )
-
-            #
-            cluster = ecs.Cluster(
-                self, "EcsClusterQaBot-Cluster",
-                vpc=vpc,
-            )
-
-            #
-            taskdef = ecs.FargateTaskDefinition(
-                self, "EcsClusterQaBot-TaskDef",
-                cpu=1024, # 1 CPU
-                memory_limit_mib=4096, # 4GB RAM
-            )
-
-            # grant permissions
-            table.grant_read_write_data(taskdef.task_role)
-            taskdef.add_to_task_role_policy(
-                iam.PolicyStatement(
-                    effect=iam.Effect.ALLOW,
-                    resources=["*"],
-                    actions=["ssm:GetParameter"]
-                )
-            )
-
-            #
-            container = taskdef.add_container(
-                "EcsClusterQaBot-Container",
-                image=ecs.ContainerImage.from_registry(
-                    "tomomano/qabot:latest"
-                ),
-            )
+        #
+        container = taskdef.add_container(
+            "EcsClusterQaBot-Container",
+            image=ecs.ContainerImage.from_registry(
+                "tomomano/qabot:latest"
+            ),
+        )
+```
 
 -   ここでは，回答の結果を書き込むためのデータベースを用意している． DynamoDB については，サーバーレスアーキテクチャの章で扱うので，今は気にしなくてよい．
 
@@ -1752,23 +1864,25 @@ pull できたら，早速この Docker に質問を投げかけてみよう． 
 
 ECS と Fargate の部分について，コードをくわしく見てみよう．
 
-    cluster = ecs.Cluster(
-        self, "EcsClusterQaBot-Cluster",
-        vpc=vpc,
-    )
+```shell
+cluster = ecs.Cluster(
+    self, "EcsClusterQaBot-Cluster",
+    vpc=vpc,
+)
 
-    taskdef = ecs.FargateTaskDefinition(
-        self, "EcsClusterQaBot-TaskDef",
-        cpu=1024, # 1 CPU
-        memory_limit_mib=4096, # 4GB RAM
-    )
+taskdef = ecs.FargateTaskDefinition(
+    self, "EcsClusterQaBot-TaskDef",
+    cpu=1024, # 1 CPU
+    memory_limit_mib=4096, # 4GB RAM
+)
 
-    container = taskdef.add_container(
-        "EcsClusterQaBot-Container",
-        image=ecs.ContainerImage.from_registry(
-            "tomomano/qabot:latest"
-        ),
-    )
+container = taskdef.add_container(
+    "EcsClusterQaBot-Container",
+    image=ecs.ContainerImage.from_registry(
+        "tomomano/qabot:latest"
+    ),
+)
+```
 
 `cluster =` の箇所で，空の ECS クラスターを定義している．
 
@@ -1788,16 +1902,18 @@ ECS と Fargate の部分について，コードをくわしく見てみよう�
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． SSH によるログインの必要がないので，むしろ単純なくらいである． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd handson/qa-bot
+```shell
+# プロジェクトのディレクトリに移動
+$ cd handson/qa-bot
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # デプロイを実行
-    $ cdk deploy
+# デプロイを実行
+$ cdk deploy
+```
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_03_cdk_output) のような出力が得られるはずである．
 
@@ -1821,7 +1937,9 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 次のようなコマンドで，ECS クラスターに新しい質問を投入することができる．
 
-    $ python run_task.py ask "A giant peach was flowing in the river. She picked it up and brought it home. Later, a healthy baby was born from the peach. She named the baby Momotaro." "What is the name of the baby?"
+```shell
+$ python run_task.py ask "A giant peach was flowing in the river. She picked it up and brought it home. Later, a healthy baby was born from the peach. She named the baby Momotaro." "What is the name of the baby?"
+```
 
 `run_task.py` を実行するには， コマンドラインで AWS の認証情報が設定されていることが前提である．
 
@@ -1851,7 +1969,9 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 次のようなコマンドを実行しよう．
 
-    $ python run_task.py ask_many
+```shell
+$ python run_task.py ask_many
+```
 
 このコマンドを実行した後で，先ほどの ECS コンソールに行き，タスクの一覧を見てみよう ([figure_title](#ecs_many_tasks))． 複数の Fargate インスタンスが起動され，タスクが並列に実行されているのがわかる．
 
@@ -1859,7 +1979,9 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 すべてのタスクのステータスが "STOPPED" になったことを確認した上で，質問への回答を取得しよう． それには，次のコマンドを実行する．
 
-    $ python run_task.py list_answers
+```shell
+$ python run_task.py list_answers
+```
 
 結果として， [figure_title](#ask_many_output) のような出力が得られるだろう． 複雑な文章問題に対し，高い正答率で回答できていることがわかるだろう．
 
@@ -1869,7 +1991,9 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 `run_task.py` で質問を投入し続けると，回答を記録しているデータベースにどんどんエントリーが溜まっていく． これらのエントリーをすべて消去するには，次のコマンドを使う．
 
-    $ python run_task.py clear
+```shell
+$ python run_task.py clear
+```
 
 ## スタックの削除
 
@@ -1877,7 +2001,9 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 スタックを削除するには，前回までと同様に， AWS コンソールにログインし CloudFormation の画面から DELETE ボタンをクリックするか，コマンドラインからコマンドを実行する． コマンドラインから行う場合は，次のコマンドを使用する．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 # Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する
 
@@ -1935,7 +2061,9 @@ ECS でクラスターを構成する際，計算を実行する場として EC2
 
 今回のハンズオンでは，機械学習のハイパーパラメータ調整を取り上げると冒頭で述べた． その最もシンプルな例題として， [実践ディープラーニング! MNIST 手書き数字認識タスク](#sec_mnist_using_jupyter) で扱った MNIST 手書き文字認識の問題を再度取り上げよう． [実践ディープラーニング! MNIST 手書き数字認識タスク](#sec_mnist_using_jupyter) では，適当にチョイスしたハイパーパラメータを用いてモデルの訓練を行った． ここで使用したプログラムのハイパーパラメータとしては，確率的勾配降下法 (SGD) における学習率やモメンタムが含まれる． コードでいうと，次の行が該当する．
 
-    optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
+```python
+optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
+```
 
 ここで使用された 学習率 (`lr=0.01`) やモメンタム (`momentum=0.5`) は恣意的に選択された値であり，これがベストな数値であるのかはわからない． たまたまこのチョイスが最適であるかもしれないし，もっと高い精度を出すハイパーパラメータの組が存在するかもしれない． この問題に答えるため，ハイパーパラメータサーチを行おう． 今回は，最もシンプルなアプローチとして，**グリッドサーチ**によるハイパーパラメータサーチを行おう．
 
@@ -1957,18 +2085,24 @@ Docker イメージのソースコードは [handson/aws-batch/docker](https://g
 
 練習として，この Docker イメージを手元でビルドするところからはじめてみよう． `Dockerfile` が保存されているディレクトリに移動し， `mymnist` という名前 (Tag) をつけてビルドを実行する．
 
-    $ cd handson/aws-batch/docker
-    $ docker build -t mymnist .
+```shell
+$ cd handson/aws-batch/docker
+$ docker build -t mymnist .
+```
 
 `docker build` でエラーが出たときは次の可能性を疑ってほしい． ビルドの中で， MNIST の画像データセットを <http://yann.lecun.com/exdb/mnist/> からダウンロードするのだが，ダウンロード先のサーバーがしばしばダウンしている． 世界中の機械学習ユーザーがアクセスするので，これはしばしば発生するようである． サーバーがダウンしているとビルドも失敗してしまう． エラーメッセージにそれらしい文言が含まれていたら，この可能性を疑おう．
 
 手元でビルドするかわりに， Docker Hub から pull することも可能である． その場合は次のコマンドを実行する．
 
-    $ docker pull tomomano/mymnist:latest
+```shell
+$ docker pull tomomano/mymnist:latest
+```
 
 イメージの準備ができたら，次のコマンドでコンテナを起動し， MNIST の学習を実行する．．
 
-    $ docker run mymnist --lr 0.1 --momentum 0.5 --epochs 10
+```shell
+$ docker run mymnist --lr 0.1 --momentum 0.5 --epochs 10
+```
 
 このコマンドを実行すると，指定したハイパーパラメータ (`--lr` で与えられる学習率と `--momentum` で与えられるモメンタム) を使ってニューラルネットの最適化が始まる． 学習を行う最大のエポック数は `--epochs` パラメータで指定する． [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning) のハンズオンで見たような， Loss の低下がコマンドライン上に出力されるだろう ([figure_title](#fig_mnist_log_output))．
 
@@ -1976,7 +2110,9 @@ Docker イメージのソースコードは [handson/aws-batch/docker](https://g
 
 上に示したコマンドを使うと，計算は CPU を使って実行される． もし，ローカルの計算機に GPU が備わっており， [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) の設定が済んでいるならば， 次のコマンドにより GPU を使って計算を実行できる．
 
-    $ docker run --gpus all mymnist --lr 0.1 --momentum 0.5 --epochs 10
+```shell
+$ docker run --gpus all mymnist --lr 0.1 --momentum 0.5 --epochs 10
+```
 
 このコマンドでは，`--gpus all` というパラメータが加わった．
 
@@ -2012,85 +2148,87 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 それでは，プログラムのソースコードを見てみよう ([handson/aws-batch/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/app.py))．
 
-    class SimpleBatch(core.Stack):
+```python
+class SimpleBatch(core.Stack):
 
-        def __init__(self, scope: core.App, name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope: core.App, name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            #
-            bucket = s3.Bucket(
-                self, "bucket",
-                removal_policy=core.RemovalPolicy.DESTROY,
-                auto_delete_objects=True,
-            )
+        #
+        bucket = s3.Bucket(
+            self, "bucket",
+            removal_policy=core.RemovalPolicy.DESTROY,
+            auto_delete_objects=True,
+        )
 
-            vpc = ec2.Vpc(
-                self, "vpc",
-                # other parameters...
-            )
+        vpc = ec2.Vpc(
+            self, "vpc",
+            # other parameters...
+        )
 
-            #
-            managed_env = batch.ComputeEnvironment(
-                self, "managed-env",
-                compute_resources=batch.ComputeResources(
-                    vpc=vpc,
-                    allocation_strategy=batch.AllocationStrategy.BEST_FIT,
-                    desiredv_cpus=0,
-                    maxv_cpus=64,
-                    minv_cpus=0,
-                    instance_types=[
-                        ec2.InstanceType("g4dn.xlarge")
-                    ],
-                ),
-                managed=True,
-                compute_environment_name=self.stack_name + "compute-env"
-            )
-
-            #
-            job_queue = batch.JobQueue(
-                self, "job-queue",
-                compute_environments=[
-                    batch.JobQueueComputeEnvironment(
-                        compute_environment=managed_env,
-                        order=100
-                    )
+        #
+        managed_env = batch.ComputeEnvironment(
+            self, "managed-env",
+            compute_resources=batch.ComputeResources(
+                vpc=vpc,
+                allocation_strategy=batch.AllocationStrategy.BEST_FIT,
+                desiredv_cpus=0,
+                maxv_cpus=64,
+                minv_cpus=0,
+                instance_types=[
+                    ec2.InstanceType("g4dn.xlarge")
                 ],
-                job_queue_name=self.stack_name + "job-queue"
-            )
+            ),
+            managed=True,
+            compute_environment_name=self.stack_name + "compute-env"
+        )
 
-            #
-            job_role = iam.Role(
-                self, "job-role",
-                assumed_by=iam.CompositePrincipal(
-                    iam.ServicePrincipal("ecs-tasks.amazonaws.com")
+        #
+        job_queue = batch.JobQueue(
+            self, "job-queue",
+            compute_environments=[
+                batch.JobQueueComputeEnvironment(
+                    compute_environment=managed_env,
+                    order=100
                 )
-            )
-            # allow read and write access to S3 bucket
-            bucket.grant_read_write(job_role)
+            ],
+            job_queue_name=self.stack_name + "job-queue"
+        )
 
-            #
-            repo = ecr.Repository(
-                self, "repository",
-                removal_policy=core.RemovalPolicy.DESTROY,
+        #
+        job_role = iam.Role(
+            self, "job-role",
+            assumed_by=iam.CompositePrincipal(
+                iam.ServicePrincipal("ecs-tasks.amazonaws.com")
             )
+        )
+        # allow read and write access to S3 bucket
+        bucket.grant_read_write(job_role)
 
-            #
-            job_def = batch.JobDefinition(
-                self, "job-definition",
-                container=batch.JobDefinitionContainer(
-                    image=ecs.ContainerImage.from_ecr_repository(repo),
-                    command=["python3", "main.py"],
-                    vcpus=4,
-                    gpu_count=1,
-                    memory_limit_mib=12000,
-                    job_role=job_role,
-                    environment={
-                        "BUCKET_NAME": bucket.bucket_name
-                    }
-                ),
-                job_definition_name=self.stack_name + "job-definition",
-                timeout=core.Duration.hours(2),
-            )
+        #
+        repo = ecr.Repository(
+            self, "repository",
+            removal_policy=core.RemovalPolicy.DESTROY,
+        )
+
+        #
+        job_def = batch.JobDefinition(
+            self, "job-definition",
+            container=batch.JobDefinitionContainer(
+                image=ecs.ContainerImage.from_ecr_repository(repo),
+                command=["python3", "main.py"],
+                vcpus=4,
+                gpu_count=1,
+                memory_limit_mib=12000,
+                job_role=job_role,
+                environment={
+                    "BUCKET_NAME": bucket.bucket_name
+                }
+            ),
+            job_definition_name=self.stack_name + "job-definition",
+            timeout=core.Duration.hours(2),
+        )
+```
 
 -   で，計算結果を保存するための S3 バケットを用意している
 
@@ -2116,16 +2254,18 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (\# で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd handson/aws-batch
+```shell
+# プロジェクトのディレクトリに移動
+$ cd handson/aws-batch
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # デプロイを実行
-    $ cdk deploy
+# デプロイを実行
+$ cdk deploy
+```
 
 デプロイのコマンドが無事に実行されたことが確認できたら，AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールの検索バーで `batch` と入力し， AWS Batch の管理画面を開く ([figure_title](#fig_batch_console))．
 
@@ -2145,20 +2285,22 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 スタックのソースコードでいうと，次の箇所が ECR を定義している．
 
-    #
-    repo = ecr.Repository(
-        self, "repository",
-        removal_policy=core.RemovalPolicy.DESTROY,
-    )
+```python
+#
+repo = ecr.Repository(
+    self, "repository",
+    removal_policy=core.RemovalPolicy.DESTROY,
+)
 
-    job_def = batch.JobDefinition(
-        self, "job-definition",
-        container=batch.JobDefinitionContainer(
-            image=ecs.ContainerImage.from_ecr_repository(repo), #
-            ...
-        ),
+job_def = batch.JobDefinition(
+    self, "job-definition",
+    container=batch.JobDefinitionContainer(
+        image=ecs.ContainerImage.from_ecr_repository(repo), #
         ...
-    )
+    ),
+    ...
+)
+```
 
 -   で，新規の ECR を作成している．
 
@@ -2190,63 +2332,73 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 今回のハンズオンでは， `venv` による仮想環境の中に Jupyter notebook もインストール済みである． なので，ローカルマシンから以下のコマンドで Jupyter notebook を立ち上げる．
 
-    # .env の仮想環境にいることを確認
-    (.env) $ cd notebook
-    (.env) $ jupyter notebook
+```shell
+# .env の仮想環境にいることを確認
+(.env) $ cd notebook
+(.env) $ jupyter notebook
+```
 
 Jupyter notebook が起動したら， `run_single.ipynb` を開く．
 
 最初の \[1\], \[2\], \[3\] 番のセルは，ジョブをサブミットするための関数 (`submit_job()`) を定義している．
 
-    # [1]
-    import boto3
-    import argparse
+```python
+# [1]
+import boto3
+import argparse
 
-    # [2]
-    # AWS 認証ヘルパー ...省略...
+# [2]
+# AWS 認証ヘルパー ...省略...
 
-    # [3]
-    def submit_job(lr:float, momentum:float, epochs:int, profile_name="default"):
-        if profile_name is None:
-            session = boto3.Session()
-        else:
-            session = boto3.Session(profile_name=profile_name)
-        client = session.client("batch")
+# [3]
+def submit_job(lr:float, momentum:float, epochs:int, profile_name="default"):
+    if profile_name is None:
+        session = boto3.Session()
+    else:
+        session = boto3.Session(profile_name=profile_name)
+    client = session.client("batch")
 
-        title = "lr" + str(lr).replace(".", "") + "_m" + str(momentum).replace(".", "")
-        resp = client.submit_job(
-            jobName=title,
-            jobQueue="SimpleBatchjob-queue",
-            jobDefinition="SimpleBatchjob-definition",
-            containerOverrides={
-                "command": ["--lr", str(lr),
-                            "--momentum", str(momentum),
-                            "--epochs", str(epochs),
-                            "--uploadS3", "true"]
-            }
-        )
-        print("Job submitted!")
-        print("job name", resp["jobName"], "job ID", resp["jobId"])
+    title = "lr" + str(lr).replace(".", "") + "_m" + str(momentum).replace(".", "")
+    resp = client.submit_job(
+        jobName=title,
+        jobQueue="SimpleBatchjob-queue",
+        jobDefinition="SimpleBatchjob-definition",
+        containerOverrides={
+            "command": ["--lr", str(lr),
+                        "--momentum", str(momentum),
+                        "--epochs", str(epochs),
+                        "--uploadS3", "true"]
+        }
+    )
+    print("Job submitted!")
+    print("job name", resp["jobName"], "job ID", resp["jobId"])
+```
 
 `submit_job()` 関数について簡単に説明しよう． [MNIST 手書き文字認識 (再訪)](#sec_run_mnist_docker_local) で， MNIST の Docker をローカルで実行したとき，次のようなコマンドを使用した．
 
-    $ docker run -it mymnist --lr 0.1 --momentum 0.5 --epochs 10
+```shell
+$ docker run -it mymnist --lr 0.1 --momentum 0.5 --epochs 10
+```
 
 ここで， `--lr 0.1 --momentum 0.5 --epochs 10` の部分が，コンテナに渡されるコマンドである．
 
 AWS Batch でジョブを実行する際も，`ContainerOverrides` の `command` というパラメータを使用することで，コンテナに渡されるコマンドを指定することができる． コードでは以下の部分が該当する．
 
-    containerOverrides={
-        "command": ["--lr", str(lr),
-                    "--momentum", str(momentum),
-                    "--epochs", str(epochs),
-                    "--uploadS3", "true"]
-    }
+```python
+containerOverrides={
+    "command": ["--lr", str(lr),
+                "--momentum", str(momentum),
+                "--epochs", str(epochs),
+                "--uploadS3", "true"]
+}
+```
 
 続いて， \[4\] 番のセルに移ろう． ここでは，上記の `submit_job()` 関数を用いて， 学習率 = 0.01, モメンタム=0.1, エポック数=100 を指定したジョブを投入する．
 
-    # [4]
-    submit_job(0.01, 0.1, 100)
+```python
+# [4]
+submit_job(0.01, 0.1, 100)
+```
 
 AWS の認証情報は， Jupyter Notebook の内部から再度定義する必要がある． これを手助けするため， Notebook の \[2\] 番のセル (デフォルトではすべてコメントアウトされている) を用意した． これを使うにはコメントアウトを解除すればよい． このセルを実行すると， AWS の認証情報を入力する対話的なプロンプトが表示される． プロンプトに従って aws secret key などを入力することで， (Jupyter のセッションに固有な) 環境変数に AWS の認証情報が記録される．
 
@@ -2270,54 +2422,58 @@ S3 のコンソールに行くと `simplebatch-bucketXXXX` (XXXX の部分はユ
 
 さて，ここで `run_single.ipynb` に戻ってこよう． \[5\] から \[7\] 番のセルでは，学習結果の CSV ファイルのダウンロードを行っている．
 
-    # [5]
-    import pandas as pd
-    import io
-    from matplotlib import pyplot as plt
+```python
+# [5]
+import pandas as pd
+import io
+from matplotlib import pyplot as plt
 
-    # [6]
-    def read_table_from_s3(bucket_name, key, profile_name=None):
-        if profile_name is None:
-            session = boto3.Session()
-        else:
-            session = boto3.Session(profile_name=profile_name)
-        s3 = session.resource("s3")
-        bucket = s3.Bucket(bucket_name)
+# [6]
+def read_table_from_s3(bucket_name, key, profile_name=None):
+    if profile_name is None:
+        session = boto3.Session()
+    else:
+        session = boto3.Session(profile_name=profile_name)
+    s3 = session.resource("s3")
+    bucket = s3.Bucket(bucket_name)
 
-        obj = bucket.Object(key).get().get("Body")
-        df = pd.read_csv(obj)
+    obj = bucket.Object(key).get().get("Body")
+    df = pd.read_csv(obj)
 
-        return df
+    return df
 
-    # [7]
-    bucket_name = "simplebatch-bucket43879c71-mbqaltx441fu"
-    df = read_table_from_s3(
-        bucket_name,
-        "metrics_lr0.0100_m0.1000.csv"
-    )
+# [7]
+bucket_name = "simplebatch-bucket43879c71-mbqaltx441fu"
+df = read_table_from_s3(
+    bucket_name,
+    "metrics_lr0.0100_m0.1000.csv"
+)
+```
 
 \[6\] で S3 から CSV データをダウンロードし， pandas の `DataFrame` オブジェクトとしてロードする関数を定義している． \[7\] を実行する際， `bucket_name` という変数の値を，**自分自身のバケットの名前に置き換える**ことに注意しよう (先ほど S3 コンソールから確認した `simplebatch-bucketXXXX` のことである)．
 
 続いて， \[9\] 番のセルで， CSV のデータをプロットしている ([figure_title](#fig_loss_epoch_profile2))． ローカルで実行したときと同じように， AWS Batch を用いて MNIST モデルを訓練することに成功した！
 
-    # [9]
-    fig, (ax1, ax2) = plt.subplots(1,2, figsize=(9,4))
-    x = [i for i in range(df.shape[0])]
-    ax1.plot(x, df["train_loss"], label="Train")
-    ax1.plot(x, df["val_loss"], label="Val")
-    ax2.plot(x, df["val_accuracy"])
+```python
+# [9]
+fig, (ax1, ax2) = plt.subplots(1,2, figsize=(9,4))
+x = [i for i in range(df.shape[0])]
+ax1.plot(x, df["train_loss"], label="Train")
+ax1.plot(x, df["val_loss"], label="Val")
+ax2.plot(x, df["val_accuracy"])
 
-    ax1.set_xlabel("Epochs")
-    ax1.set_ylabel("Loss")
-    ax1.legend()
+ax1.set_xlabel("Epochs")
+ax1.set_ylabel("Loss")
+ax1.legend()
 
-    ax2.set_xlabel("Epochs")
-    ax2.set_ylabel("Accuracy")
+ax2.set_xlabel("Epochs")
+ax2.set_ylabel("Accuracy")
 
-    print("Best loss:", df["val_loss"].min())
-    print("Best loss epoch:", df["val_loss"].argmin())
-    print("Best accuracy:", df["val_accuracy"].max())
-    print("Best accuracy epoch:", df["val_accuracy"].argmax())
+print("Best loss:", df["val_loss"].min())
+print("Best loss epoch:", df["val_loss"].argmin())
+print("Best accuracy:", df["val_accuracy"].max())
+print("Best accuracy epoch:", df["val_accuracy"].argmax())
+```
 
 ![AWS Batch で行った MNIST モデルの学習の結果](imgs/aws_batch/loss_epoch_profile2.png)
 
@@ -2329,23 +2485,27 @@ S3 のコンソールに行くと `simplebatch-bucketXXXX` (XXXX の部分はユ
 
 セル \[1\], \[2\], \[3\] は `run_single.ipynb` と同一である．
 
-    # [1]
-    import boto3
-    import argparse
+```python
+# [1]
+import boto3
+import argparse
 
-    # [2]
-    # AWS 認証ヘルパー ...省略...
+# [2]
+# AWS 認証ヘルパー ...省略...
 
-    # [3]
-    def submit_job(lr:float, momentum:float, epochs:int, profile_name=None):
-        # ...省略...
+# [3]
+def submit_job(lr:float, momentum:float, epochs:int, profile_name=None):
+    # ...省略...
+```
 
 セル \[4\] の for ループを使って，グリッド状にハイパーパラメータの組み合わせを用意し， batch にジョブを投入している． ここでは 3x3=9 個のジョブを作成した．
 
-    # [4]
-    for lr in [0.1, 0.01, 0.001]:
-        for m in [0.5, 0.1, 0.05]:
-            submit_job(lr, m, 100)
+```python
+# [4]
+for lr in [0.1, 0.01, 0.001]:
+    for m in [0.5, 0.1, 0.05]:
+        submit_job(lr, m, 100)
+```
 
 セル \[4\] を実行したら， Batch のコンソールを開こう． 先ほどと同様に，ジョブのステータスは `SUBMITTED` &gt; `RUNNABLE` &gt; `STARTING` &gt; `RUNNING` と移り変わっていくことがわかるだろう． 最終的に 9 個のジョブがすべて `RUNNING` の状態になることを確認しよう ([figure_title](#fig_batch_many_parallel_jobs))． また，このとき Compute environment の `Desired vCPUs` は 4x9=36 となっていることを確認しよう ([figure_title](#fig_batch_many_parallel_jobs))．
 
@@ -2365,44 +2525,46 @@ S3 のコンソールに行くと `simplebatch-bucketXXXX` (XXXX の部分はユ
 
 さて，再び `run_sweep.ipynb` に戻ってこよう． \[5\] 以降のセルでは，グリッドサーチの結果を可視化している．
 
-    # [5]
-    import pandas as pd
-    import numpy as np
-    import io
-    from matplotlib import pyplot as plt
+```python
+# [5]
+import pandas as pd
+import numpy as np
+import io
+from matplotlib import pyplot as plt
 
-    # [6]
-    def read_table_from_s3(bucket_name, key, profile_name=None):
-        if profile_name is None:
-            session = boto3.Session()
-        else:
-            session = boto3.Session(profile_name=profile_name)
-        s3 = session.resource("s3")
-        bucket = s3.Bucket(bucket_name)
+# [6]
+def read_table_from_s3(bucket_name, key, profile_name=None):
+    if profile_name is None:
+        session = boto3.Session()
+    else:
+        session = boto3.Session(profile_name=profile_name)
+    s3 = session.resource("s3")
+    bucket = s3.Bucket(bucket_name)
 
-        obj = bucket.Object(key).get().get("Body")
-        df = pd.read_csv(obj)
+    obj = bucket.Object(key).get().get("Body")
+    df = pd.read_csv(obj)
 
-        return df
+    return df
 
-    # [7]
-    grid = np.zeros((3,3))
-    for (i, lr) in enumerate([0.1, 0.01, 0.001]):
-        for (j, m) in enumerate([0.5, 0.1, 0.05]):
-            key = f"metrics_lr{lr:0.4f}_m{m:0.4f}.csv"
-            df = read_table_from_s3("simplebatch-bucket43879c71-mbqaltx441fu", key)
-            grid[i,j] = df["val_accuracy"].max()
+# [7]
+grid = np.zeros((3,3))
+for (i, lr) in enumerate([0.1, 0.01, 0.001]):
+    for (j, m) in enumerate([0.5, 0.1, 0.05]):
+        key = f"metrics_lr{lr:0.4f}_m{m:0.4f}.csv"
+        df = read_table_from_s3("simplebatch-bucket43879c71-mbqaltx441fu", key)
+        grid[i,j] = df["val_accuracy"].max()
 
-    # [8]
-    fig, ax = plt.subplots(figsize=(6,6))
-    ax.set_aspect('equal')
+# [8]
+fig, ax = plt.subplots(figsize=(6,6))
+ax.set_aspect('equal')
 
-    c = ax.pcolor(grid, edgecolors='w', linewidths=2)
+c = ax.pcolor(grid, edgecolors='w', linewidths=2)
 
-    for i in range(3):
-        for j in range(3):
-            text = ax.text(j+0.5, i+0.5, f"{grid[i, j]:0.1f}",
-                           ha="center", va="center", color="w")
+for i in range(3):
+    for j in range(3):
+        text = ax.text(j+0.5, i+0.5, f"{grid[i, j]:0.1f}",
+                       ha="center", va="center", color="w")
+```
 
 最終的に出力されるプロットが [figure_title](#fig_grid_search_result) である．
 
@@ -2428,11 +2590,15 @@ ECR の Docker image を削除するには， ECR のコンソールに行き，
 
 あるいは， AWS CLI から同様の操作を行うには，以下のコマンドを用いる (`XXXX` は自分の ECR レポジトリ名に置き換える)．
 
-    $ aws ecr batch-delete-image --repository-name XXXX --image-ids imageTag=latest
+```shell
+$ aws ecr batch-delete-image --repository-name XXXX --image-ids imageTag=latest
+```
 
 image の削除が完了したうえで，次のコマンドでスタックを削除する．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 [???](#sec:batch_development_and_debug) === クラウドを用いた機械学習アプリケーションの開発とデバッグ
 
@@ -2650,33 +2816,35 @@ DynamoDB ではデータの書き込み操作の単位を write request unit と
 
 [app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/lambda/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
 
-    #
-    FUNC = """
-    import time
-    from random import choice, randint
-    def handler(event, context):
-        time.sleep(randint(2,5))
-        sushi = ["salmon", "tuna", "squid"]
-        message = "Welcome to Cloud Sushi. Your order is " + choice(sushi)
-        print(message)
-        return message
-    """
+```py
+#
+FUNC = """
+import time
+from random import choice, randint
+def handler(event, context):
+    time.sleep(randint(2,5))
+    sushi = ["salmon", "tuna", "squid"]
+    message = "Welcome to Cloud Sushi. Your order is " + choice(sushi)
+    print(message)
+    return message
+"""
 
-    class SimpleLambda(core.Stack):
+class SimpleLambda(core.Stack):
 
-        def __init__(self, scope: core.App, name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope: core.App, name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            #
-            handler = _lambda.Function(
-                self, 'LambdaHandler',
-                runtime=_lambda.Runtime.PYTHON_3_7,
-                code=_lambda.Code.from_inline(FUNC),
-                handler="index.handler",
-                memory_size=128,
-                timeout=core.Duration.seconds(10),
-                dead_letter_queue_enabled=True,
-            )
+        #
+        handler = _lambda.Function(
+            self, 'LambdaHandler',
+            runtime=_lambda.Runtime.PYTHON_3_7,
+            code=_lambda.Code.from_inline(FUNC),
+            handler="index.handler",
+            memory_size=128,
+            timeout=core.Duration.seconds(10),
+            dead_letter_queue_enabled=True,
+        )
+```
 
 -   ここで， Lambda で実行されるべき関数を定義している． これは非常に単純な関数で，2-5 秒のランダムな時間スリープした後，\["salmon", "tuna", "squid"\] のいずれかの文字列をランダムに選択し， "Welcome to Cloud Sushi. Your order is XXXX" (XXXX は選ばれた寿司のネタ) というメッセージをリターンする．
 
@@ -2700,16 +2868,18 @@ DynamoDB ではデータの書き込み操作の単位を write request unit と
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd handson/serverless/lambda
+```shell
+# プロジェクトのディレクトリに移動
+$ cd handson/serverless/lambda
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # デプロイを実行
-    $ cdk deploy
+# デプロイを実行
+$ cdk deploy
+```
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_04_lambda_cdk_output) のような出力が得られるはずである． ここで表示されている `SimpleLambda.FunctionName = XXXX` の XXXX の文字列は後で使うのでメモしておこう．
 
@@ -2731,7 +2901,9 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 以下のコマンドで，Lambda の関数を実行する． コマンドの `XXXX` の部分は，先ほどデプロイしたときに `SimpleLambda.FunctionName = XXXX` で得られた XXXX の文字列で置換する．
 
-    $ python invoke_one.py XXXX
+```shell
+$ python invoke_one.py XXXX
+```
 
 すると， `"Welcome to Cloud Sushi. Your order is salmon"` という出力が得られるはずだ． とてもシンプルではあるが，クラウド上で先ほどの関数が走り，乱数が生成されたうえで，ランダムな寿司ネタが選択されて出力が返されている． このコマンドを何度か打ってみて，実行ごとに異なる寿司ネタが返されることを確認しよう．
 
@@ -2739,12 +2911,16 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 次のコマンドを実行しよう． XXXX の部分は前述と同様に置き換える． 第二引数の `100` は 100 個のタスクを投入せよ，という意味である．
 
-    $ python invoke_many.py XXXX 100
+```shell
+$ python invoke_many.py XXXX 100
+```
 
 すると次のような出力が得られるはずだ．
 
-    ....................................................................................................
-    Submitted 100 tasks to Lambda!
+```shell
+....................................................................................................
+Submitted 100 tasks to Lambda!
+```
 
 実際に，100 個のタスクが同時に実行されていることを確認しよう． [figure_title](#handson_04_lambda_console_func_detail) の画面に戻り， "Monitoring" というタブがあるので，それをクリックする． すると， [figure_title](#handson_04_lambda_console_monitoring) のようなグラフが表示されるだろう．
 
@@ -2764,7 +2940,9 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 最後にスタックを削除しよう． スタックを削除するには，次のコマンドを実行すればよい．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 ## DynamoDB ハンズオン
 
@@ -2778,22 +2956,24 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 [handson/serverless/dynamodb/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
 
-    class SimpleDynamoDb(core.Stack):
-        def __init__(self, scope: core.App, name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+```python
+class SimpleDynamoDb(core.Stack):
+    def __init__(self, scope: core.App, name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            table = ddb.Table(
-                self, "SimpleTable",
-                #
-                partition_key=ddb.Attribute(
-                    name="item_id",
-                    type=ddb.AttributeType.STRING
-                ),
-                #
-                billing_mode=ddb.BillingMode.PAY_PER_REQUEST,
-                #
-                removal_policy=core.RemovalPolicy.DESTROY
-            )
+        table = ddb.Table(
+            self, "SimpleTable",
+            #
+            partition_key=ddb.Attribute(
+                name="item_id",
+                type=ddb.AttributeType.STRING
+            ),
+            #
+            billing_mode=ddb.BillingMode.PAY_PER_REQUEST,
+            #
+            removal_policy=core.RemovalPolicy.DESTROY
+        )
+```
 
 このコードで，最低限の設定がなされた空の DynamoDB テーブルが作成される． それぞれのパラメータの意味を簡単に解説しよう．
 
@@ -2807,16 +2987,18 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd handson/serverless/dynamodb
+```shell
+# プロジェクトのディレクトリに移動
+$ cd handson/serverless/dynamodb
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # デプロイを実行
-    $ cdk deploy
+# デプロイを実行
+$ cdk deploy
+```
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_04_dynamodb_cdk_output) のような出力が得られるはずである． ここで表示されている `SimpleDynamoDb.TableName = XXXX` の XXXX の文字列は後で使うのでメモしておこう．
 
@@ -2836,26 +3018,30 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 まずは，テーブルに新しい要素を追加してみよう． ハンズオンのディレクトリにある [simple_write.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/simple_write.py) を開いてみよう． 中には次のような関数が書かれている．
 
-    import boto3
-    from uuid import uuid4
-    ddb = boto3.resource('dynamodb')
+```python
+import boto3
+from uuid import uuid4
+ddb = boto3.resource('dynamodb')
 
-    def write_item(table_name):
-        table = ddb.Table(table_name)
-        table.put_item(
-        Item={
-            'item_id': str(uuid4()),
-            'first_name': 'John',
-            'last_name': 'Doe',
-            'age': 25,
-            }
-        )
+def write_item(table_name):
+    table = ddb.Table(table_name)
+    table.put_item(
+    Item={
+        'item_id': str(uuid4()),
+        'first_name': 'John',
+        'last_name': 'Doe',
+        'age': 25,
+        }
+    )
+```
 
 コードを上から読んでいくと，まず最初に boto3 ライブラリをインポートし， `dynamodb` のリソースを呼び出している． `write_item()` 関数は， DynamoDB のテーブルの名前 (上で見た SimpleDynamoDb-XXXX) を引数として受け取る． そして， `put_item()` メソッドを呼ぶことで，新しいアイテムを DB に書き込んでいる． アイテムには `item_id`, `first_name`, `last_name`, `age` の 4 つの属性が定義されている． ここで， `item_id` は先ほど説明した Partition key に相当しており， [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier) を用いたランダムな文字列を割り当てている．
 
 では， `simple_write.py` を実行してみよう． "XXXX" の部分を自分がデプロイしたテーブルの名前 (`SimpleDynamoDb` で始まる文字列) に置き換えたうえで，次のコマンドを実行する．
 
-    $ python simple_write.py XXXX
+```shell
+$ python simple_write.py XXXX
+```
 
 新しい要素が正しく書き込めたか， AWS コンソールから確認してみよう． [figure_title](#handson_04_dynamodb_table_detail) と同じ手順で，テーブルの中身の要素の一覧を表示する． すると [figure_title](#fig:dynamodb_table_new_item) のように，期待通り新しい要素が見つかるだろう．
 
@@ -2863,19 +3049,23 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 boto3 を使ってテーブルから要素を読みだすことも可能である． ハンズオンのディレクトリにある [simple_read.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/simple_read.py) を見てみよう．
 
-    import boto3
-    ddb = boto3.resource('dynamodb')
+```python
+import boto3
+ddb = boto3.resource('dynamodb')
 
-    def scan_table(table_name):
-        table = ddb.Table(table_name)
-        items = table.scan().get("Items")
-        print(items)
+def scan_table(table_name):
+    table = ddb.Table(table_name)
+    items = table.scan().get("Items")
+    print(items)
+```
 
 `table.scan().get("Items")` によって，テーブルの中にあるすべての要素を読みだしている．
 
 次のコマンドで，このスクリプトを実行してみよう ("XXXX" の部分を正しく置き換えることを忘れずに）．
 
-    $ python simple_read.py XXXX
+```shell
+$ python simple_read.py XXXX
+```
 
 先ほど書き込んだ要素が出力されることを確認しよう．
 
@@ -2887,13 +3077,17 @@ DynamoDB の利点は，最初に述べたとおり，負荷に応じて自在�
 
 次のコマンドを実行してみよう (XXXX は自分のテーブルの名前に置き換える)．
 
-    $ python batch_rw.py XXXX write 1000
+```shell
+$ python batch_rw.py XXXX write 1000
+```
 
 このコマンドを実行することで，ランダムなデータが 1000 個データベースに書き込まれる．
 
 さらに，データベースの検索をかけてみよう． 今回書き込んだデータには `age` という属性に 1 から 50 のランダムな整数が割り当てられている． `age` が 2 以下であるような要素だけを検索し拾ってくるには，次のコマンドを実行すればよい．
 
-    $ python batch_rw.py XXXX search_under_age 2
+```shell
+$ python batch_rw.py XXXX search_under_age 2
+```
 
 上の 2 つのコマンドを何回か繰り返し実行してみて，データベースに負荷をかけてみよう． とくに大きな遅延なく結果が返ってくることが確認できるだろう．
 
@@ -2903,7 +3097,9 @@ DynamoDB で十分に遊ぶことができたら，忘れずにスタックを�
 
 これまでのハンズオンと同様，スタックを削除するには，次のコマンドを実行すればよい．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 ## S3 ハンズオン
 
@@ -2917,16 +3113,18 @@ DynamoDB で十分に遊ぶことができたら，忘れずにスタックを�
 
 [app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/s3/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
 
-    class SimpleS3(core.Stack):
-        def __init__(self, scope: core.App, name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+```python
+class SimpleS3(core.Stack):
+    def __init__(self, scope: core.App, name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            # S3 bucket to store data
-            bucket = s3.Bucket(
-                self, "bucket",
-                removal_policy=core.RemovalPolicy.DESTROY,
-                auto_delete_objects=True,
-            )
+        # S3 bucket to store data
+        bucket = s3.Bucket(
+            self, "bucket",
+            removal_policy=core.RemovalPolicy.DESTROY,
+            auto_delete_objects=True,
+        )
+```
 
 `s3.Bucket()` を呼ぶことによって空のバケットが新規に作成される． 上記のコードだと，バケットの名前は自動生成される． もし，自分の指定した名前を与えたい場合は， `bucket_name` というパラメータを指定すればよい． その際， バケットの名前はユニークでなければならない (i.e. AWS のデプロイが行われるリージョン内で名前の重複がない) 点に注意しよう． もし，同じ名前のバケットが既に存在する場合はエラーが返ってくる．
 
@@ -2936,16 +3134,18 @@ DynamoDB で十分に遊ぶことができたら，忘れずにスタックを�
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd handson/serverless/s3
+```shell
+# プロジェクトのディレクトリに移動
+$ cd handson/serverless/s3
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # デプロイを実行
-    $ cdk deploy
+# デプロイを実行
+$ cdk deploy
+```
 
 デプロイを実行すると， [figure_title](#fig:s3_deploy_output) のような出力が得られるはずである． ここで表示されている `SimpleS3.BucketName = XXXX` が，新しく作られたバケットの名前である (今回提供しているコードを使うとランダムな名前がバケットに割り当てられる）． これはあとで使うのでメモしておこう．
 
@@ -2957,27 +3157,35 @@ DynamoDB で十分に遊ぶことができたら，忘れずにスタックを�
 
 まずは，以下のコマンドを実行して， `tmp.txt` という仮のファイルを生成する．
 
-    $ echo "Hello world!" >> tmp.txt
+```shell
+$ echo "Hello world!" >> tmp.txt
+```
 
 ハンズオンのディレクトリにある [simple_s3.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/s3/simple_s3.py) に [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) ライブラリを使用した S3 のファイルのアップロード・ダウンロードのスクリプトが書いてある． `simple_s3.py` を使って，上で作成した `tmp.txt` を以下のコマンドによりバケットにアップロードする． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
-    $ python simple_s3.py XXXX upload tmp.txt
+```shell
+$ python simple_s3.py XXXX upload tmp.txt
+```
 
 `simple_s3.py` のアップロードを担当している部分を以下に抜粋する．
 
-    def upload_file(bucket_name, filename, key=None):
-        bucket = s3.Bucket(bucket_name)
+```python
+def upload_file(bucket_name, filename, key=None):
+    bucket = s3.Bucket(bucket_name)
 
-        if key is None:
-            key = os.path.basename(filename)
+    if key is None:
+        key = os.path.basename(filename)
 
-        bucket.upload_file(filename, key)
+    bucket.upload_file(filename, key)
+```
 
 `bucket = s3.Bucket(bucket_name)` の行で `Bucket()` オブジェクトを呼び出している． そして， `upload_file()` メソッドを呼ぶことでファイルのアップロードを実行している．
 
 S3 においてファイルの識別子として使われるのが **Key** である． これは，従来的なファイルシステムにおけるパス (Path) と相同な概念で，それぞれのファイルに固有な Key が割り当てられる必要がある． Key という呼び方は， S3 が [Object storage](https://en.wikipedia.org/wiki/Object_storage) と呼ばれるシステムに立脚していることに由来する． `--key` のオプションを追加して `simple_s3.py` を実行することで， Key を指定してアップロードを実行することができる．
 
-    $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
+```shell
+$ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
+```
 
 ここではアップロードされたファイルに `a/b/tmp.txt` という Key を割り当てている．
 
@@ -2991,17 +3199,21 @@ S3 においてファイルの識別子として使われるのが **Key** で�
 
 次に，バケットからファイルのダウンロードを実行してみよう． `simple_s3.py` を使って，以下のコマンドを実行すればよい． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
-    $ python simple_s3.py XXXX download tmp.txt
+```shell
+$ python simple_s3.py XXXX download tmp.txt
+```
 
 `simple_s3.py` のダウンロードを担当している部分を以下に抜粋する．
 
-    def download_file(bucket_name, key, filename=None):
-        bucket = s3.Bucket(bucket_name)
+```python
+def download_file(bucket_name, key, filename=None):
+    bucket = s3.Bucket(bucket_name)
 
-        if filename is None:
-            filename = os.path.basename(key)
+    if filename is None:
+        filename = os.path.basename(key)
 
-        bucket.download_file(key, filename)
+    bucket.download_file(key, filename)
+```
 
 S3 からのダウンロードはシンプルで， `download_file()` メソッドを使って，ダウンロードしたい対象の Key を指定すればよい． ローカルのコンピュータでの保存先のパスを 2 個目の引数として渡している．
 
@@ -3009,7 +3221,9 @@ S3 からのダウンロードはシンプルで， `download_file()` メソッ�
 
 以上のハンズオンで， S3 の一番基本的な使い方を紹介した． ここまでのハンズオンが理解できたら，忘れずにスタックを削除しよう． これまでのハンズオンと同様，スタックを削除するには，次のコマンドを実行すればよい．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 # Hands-on \#6: Bashoutter
 
@@ -3057,102 +3271,104 @@ S3 からのダウンロードはシンプルで， `download_file()` メソッ�
 
 それでは，プログラムのソースコードを見てみよう ([handson/bashoutter/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/app.py))．
 
-    class Bashoutter(core.Stack):
+```python
+class Bashoutter(core.Stack):
 
-        def __init__(self, scope: core.App, name: str, **kwargs) -> None:
-            super().__init__(scope, name, **kwargs)
+    def __init__(self, scope: core.App, name: str, **kwargs) -> None:
+        super().__init__(scope, name, **kwargs)
 
-            #
-            # dynamoDB table to store haiku
-            table = ddb.Table(
-                self, "Bashoutter-Table",
-                partition_key=ddb.Attribute(
-                    name="item_id",
-                    type=ddb.AttributeType.STRING
-                ),
-                billing_mode=ddb.BillingMode.PAY_PER_REQUEST,
-                removal_policy=core.RemovalPolicy.DESTROY
-            )
+        #
+        # dynamoDB table to store haiku
+        table = ddb.Table(
+            self, "Bashoutter-Table",
+            partition_key=ddb.Attribute(
+                name="item_id",
+                type=ddb.AttributeType.STRING
+            ),
+            billing_mode=ddb.BillingMode.PAY_PER_REQUEST,
+            removal_policy=core.RemovalPolicy.DESTROY
+        )
 
-            #
-            bucket = s3.Bucket(
-                self, "Bashoutter-Bucket",
-                website_index_document="index.html",
-                public_read_access=True,
-                removal_policy=core.RemovalPolicy.DESTROY
-            )
+        #
+        bucket = s3.Bucket(
+            self, "Bashoutter-Bucket",
+            website_index_document="index.html",
+            public_read_access=True,
+            removal_policy=core.RemovalPolicy.DESTROY
+        )
 
-            common_params = {
-                "runtime": _lambda.Runtime.PYTHON_3_7,
-                "environment": {
-                    "TABLE_NAME": table.table_name
-                }
+        common_params = {
+            "runtime": _lambda.Runtime.PYTHON_3_7,
+            "environment": {
+                "TABLE_NAME": table.table_name
             }
+        }
 
-            #
-            # define Lambda functions
-            get_haiku_lambda = _lambda.Function(
-                self, "GetHaiku",
-                code=_lambda.Code.from_asset("api"),
-                handler="api.get_haiku",
-                memory_size=512,
-                **common_params,
-            )
-            post_haiku_lambda = _lambda.Function(
-                self, "PostHaiku",
-                code=_lambda.Code.from_asset("api"),
-                handler="api.post_haiku",
-                **common_params,
-            )
-            patch_haiku_lambda = _lambda.Function(
-                self, "PatchHaiku",
-                code=_lambda.Code.from_asset("api"),
-                handler="api.patch_haiku",
-                **common_params,
-            )
-            delete_haiku_lambda = _lambda.Function(
-                self, "DeleteHaiku",
-                code=_lambda.Code.from_asset("api"),
-                handler="api.delete_haiku",
-                **common_params,
-            )
+        #
+        # define Lambda functions
+        get_haiku_lambda = _lambda.Function(
+            self, "GetHaiku",
+            code=_lambda.Code.from_asset("api"),
+            handler="api.get_haiku",
+            memory_size=512,
+            **common_params,
+        )
+        post_haiku_lambda = _lambda.Function(
+            self, "PostHaiku",
+            code=_lambda.Code.from_asset("api"),
+            handler="api.post_haiku",
+            **common_params,
+        )
+        patch_haiku_lambda = _lambda.Function(
+            self, "PatchHaiku",
+            code=_lambda.Code.from_asset("api"),
+            handler="api.patch_haiku",
+            **common_params,
+        )
+        delete_haiku_lambda = _lambda.Function(
+            self, "DeleteHaiku",
+            code=_lambda.Code.from_asset("api"),
+            handler="api.delete_haiku",
+            **common_params,
+        )
 
-            #
-            # grant permissions
-            table.grant_read_data(get_haiku_lambda)
-            table.grant_read_write_data(post_haiku_lambda)
-            table.grant_read_write_data(patch_haiku_lambda)
-            table.grant_read_write_data(delete_haiku_lambda)
+        #
+        # grant permissions
+        table.grant_read_data(get_haiku_lambda)
+        table.grant_read_write_data(post_haiku_lambda)
+        table.grant_read_write_data(patch_haiku_lambda)
+        table.grant_read_write_data(delete_haiku_lambda)
 
-            #
-            # define API Gateway
-            api = apigw.RestApi(
-                self, "BashoutterApi",
-                default_cors_preflight_options=apigw.CorsOptions(
-                    allow_origins=apigw.Cors.ALL_ORIGINS,
-                    allow_methods=apigw.Cors.ALL_METHODS,
-                )
+        #
+        # define API Gateway
+        api = apigw.RestApi(
+            self, "BashoutterApi",
+            default_cors_preflight_options=apigw.CorsOptions(
+                allow_origins=apigw.Cors.ALL_ORIGINS,
+                allow_methods=apigw.Cors.ALL_METHODS,
             )
+        )
 
-            haiku = api.root.add_resource("haiku")
-            haiku.add_method(
-                "GET",
-                apigw.LambdaIntegration(get_haiku_lambda)
-            )
-            haiku.add_method(
-                "POST",
-                apigw.LambdaIntegration(post_haiku_lambda)
-            )
+        haiku = api.root.add_resource("haiku")
+        haiku.add_method(
+            "GET",
+            apigw.LambdaIntegration(get_haiku_lambda)
+        )
+        haiku.add_method(
+            "POST",
+            apigw.LambdaIntegration(post_haiku_lambda)
+        )
 
-            haiku_item_id = haiku.add_resource("{item_id}")
-            haiku_item_id.add_method(
-                "PATCH",
-                apigw.LambdaIntegration(patch_haiku_lambda)
-            )
-            haiku_item_id.add_method(
-                "DELETE",
-                apigw.LambdaIntegration(delete_haiku_lambda)
-            )
+        haiku_item_id = haiku.add_resource("{item_id}")
+        haiku_item_id.add_method(
+            "PATCH",
+            apigw.LambdaIntegration(patch_haiku_lambda)
+        )
+        haiku_item_id.add_method(
+            "DELETE",
+            apigw.LambdaIntegration(delete_haiku_lambda)
+        )
+```
 
 -   ここで，俳句の情報を記録しておくための DynamoDB テーブルを定義している．
 
@@ -3170,12 +3386,14 @@ S3 からのダウンロードはシンプルで， `download_file()` メソッ�
 
 S3 のバケットを作成しているコードを見てみよう．
 
-    bucket = s3.Bucket(
-        self, "Bashoutter-Bucket",
-        website_index_document="index.html",
-        public_read_access=True,
-        removal_policy=core.RemovalPolicy.DESTROY
-    )
+```python
+bucket = s3.Bucket(
+    self, "Bashoutter-Bucket",
+    website_index_document="index.html",
+    public_read_access=True,
+    removal_policy=core.RemovalPolicy.DESTROY
+)
+```
 
 ここで注目してほしいのは `public_read_access=True` の部分だ． 前章で， S3 について説明を行ったときには触れなかったが， S3 には **Public access mode** という機能がある． Public access mode をオンにしておくと，バケットの中のファイルは認証なしで (i.e. インターネット上の誰でも) 閲覧できるようになる． この設定は，一般公開されているウェブサイトの静的なコンテンツを置いておくのに最適であり，多くのサーバーレスによるウェブサービスでこのような設計が行われる． public access mode を設定しておくと， `http://XXXX.s3-website-ap-northeast-1.amazonaws.com/` のような固有の URL がバケットに対して付与される． そして，クライアントがこの URL にアクセスをすると，バケットの中にある `index.html` がクライアントに返され，ページがロードされる (どのファイルが返されるかは， `website_index_document="index.html"` の部分で設定している．)
 
@@ -3193,38 +3411,42 @@ S3 のバケットを作成しているコードを見てみよう．
 
 API リクエストが来たときに，リクエストされた処理を行う関数のことをハンドラ (handler) 関数とよぶ． `GET /haiku` の API に対してのハンドラ関数を Lambda で定義している部分を見てみよう．
 
-    get_haiku_lambda = _lambda.Function(
-        self, "GetHaiku",
-        code=_lambda.Code.from_asset("api"),
-        handler="api.get_haiku",
-        memory_size=512,
-        **common_params
-    )
+```python
+get_haiku_lambda = _lambda.Function(
+    self, "GetHaiku",
+    code=_lambda.Code.from_asset("api"),
+    handler="api.get_haiku",
+    memory_size=512,
+    **common_params
+)
+```
 
 簡単なところから見ていくと， `memory_size=512` の箇所でメモリーの使用量を 512MB に指定している． また， `code=_lambda.Code.from_asset("api")` によって外部のディレクトリ (`api/`) を参照せよと指定しており， `handler="api.get_haiku"` のところで `api.py` というファイルの `get_haiku()` という関数をハンドラ関数として実行せよ，と定義している．
 
 次に，ハンドラ関数として使用されている `get_haiku()` のコードを見てみよう ([handson/bashoutter/api/api.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/api/api.py))．
 
-    ddb = boto3.resource("dynamodb")
-    table = ddb.Table(os.environ["TABLE_NAME"])
+```python
+ddb = boto3.resource("dynamodb")
+table = ddb.Table(os.environ["TABLE_NAME"])
 
-    def get_haiku(event, context):
-        """
-        handler for GET /haiku
-        """
-        try:
-            response = table.scan()
+def get_haiku(event, context):
+    """
+    handler for GET /haiku
+    """
+    try:
+        response = table.scan()
 
-            status_code = 200
-            resp = response.get("Items")
-        except Exception as e:
-            status_code = 500
-            resp = {"description": f"Internal server error. {str(e)}"}
-        return {
-            "statusCode": status_code,
-            "headers": HEADERS,
-            "body": json.dumps(resp, cls=DecimalEncoder)
-        }
+        status_code = 200
+        resp = response.get("Items")
+    except Exception as e:
+        status_code = 500
+        resp = {"description": f"Internal server error. {str(e)}"}
+    return {
+        "statusCode": status_code,
+        "headers": HEADERS,
+        "body": json.dumps(resp, cls=DecimalEncoder)
+    }
+```
 
 `response = table.scan()` で，俳句の格納された DynamoDB テーブルから，すべての要素を取り出している． もしなにもエラーが起きなければステータスコード 200 が返され，もしなにかエラーが起こればステータスコード 500 が返されるようになっている．
 
@@ -3236,10 +3458,12 @@ API リクエストが来たときに，リクエストされた処理を行う�
 
 以下の部分のコードに注目してほしい．
 
-    table.grant_read_data(get_haiku_lambda)
-    table.grant_read_write_data(post_haiku_lambda)
-    table.grant_read_write_data(patch_haiku_lambda)
-    table.grant_read_write_data(delete_haiku_lambda)
+```python
+table.grant_read_data(get_haiku_lambda)
+table.grant_read_write_data(post_haiku_lambda)
+table.grant_read_write_data(patch_haiku_lambda)
+table.grant_read_write_data(delete_haiku_lambda)
+```
 
 これまでは説明の簡略化のためにあえて触れてこなかったが， AWS には [IAM (Identity and Access Management)](https://aws.amazon.com/iam/) という重要な概念がある． IAM は基本的に，あるリソースがほかのリソースに対してどのような権限をもっているか，を規定するものである． Lambda は，デフォルトの状態ではほかのリソースにアクセスする権限をなにも有していない． したがって， Lambda 関数が DynamoDB のデータを読み書きするためには，それを許可するような IAM が Lambda 関数に付与されていなければならない．
 
@@ -3261,38 +3485,40 @@ API Gateway を配置することで，大量 (1 秒間に数千から数万件)
 
 ソースコードの該当箇所を見てみよう．
 
-    #
-    api = apigw.RestApi(
-        self, "BashoutterApi",
-        default_cors_preflight_options=apigw.CorsOptions(
-            allow_origins=apigw.Cors.ALL_ORIGINS,
-            allow_methods=apigw.Cors.ALL_METHODS,
-        )
+```python
+#
+api = apigw.RestApi(
+    self, "BashoutterApi",
+    default_cors_preflight_options=apigw.CorsOptions(
+        allow_origins=apigw.Cors.ALL_ORIGINS,
+        allow_methods=apigw.Cors.ALL_METHODS,
     )
+)
 
-    #
-    haiku = api.root.add_resource("haiku")
-    #
-    haiku.add_method(
-        "GET",
-        apigw.LambdaIntegration(get_haiku_lambda)
-    )
-    haiku.add_method(
-        "POST",
-        apigw.LambdaIntegration(post_haiku_lambda)
-    )
+#
+haiku = api.root.add_resource("haiku")
+#
+haiku.add_method(
+    "GET",
+    apigw.LambdaIntegration(get_haiku_lambda)
+)
+haiku.add_method(
+    "POST",
+    apigw.LambdaIntegration(post_haiku_lambda)
+)
 
-    #
-    haiku_item_id = haiku.add_resource("{item_id}")
-    #
-    haiku_item_id.add_method(
-        "PATCH",
-        apigw.LambdaIntegration(patch_haiku_lambda)
-    )
-    haiku_item_id.add_method(
-        "DELETE",
-        apigw.LambdaIntegration(delete_haiku_lambda)
-    )
+#
+haiku_item_id = haiku.add_resource("{item_id}")
+#
+haiku_item_id.add_method(
+    "PATCH",
+    apigw.LambdaIntegration(patch_haiku_lambda)
+)
+haiku_item_id.add_method(
+    "DELETE",
+    apigw.LambdaIntegration(delete_haiku_lambda)
+)
+```
 
 -   最初に， `api = apigw.RestApi()` により，空の API Gateway を作成している．
 
@@ -3314,16 +3540,18 @@ API Gateway で新規 API を作成したとき， `default_cors_preflight_optio
 
 アプリケーションの中身が理解できたところで，早速デプロイを行ってみよう． デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-    # プロジェクトのディレクトリに移動
-    $ cd intro-aws/handson/bashoutter
+```shell
+# プロジェクトのディレクトリに移動
+$ cd intro-aws/handson/bashoutter
 
-    # venv を作成し，依存ライブラリのインストールを行う
-    $ python3 -m venv .env
-    $ source .env/bin/activate
-    $ pip install -r requirements.txt
+# venv を作成し，依存ライブラリのインストールを行う
+$ python3 -m venv .env
+$ source .env/bin/activate
+$ pip install -r requirements.txt
 
-    # デプロイを実行
-    $ cdk deploy
+# デプロイを実行
+$ cdk deploy
+```
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_05_cdk_output) のような出力が得られるはずである． ここで表示されている `Bashoutter.BashoutterApiEndpoint = XXXX`, `Bashoutter.BucketUrl = YYYY` の二つ文字列はあとで使うのでメモしておこう．
 
@@ -3355,75 +3583,91 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 まず，先ほどデプロイを実行したときに得られた API のエンドポイントの URL (`Bashoutter.BashoutterApiEndpoint = XXXX` で得られた `XXXX` の文字列) をコマンドラインの変数に設定しておく．
 
-    $ export ENDPOINT_URL=XXXX
+```shell
+$ export ENDPOINT_URL=XXXX
+```
 
 次に，俳句の一覧を取得するため， `GET /haiku` の API を送信してみよう．
 
-    $ http GET "${ENDPOINT_URL}/haiku"
+```shell
+$ http GET "${ENDPOINT_URL}/haiku"
+```
 
 現時点では，まだだれも俳句を投稿していないので，空の配列 (`[]`) が返ってくる．
 
 それでは次に， `POST /haiku` を使って俳句を投稿してみよう．
 
-    $ http POST "${ENDPOINT_URL}/haiku" \
-    username="松尾芭蕉" \
-    first="閑さや" \
-    second="岩にしみ入る" \
-    third="蝉の声"
+```shell
+$ http POST "${ENDPOINT_URL}/haiku" \
+username="松尾芭蕉" \
+first="閑さや" \
+second="岩にしみ入る" \
+third="蝉の声"
+```
 
 次のような出力が得られるだろう．
 
-    HTTP/1.1 201 Created
-    Connection: keep-alive
-    Content-Length: 49
-    Content-Type: application/json
-    ....
-    {
-        "description": "Successfully added a new haiku"
-    }
+```shell
+HTTP/1.1 201 Created
+Connection: keep-alive
+Content-Length: 49
+Content-Type: application/json
+....
+{
+    "description": "Successfully added a new haiku"
+}
+```
 
 新しい俳句を投稿することに成功したようである． 本当に俳句が追加されたか，再び GET リクエストを呼ぶことで確認してみよう．
 
-    $ http GET "${ENDPOINT_URL}/haiku"
+```shell
+$ http GET "${ENDPOINT_URL}/haiku"
 
-    HTTP/1.1 200 OK
-    Connection: keep-alive
-    Content-Length: 258
-    Content-Type: application/json
-    ...
-    [
-        {
-            "created_at": "2020-07-06T02:46:04+00:00",
-            "first": "閑さや",
-            "item_id": "7e91c5e4d7ad47909e0ac14c8bbab05b",
-            "likes": 0.0,
-            "second": "岩にしみ入る",
-            "third": "蝉の声",
-            "username": "松尾芭蕉"
-        }
-    ]
+HTTP/1.1 200 OK
+Connection: keep-alive
+Content-Length: 258
+Content-Type: application/json
+...
+[
+    {
+        "created_at": "2020-07-06T02:46:04+00:00",
+        "first": "閑さや",
+        "item_id": "7e91c5e4d7ad47909e0ac14c8bbab05b",
+        "likes": 0.0,
+        "second": "岩にしみ入る",
+        "third": "蝉の声",
+        "username": "松尾芭蕉"
+    }
+]
+```
 
 素晴らしい！
 
 次に， `PATCH /haiku/{item_id}` を呼ぶことでこの俳句にいいねを追加してみよう． 一つ前のコマンドで取得した俳句の `item_id` を，次のコマンドの `XXXX` に代入した上で実行しよう．
 
-    $ http PATCH "${ENDPOINT_URL}/haiku/XXXX"
+```shell
+$ http PATCH "${ENDPOINT_URL}/haiku/XXXX"
+```
 
 `{"description": "OK"}` という出力が得られるはずである． 再び GET リクエストを送ることで，いいね (`likes`) が 1 増えたことを確認しよう．
 
-    $ http GET "${ENDPOINT_URL}/haiku"
-    ...
-    [
-        {
-            ...
-            "likes": 1.0,
-            ...
-        }
-    ]
+```shell
+$ http GET "${ENDPOINT_URL}/haiku"
+...
+[
+    {
+        ...
+        "likes": 1.0,
+        ...
+    }
+]
+```
 
 最後に， DELETE リクエストを送ることで俳句をデータベースから削除しよう． `XXXX` は `item_id` の値で置き換えたうえで次のコマンドを実行する．
 
-    $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
+```shell
+$ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
+```
 
 再び GET リクエストを送ることで，返り値が空 (`[]`) になっていることを確認しよう．
 
@@ -3437,13 +3681,17 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 テストとして， API を 300 回実行してみよう． 次のコマンドを実行する．
 
-    $ python client.py $ENDPOINT_URL post_many 300
+```shell
+$ python client.py $ENDPOINT_URL post_many 300
+```
 
 数秒のうちに実行が完了するだろう． これがもし，単一のサーバーからなる API だったとしたら，このような大量のリクエストの処理にはもっと時間がかかっただろう． 最悪の場合には，サーバーダウンにもつながっていたかもしれない． したがって，今回作成したサーバーレスアプリケーションは，とてもシンプルながらも 1 秒間に数百件の処理を行えるような，スケーラブルなクラウドシステムであることがわかる． サーバーレスでクラウドを設計することの利点を垣間見ることができただろうか？
 
 先述のコマンドにより大量の俳句を投稿するとデータベースに無駄なデータがどんどん溜まってしまう． データベースを完全に空にするには，次のコマンドを使用する．
 
-    $ python client.py $ENDPOINT_URL clear_database
+```shell
+$ python client.py $ENDPOINT_URL clear_database
+```
 
 ## Bashoutter GUI を動かしてみる
 
@@ -3451,7 +3699,9 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 CDK のコードで， Public access mode の S3 バケットを作成したことを思い出してほしい． 最初のステップとして，ここにウェブサイトのコンテンツをアップロードしよう． ハンズオンのソースコードの中に `gui/dist` というフォルダが見つかるはずである． ここにはビルド済みのウェブサイトの静的コンテンツ (HTML/CSS/JavaScript) が入っている． AWS CLI のコマンドを使うことでこれらのファイルを S3 にアップロードしよう．
 
-    $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
+```shell
+$ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
+```
 
 コマンドを実行する際は， Bashoutter ハンズオンのディレクトリから行うこと (`./gui/dist` に注目)，そして `<BUCKET_NAME>` にはデプロイした自身のバケットの名前が入る点に注意． 念のため，AWS コンソールにログインし，バケットにファイルがアップロードされている点を確認しておこう．
 
@@ -3475,15 +3725,19 @@ Bashoutter アプリを存分に楽しむことができたら，最後に忘れ
 
 コマンドラインからスタックの削除を実行するには，次のコマンドを使う．
 
-    $ cdk destroy
+```shell
+$ cdk destroy
+```
 
 CDK のバージョンによっては S3 のバケットが空でないと， `cdk destroy` がエラーを出力する場合がある． この場合はスタックを削除する前に， S3 バケットの中身をすべて削除しなければならない．
 
 コンソールから実行するには， S3 コンソールに行き，バケットの中身を開いたうえで，すべてのファイルを選択し， "Actions" → "Delete" を実行すればよいい．
 
-コマンドラインから実行するには， 次のコマンドを使う． &lt;BUCKET NAME&gt; のところは，自分の バケットの名前 ("BashoutterBucketXXXX" というパターンの名前がついているはずである) に置き換えることを忘れずに．
+コマンドラインから実行するには， 次のコマンドを使う． &lt;BUCKET NAME&gt; のところは，自分の バケットの名前 ("`BashoutterBucketXXXX`" というパターンの名前がついているはずである) に置き換えることを忘れずに．
 
-    $ aws s3 rm <BUCKET NAME> --recursive
+```shell
+$ aws s3 rm <BUCKET NAME> --recursive
+```
 
 ## 小括
 
@@ -3595,31 +3849,39 @@ AWS シークレットキーとは， AWS CLI や AWS CDK から AWS の API を
 
 読者のために，執筆時点におけるインストールの手順 (Linux 向け) を簡単に記述する． 将来のバージョンでは変更される可能性があるので，常に [公式のドキュメンテーション](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) で最新の情報をチェックすることを忘れずに．
 
-    $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    $ unzip awscliv2.zip
-    $ sudo ./aws/install
+```shell
+$ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+$ unzip awscliv2.zip
+$ sudo ./aws/install
+```
 
 インストールできたか確認するため，次のコマンドを打ってバージョン情報が出力されることを確認する．
 
-    $ aws --version
+```shell
+$ aws --version
+```
 
 インストールができたら，次のコマンドにより初期設定を行う ([参照](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html))．
 
-    $ aws configure
+```shell
+$ aws configure
+```
 
 コマンドを実行すると， `AWS Access Key ID`, `AWS Secret Access Key` を入力するよう指示される． シークレットキーの発行については [AWS のシークレットキーの作成](#aws_secrets) を参照． コマンドは加えて，`Default region name` を訊いてくる． ここには自分の好きな地域 (例えば `ap-northeast-1` =東京リージョン) を指定すればよい． 最後の `Default output format` は `json` としておくとよい．
 
 このコマンドを完了すると， `~/.aws/credentials` と `~/.aws/config`　という名前のファイルが生成されているはずである． 念のため， `cat` コマンドを使って中身を確認してみるとよい．
 
-    $ cat ~/.aws/credentials
-    [default]
-    aws_access_key_id = XXXXXXXXXXXXXXXXXX
-    aws_secret_access_key = YYYYYYYYYYYYYYYYYYY
+```shell
+$ cat ~/.aws/credentials
+[default]
+aws_access_key_id = XXXXXXXXXXXXXXXXXX
+aws_secret_access_key = YYYYYYYYYYYYYYYYYYY
 
-    $ cat ~/.aws/config
-    [profile default]
-    region = ap-northeast-1
-    output = json
+$ cat ~/.aws/config
+[profile default]
+region = ap-northeast-1
+output = json
+```
 
 `~/.aws/credentials` には認証鍵の情報が， `~/.aws/config` には AWS CLI の設定が記録されている．
 
@@ -3627,19 +3889,25 @@ AWS シークレットキーとは， AWS CLI や AWS CDK から AWS の API を
 
 AWS CLI でコマンドを打つときに，プロファイルを使い分けるには，
 
-    $ aws s3 ls --profile myprofile
+```shell
+$ aws s3 ls --profile myprofile
+```
 
 のように， `--profile` というオプションをつけてコマンドを実行する．
 
 いちいち `--profile` オプションをつけるのが面倒だと感じる場合は， `AWS_PROFILE` という環境変数を設定するとよい．
 
-    $ export AWS_PROFILE=myprofile
+```shell
+$ export AWS_PROFILE=myprofile
+```
 
 あるいは，認証情報などを環境変数に設定するテクニックもある．
 
-    export AWS_ACCESS_KEY_ID=XXXXXX
-    export AWS_SECRET_ACCESS_KEY=YYYYYY
-    export AWS_DEFAULT_REGION=ap-northeast-1
+```shell
+export AWS_ACCESS_KEY_ID=XXXXXX
+export AWS_SECRET_ACCESS_KEY=YYYYYY
+export AWS_DEFAULT_REGION=ap-northeast-1
+```
 
 これらの環境変数は， `~/.aws/credentials` よりも高い優先度をもつので，環境変数が設定されていればそちらの情報が使用される ([参照](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html))．
 
@@ -3651,19 +3919,27 @@ AWS CLI でコマンドを打つときに，プロファイルを使い分ける
 
 Node.js がインストールされていれば，基本的に次のコマンドを実行すればよい．
 
-    $ sudo npm install -g aws-cdk
+```shell
+$ sudo npm install -g aws-cdk
+```
 
 本書のハンズオンは AWS CDK version 1.100.0 で開発した． CDK は開発途上のライブラリなので，将来的に API が変更される可能性がある． API の変更によりエラーが生じた場合は， version 1.100.0 を使用することを推奨する．
 
-    $ npm install -g aws-cdk@1.100
+```shell
+$ npm install -g aws-cdk@1.100
+```
 
 インストールできたか確認するため，次のコマンドを打って正しくバージョンが表示されることを確認する．
 
-    $ cdk --version
+```shell
+$ cdk --version
+```
 
 インストールができたら，次のコマンドにより AWS 側の初期設定を行う． これは一度実行すれば OK．
 
-    $ cdk bootstrap
+```shell
+$ cdk bootstrap
+```
 
 `cdk bootstrap` を実行するときは，AWS の認証情報とリージョンが正しく設定されていることを確認する． デフォルトでは `~/.aws/config` にあるデフォルトのプロファイルが使用される． デフォルト以外のプロファイルを用いるときは [AWS CLI のインストール](#aws_cli_install) で紹介したテクニックを使って切り替える．
 
@@ -3685,13 +3961,17 @@ WSL とは， Windows の OS 上で Linux の仮想環境を起動するため�
 
 PowerShell が起動したら、次のコマンドを実行する．
 
-    dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```powershell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
 
 実行して、“The operation completed successfully.” と出力されるのを確認する． これで WSL が enable される．
 
 次に，先ほどと同じ Administrator 権限で開いた PowerShell で次のコマンドを実行する。
 
-    dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```powersh
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+```
 
 実行して， “The operation completed successfully.” と出力されるのを確認する． これが確認出来たら、一度コンピュータを再起動する．
 
@@ -3701,7 +3981,9 @@ PowerShell が起動したら、次のコマンドを実行する．
 
 そうしたら，再び PowerShell を開き次のコマンドを実行する。
 
-    wsl --set-default-version 2
+```shell
+wsl --set-default-version 2
+```
 
 最後に、自分の好みの Linux distribution をインストールする． ここでは Ubuntu 20.04 をインストールしよう．
 
@@ -3733,24 +4015,32 @@ Linux ユーザー (特に Ubuntu ユーザー) については，インスト�
 
 最も簡単な方法は， Docker が公式で提供しているインストールスクリプトを用いる方法である． この場合，次のコマンドを実行することで Docker がインストールされる．
 
-    $ curl -fsSL https://get.docker.com -o get-docker.sh
-    $ sudo sh get-docker.sh
+```shell
+$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+```
 
 デフォルトのインストールでは， root ユーザーのみが `docker` コマンドを使用できる設定になっている． 従って，コマンドには毎回 `sudo` を付け加える必要がある． これが面倒だと感じる場合は，次のステップにより，使用するユーザーを `docker` というグループに追加する (詳細は [公式ドキュメンテーション "Post-installation steps for Linux"](https://docs.docker.com/engine/install/linux-postinstall/#manage-docker-as-a-non-root-user) を参照)．
 
 まず最初に， `docker` という名前にグループを追加する． インストールによっては，既に `docker` グループが作られている場合もある．
 
-    $ sudo groupadd docker
+```sh
+$ sudo groupadd docker
+```
 
 次に，現在使用しているユーザーを `docker` グループに加える．
 
-    $ sudo usermod -aG docker $USER
+```sh
+$ sudo usermod -aG docker $USER
+```
 
 ここまでできたら，一度ログアウトし，再度ログインする． これによって，グループの変更がターミナルのセッションに反映される．
 
 設定が正しくできているかを確認するため，次のコマンドを実行してみる．
 
-    $ docker run hello-world
+```sh
+$ docker run hello-world
+```
 
 `sudo` なしでコンテナが実行できたならば，設定は完了である．
 
@@ -3764,13 +4054,17 @@ Linux ユーザー (特に Ubuntu ユーザー) については，インスト�
 
 `venv` を使って仮想環境を作成するには，
 
-    $ python -m venv .env
+```sh
+$ python -m venv .env
+```
 
 と実行する． これにより `.env/` というディレクトリが作られ，このディレクトリに依存するライブラリが保存されることになる．
 
 この新たな仮想環境を起動するには
 
-    $ source .env/bin/activate
+```sh
+$ source .env/bin/activate
+```
 
 と実行する．
 
@@ -3782,7 +4076,9 @@ Linux ユーザー (特に Ubuntu ユーザー) については，インスト�
 
 Python では `requirements.txt` というファイルに依存ライブラリを記述するのが一般的な慣例である．他人からもらったプログラムに， `requirements.txt` が定義されていれば，
 
-    $ pip install -r requirements.txt
+```sh
+$ pip install -r requirements.txt
+```
 
 と実行することで，必要なライブラリをインストールし，瞬時に Python 環境を再現することができる．
 
@@ -3798,17 +4094,23 @@ Docker イメージは [Docker Hub](https://hub.docker.com/repository/docker/tom
 
 次のコマンドでコンテナを起動する．
 
-    $ docker run -it tomomano/labc:latest
+```sh
+$ docker run -it tomomano/labc:latest
+```
 
 初回にコマンドを実行したときのみ，イメージが Docker Hub からダウンロード (pull) される． 二回目以降はローカルにダウンロードされたイメージが使用される．
 
 コンテナが起動すると，次のようなインタラクティブシェルが表示されるはずである (起動時に `-it` のオプションをつけたのがポイントである)．
 
-root@aws-handson:~$&lt;/programlisting&gt;
+```sh
+root@aws-handson:~/programlisting
+```
 
 この状態で `ls` コマンドを打つと， `handson/` というディレクトリがあるはずである． ここに `cd` する．
 
-    $ cd handson
+```sh
+$ cd handson
+```
 
 すると，各ハンズオンごとのディレクトリが見つかるはずである．
 
@@ -3816,50 +4118,16 @@ root@aws-handson:~$&lt;/programlisting&gt;
 
 AWS の認証情報を設定することも忘れずに． [AWS CLI のインストール](#aws_cli_install) で記述したように， `AWS_ACCESS_KEY_ID` などの環境変数を設定するのが簡単な方法である． あるいは，**ローカルマシンの** `~/.aws/credentials` に認証情報が書き込まれているなら，このディレクトリをコンテナに**マウント**することで，同じ認証ファイルをコンテナ内部から参照することが可能である． この選択肢を取る場合は，次のコマンドでコンテナを起動する．
 
-    $ docker run -it -v ~/.aws:/root/.aws:ro tomomano/labc:latest
+```sh
+$ docker run -it -v ~/.aws:/root/.aws:ro tomomano/labc:latest
+```
 
 これにより，ローカルマシンの `~/.aws` をコンテナの `/root/.aws` にマウントすることができる． 最後の `:ro` は read-only を意味する． 大切な認証ファイルが誤って書き換えられてしまわないように， read-only のフラグをつけることをおすすめする．
 
 `/root/` がコンテナ環境におけるホームディレクトリである． ここで紹介した認証ファイルをマウントするテクニックは， SSH 鍵をコンテナに渡すときなどにも使える．
-
-# 謝辞
-
-本原稿の執筆にあたり，以下の方々からの協力を得た．この場を借りて，感謝を表したい．
-
-**2021 年バージョンの contributors**
-
--   香取真知子氏 - ハンズオンプログラムの動作確認，文章校閲
-
-**[2020 年バージョン](https://gitlab.com/tomomano/intro-aws)の contributors**
-
--   勝俣敬寛氏 - Docker イメージの作成
-
--   香取真知子氏 - ハンズオンプログラムの動作確認
-
--   [@shuuji3](https://gitlab.com/shuuji3) - MR [!15](https://gitlab.com/tomomano/intro-aws/-/merge_requests/15)
-
--   [@takatama_jp](https://gitlab.com/takatama_jp) - MR [!14](https://gitlab.com/tomomano/intro-aws/-/merge_requests/14)
-
-本書の執筆には [Asciidoctor](https://asciidoctor.org/) を使用した．
-
-また，本書はオープンソースの教科書として，すべての読者・ディベロッパーからのフィードバックを受け付けている． 誤植や記述の誤り，改善点など見つかったら，ぜひ [Issues](https://github.com/tomomano/learn-aws-by-coding/issues) や [Pull request](https://github.com/tomomano/learn-aws-by-coding/pulls) を投稿していただきたい．
-
-# 著者紹介
-
-真野 智之 (Tomoyuki Mano)
-
-情報理工学博士 (東京大学大学院情報理工学系研究科システム情報学専攻)． 2021 年より日本学術振興会特別研究員 (PD) (現職)． 沖縄科学技術大学院大学 (OIST) にてポスドク研究員として働く． 現在の研究分野は神経科学・神経情報学． 趣味は料理・ランニング・鉄道・アニメ，村上春樹の熱烈な愛読家．
-
-連絡先　<tomoyukimano@gmail.com>
-
-GitHub <https://github.com/tomomano>
 
 # ライセンス
 
 本教科書およびハンズオンのソースコードは [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/) に従うライセンスで公開しています．
 
 教育など非商用の目的での本教科書の使用や再配布は自由に行うことが可能です． 商用目的で本書の全体またはその一部を無断で転載する行為は，これを固く禁じます．
-
-![cc_by_nc_nd](imgs/cc_by_nc_nd.png)
-
-.imageblock &gt; .title { text-align: inherit; }
