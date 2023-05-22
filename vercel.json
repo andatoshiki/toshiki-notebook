@@ -1,14 +1,13 @@
 {
-    "installCommand": "pnpm install --frozen-lockfile",
-    "buildCommand": "pnpm docs:build",
-    "devCommand": "pnpm docs:dev",
-    "cleanUrls": true,
-    "framework": "vite",
-    "git": {
-      "deploymentEnabled": {
-        "master": true,
-        "gh-pages": false
-      }
+  "installCommand": "pnpm install --no-frozen-lockfile",
+  "buildCommand": "pnpm docs:build",
+  "devCommand": "pnpm docs:dev",
+  "cleanUrls": true,
+  "framework": "vite",
+  "git": {
+    "deploymentEnabled": {
+      "master": true,
+      "gh-pages": false
     }
   }
-  
+}
