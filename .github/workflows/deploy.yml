@@ -9,7 +9,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Perform check out
-              uses: actions/checkout@v3\
+              uses: actions/checkout@v3
             - name: Setup PNPM
               uses: pnpm/action-setup@v2
               with:
