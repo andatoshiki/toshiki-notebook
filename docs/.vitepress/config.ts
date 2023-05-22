@@ -23,6 +23,7 @@ export default defineConfig({
             },
         },
     },
+    ignoreDeadLinks: true
 })
 
 customElements // custom element tags of markdown-it-katex in vitepress
