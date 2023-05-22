@@ -199,7 +199,9 @@ Jupyter Notebook を初回に起動するときは，起動に数分程度の時
 
 先ほど，ポートフォワーディングのオプションをつけて SSH 接続をしているので， Jupyter の起動している `localhost:8888` には，ローカルマシンの `localhost:8931` からアクセスすることができる． したがって，ローカルマシンから Jupyter にアクセスするには，ウェブブラウザ (Chrome, FireFox など)から次のアドレスにアクセスすれば良い．
 
+```
 http://localhost:8931/?token=XXXX&lt;/programlisting&gt;
+```
 
 `?token=XXXX` の部分は，上で Jupyter を起動したときに発行されたトークンの値に置き換える．
 
