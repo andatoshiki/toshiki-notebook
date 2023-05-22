@@ -10,15 +10,16 @@ jobs:
         steps:
             - name: Perform check out
               uses: actions/checkout@v3
-
+            - uses: pnpm/action-setup@v2
+              with:
+                version: 8
             - name: Install dependencies and build/compile the site # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
               run: |
-                  chsh -s /bin/bash
-                  wget -qO- https://get.pnpm.io/install.sh | sh -
                   pnpm install --frozen-lockfile
                   pnpm prepare
                   pnpm lint
                   pnpm docs:build
+              - uses: pnpm/action-setup@v2
             - name: Deploy to GitHub pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
