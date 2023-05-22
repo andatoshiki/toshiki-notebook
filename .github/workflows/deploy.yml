@@ -13,6 +13,7 @@ jobs:
 
             - name: Install dependencies and build/compile the site # This example project is built using npm and outputs the result to the 'build' folder. Replace with the commands required to build your project, or remove this step entirely if your site is pre-built.
               run: |
+                  npm install pnpm -g
                   pnpm install --frozen-lockfile
                   pnpm prepare
                   pnpm lint
