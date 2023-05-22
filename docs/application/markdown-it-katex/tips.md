@@ -29,7 +29,7 @@ But, the issue here is, the overflowing issue is resolved on the webpage, but th
 
 ### 1.3: Finding solution
 
-After running a quick research on Google, I found a simple hack tweak used in a theme of VuePress, [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope) on GitHub, the theme both integrate with KaTeX and MathJax for math supports. 
+After running a quick research on Google, I found a simple hack tweak used in a theme of VuePress, [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope) on GitHub, the theme both integrate with KaTeX and MathJax for math supports.
 
 <!-- [@preview](https://github.com/vuepress-theme-hope/vuepress-theme-hope) -->
 
@@ -98,6 +98,7 @@ Then in your scss stylesheets, add the following and link or import them to your
 
 ...
 ```
+
 Next, import your styles globally to take effect,
 
 ```scss
@@ -126,25 +127,25 @@ to precompile from source scss into normal css styles and use them based on your
 
 ```css
 .katex {
-  font-size: 1.05em;
-  direction: ltr;
+    font-size: 1.05em;
+    direction: ltr;
 }
 
 .katex-display {
-  overflow: auto hidden;
-  -webkit-overflow-scrolling: touch;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+    overflow: auto hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
 }
 .katex-display::-webkit-scrollbar {
-  height: 3px;
+    height: 3px;
 }
 .katex-display .katex {
-  font-size: 1.21em;
+    font-size: 1.21em;
 }
 
 .katex-error {
-  color: #f00;
+    color: #f00;
 }
 ```
 
@@ -152,7 +153,7 @@ To be continued.
 
 ::: info Reference
 
-- [vuepress-theme-hope/docs/theme/src/.vuepress/components/toggle-rtl-button.scss](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/docs/theme/src/.vuepress/components/toggle-rtl-button.scss)
-- [Toshiki's ChaGPT](https://chat.toshiki.dev)
+-   [vuepress-theme-hope/docs/theme/src/.vuepress/components/toggle-rtl-button.scss](https://github.com/vuepress-theme-hope/vuepress-theme-hope/blob/main/docs/theme/src/.vuepress/components/toggle-rtl-button.scss)
+-   [Toshiki's ChaGPT](https://chat.toshiki.dev)
 
 :::
