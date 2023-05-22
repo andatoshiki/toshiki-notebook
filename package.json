@@ -52,7 +52,7 @@
     "unplugin-vue-components": "^0.24.0",
     "videojs-flash": "^2.2.1",
     "vite": "^4.1.2",
-    "vitepress": "^1.0.0-alpha.46",
+    "vitepress": "^1.0.0-alpha.76",
     "vitepress-plugin-nprogress": "^0.0.4",
     "vue": "^3.2.47",
     "vue-better-dplayer": "^0.0.8",
