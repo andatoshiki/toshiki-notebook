@@ -29,7 +29,7 @@ export const themeConfig: DefaultTheme.Config = {
         { icon: 'github', link: 'https://github.com/andatoshiki' },
         { icon: 'twitter', link: 'https://twitter.com/andatoshiki' },
     ],
-
+    ignoreDeadLinks: true
     // custom vue components
     // @ts-ignore
     // surpress errors originated from the lines below of custom coponent configs in typescript
