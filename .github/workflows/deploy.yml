@@ -19,7 +19,6 @@ jobs:
                   pnpm prepare
                   pnpm lint
                   pnpm docs:build
-              - uses: pnpm/action-setup@v2
             - name: Deploy to GitHub pages
               uses: JamesIves/github-pages-deploy-action@v4
               with:
