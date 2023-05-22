@@ -3,8 +3,20 @@ import { metaData } from './constants'
 
 export const head: HeadConfig[] = [
     // stylesheets loaded from thrid-party cdns
-    ['link', { rel: 'stylesheet', href: 'https://cdnjs.toshiki.dev/ajax/libs/KaTeX/0.16.0/katex.min.css' }],
-    ['link', { rel: 'stylesheet', href: 'https://cdnjs.toshiki.dev/ajax/libs/font-awesome/6.3.0/css/all.min.css' }],
+    [
+        'link',
+        {
+            rel: 'stylesheet',
+            href: 'https://cdnjs.toshiki.dev/ajax/libs/KaTeX/0.16.0/katex.min.css',
+        },
+    ],
+    [
+        'link',
+        {
+            rel: 'stylesheet',
+            href: 'https://cdnjs.toshiki.dev/ajax/libs/font-awesome/6.3.0/css/all.min.css',
+        },
+    ],
     // <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
 
     ['link', { rel: 'icon', href: '/favicon.ico' }],
