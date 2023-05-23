@@ -65,7 +65,7 @@ export default {
             // aside buttom slots for sponsor
             'aside-bottom': () => h(AsideSponsors),
             'doc-footer-before': () => h(Copyright),
-            'doc-after': () => h(Comment)
+            'doc-after': () => h(Comment),
         })
     },
 

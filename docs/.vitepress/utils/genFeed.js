@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const { Feed } = require('feed')
 const { load } = require('./posts.data')
-const url = `https://note.toshiki.dev`
+const url = `https://note.toshiki.dev/`
 
 genFeed()
 
