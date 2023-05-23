@@ -20,6 +20,10 @@ import CustomLayout from './CustomLayout.vue'
 import AsideSponsors from './components/AsideSponsors.vue'
 // @ts-ignore
 import Copyright from './components/Copyright.vue'
+// @ts-ignore
+import Comment from './components/layout/Comment.vue'
+
+// import CodeTitle from './components/CodeTitle.vue'
 
 if (typeof window !== 'undefined') {
     // unregister PWA service
@@ -61,6 +65,7 @@ export default {
             // aside buttom slots for sponsor
             'aside-bottom': () => h(AsideSponsors),
             'doc-footer-before': () => h(Copyright),
+            'doc-after': () => h(Comment)
         })
     },
 
@@ -78,7 +83,8 @@ export default {
 
     enhanceApp(ctx) {
         // custom component tag/slot
-        // ctx.app.component('Link', CardLink)
+        // ctx.app.component('CardLink', CardLink)
+        // ctx.app.component('DPlayer', vue3videoPlay)
 
         // external plugin for vitepress hack performance
         vitepressNprogress(ctx) // nprogress plugin for vitepress
