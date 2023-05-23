@@ -5,7 +5,7 @@ const data = [
     {
         items: [
             {
-                img: 'https://jsd.toshiki.dev/gh/andatoshiki/toshiki-notebook@master/assets/logo/sponsor/telegram.pngg',
+                img: 'https://jsd.toshiki.dev/gh/andatoshiki/toshiki-notebook@master/assets/logo/sponsor/telegram.png',
             },
         ],
     },
