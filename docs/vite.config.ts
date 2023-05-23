@@ -11,4 +11,7 @@ export default defineConfig({
     ssr: {
         noExternal: ['@andatoshiki/vitepress-plugin-nprogress', '@arco-design/web-vue'],
     },
+    build: {
+        chunkSizeWarningLimit: 1600,
+    },
 })

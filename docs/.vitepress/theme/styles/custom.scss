@@ -153,61 +153,228 @@ img.VPImage.image-src {
 // maximum document width style ends
 
 // vitepress navbar title line breaking issue tweak
-// @media (max-width: 1080px) {
-//     :root {
-//         --vp-sidebar-width: 260px;
-//     }
-//     .VPNav {
-//         // refering solutions by https://cn.vuejs.org
-//         .DocSearch-Button-Placeholder {
-//             display: none;
-//         }
-//         .VPNavBarMenuLink,
-//         .VPNavBarMenuGroup .button {
-//             padding-left: 10px;
-//             padding-right: 10px;
-//         }
-//     }
-// }
-// @media (max-width: 992px) {
-//     .VPNav {
-//         .VPNavBar {
-//             padding-left: 24px;
-//             padding-right: 24px;
-//         }
-//         .VPNavBarMenuLink,
-//         .VPNavBarMenuGroup .button {
-//             padding-left: 8px;
-//             padding-right: 8px;
-//         }
-//     }
-// }
-// @media (max-width: 800px) {
-//     .VPNav {
-//         .VPNavBarSearch {
-//             padding-left: 16px;
-//         }
-//         .VPNavBarMenuLink,
-//         .VPNavBarMenuGroup .button {
-//             padding-left: 6px;
-//             padding-right: 6px;
-//         }
-//     }
-// }
+@media (max-width: 1080px) {
+    :root {
+        --vp-sidebar-width: 260px;
+    }
+    .VPNav {
+        // refering solutions by https://cn.vuejs.org
+        .DocSearch-Button-Placeholder {
+            display: none;
+        }
+        .VPNavBarMenuLink,
+        .VPNavBarMenuGroup .button {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    }
+}
+@media (max-width: 992px) {
+    .VPNav {
+        .VPNavBar {
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+        .VPNavBarMenuLink,
+        .VPNavBarMenuGroup .button {
+            padding-left: 8px;
+            padding-right: 8px;
+        }
+    }
+}
+@media (max-width: 800px) {
+    .VPNav {
+        .VPNavBarSearch {
+            padding-left: 16px;
+        }
+        .VPNavBarMenuLink,
+        .VPNavBarMenuGroup .button {
+            padding-left: 6px;
+            padding-right: 6px;
+        }
+    }
+}
 
-// // menu new-lining issue on title
-// .VPMenuGroup .title {
-//     white-space: nowrap;
-// }
+// menu new-lining issue on title
+.VPMenuGroup .title {
+    white-space: nowrap;
+}
 // vitepress navbar style ends
 
-// VP Footer
-.VPFooter {
-    z-index: none;
-}
+// VP Footer .VPFooter {
+//     z-index: none;
+// }
 
 // remove search box footer text
 
 .DocSearch-Logo {
     display: none;
 }
+// remove search box footer text section styles ends
+
+.link-preview-widget {
+    display: table;
+    width: 100%;
+    border: 2px solid rgba(55, 53, 47, 0.16);
+    border-radius: 5px;
+}
+
+.link-preview-widget-title {
+    font-size: 16px;
+    font-weight: 700;
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 8px;
+    word-break: break-all;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.link-preview-widget-description {
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.5;
+    display: -webkit-box;
+    overflow: hidden;
+    max-height: 3em;
+    margin-bottom: 4px;
+    word-break: break-all;
+    color: rgba(55, 53, 47, 0.65);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.link-preview-widget-url {
+    font-size: 12px;
+    font-style: normal;
+    line-height: 1.5;
+    display: block;
+    margin-bottom: 0;
+    color: rgba(55, 53, 47, 0.65);
+}
+
+.link-preview-widget > a {
+    text-decoration: none !important;
+    display: table-cell;
+    flex-direction: column;
+    padding: 16px;
+    cursor: pointer;
+    vertical-align: middle;
+    color: inherit;
+    background-color: transparent;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-flex: 1;
+    flex: 1;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 5px;
+    // border-style: solid;
+    // border-color: rgba(55, 53, 47, 0.16); // background color: var(--vp-c-text-light-1)
+    // border-right: none;
+}
+
+.link-preview-widget > a:hover {
+    background-color: var(--vp-custom-block-tip-bg);
+}
+
+.link-preview-widget-image {
+    width: 260px;
+    min-width: 220px;
+    height: 150px;
+    padding: 0;
+    vertical-align: middle;
+    border-left: 1px rgba(55, 53, 47, 0.16) #f2f2f2;
+    border-radius: 5px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    -webkit-box-flex: 0;
+    flex: 0;
+    // border-left: none;
+}
+
+// dark theme text & url color scheme var(--vp-c-text-2) for text color
+
+html.dark {
+    .link-preview-widget {
+        display: table;
+        width: 100%;
+        border: 2px solid rgba(55, 53, 47, 0.16);
+        border-radius: 5px;
+    }
+
+    .link-preview-widget-title {
+        font-size: 16px;
+        font-weight: 700;
+        display: -webkit-box;
+        overflow: hidden;
+        margin-bottom: 8px;
+        word-break: break-all;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    .link-preview-widget-description {
+        font-size: 12px;
+        font-style: normal;
+        line-height: 1.5;
+        display: -webkit-box;
+        overflow: hidden;
+        max-height: 3em;
+        margin-bottom: 4px;
+        word-break: break-all;
+        color: var(--vp-c-text-2);
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+    }
+
+    .link-preview-widget-url {
+        font-size: 12px;
+        font-style: normal;
+        line-height: 1.5;
+        display: block;
+        margin-bottom: 0;
+        color: var(--vp-c-text-2);
+    }
+
+    .link-preview-widget > a {
+        text-decoration: none !important;
+        display: table-cell;
+        flex-direction: column;
+        padding: 16px;
+        cursor: pointer;
+        vertical-align: middle;
+        color: inherit;
+        background-color: transparent;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-box-flex: 1;
+        flex: 1;
+        transition: background-color 0.2s ease-in-out;
+        // border-style: solid;
+        // border-color: rgba(55, 53, 47, 0.16); // background color: var(--vp-c-text-light-1)
+        // border-right: none;
+    }
+
+    .link-preview-widget > a:hover {
+        background-color: var(--vp-custom-block-tip-bg);
+    }
+
+    .link-preview-widget-image {
+        width: 260px;
+        min-width: 220px;
+        height: 150px;
+        padding: 0;
+        vertical-align: middle;
+        border-left: 1px rgba(55, 53, 47, 0.16) #f2f2f2;
+        border-radius: 5px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+        background-size: cover;
+        -webkit-box-flex: 0;
+        flex: 0;
+        // border-left: none;
+    }
+}
+
+// link preview markdown-it plugin dark mode style ends

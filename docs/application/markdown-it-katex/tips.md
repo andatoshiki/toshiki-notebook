@@ -23,7 +23,7 @@ The above situation is undoubtedly annoying for user experiences while reading d
 
 If you happened to search over KaTeX's official repo issue tracker on GitHub, there are several user-made css tweaks hack already, the fix is simple by adjusting the overflows of both x and y axes of the KaTeX render `<div>` blocks. The `katex-display > .katex` selector targets the child element of the `.katex-display` class that has the `.katex` class. This is the element that contains the KaTeX math expression. The first block of styles is mostly concerned with making sure that the KaTeX expression doesn't overflow its container and can be scrolled horizontally if needed. The second block of styles sets the font and line-height for the KaTeX expression and makes sure that its text is properly indented.
 
-<!-- [@preview](https://github.com/KaTeX/KaTeX/issues/327) -->
+[@preview](https://github.com/KaTeX/KaTeX/issues/327)
 
 But, the issue here is, the overflowing issue is resolved on the webpage, but the style itself left with a slight whitish "box" at the crossing corner of both horizontal as well as vertical scrollbar tracks, this might not be so explicit in the light mode of the webpage, but when it turns to dark mode, the box become annoying. Some people might say it's an easy tweak via setting the display property of the "box" element to `display: none;` to directly remove the box out of the page, this is a smart approach; however, while the box is gone, the two crossing tracks is going to form an untouched invisible box again against two bars without color. Thus, neither ways seems to perfectly solve the problem.
 
@@ -31,7 +31,7 @@ But, the issue here is, the overflowing issue is resolved on the webpage, but th
 
 After running a quick research on Google, I found a simple hack tweak used in a theme of VuePress, [vuepress-theme-hope](https://github.com/vuepress-theme-hope/vuepress-theme-hope) on GitHub, the theme both integrate with KaTeX and MathJax for math supports.
 
-<!-- [@preview](https://github.com/vuepress-theme-hope/vuepress-theme-hope) -->
+[@preview](https://github.com/vuepress-theme-hope/vuepress-theme-hope)
 
 Under the styles directory of the repository, several line of scss styles came across my eyes,
 
@@ -119,9 +119,8 @@ The third section targets the `.katex-error` class and sets the color to red to 
 
 If you do not have native scss support for your site, such as a static HTML based documentation site or content management site builder such as Wiki.JS that works as an SaaS which only allows users to apply custom stylesheets within slots provided and make effects, you could use some scss to css converter online with options follows,
 
-<!-- - [@preview](https://jsonformatter.org)
-- [@preview](https://www.cssportal.com/scss-to-css)
-- [@preview](https://json2csharp.com) -->
+- [@preview](https://jsonformatter.org)
+- [@preview](https://json2csharp.com)
 
 to precompile from source scss into normal css styles and use them based on your needs, below are auto-generated compiled css, **ONLY take it as reference**, I do not guarantee the usability.
 
