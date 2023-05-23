@@ -119,8 +119,8 @@ The third section targets the `.katex-error` class and sets the color to red to 
 
 If you do not have native scss support for your site, such as a static HTML based documentation site or content management site builder such as Wiki.JS that works as an SaaS which only allows users to apply custom stylesheets within slots provided and make effects, you could use some scss to css converter online with options follows,
 
-- [@preview](https://jsonformatter.org)
-- [@preview](https://json2csharp.com)
+-   [@preview](https://jsonformatter.org)
+-   [@preview](https://json2csharp.com)
 
 to precompile from source scss into normal css styles and use them based on your needs, below are auto-generated compiled css, **ONLY take it as reference**, I do not guarantee the usability.
 

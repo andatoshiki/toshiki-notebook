@@ -2,12 +2,12 @@
 layout: home
 
 title: Toshiki's Notebook
-titleTemplate: Eternal digital knowledge base for content craetion and notes management.
+titleTemplate: Eternal digital knowledge base for content creation and notes management.
 
 hero:
     name: Toshiki's Notebook
     text: Research & Produce
-    tagline: 👨‍💻 Eternal & digital knowledge base for content craetion and notes management.
+    tagline: 👨‍💻 Eternal & digital knowledge base for content creation and notes management.
     image:
         src: /logos/logo.svg
         alt: Home logo
@@ -116,3 +116,19 @@ const members = [
     font-size: 24px;
 }
 </style> -->
+<style>
+.m-home-layout .image-src:hover {
+transform: translate(-50%, -50%) rotate(666turn);
+transition: transform 59s 1s cubic-bezier(0.3, 0, 0.8, 1);
+}
+
+.m-home-layout .details small {
+opacity: 0.8;
+}
+
+.m-home-layout .item:last-child .details {
+display: flex;
+justify-content: flex-end;
+align-items: end;
+} 
+</style>

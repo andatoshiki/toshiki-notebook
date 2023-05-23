@@ -29,22 +29,35 @@ export default defineConfig({
             },
         },
     },
+    // i18n localization config
+    locales: {
+        '/': {
+            label: 'English',
+            lang: 'en-US',
+        },
+        '/jp/': {
+            label: 'Japanese',
+            title: 'Vue Test Utils',
+            lang: 'jp-JP',
+            description: 'La documentation officielle de Vue Test Utils',
+        },
+    },
     ignoreDeadLinks: true,
     transformHtml: (_, id, { pageData }) => {
         if (!/[\\/]404\.html$/.test(id))
-          links.push({
-            url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
-            lastmod: pageData.lastUpdated
-          })
-      },
-      buildEnd: async ({ outDir }) => {
+            links.push({
+                url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
+                lastmod: pageData.lastUpdated,
+            })
+    },
+    buildEnd: async ({ outDir }) => {
         const sitemap = new SitemapStream({ hostname: 'https://note.toshiki.dev/' })
         const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
         sitemap.pipe(writeStream)
-        links.forEach((link) => sitemap.write(link))
+        links.forEach(link => sitemap.write(link))
         sitemap.end()
-        await new Promise((r) => writeStream.on('finish', r))
-      }
+        await new Promise(r => writeStream.on('finish', r))
+    },
 })
 
 customElements // custom element tags of markdown-it-katex in vitepress
