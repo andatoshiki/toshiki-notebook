@@ -30,6 +30,15 @@ export const head: HeadConfig[] = [
         },
     ],
 
+    // google search console site ownership verification
+    // <meta name="google-site-verification" content="lm7PNJiYSPEx1dMast1Xptc0Vk0cU06o-daZSsIgr2I" />
+    [
+        'meta',
+        {
+            name: 'google-site-verification',
+            content: 'lm7PNJiYSPEx1dMast1Xptc0Vk0cU06o-daZSsIgr2I',
+        },
+    ],
     ['meta', { name: 'HandheldFriendly', content: 'True' }],
     ['meta', { name: 'MobileOptimized', content: '320' }],
     ['meta', { name: 'theme-color', content: '#3c8772' }],
