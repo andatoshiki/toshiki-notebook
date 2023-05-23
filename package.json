@@ -68,5 +68,12 @@
   "dependencies": {
     "@andatoshiki/markdown-it-katex": "^0.0.3",
     "markdown-it": "^13.0.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search"
+      ]
+    }
   }
 }
