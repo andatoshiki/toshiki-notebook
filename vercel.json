@@ -1,5 +1,5 @@
 {
-  "installCommand": "pnpm add -g pnpm@8.3.1 && pnpm i",
+  "installCommand": "pnpm add -g pnpm@8.3.1 && pnpm install --force",
   "buildCommand": "pnpm docs:build",
   "devCommand": "pnpm docs:dev",
   "cleanUrls": true,
