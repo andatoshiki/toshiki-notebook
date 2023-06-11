@@ -1,10 +1,10 @@
 ---
 description: Static code examples for VitePress using Shiki Twoslash.
-title: "VitePress Twoslash: VitePress Plugin for Shiki Twoslash"
+title: 'VitePress Twoslash: VitePress Plugin for Shiki Twoslash'
 titleTemplate: false
 keywords:
-  - getting-started
-  - intro
+    - getting-started
+    - intro
 ---
 
 # @andatoshiki/vitepress-plugin-shiki-twoslash
