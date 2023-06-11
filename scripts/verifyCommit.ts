@@ -2,7 +2,7 @@ import { readFileSync } from 'fs'
 
 const msg: string = readFileSync('.git/COMMIT_EDITMSG', 'utf-8').trim()
 
-const commitRE: RegExp = /^(revert: )?(feat|fix|docs|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?: .{1,50}/
+const commitRE: RegExp = /^(revert: )?(feat|fix|docs|dep|dx|style|refactor|perf|test|workflow|build|ci|chore|types|wip|release)(\(.+\))?: .{1,50}/
 const mergeRe: RegExp = /^(Merge pull request|Merge branch)/
 
 if (!commitRE.test(msg)) {
