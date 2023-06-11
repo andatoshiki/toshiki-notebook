@@ -22,7 +22,7 @@ Fargate では， EC2 と同様に CPU とメモリーのサイズを必要な�
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/qa-bot](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/qa-bot) にある．
+ハンズオンのソースコードは GitHub の [handson/qa-bot](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/qa-bot) にある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
 
@@ -98,7 +98,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 今回使用する Question & Answering システムには， DistilBERT という Transformer を基にした言語モデルが用いられている． 興味のある読者は， [原著論文](https://arxiv.org/abs/1910.01108) を参照してもらいたい． また， huggingface/transformers による DistilBert の実装のドキュメンテーションは [公式ドキュメンテーション](https://huggingface.co/transformers/model_doc/distilbert.html) を参照のこと．
 
-今回提供する Q-A ボットの Docker のソースコードは <https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/docker/Dockerfile> にある．
+今回提供する Q-A ボットの Docker のソースコードは <https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/docker/Dockerfile> にある．
 
 ## アプリケーションの説明
 
@@ -124,7 +124,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 -   最後に，クライアントは DynamoDB から質問への回答を読み取る．
 
-それでは，プログラムのソースコードを見てみよう ([handson/qa-bot/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/app.py))．
+それでは，プログラムのソースコードを見てみよう ([handson/qa-bot/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/app.py))．
 
 ```python
 class EcsClusterQaBot(core.Stack):
@@ -264,7 +264,7 @@ Cluster というのが，先ほど説明したとおり，複数の仮想イン
 
 それでは，質問をデプロイしたクラウドに提出してみよう．
 
-ECS にタスクを投入するのはやや複雑なので，タスクの投入を簡単にするプログラム (`run_task.py`) を用意した ([handson/qa-bot/run_task.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/run_task.py))．
+ECS にタスクを投入するのはやや複雑なので，タスクの投入を簡単にするプログラム (`run_task.py`) を用意した ([handson/qa-bot/run_task.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/run_task.py))．
 
 次のようなコマンドで，ECS クラスターに新しい質問を投入することができる．
 
@@ -296,7 +296,7 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 ## タスクの同時実行
 
-さて，先ほどはたった一つの質問を投入したわけだが，今回設計したアプリケーションは， ECS と Fargate を使うことで同時にたくさんの質問を処理することができる． 実際に，たくさんの質問を一度に投入してみよう． `run_task.py` に `ask_many` というオプションを付けることで，複数の質問を一度に送信できる． 質問の内容は [handson/qa-bot/problems.json](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/problems.json) に定義されている．
+さて，先ほどはたった一つの質問を投入したわけだが，今回設計したアプリケーションは， ECS と Fargate を使うことで同時にたくさんの質問を処理することができる． 実際に，たくさんの質問を一度に投入してみよう． `run_task.py` に `ask_many` というオプションを付けることで，複数の質問を一度に送信できる． 質問の内容は [handson/qa-bot/problems.json](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/problems.json) に定義されている．
 
 次のようなコマンドを実行しよう．
 

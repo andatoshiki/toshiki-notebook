@@ -86,8 +86,6 @@ $ docker run -it tomomano/labc
 
 ハンズオンで使うプログラムや教科書のソースコードは以下のウェブページで公開している．
 
-<https://github.com/tomomano/learn-aws-by-coding>
-
 ## 本書で使用するノーテーションなど
 
 -   コードやシェルのコマンドは `monospace letter` で記述する．

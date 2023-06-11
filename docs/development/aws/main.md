@@ -516,7 +516,7 @@ class MyFirstEc2(core.Stack):
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/ec2-get-started](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/ec2-get-started) に置いてある．
+ハンズオンのソースコードは GitHub の [handson/ec2-get-started](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/ec2-get-started) に置いてある．
 
 このハンズオンは，基本的に [AWS の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
@@ -570,7 +570,7 @@ $ ssh -i Ec2SecretKey.pem <user name>@<host name>
 
 [figure_title](#handson_01_architecture) のようなアプリケーションを，CDK を使って構築する．
 
-早速ではあるが，今回のハンズオンで使用するプログラムを見てみよう ([handson/ec2-get-started/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/ec2-get-started/app.py))．
+早速ではあるが，今回のハンズオンで使用するプログラムを見てみよう ([handson/ec2-get-started/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/ec2-get-started/app.py))．
 
 ```python
 class MyFirstEc2(core.Stack):
@@ -992,7 +992,7 @@ GPT-3 で使われた計算リソースの詳細は論文でも明かされて�
 
 ハンズオン第二回では， GPU を搭載した EC2 インスタンスを起動し，深層学習モデルの学習と推論を実行する演習を行う．
 
-ハンズオンのソースコードは GitHub の [handson/mnist](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/mnist) に置いてある．
+ハンズオンのソースコードは GitHub の [handson/mnist](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/mnist) に置いてある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([準備](#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
 
@@ -1018,7 +1018,7 @@ AWS Educate Starter Account を使用している読者へ: 執筆時点にお�
 
 -   SSH にポートフォワーディングのオプションつけてサーバーに接続し，サーバーで起動している Jupyter Notebook (後述) を使ってプログラムを書いたり実行したりする
 
-ハンズオンで使用するプログラムのコードをみてみよう [handson/mnist/app.py](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/mnist/app.py))． コードは第一回目とほとんど共通である．変更点のみ解説を行う．
+ハンズオンで使用するプログラムのコードをみてみよう [handson/mnist/app.py](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/mnist/app.py))． コードは第一回目とほとんど共通である．変更点のみ解説を行う．
 
 ```python
 class Ec2ForDl(core.Stack):
@@ -1280,7 +1280,7 @@ tensor(\[\[1.6896, 1.2428, 1.3269\], \[1.0533, 1.3594, 1.9499\], \[1.9764, 1.588
 
 以上の例は， GPU を使った計算の初歩の初歩であるが，雰囲気はつかめただろうか？ CPU と GPU で明示的にデータを交換するのが肝である． この例はたった 3x3 の行列の足し算なので， GPU を使う意味はまったくないが，これが数千，数万のサイズの行列になったとき， GPU は格段の威力を発揮する．
 
-完成した Jupyter Notebook は [/handson/mnist/pytorch/pytorch_get_started.ipynb](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/mnist/pytorch/pytorch_get_started.ipynb) にある． Jupyter の画面右上の "Upload" からこのファイルをアップロードして，コードを走らせることが可能である．
+完成した Jupyter Notebook は [/handson/mnist/pytorch/pytorch_get_started.ipynb](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/mnist/pytorch/pytorch_get_started.ipynb) にある． Jupyter の画面右上の "Upload" からこのファイルをアップロードして，コードを走らせることが可能である．
 
 しなしながら，勉強のときにはコードはすべて自分の手で打つことが，記憶に残りやすくより効果的である，というのが筆者の意見である．
 
@@ -1601,7 +1601,7 @@ False
 
 カスタムの docker イメージを作るには， `Dockerfile` という名前のついたファイルを用意し，その中にどんなプログラムをインストールするかなどを記述していく．
 
-具体例として，本書で提供している Docker イメージのレシピを見てみよう ([docker/Dockerfile](https://github.com/tomomano/learn-aws-by-coding/blob/main/docker/Dockerfile))．
+具体例として，本書で提供している Docker イメージのレシピを見てみよう ([docker/Dockerfile](https://github.com/andatoshiki/toshiki-notebookblob/main/docker/Dockerfile))．
 
 ```python
 FROM node:12
@@ -1689,7 +1689,7 @@ Fargate では， EC2 と同様に CPU とメモリーのサイズを必要な�
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/qa-bot](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/qa-bot) にある．
+ハンズオンのソースコードは GitHub の [handson/qa-bot](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/qa-bot) にある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([準備](#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
 
@@ -1767,7 +1767,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 今回使用する Question & Answering システムには， DistilBERT という Transformer を基にした言語モデルが用いられている． 興味のある読者は， [原著論文](https://arxiv.org/abs/1910.01108) を参照してもらいたい． また， huggingface/transformers による DistilBert の実装のドキュメンテーションは [公式ドキュメンテーション](https://huggingface.co/transformers/model_doc/distilbert.html) を参照のこと．
 
-今回提供する Q-A ボットの Docker のソースコードは <https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/docker/Dockerfile> にある．
+今回提供する Q-A ボットの Docker のソースコードは <https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/docker/Dockerfile> にある．
 
 ## アプリケーションの説明
 
@@ -1793,7 +1793,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 -   最後に，クライアントは DynamoDB から質問への回答を読み取る．
 
-それでは，プログラムのソースコードを見てみよう ([handson/qa-bot/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/app.py))．
+それでは，プログラムのソースコードを見てみよう ([handson/qa-bot/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/app.py))．
 
 ```shell
 class EcsClusterQaBot(core.Stack):
@@ -1933,7 +1933,7 @@ Cluster というのが，先ほど説明したとおり，複数の仮想イン
 
 それでは，質問をデプロイしたクラウドに提出してみよう．
 
-ECS にタスクを投入するのはやや複雑なので，タスクの投入を簡単にするプログラム (`run_task.py`) を用意した ([handson/qa-bot/run_task.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/run_task.py))．
+ECS にタスクを投入するのはやや複雑なので，タスクの投入を簡単にするプログラム (`run_task.py`) を用意した ([handson/qa-bot/run_task.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/run_task.py))．
 
 次のようなコマンドで，ECS クラスターに新しい質問を投入することができる．
 
@@ -1965,7 +1965,7 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 ## タスクの同時実行
 
-さて，先ほどはたった一つの質問を投入したわけだが，今回設計したアプリケーションは， ECS と Fargate を使うことで同時にたくさんの質問を処理することができる． 実際に，たくさんの質問を一度に投入してみよう． `run_task.py` に `ask_many` というオプションを付けることで，複数の質問を一度に送信できる． 質問の内容は [handson/qa-bot/problems.json](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/qa-bot/problems.json) に定義されている．
+さて，先ほどはたった一つの質問を投入したわけだが，今回設計したアプリケーションは， ECS と Fargate を使うことで同時にたくさんの質問を処理することができる． 実際に，たくさんの質問を一度に投入してみよう． `run_task.py` に `ask_many` というオプションを付けることで，複数の質問を一度に送信できる． 質問の内容は [handson/qa-bot/problems.json](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/problems.json) に定義されている．
 
 次のようなコマンドを実行しよう．
 
@@ -2049,7 +2049,7 @@ ECS でクラスターを構成する際，計算を実行する場として EC2
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/aws-batch](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/aws-batch) にある．
+ハンズオンのソースコードは GitHub の [handson/aws-batch](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/aws-batch) にある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([準備](#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
 
@@ -2081,7 +2081,7 @@ optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
 
 まずは，本ハンズオンで使用する Docker イメージをローカルで実行してみよう．
 
-Docker イメージのソースコードは [handson/aws-batch/docker](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/docker) にある． 基本的に [実践ディープラーニング! MNIST 手書き数字認識タスク](#sec_mnist_using_jupyter) のハンズオンを元にし，本ハンズオン専用の軽微な変更が施してある． 興味のある読者はソースコードも含めて読んでいただきたい．
+Docker イメージのソースコードは [handson/aws-batch/docker](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/docker) にある． 基本的に [実践ディープラーニング! MNIST 手書き数字認識タスク](#sec_mnist_using_jupyter) のハンズオンを元にし，本ハンズオン専用の軽微な変更が施してある． 興味のある読者はソースコードも含めて読んでいただきたい．
 
 練習として，この Docker イメージを手元でビルドするところからはじめてみよう． `Dockerfile` が保存されているディレクトリに移動し， `mymnist` という名前 (Tag) をつけてビルドを実行する．
 
@@ -2146,7 +2146,7 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 -   最後にクライアントは S3 から結果をダウンロードし，最適なハイパーパラメータの組を決定する
 
-それでは，プログラムのソースコードを見てみよう ([handson/aws-batch/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/app.py))．
+それでは，プログラムのソースコードを見てみよう ([handson/aws-batch/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/app.py))．
 
 ```python
 class SimpleBatch(core.Stack):
@@ -2328,7 +2328,7 @@ job_def = batch.JobDefinition(
 
 さて，ここからは実際に AWS Batch にジョブを投入する方法を見ていこう．
 
-ハンズオンのディレクトリの `notebook/` というディレクトリの中に， [run_single.ipynb](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/notebook/run_single.ipynb) というファイルが見つかるはずである (`.ipynb` は Jupyter notebook のファイル形式)． これを Jupyter notebook から開こう．
+ハンズオンのディレクトリの `notebook/` というディレクトリの中に， [run_single.ipynb](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/notebook/run_single.ipynb) というファイルが見つかるはずである (`.ipynb` は Jupyter notebook のファイル形式)． これを Jupyter notebook から開こう．
 
 今回のハンズオンでは， `venv` による仮想環境の中に Jupyter notebook もインストール済みである． なので，ローカルマシンから以下のコマンドで Jupyter notebook を立ち上げる．
 
@@ -2806,7 +2806,7 @@ DynamoDB ではデータの書き込み操作の単位を write request unit と
 
 ## Lambda ハンズオン
 
-まずは， Lambda を実際に動かしてみよう． ハンズオンのソースコードは GitHub の [handson/serverless/lambda](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/serverless/lambda) に置いてある．
+まずは， Lambda を実際に動かしてみよう． ハンズオンのソースコードは GitHub の [handson/serverless/lambda](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/serverless/lambda) に置いてある．
 
 このハンズオンで使用するアプリケーションのスケッチを [figure_title](#fig:lambda_deploy) に示す． STEP 1 では，AWS CDK を使用して Python で書かれたコードを Lambda に登録する． 続いて STEP 2 では， Invoke API を使用して，同時にいくつもの Lambda を起動し，並列な計算を行う． Lambda のワークフローを体験する目的で最小限の設定である．
 
@@ -2814,7 +2814,7 @@ DynamoDB ではデータの書き込み操作の単位を write request unit と
 
 このハンズオンは，基本的に [AWS Lambda の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
-[app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/lambda/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
+[app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/lambda/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
 
 ```py
 #
@@ -2897,7 +2897,7 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 ### Lambda 関数の実行
 
-それでは，作成した Lambda 関数を実行 (invoke) してみよう． AWS の API を使うことで，関数の実行をスタートすることができる． 今回は， [handson/serverless/lambda/invoke_one.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/lambda/invoke_one.py) に関数を実行するための簡単なプログラムを提供している． 興味のある読者はコードを読んでもらいたい．
+それでは，作成した Lambda 関数を実行 (invoke) してみよう． AWS の API を使うことで，関数の実行をスタートすることができる． 今回は， [handson/serverless/lambda/invoke_one.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/lambda/invoke_one.py) に関数を実行するための簡単なプログラムを提供している． 興味のある読者はコードを読んでもらいたい．
 
 以下のコマンドで，Lambda の関数を実行する． コマンドの `XXXX` の部分は，先ほどデプロイしたときに `SimpleLambda.FunctionName = XXXX` で得られた XXXX の文字列で置換する．
 
@@ -2907,7 +2907,7 @@ $ python invoke_one.py XXXX
 
 すると， `"Welcome to Cloud Sushi. Your order is salmon"` という出力が得られるはずだ． とてもシンプルではあるが，クラウド上で先ほどの関数が走り，乱数が生成されたうえで，ランダムな寿司ネタが選択されて出力が返されている． このコマンドを何度か打ってみて，実行ごとに異なる寿司ネタが返されることを確認しよう．
 
-さて，このコマンドは，一度につき一回の関数を実行したわけであるが， Lambda の本領は一度に大量のタスクを同時に実行できる点である． そこで，今度は一度に 100 個のタスクを同時に送信してみよう． [handson/serverless/lambda/invoke_many.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/lambda/invoke_many.py) のスクリプトを使用する．
+さて，このコマンドは，一度につき一回の関数を実行したわけであるが， Lambda の本領は一度に大量のタスクを同時に実行できる点である． そこで，今度は一度に 100 個のタスクを同時に送信してみよう． [handson/serverless/lambda/invoke_many.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/lambda/invoke_many.py) のスクリプトを使用する．
 
 次のコマンドを実行しよう． XXXX の部分は前述と同様に置き換える． 第二引数の `100` は 100 個のタスクを投入せよ，という意味である．
 
@@ -2946,7 +2946,7 @@ $ cdk destroy
 
 ## DynamoDB ハンズオン
 
-続いて， DynamoDB の簡単なチュートリアルをやってみよう． ハンズオンのソースコードは GitHub の [/handson/serverless/dynamodb](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/serverless/dynamodb) に置いてある．
+続いて， DynamoDB の簡単なチュートリアルをやってみよう． ハンズオンのソースコードは GitHub の [/handson/serverless/dynamodb](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/serverless/dynamodb) に置いてある．
 
 このハンズオンで使用するアプリケーションのスケッチを [figure_title](#fig:dynamodb_deploy) に示す． STEP 1 では，AWS CDK を使用して DynamoDB のテーブルを初期化し，デプロイする． 続いて STEP 2 では， API を使用してデータベースのデータの書き込み・読み出し・削除などの操作を練習する．
 
@@ -2954,7 +2954,7 @@ $ cdk destroy
 
 このハンズオンは，基本的に [AWS DynamoDB の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行できる．
 
-[handson/serverless/dynamodb/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
+[handson/serverless/dynamodb/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/dynamodb/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
 
 ```python
 class SimpleDynamoDb(core.Stack):
@@ -3016,7 +3016,7 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 それでは， [デプロイ](#sec:serverless_dynamodb_deploy) で作ったテーブルを使ってデータの読み書きを実践してみよう． ここでは Python と [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) ライブラリを用いた方法を紹介する．
 
-まずは，テーブルに新しい要素を追加してみよう． ハンズオンのディレクトリにある [simple_write.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/simple_write.py) を開いてみよう． 中には次のような関数が書かれている．
+まずは，テーブルに新しい要素を追加してみよう． ハンズオンのディレクトリにある [simple_write.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/dynamodb/simple_write.py) を開いてみよう． 中には次のような関数が書かれている．
 
 ```python
 import boto3
@@ -3047,7 +3047,7 @@ $ python simple_write.py XXXX
 
 ![DynamoDB に新しい要素が追加されたことを確認](imgs/handson-serverless/dynamodb_table_new_item.png)
 
-boto3 を使ってテーブルから要素を読みだすことも可能である． ハンズオンのディレクトリにある [simple_read.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/simple_read.py) を見てみよう．
+boto3 を使ってテーブルから要素を読みだすことも可能である． ハンズオンのディレクトリにある [simple_read.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/dynamodb/simple_read.py) を見てみよう．
 
 ```python
 import boto3
@@ -3073,7 +3073,7 @@ $ python simple_read.py XXXX
 
 DynamoDB の利点は，最初に述べたとおり，負荷に応じて自在にその処理能力を拡大できる点である．
 
-そこで，ここでは一度に大量のデータを書き込む場合をシミュレートしてみよう． [batch_rw.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/dynamodb/batch_rw.py) に，一度に大量の書き込みを実行するためのプログラムが書いてある．
+そこで，ここでは一度に大量のデータを書き込む場合をシミュレートしてみよう． [batch_rw.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/dynamodb/batch_rw.py) に，一度に大量の書き込みを実行するためのプログラムが書いてある．
 
 次のコマンドを実行してみよう (XXXX は自分のテーブルの名前に置き換える)．
 
@@ -3103,7 +3103,7 @@ $ cdk destroy
 
 ## S3 ハンズオン
 
-最後に， S3 の簡単なチュートリアルを紹介する． ハンズオンのソースコードは GitHub の [handson/serverless/s3](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/serverless/s3) に置いてある．
+最後に， S3 の簡単なチュートリアルを紹介する． ハンズオンのソースコードは GitHub の [handson/serverless/s3](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/serverless/s3) に置いてある．
 
 [figure_title](#fig:s3_deploy) が今回提供する S3 チュートリアルの概要である． STEP 1 として， AWS CDK を用いて S3 に新しい空のバケット (Bucket) を作成する． 続いて STEP 2 では，データのアップロード・ダウンロードの方法を解説する．
 
@@ -3111,7 +3111,7 @@ $ cdk destroy
 
 このハンズオンは，基本的に [S3 の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
-[app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/s3/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
+[app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/s3/app.py) にデプロイするプログラムが書かれている． 中身を見てみよう．
 
 ```python
 class SimpleS3(core.Stack):
@@ -3161,7 +3161,7 @@ $ cdk deploy
 $ echo "Hello world!" >> tmp.txt
 ```
 
-ハンズオンのディレクトリにある [simple_s3.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/serverless/s3/simple_s3.py) に [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) ライブラリを使用した S3 のファイルのアップロード・ダウンロードのスクリプトが書いてある． `simple_s3.py` を使って，上で作成した `tmp.txt` を以下のコマンドによりバケットにアップロードする． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
+ハンズオンのディレクトリにある [simple_s3.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/s3/simple_s3.py) に [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) ライブラリを使用した S3 のファイルのアップロード・ダウンロードのスクリプトが書いてある． `simple_s3.py` を使って，上で作成した `tmp.txt` を以下のコマンドによりバケットにアップロードする． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
 ```shell
 $ python simple_s3.py XXXX upload tmp.txt
@@ -3233,7 +3233,7 @@ $ cdk destroy
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/bashoutter](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/bashoutter) に置いてある．
+ハンズオンのソースコードは GitHub の [handson/bashoutter](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/bashoutter) に置いてある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([準備](#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
 
@@ -3247,9 +3247,9 @@ $ cdk destroy
 
 <table><caption>Bashoutter API</caption><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><p><code>GET /haiku</code></p></td><td><p>俳句の一覧を取得する</p></td></tr><tr class="even"><td><p><code>POST /haiku</code></p></td><td><p>新しい俳句を投稿する</p></td></tr><tr class="odd"><td><p><code>PATCH /haiku/{item_id}</code></p></td><td><p><code>{item_id}</code> で指定された俳句にお気に入り票を一つ入れる</p></td></tr><tr class="even"><td><p><code>DELETE /haiku/{item_id}</code></p></td><td><p><code>{item_id}</code> で指定された俳句を削除する</p></td></tr></tbody></table>
 
-それぞれの API のパラメータおよび返り値の詳細は，ハンズオンのソースコードの中の [swagger.yml](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/specs/swagger.yml) に定義してある．
+それぞれの API のパラメータおよび返り値の詳細は，ハンズオンのソースコードの中の [swagger.yml](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/specs/swagger.yml) に定義してある．
 
-**Open API Specification** (OAS; 少し前は Swagger Specification とよばれていた) は， REST API のための記述フォーマットである． OAS に従って API の仕様が記述されていると，簡単にドキュメンテーションを生成したり，クライアントアプリケーションを自動生成することができる． [今回用意した API 仕様](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/specs/swagger.yml) も， OAS に従って書いてある． 詳しくは [Swagger の公式ドキュメンテーション](https://swagger.io/docs/specification/about/) などを参照．
+**Open API Specification** (OAS; 少し前は Swagger Specification とよばれていた) は， REST API のための記述フォーマットである． OAS に従って API の仕様が記述されていると，簡単にドキュメンテーションを生成したり，クライアントアプリケーションを自動生成することができる． [今回用意した API 仕様](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/specs/swagger.yml) も， OAS に従って書いてある． 詳しくは [Swagger の公式ドキュメンテーション](https://swagger.io/docs/specification/about/) などを参照．
 
 ### アプリケーションアーキテクチャ
 
@@ -3269,7 +3269,7 @@ $ cdk destroy
 
 -   最後に，ウェブブラウザからコンテンツを表示できるよう， ウェブページの静的コンテンツを配信するための S3 バケットを用意する．クライアントはこの S3 バケットにアクセスすることで HTML/CSS/JS などのコンテンツを取得する．
 
-それでは，プログラムのソースコードを見てみよう ([handson/bashoutter/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/app.py))．
+それでは，プログラムのソースコードを見てみよう ([handson/bashoutter/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/app.py))．
 
 ```python
 class Bashoutter(core.Stack):
@@ -3374,7 +3374,7 @@ class Bashoutter(core.Stack):
 
 -   静的コンテンツを配信するための S3 バケットを用意している．
 
--   それぞれの API で実行される Lambda 関数を定義している． 関数は Python3.7 で書かれており，コードは [handson/bashoutter/api/api.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/api/api.py) にある．
+-   それぞれの API で実行される Lambda 関数を定義している． 関数は Python3.7 で書かれており，コードは [handson/bashoutter/api/api.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/api/api.py) にある．
 
 -   &lt;3&gt; で定義された Lambda 関数に対し，データベースへの読み書きのアクセス権限を付与している．
 
@@ -3423,7 +3423,7 @@ get_haiku_lambda = _lambda.Function(
 
 簡単なところから見ていくと， `memory_size=512` の箇所でメモリーの使用量を 512MB に指定している． また， `code=_lambda.Code.from_asset("api")` によって外部のディレクトリ (`api/`) を参照せよと指定しており， `handler="api.get_haiku"` のところで `api.py` というファイルの `get_haiku()` という関数をハンドラ関数として実行せよ，と定義している．
 
-次に，ハンドラ関数として使用されている `get_haiku()` のコードを見てみよう ([handson/bashoutter/api/api.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/api/api.py))．
+次に，ハンドラ関数として使用されている `get_haiku()` のコードを見てみよう ([handson/bashoutter/api/api.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/api/api.py))．
 
 ```python
 ddb = boto3.resource("dynamodb")
@@ -3677,7 +3677,7 @@ $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
 
 さて，前節ではマニュアルで一つずつ俳句を投稿した． 多数のユーザーがいるような SNS では，1 秒間に数千件以上の投稿がされている． 今回はサーバーレスアーキテクチャを採用したことで，そのような瞬間的な大量アクセスにも容易に対応できるようなシステムが自動的に構築されている． このポイントを実証するため，ここでは大量の API が送信された状況をシミュレートしてみよう．
 
-[handson/bashoutter/client.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/client.py) に，大量の API リクエストをシミュレートするためのプログラムが書かれている． このプログラムを使用すると， `POST /haiku` の API リクエストを指定された回数だけ実行することができる．
+[handson/bashoutter/client.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/client.py) に，大量の API リクエストをシミュレートするためのプログラムが書かれている． このプログラムを使用すると， `POST /haiku` の API リクエストを指定された回数だけ実行することができる．
 
 テストとして， API を 300 回実行してみよう． 次のコマンドを実行する．
 
@@ -3705,7 +3705,7 @@ $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
 
 コマンドを実行する際は， Bashoutter ハンズオンのディレクトリから行うこと (`./gui/dist` に注目)，そして `<BUCKET_NAME>` にはデプロイした自身のバケットの名前が入る点に注意． 念のため，AWS コンソールにログインし，バケットにファイルがアップロードされている点を確認しておこう．
 
-なお，今回は GUI の説明はとくに行わないが， Bashoutter のウェブサイトは [Vue.js](https://vuejs.org/) と [Vuetify](https://vuetifyjs.com/) という UI フレームワークを使って作成した． Vue を使うことで， Single page application (SPA) の技術でウェブサイトの画面がレンダリングされる． ソースコードは [handson/bashoutter/gui](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/bashoutter/gui) のディレクトリの中にあるので，興味のある読者は確認してみるとよい．
+なお，今回は GUI の説明はとくに行わないが， Bashoutter のウェブサイトは [Vue.js](https://vuejs.org/) と [Vuetify](https://vuetifyjs.com/) という UI フレームワークを使って作成した． Vue を使うことで， Single page application (SPA) の技術でウェブサイトの画面がレンダリングされる． ソースコードは [handson/bashoutter/gui](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/bashoutter/gui) のディレクトリの中にあるので，興味のある読者は確認してみるとよい．
 
 アップトードが完了したところで，続いてデプロイを実行したときにコマンドラインの出力を見直してみよう． `Bashoutter.BucketUrl=` で与えられた URL が見つかるはずである ([figure_title](#handson_05_cdk_output))． これは，先述したとおり， Public access mode の S3 バケットの URL である．
 

@@ -4,7 +4,7 @@
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/ec2-get-started](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/ec2-get-started) に置いてある．
+ハンズオンのソースコードは GitHub の [handson/ec2-get-started](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/ec2-get-started) に置いてある．
 
 このハンズオンは，基本的に [AWS の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
@@ -62,7 +62,7 @@ $ ssh -i Ec2SecretKey.pem <user name>@<host name>
 
 [figure_title](#handson_01_architecture) のようなアプリケーションを，CDK を使って構築する．
 
-早速ではあるが，今回のハンズオンで使用するプログラムを見てみよう ([handson/ec2-get-started/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/ec2-get-started/app.py))．
+早速ではあるが，今回のハンズオンで使用するプログラムを見てみよう ([handson/ec2-get-started/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/ec2-get-started/app.py))．
 
 ```python
 class MyFirstEc2(core.Stack):

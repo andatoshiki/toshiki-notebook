@@ -122,15 +122,15 @@ See ['ISO 8601'](https://en.wikipedia.org/wiki/ISO_8601) for further reading.
 
 ### Use special modifiers for target devices, image sizes or media queries, and pixel densities.
 
-Modifiers are inspired by [Apple iOS naming conventions](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/ImageSoundResources/ImageSoundResources.html#//apple_ref/doc/uid/10000051i-CH7-SW1). There are some differences. Apple uses '@' as a delimiter for the section indicating higher resolution images, for example '@2x' for retina images. Because '@' is a reserved character and can create problems, we use [Bourbon's convention](http://bourbon.io/docs/#retina-image): an underscore. Also, Apple uses a tilde (~) as a delimiter for a section indicating specific devices. Because also a tilde can create problems, we suggest to simply use a dash.
+Modifiers are inspired by [Apple iOS naming conventions](https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/LoadingResources/ImageSoundResources/ImageSoundResources.html#//apple_ref/doc/uid/10000051i-CH7-SW1). There are some differences. Apple uses '`@`'as a delimiter for the section indicating higher resolution images, for example '`@2x`' for retina images. Because '`@`' is a reserved character and can create problems, we use [Bourbon's convention](http://bourbon.io/docs/#retina-image): an underscore. Also, Apple uses a tilde (`~`) as a delimiter for a section indicating specific devices. Because also a tilde can create problems, we suggest to simply use a dash.
 
--   Order should be: (1) target device or media query, (2) size, (3) pixel density.
--   Start target device or media queries with a dash (-) as delimiter.
--   Start image sizes with a dash (-) as delimiter.
--   Start pixel density with an underscore (\_) as delimiter, for example '\_2x' or '\_3x'.
--   When only a width or height is available or applicable, add a 'w' for width or 'h' for height directly after the the amount of pixels.
--   When both measurements are available, do not add a 'w' or 'h' and separate the width and height with an 'x'.
--   When both the width and height should not exceed a dimension but the images should keep the original aspect ratio, add a 'max' (maximum) after the amount of pixels.
+-   Order should be: (`1`) target device or media query, (`2`) size, (`3`) pixel density.
+-   Start target device or media queries with a dash (`-`) as delimiter.
+-   Start image sizes with a dash (`-`) as delimiter.
+-   Start pixel density with an underscore (`_`) as delimiter, for example '`_2x`' or '`_3x`'.
+-   When only a width or height is available or applicable, add a '`w`' for width or '`h`' for height directly after the the amount of pixels.
+-   When both measurements are available, do not add a '`w`' or 'h' and separate the width and height with an '`x`'.
+-   When both the width and height should not exceed a dimension but the images should keep the original aspect ratio, add a '`max`' (maximum) after the amount of pixels.
 
 **Right:**
 
@@ -147,10 +147,10 @@ description-40max.jpg
 
 ### Use version numbers if available
 
--   Start version with a dash (-) as delimiter.
--   Use periods (.) to separate point releases.
--   Always add trailing zeros to major releases, e.g. '2.0' instead of '2'.
--   Types, such as 'a' (alpha), 'b' (beta), 'rc1' (release candidate 1) can be added without delimiters.
+-   Start version with a dash (`-`) as delimiter.
+-   Use periods (`.`) to separate point releases.
+-   Always add trailing zeros to major releases, e.g. '`2.0`' instead of '`2`'.
+-   Types, such as '`a`' (alpha), '`b`' (beta), 'rc1' (release candidate 1) can be added without delimiters.
 
 **Right:**
 
@@ -162,7 +162,7 @@ description-1.0rc1.js
 
 ### Add status when needed
 
--   You can optionally add a file status such as 'draft' and 'published'.
+-   You can optionally add a file status such as '`draft`' and '`published`'.
 -   Start status with a dash.
 
 **Right:**
@@ -187,8 +187,8 @@ description.en.txt
 ### Add file conditions just before the file extension
 
 -   The file condition should be the last part, just before the file extension.
--   Use a period (.) to separate the condition from the rest of the file name.
--   Use periods (.) as a delimiter for different conditions.
+-   Use a period (`.`) to separate the condition from the rest of the file name.
+-   Use periods (`.`) as a delimiter for different conditions.
 
 **Right:**
 

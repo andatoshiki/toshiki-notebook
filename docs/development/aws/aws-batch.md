@@ -42,7 +42,7 @@ ECS でクラスターを構成する際，計算を実行する場として EC2
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/aws-batch](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/aws-batch) にある．
+ハンズオンのソースコードは GitHub の [handson/aws-batch](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/aws-batch) にある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
 
@@ -74,7 +74,7 @@ optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
 
 まずは，本ハンズオンで使用する Docker イメージをローカルで実行してみよう．
 
-Docker イメージのソースコードは [handson/aws-batch/docker](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/docker) にある． 基本的に [???](#sec_mnist_using_jupyter) のハンズオンを元にし，本ハンズオン専用の軽微な変更が施してある． 興味のある読者はソースコードも含めて読んでいただきたい．
+Docker イメージのソースコードは [handson/aws-batch/docker](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/docker) にある． 基本的に [???](#sec_mnist_using_jupyter) のハンズオンを元にし，本ハンズオン専用の軽微な変更が施してある． 興味のある読者はソースコードも含めて読んでいただきたい．
 
 練習として，この Docker イメージを手元でビルドするところからはじめてみよう． `Dockerfile` が保存されているディレクトリに移動し， `mymnist` という名前 (Tag) をつけてビルドを実行する．
 
@@ -137,7 +137,7 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 -   最後にクライアントは S3 から結果をダウンロードし，最適なハイパーパラメータの組を決定する
 
-それでは，プログラムのソースコードを見てみよう ([handson/aws-batch/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/app.py))．
+それでは，プログラムのソースコードを見てみよう ([handson/aws-batch/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/app.py))．
 
 ```python
 class SimpleBatch(core.Stack):
@@ -319,7 +319,7 @@ job_def = batch.JobDefinition(
 
 さて，ここからは実際に AWS Batch にジョブを投入する方法を見ていこう．
 
-ハンズオンのディレクトリの `notebook/` というディレクトリの中に， [run_single.ipynb](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/aws-batch/notebook/run_single.ipynb) というファイルが見つかるはずである (`.ipynb` は Jupyter notebook のファイル形式)． これを Jupyter notebook から開こう．
+ハンズオンのディレクトリの `notebook/` というディレクトリの中に， [run_single.ipynb](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/notebook/run_single.ipynb) というファイルが見つかるはずである (`.ipynb` は Jupyter notebook のファイル形式)． これを Jupyter notebook から開こう．
 
 今回のハンズオンでは， `venv` による仮想環境の中に Jupyter notebook もインストール済みである． なので，ローカルマシンから以下のコマンドで Jupyter notebook を立ち上げる．
 

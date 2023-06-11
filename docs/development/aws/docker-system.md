@@ -122,7 +122,7 @@ False
 
 カスタムの docker イメージを作るには， `Dockerfile` という名前のついたファイルを用意し，その中にどんなプログラムをインストールするかなどを記述していく．
 
-具体例として，本書で提供している Docker イメージのレシピを見てみよう ([docker/Dockerfile](https://github.com/tomomano/learn-aws-by-coding/blob/main/docker/Dockerfile))．
+具体例として，本書で提供している Docker イメージのレシピを見てみよう ([docker/Dockerfile](https://github.com/andatoshiki/toshiki-notebookblob/main/docker/Dockerfile))．
 
 ```dockerfile
 FROM node:12

@@ -4,7 +4,7 @@ Example of how to configure `rclone` to use R2.
 
 You must [generate an Access Key](https://developers.cloudflare.com/r2/data-access/s3-api/tokens/) before getting started. All examples will utilize `access_key_id` and `access_key_secret` variables which represent the **Access Key ID** and **Secret Access Key** values you generated.
 
-With `[rclone](https://rclone.org/install/)` installed, you may run `[rclone config](https://rclone.org/s3/)` to configure a new S3 storage provider. You will be prompted with a series of questions for the new prvider details.
+With [`rclone`](https://rclone.org/install/) installed, you may run [`rclone config`](https://rclone.org/s3/) to configure a new S3 storage provider. You will be prompted with a series of questions for the new prvider details.
 
 If you have already configured `rclone` in the past, you may run `rclone config file` to print the location of your `rclone` configuration file:
 
@@ -17,7 +17,7 @@ $ rclone config file
 Then use an editor (`nano` or `vim`, for example) to add or edit the new provider. This example assumes you are adding a new `r2demo` provider:
 
 ```bash
-[r2demo]
+[r2]
 type = s3
 provider = Cloudflare
 access_key_id = abc123 # Your access_key_id

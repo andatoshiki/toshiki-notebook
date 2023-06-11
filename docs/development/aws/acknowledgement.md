@@ -18,4 +18,4 @@
 
 本書の執筆には [Asciidoctor](https://asciidoctor.org/) を使用した．
 
-また，本書はオープンソースの教科書として，すべての読者・ディベロッパーからのフィードバックを受け付けている． 誤植や記述の誤り，改善点など見つかったら，ぜひ [Issues](https://github.com/tomomano/learn-aws-by-coding/issues) や [Pull request](https://github.com/tomomano/learn-aws-by-coding/pulls) を投稿していただきたい．
+また，本書はオープンソースの教科書として，すべての読者・ディベロッパーからのフィードバックを受け付けている． 誤植や記述の誤り，改善点など見つかったら，ぜひ [Issues](https://github.com/andatoshiki/toshiki-notebookissues) や [Pull request](https://github.com/andatoshiki/toshiki-notebookpulls) を投稿していただきたい．

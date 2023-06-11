@@ -6,7 +6,7 @@
 
 ## 準備
 
-ハンズオンのソースコードは GitHub の [handson/bashoutter](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/bashoutter) に置いてある．
+ハンズオンのソースコードは GitHub の [handson/bashoutter](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/bashoutter) に置いてある．
 
 本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
 
@@ -20,9 +20,9 @@
 
 <table><caption>Bashoutter API</caption><colgroup><col style="width: 50%" /><col style="width: 50%" /></colgroup><tbody><tr class="odd"><td><p><code>GET /haiku</code></p></td><td><p>俳句の一覧を取得する</p></td></tr><tr class="even"><td><p><code>POST /haiku</code></p></td><td><p>新しい俳句を投稿する</p></td></tr><tr class="odd"><td><p><code>PATCH /haiku/{item_id}</code></p></td><td><p><code>{item_id}</code> で指定された俳句にお気に入り票を一つ入れる</p></td></tr><tr class="even"><td><p><code>DELETE /haiku/{item_id}</code></p></td><td><p><code>{item_id}</code> で指定された俳句を削除する</p></td></tr></tbody></table>
 
-それぞれの API のパラメータおよび返り値の詳細は，ハンズオンのソースコードの中の [swagger.yml](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/specs/swagger.yml) に定義してある．
+それぞれの API のパラメータおよび返り値の詳細は，ハンズオンのソースコードの中の [swagger.yml](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/specs/swagger.yml) に定義してある．
 
-**Open API Specification** (OAS; 少し前は Swagger Specification とよばれていた) は， REST API のための記述フォーマットである． OAS に従って API の仕様が記述されていると，簡単にドキュメンテーションを生成したり，クライアントアプリケーションを自動生成することができる． [今回用意した API 仕様](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/specs/swagger.yml) も， OAS に従って書いてある． 詳しくは [Swagger の公式ドキュメンテーション](https://swagger.io/docs/specification/about/) などを参照．
+**Open API Specification** (OAS; 少し前は Swagger Specification とよばれていた) は， REST API のための記述フォーマットである． OAS に従って API の仕様が記述されていると，簡単にドキュメンテーションを生成したり，クライアントアプリケーションを自動生成することができる． [今回用意した API 仕様](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/specs/swagger.yml) も， OAS に従って書いてある． 詳しくは [Swagger の公式ドキュメンテーション](https://swagger.io/docs/specification/about/) などを参照．
 
 ### アプリケーションアーキテクチャ
 
@@ -42,7 +42,7 @@
 
 -   最後に，ウェブブラウザからコンテンツを表示できるよう， ウェブページの静的コンテンツを配信するための S3 バケットを用意する．クライアントはこの S3 バケットにアクセスすることで HTML/CSS/JS などのコンテンツを取得する．
 
-それでは，プログラムのソースコードを見てみよう ([handson/bashoutter/app.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/app.py))．
+それでは，プログラムのソースコードを見てみよう ([handson/bashoutter/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/app.py))．
 
 ```python
 class Bashoutter(core.Stack):
@@ -147,7 +147,7 @@ class Bashoutter(core.Stack):
 
 -   静的コンテンツを配信するための S3 バケットを用意している．
 
--   それぞれの API で実行される Lambda 関数を定義している． 関数は Python3.7 で書かれており，コードは [handson/bashoutter/api/api.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/api/api.py) にある．
+-   それぞれの API で実行される Lambda 関数を定義している． 関数は Python3.7 で書かれており，コードは [handson/bashoutter/api/api.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/api/api.py) にある．
 
 -   &lt;3&gt; で定義された Lambda 関数に対し，データベースへの読み書きのアクセス権限を付与している．
 
@@ -196,7 +196,7 @@ get_haiku_lambda = _lambda.Function(
 
 簡単なところから見ていくと， `memory_size=512` の箇所でメモリーの使用量を 512MB に指定している． また， `code=_lambda.Code.from_asset("api")` によって外部のディレクトリ (`api/`) を参照せよと指定しており， `handler="api.get_haiku"` のところで `api.py` というファイルの `get_haiku()` という関数をハンドラ関数として実行せよ，と定義している．
 
-次に，ハンドラ関数として使用されている `get_haiku()` のコードを見てみよう ([handson/bashoutter/api/api.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/api/api.py))．
+次に，ハンドラ関数として使用されている `get_haiku()` のコードを見てみよう ([handson/bashoutter/api/api.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/api/api.py))．
 
 ```python
 ddb = boto3.resource("dynamodb")
@@ -450,7 +450,7 @@ $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
 
 さて，前節ではマニュアルで一つずつ俳句を投稿した． 多数のユーザーがいるような SNS では，1 秒間に数千件以上の投稿がされている． 今回はサーバーレスアーキテクチャを採用したことで，そのような瞬間的な大量アクセスにも容易に対応できるようなシステムが自動的に構築されている． このポイントを実証するため，ここでは大量の API が送信された状況をシミュレートしてみよう．
 
-[handson/bashoutter/client.py](https://github.com/tomomano/learn-aws-by-coding/blob/main/handson/bashoutter/client.py) に，大量の API リクエストをシミュレートするためのプログラムが書かれている． このプログラムを使用すると， `POST /haiku` の API リクエストを指定された回数だけ実行することができる．
+[handson/bashoutter/client.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/bashoutter/client.py) に，大量の API リクエストをシミュレートするためのプログラムが書かれている． このプログラムを使用すると， `POST /haiku` の API リクエストを指定された回数だけ実行することができる．
 
 テストとして， API を 300 回実行してみよう． 次のコマンドを実行する．
 
@@ -478,7 +478,7 @@ $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
 
 コマンドを実行する際は， Bashoutter ハンズオンのディレクトリから行うこと (`./gui/dist` に注目)，そして `<BUCKET_NAME>` にはデプロイした自身のバケットの名前が入る点に注意． 念のため，AWS コンソールにログインし，バケットにファイルがアップロードされている点を確認しておこう．
 
-なお，今回は GUI の説明はとくに行わないが， Bashoutter のウェブサイトは [Vue.js](https://vuejs.org/) と [Vuetify](https://vuetifyjs.com/) という UI フレームワークを使って作成した． Vue を使うことで， Single page application (SPA) の技術でウェブサイトの画面がレンダリングされる． ソースコードは [handson/bashoutter/gui](https://github.com/tomomano/learn-aws-by-coding/tree/main/handson/bashoutter/gui) のディレクトリの中にあるので，興味のある読者は確認してみるとよい．
+なお，今回は GUI の説明はとくに行わないが， Bashoutter のウェブサイトは [Vue.js](https://vuejs.org/) と [Vuetify](https://vuetifyjs.com/) という UI フレームワークを使って作成した． Vue を使うことで， Single page application (SPA) の技術でウェブサイトの画面がレンダリングされる． ソースコードは [handson/bashoutter/gui](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/bashoutter/gui) のディレクトリの中にあるので，興味のある読者は確認してみるとよい．
 
 アップトードが完了したところで，続いてデプロイを実行したときにコマンドラインの出力を見直してみよう． `Bashoutter.BucketUrl=` で与えられた URL が見つかるはずである ([figure_title](#handson_05_cdk_output))． これは，先述したとおり， Public access mode の S3 バケットの URL である．
 
