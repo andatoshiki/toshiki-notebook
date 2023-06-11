@@ -14,7 +14,7 @@
     "docs:host": "vitepress dev docs --host",
     "rm:dist": "rm -rf /docs/.vitepress/dist",
     "rm:cache": "rm -rf /docs/.vitepress/cache",
-    "prepare": "husky install",
+    "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
     "lint": "prettier --write .",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "feed": "node docs/.vitepress/utils/genFeed.js"
