@@ -134,7 +134,7 @@ dist
 cache
 
 # node generated xmlhttprequest file
-.node-xmlhttprequest-sync-*]
+.node-xmlhttprequest-sync-*
 
 # frontmatter cms config
 .frontmatter

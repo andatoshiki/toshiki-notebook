@@ -1,42 +1,42 @@
 /* Dark/light theme */
 :root:not(.dark) {
-    --vp-code-block-bg: rgba(125,125,125,0.04);
+    --vp-code-block-bg: rgba(125, 125, 125, 0.04);
     --vp-code-copy-code-active-text: var(--vp-c-text-2);
-    --vp-code-copy-code-hover-bg: rgba(125,125,125,0.1);
+    --vp-code-copy-code-hover-bg: rgba(125, 125, 125, 0.1);
     --vp-code-tab-divider: var(--vp-c-mute-dark);
     --vp-code-tab-hover-text-color: var(--vp-c-text-1);
     /* fix contrast: lang name on gray code block */
     --vp-c-text-dark-3: rgba(180, 180, 180, 0.7);
-  }
-  :root.dark {
-    --vp-code-block-bg: rgba(0,0,0,0.2);
+}
+:root.dark {
+    --vp-code-block-bg: rgba(0, 0, 0, 0.2);
     /* fix lang name: check the same above (this is the default) */
     --vp-c-text-dark-3: rgba(235, 235, 235, 0.38);
-  }
-  
-  /* Hide block based on theme */
-  html:not(.dark) pre.shiki[class*="dark"] {
+}
+
+/* Hide block based on theme */
+html:not(.dark) pre.shiki[class*='dark'] {
     display: none;
-  }
-  html:not(.dark) pre.shiki[class*="light"] {
+}
+html:not(.dark) pre.shiki[class*='light'] {
     display: block;
-  }
-  html.dark pre.shiki[class*="dark"] {
-      display: block;
-  }
-  html.dark pre.shiki[class*="light"] {
+}
+html.dark pre.shiki[class*='dark'] {
+    display: block;
+}
+html.dark pre.shiki[class*='light'] {
     display: none;
-  }
-  
-  /* VitePress Twoslash */
-  :root {
+}
+
+/* VitePress Twoslash */
+:root {
     --vp-twoslash-c-annotation-fg: var(--vp-c-text-1);
-  
+
     --vp-twoslash-c-brand: var(--vp-c-brand);
-  
+
     --vp-twoslash-c-error-bg: var(--vp-c-red-dimm-2);
     --vp-twoslash-c-error-fg: var(--vp-c-text-1);
-  
+
     --vp-twoslash-c-logger-error-bg: var(--vp-c-red-dimm-2);
     --vp-twoslash-c-logger-error-fg: var(--vp-c-red-dark);
     --vp-twoslash-c-logger-fg: var(--vp-c-text-1);
@@ -44,30 +44,30 @@
     --vp-twoslash-c-logger-log-fg: var(--vp-c-gray);
     --vp-twoslash-c-logger-warn-bg: var(--vp-c-yellow-dimm-2);
     --vp-twoslash-c-logger-warn-fg: var(--vp-c-yellow-dark);
-  
+
     --vp-twoslash-c-lsp-bg: var(--vp-c-bg-elv);
     --vp-twoslash-c-lsp-border: var(--vp-c-divider);
     --vp-twoslash-c-lsp-fg: var(--vp-c-text-1);
     --vp-twoslash-c-lsp-underline: var(--vp-c-text-2);
     --vp-twoslash-lsp-shadow: var(--vp-shadow-2);
-  
+
     --vp-twoslash-c-query-bg: var(--vp-c-mute-dark);
     --vp-twoslash-c-query-fg-2: var(--vp-c-text-2);
     --vp-twoslash-c-query-fg: var(--vp-c-text-1);
-  }
-  
-  /* Fix tab color */
-  .vp-code-group .tabs label {
+}
+
+/* Fix tab color */
+.vp-code-group .tabs label {
     background-color: transparent;
     --vp-code-tab-text-color: var(--vp-c-text-2);
     --vp-code-tab-active-text-color: var(--vp-c-text-1);
-  }
-  
-  /**
+}
+
+/**
    * Component: Button
    * -------------------------------------------------------------------------- */
-  
-  :root {
+
+:root {
     --vp-button-brand-border: var(--vp-c-brand-light);
     --vp-button-brand-text: var(--vp-c-text-dark-1);
     --vp-button-brand-bg: var(--vp-c-brand);
@@ -77,53 +77,53 @@
     --vp-button-brand-active-border: var(--vp-c-brand-light);
     --vp-button-brand-active-text: var(--vp-c-text-dark-1);
     --vp-button-brand-active-bg: var(--vp-button-brand-bg);
-  }
-  
-  /**
+}
+
+/**
    * Component: Algolia
    * -------------------------------------------------------------------------- */
-   
-  .DocSearch {
+
+.DocSearch {
     --docsearch-primary-color: var(--vp-c-brand) !important;
-  }
-  
-  /**
+}
+
+/**
    * Site
    * -------------------------------------------------------------------------- */
-  
-  .VPImage.logo {
+
+.VPImage.logo {
     height: 1rem;
-  }
-  
-  .dark [img-light] {
+}
+
+.dark [img-light] {
     display: none;
-  }
-  
-  html:not(.dark) [img-dark] {
+}
+
+html:not(.dark) [img-dark] {
     display: none;
-  }
-  
-  /* Overrides */
-  
-  .VPSocialLink {
+}
+
+/* Overrides */
+
+.VPSocialLink {
     transform: scale(0.9);
-  }
-  
-  .vp-doc th, .vp-doc td {
+}
+
+.vp-doc th,
+.vp-doc td {
     padding: 6px 10px;
     border: 1px solid #8882;
-  }
-  
-  /* h3 breaks SEO => replaced with h2 with the same size */
-  .home-content h2 {
+}
+
+/* h3 breaks SEO => replaced with h2 with the same size */
+.home-content h2 {
     margin-top: 2rem;
     font-size: 1.35rem;
     border-bottom: none;
     margin-bottom: 0;
-  }
-  
-  img.resizable-img {
+}
+
+img.resizable-img {
     width: unset;
     height: unset;
-  }
-  
+}
