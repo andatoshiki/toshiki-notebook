@@ -3,7 +3,7 @@ export interface PostData {
     href: string
     create: number
     update: number
-    tags?: string[]
+    keywords?: string[]
     cover?: string
     excerpt: string
 }
