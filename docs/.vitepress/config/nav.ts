@@ -60,7 +60,7 @@ export const nav: DefaultTheme.Config['nav'] = [
                         link: '/application/markdown-it-katex/how-to-use',
                         activeMatch: '/application/markdown-it-katex/',
                     },
-                    { text: '', link: '', activeMatch: '' },
+                    { text: 'vitepress-plugin-shiki-twoslash', link: '/application/vitepress-plugin-shiki-twoslash/index', activeMatch: '/application/vitepress-plugin-shiki-twoslash/index' },
                 ],
             },
         ],

@@ -27,6 +27,8 @@
   "devDependencies": {
     "@andatoshiki/markdown-it-image-caption": "0.0.2",
     "@andatoshiki/vitepress-plugin-nprogress": "^0.0.1",
+    "@andatoshiki/vitepress-plugin-shiki-twoslash": "0.0.1",
+    "@antv/g2plot": "^2.4.31",
     "@arco-design/web-vue": "^2.46.0",
     "@luckrya/markdown-it-link-to-card": "^0.3.3",
     "@mdit-vue/shared": "^0.12.0",
@@ -35,6 +37,7 @@
     "artplayer": "^4.6.2",
     "blueimp-md5": "^2.19.0",
     "conventional-changelog-cli": "^2.2.2",
+    "dayjs": "^1.11.8",
     "dplayer": "^1.27.1",
     "feed": "^4.2.2",
     "flv.js": "^1.6.2",
@@ -68,9 +71,19 @@
   },
   "dependencies": {
     "@andatoshiki/markdown-it-katex": "^0.0.3",
-    "markdown-it": "^13.0.1"
+    "@types/react": "^18.2.9",
+    "markdown-it": "^13.0.1",
+    "react": "^18.2.0",
+    "vitest": "^0.32.0"
   },
   "pnpm": {
+    "overrides": {
+      "remark-shiki-twoslash>shiki": "^0.14.1",
+      "shiki-twoslash>shiki": "^0.14.1",
+      "@antv/g-base": "0.5.11",
+      "@antv/path-util": "2.0.15",
+      "@antv/attr": "0.3.5"
+    },
     "peerDependencyRules": {
       "ignoreMissing": [
         "@algolia/client-search"

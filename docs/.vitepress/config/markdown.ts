@@ -7,8 +7,8 @@ import mdLink from 'markdown-it-link-preview'
 export const markdown: MarkdownOptions = {
     html: true,
     theme: {
-        light: 'one-dark-pro',
-        dark: 'material-theme-palenight',
+        light: 'solarized-light',
+        dark: 'solarized-dark',
     },
     lineNumbers: true,
     config: md => {

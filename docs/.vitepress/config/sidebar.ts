@@ -1,3 +1,4 @@
+import { groupCollapsed } from 'console'
 import { DefaultTheme } from 'vitepress/theme'
 
 export const sidebar: DefaultTheme.Config['sidebar'] = {
@@ -168,7 +169,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
         },
     ],
 
-    '/application/': [
+    '/application/markdown-it-katex/': [
         {
             text: 'markdown-it-katex',
             collapsed: false,
@@ -188,6 +189,83 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 { text: '4: Tips', link: '/application/markdown-it-katex/tips' },
                 // { text: 'Chapter 5: ', link: '/save/reading/outliers/5' },
                 // { text: 'Chapter 6: ', link: '/save/reading/outliers/6' },
+            ],
+        },
+    ],
+
+    '/application/vitepress-plugin-shiki-twoslash/': [
+        {
+            text: 'Guide',
+            collapsed: false,
+            items: [
+                {
+                    text: 'Getting Started',
+                    link: '/application/vitepress-plugin-shiki-twoslash/',
+                },
+                {
+                    text: 'Markdown Extensions',
+                    link: '/application/vitepress-plugin-shiki-twoslash/guide/markdown-extensions',
+                },
+                {
+                    text: 'Using a Custom Theme',
+                    link: '/application/vitepress-plugin-shiki-twoslash/guide/custom-theme',
+                },
+            ],
+        },
+        {
+            text: 'Features',
+            collapsed: false,
+            items: [
+                {
+                    text: 'Queries',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/queries',
+                },
+                {
+                    text: 'Errors',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/errors',
+                },
+                {
+                    text: 'Emit',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/emit',
+                },
+                {
+                    text: 'Cutting',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/cutting',
+                },
+                {
+                    text: 'Multi-file',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/multi-file',
+                },
+                {
+                    text: '@types',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/types',
+                },
+                {
+                    text: 'Meta Annotations',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/annotations',
+                },
+                {
+                    text: 'Logging',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/logging',
+                },
+                {
+                    text: 'Includes',
+                    link: '/application/vitepress-plugin-shiki-twoslash/api/includes',
+                },
+            ],
+        },
+        {
+            text: 'Config',
+            collapsed: false,
+            items: [
+                {
+                    text: 'Reference',
+                    link: '/application/vitepress-plugin-shiki-twoslash/config/reference',
+                },
+                {
+                    text: 'Compiler Flags',
+                    link: '/application/vitepress-plugin-shiki-twoslash/config/flags',
+                },
             ],
         },
     ],

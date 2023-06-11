@@ -39,6 +39,7 @@ bower_components
 build/Release
 
 # Dependency directories
+docs/node_modules/
 node_modules/
 jspm_packages/
 
@@ -133,4 +134,7 @@ dist
 cache
 
 # node generated xmlhttprequest file
-.node-xmlhttprequest-sync-*
+.node-xmlhttprequest-sync-*]
+
+# frontmatter cms config
+.frontmatter

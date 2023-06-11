@@ -10,8 +10,12 @@ import mediumZoom from 'medium-zoom'
 import vitepressNprogress from '@andatoshiki/vitepress-plugin-nprogress'
 import '@andatoshiki/vitepress-plugin-nprogress/lib/css/index.css'
 
+import '@andatoshiki/vitepress-plugin-shiki-twoslash/styles.css'
+
 // custom styles import
 import './styles/index.scss'
+
+import './styles/component/twoslash.scss'
 
 // @ts-ignore
 // custom components and vue template layouts
@@ -22,6 +26,8 @@ import AsideSponsors from './components/AsideSponsors.vue'
 import Copyright from './components/Copyright.vue'
 // @ts-ignore
 import Comment from './components/layout/Comment.vue'
+// @ts-ignore
+import ArticleMetadata from './components/ArticleMetadata.vue'
 
 // import CodeTitle from './components/CodeTitle.vue'
 
