@@ -1,0 +1,18 @@
+# Markdown
+*.md linguist-detectable=true
+*.md linguist-documentation=false
+
+# JSON
+*.json linguist-detectable=true
+
+# YAML
+*.yml linguist-detectable=true
+
+# vue
+*.vue linguist-detectable=true
+
+# typescript
+*.typescript linguist-detectable=true
+
+# scss
+*.scss linguist-detectable=true

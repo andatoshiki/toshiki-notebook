@@ -25,16 +25,19 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 { text: 'Hands-on 2: AWS でディープラーニングを実践', link: '/development/aws/handson-ec2.md' },
                 { text: 'Docker 入門', link: '/development/aws/docker-system' },
                 { text: 'Hands-on 3: AWS で自動質問回答ボットを走らせる', link: '/development/aws/handson-qabot' },
-                { text: 'Hands-on 4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する', link: '/development/aws/aws-batch' },
+                {
+                    text: 'Hands-on 4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する',
+                    link: '/development/aws/aws-batch',
+                },
                 { text: 'Web サービスの作り方', link: '/development/aws/webserver' },
                 { text: 'Serverless architecture', link: '/development/aws/serverless' },
                 { text: 'Hands-on 5: サーバーレス入門', link: '/development/aws/handson-serverless' },
                 { text: 'Hands-on 6: Bashoutter', link: '/development/aws/handson-bashoutter' },
                 { text: 'まとめ', link: '/development/aws/closing' },
                 { text: 'ppendix: 環境構築', link: '/development/aws/appendix' },
-                { text: '謝辞', link: '/development/aws/acknowledgement' }
-            ]
-        }
+                { text: '謝辞', link: '/development/aws/acknowledgement' },
+            ],
+        },
     ],
     // sidebar configs for academic related documents
     // chemistry
