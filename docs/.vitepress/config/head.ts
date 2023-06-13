@@ -19,7 +19,7 @@ export const head: HeadConfig[] = [
     ],
     // <script src="https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/autoload.js"></script>
 
-    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: 'https://r2.toshiki.dev/cdn/toshiki-notebook-favicon/favicon.ico' }],
     ['meta', { name: 'author', content: 'Anda Toshiki' }],
     [
         'meta',
