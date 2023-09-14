@@ -1,7 +1,6 @@
 // vitepress custom theme component configs
 
 // deafult deps and packages for configuration
-import { onMounted } from 'vue'
 import { h, App } from 'vue'
 import { useData } from 'vitepress'
 import Theme from 'vitepress/theme'
@@ -9,6 +8,9 @@ import DefaultTheme from 'vitepress/theme'
 import mediumZoom from 'medium-zoom'
 import vitepressNprogress from '@andatoshiki/vitepress-plugin-nprogress'
 import '@andatoshiki/vitepress-plugin-nprogress/lib/css/index.css'
+
+import { nextTick, onMounted, watch } from 'vue'
+import { inBrowser, useRoute } from 'vitepress'
 
 import '@andatoshiki/vitepress-plugin-shiki-twoslash/styles.css'
 
@@ -77,15 +79,18 @@ export default {
 
     // medium zoom custom markdown attributes components
     setup() {
+        const route = useRoute()
+        const initZoom = () => {
+          mediumZoom('.main img', { background: 'var(--vp-c-bg)' }) // Should there be a new?
+        }
         onMounted(() => {
-            // medium zoom for images manually added with data-zoomable attribute
-            // mediumZoom('[data-zoomable]', {
-            //     background: 'var(--vp-c-bg)',
-            //     scrollOffset: 40,
-            // })
-            mediumZoom('.main img', { background: 'var(--vp-c-bg)' }) // register global component to make image zoom globally with the class
+          initZoom()
         })
-    },
+        watch(
+          () => route.path,
+          () => nextTick(() => initZoom()),
+        )
+      },
 
     enhanceApp(ctx) {
         // custom component tag/slot

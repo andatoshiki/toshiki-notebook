@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { onMounted } from 'vue'
 import mediumZoom from 'medium-zoom'
 
@@ -15,4 +15,4 @@ onMounted(() => {
 .medium-zoom-image {
     z-index: 21;
 }
-</style>
+</style> -->
