@@ -81,16 +81,16 @@ export default {
     setup() {
         const route = useRoute()
         const initZoom = () => {
-          mediumZoom('.main img', { background: 'var(--vp-c-bg)' }) // Should there be a new?
+            mediumZoom('.main img', { background: 'var(--vp-c-bg)' }) // Should there be a new?
         }
         onMounted(() => {
-          initZoom()
+            initZoom()
         })
         watch(
-          () => route.path,
-          () => nextTick(() => initZoom()),
+            () => route.path,
+            () => nextTick(() => initZoom())
         )
-      },
+    },
 
     enhanceApp(ctx) {
         // custom component tag/slot

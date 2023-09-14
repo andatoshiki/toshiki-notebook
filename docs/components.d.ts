@@ -11,7 +11,6 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AsideSponsors: typeof import('./.vitepress/theme/components/AsideSponsors.vue')['default']
     CardLink: typeof import('./.vitepress/theme/components/CardLink.vue')['default']
-    CodeTitle: typeof import('./.vitepress/theme/components/layout/CodeTitle.vue')['default']
     Comment: typeof import('./.vitepress/theme/components/layout/Comment.vue')['default']
     Copyright: typeof import('./.vitepress/theme/components/Copyright.vue')['default']
     Footer: typeof import('./.vitepress/theme/components/layout/Footer.vue')['default']
