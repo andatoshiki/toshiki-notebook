@@ -33,15 +33,15 @@ const timeFormNow = getFromNow(isoDatetime.value)
             </div>
             <div v-if="publishedTime" class="flex gap-[4px] items-center">
                 <eos-icons:modified-date />
-                Published on:<span>{{ publishedTime }}</span>
+                Published:<span>{{ publishedTime }}</span>
             </div>
             <div class="flex gap-[4px] items-center">
                 <radix-icons:update />
-                Last updated:<span>{{ timeFormNow }}</span>
+                Updated:<span>{{ timeFormNow }}</span>
             </div>
             <div class="flex gap-[4px] items-center">
                 <bi:file-earmark-word-fill />
-                Word count:<span>{{ words }}</span>
+                Words:<span>{{ words }}</span>
             </div>
             <div class="flex gap-[4px] items-center">
                 <ooui:clock />
