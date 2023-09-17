@@ -8,7 +8,7 @@
 
 このハンズオンで使用するアプリケーションのスケッチを [figure_title](#fig:lambda_deploy) に示す． STEP 1 では，AWS CDK を使用して Python で書かれたコードを Lambda に登録する． 続いて STEP 2 では， Invoke API を使用して，同時にいくつもの Lambda を起動し，並列な計算を行う． Lambda のワークフローを体験する目的で最小限の設定である．
 
-![Lambda チュートリアルの概要](imgs/handson-serverless/lambda_deploy.png)
+![Lambda チュートリアルの概要](./assets/handson-serverless/lambda_deploy.png)
 
 このハンズオンは，基本的に [AWS Lambda の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
@@ -64,9 +64,9 @@ class SimpleLambda(core.Stack):
 
 ### デプロイ
 
-デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/serverless/lambda
 
@@ -81,15 +81,15 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_04_lambda_cdk_output) のような出力が得られるはずである． ここで表示されている `SimpleLambda.FunctionName = XXXX` の XXXX の文字列は後で使うのでメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-serverless/handson_04_lambda_cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-serverless/handson_04_lambda_cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールから，Lambda のページに行くと [figure_title](#handson_04_lambda_console_func_list) のような画面から Lambda の関数の一覧が確認できる．
 
-![Lambda コンソール - 関数の一覧](imgs/handson-serverless/lambda_console_func_list.png)
+![Lambda コンソール - 関数の一覧](./assets/handson-serverless/lambda_console_func_list.png)
 
 今回のアプリケーションで作成したのが `SimpleLambda` で始まるランダムな名前のついた関数だ． 関数の名前をクリックして，詳細を見てみる． すると [figure_title](#handson_04_lambda_console_func_detail) のような画面が表示されるはずだ． 先ほどプログラムの中で定義した Python の関数がエディターから確認できる． さらに下の方にスクロールすると，関数の各種設定も確認できる．
 
-![Lambda コンソール - 関数の詳細](imgs/handson-serverless/lambda_console_func_detail.png)
+![Lambda コンソール - 関数の詳細](./assets/handson-serverless/lambda_console_func_detail.png)
 
 Lambda で実行されるコードは， Lambda のコンソール画面 ([figure_title](#handson_04_lambda_console_func_detail)) のエディターで編集することもできる． デバッグをするときなどは，こちらを直接いじる方が早い場合もある． その場合は， CDK のコードに行った編集を反映させなおすことを忘れずに．
 
@@ -99,7 +99,7 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 以下のコマンドで，Lambda の関数を実行する． コマンドの `XXXX` の部分は，先ほどデプロイしたときに `SimpleLambda.FunctionName = XXXX` で得られた XXXX の文字列で置換する．
 
-```shell
+```sh
 $ python invoke_one.py XXXX
 ```
 
@@ -109,20 +109,20 @@ $ python invoke_one.py XXXX
 
 次のコマンドを実行しよう． XXXX の部分は前述と同様に置き換える． 第二引数の `100` は 100 個のタスクを投入せよ，という意味である．
 
-```shell
+```sh
 $ python invoke_many.py XXXX 100
 ```
 
 すると次のような出力が得られるはずだ．
 
-```shell
+```sh
 ....................................................................................................
 Submitted 100 tasks to Lambda!
 ```
 
 実際に，100 個のタスクが同時に実行されていることを確認しよう． [figure_title](#handson_04_lambda_console_func_detail) の画面に戻り， "Monitoring" というタブがあるので，それをクリックする． すると， [figure_title](#handson_04_lambda_console_monitoring) のようなグラフが表示されるだろう．
 
-![Lambda コンソール - 関数の実行のモニタリング](imgs/handson-serverless/lambda_console_monitoring.png)
+![Lambda コンソール - 関数の実行のモニタリング](./assets/handson-serverless/lambda_console_monitoring.png)
 
 [figure_title](#handson_04_lambda_console_monitoring) のグラフの更新には数分かかることがあるので，なにも表示されない場合は少し待つ．
 
@@ -138,7 +138,7 @@ Submitted 100 tasks to Lambda!
 
 最後にスタックを削除しよう． スタックを削除するには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -148,7 +148,7 @@ $ cdk destroy
 
 このハンズオンで使用するアプリケーションのスケッチを [figure_title](#fig:dynamodb_deploy) に示す． STEP 1 では，AWS CDK を使用して DynamoDB のテーブルを初期化し，デプロイする． 続いて STEP 2 では， API を使用してデータベースのデータの書き込み・読み出し・削除などの操作を練習する．
 
-![DynamoDB チュートリアルの概要](imgs/handson-serverless/dynamodb_deploy.png)
+![DynamoDB チュートリアルの概要](./assets/handson-serverless/dynamodb_deploy.png)
 
 このハンズオンは，基本的に [AWS DynamoDB の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行できる．
 
@@ -183,9 +183,9 @@ class SimpleDynamoDb(core.Stack):
 
 ### デプロイ
 
-デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/serverless/dynamodb
 
@@ -200,15 +200,15 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_04_dynamodb_cdk_output) のような出力が得られるはずである． ここで表示されている `SimpleDynamoDb.TableName = XXXX` の XXXX の文字列は後で使うのでメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-serverless/handson_04_dynamodb_cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-serverless/handson_04_dynamodb_cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールから， DynamoDB のページに行き，左のメニューバーから "Tables" を選択する． すると， [figure_title](#handson_04_dynamodb_table_list) のような画面からテーブルの一覧が確認できる．
 
-![DynamoDB のコンソール (テーブルの一覧)](imgs/handson-serverless/dynamodb_table_list.png)
+![DynamoDB のコンソール (テーブルの一覧)](./assets/handson-serverless/dynamodb_table_list.png)
 
 今回のアプリケーションで作成したのが `SimpleDynamoDb` で始まるランダムな名前のついたテーブルだ． テーブルの名前をクリックして，詳細を見てみる． すると [figure_title](#handson_04_dynamodb_table_detail) のような画面が表示されるはずだ． "Items" のタブをクリックすると，テーブルの中のレコードを確認できる． 現時点ではなにもデータを書き込んでいないので，空である．
 
-![DynamoDB のコンソール (テーブルの詳細画面)](imgs/handson-serverless/dynamodb_table_detail.png)
+![DynamoDB のコンソール (テーブルの詳細画面)](./assets/handson-serverless/dynamodb_table_detail.png)
 
 ### データの読み書き
 
@@ -237,13 +237,13 @@ def write_item(table_name):
 
 では， `simple_write.py` を実行してみよう． "XXXX" の部分を自分がデプロイしたテーブルの名前 (`SimpleDynamoDb` で始まる文字列) に置き換えたうえで，次のコマンドを実行する．
 
-```shell
+```sh
 $ python simple_write.py XXXX
 ```
 
 新しい要素が正しく書き込めたか， AWS コンソールから確認してみよう． [figure_title](#handson_04_dynamodb_table_detail) と同じ手順で，テーブルの中身の要素の一覧を表示する． すると [figure_title](#fig:dynamodb_table_new_item) のように，期待通り新しい要素が見つかるだろう．
 
-![DynamoDB に新しい要素が追加されたことを確認](imgs/handson-serverless/dynamodb_table_new_item.png)
+![DynamoDB に新しい要素が追加されたことを確認](./assets/handson-serverless/dynamodb_table_new_item.png)
 
 boto3 を使ってテーブルから要素を読みだすことも可能である． ハンズオンのディレクトリにある [simple_read.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/dynamodb/simple_read.py) を見てみよう．
 
@@ -261,7 +261,7 @@ def scan_table(table_name):
 
 次のコマンドで，このスクリプトを実行してみよう ("XXXX" の部分を正しく置き換えることを忘れずに）．
 
-```shell
+```sh
 $ python simple_read.py XXXX
 ```
 
@@ -275,7 +275,7 @@ DynamoDB の利点は，最初に述べたとおり，負荷に応じて自在�
 
 次のコマンドを実行してみよう (XXXX は自分のテーブルの名前に置き換える)．
 
-```shell
+```sh
 $ python batch_rw.py XXXX write 1000
 ```
 
@@ -283,7 +283,7 @@ $ python batch_rw.py XXXX write 1000
 
 さらに，データベースの検索をかけてみよう． 今回書き込んだデータには `age` という属性に 1 から 50 のランダムな整数が割り当てられている． `age` が 2 以下であるような要素だけを検索し拾ってくるには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ python batch_rw.py XXXX search_under_age 2
 ```
 
@@ -295,7 +295,7 @@ DynamoDB で十分に遊ぶことができたら，忘れずにスタックを�
 
 これまでのハンズオンと同様，スタックを削除するには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -305,7 +305,7 @@ $ cdk destroy
 
 [figure_title](#fig:s3_deploy) が今回提供する S3 チュートリアルの概要である． STEP 1 として， AWS CDK を用いて S3 に新しい空のバケット (Bucket) を作成する． 続いて STEP 2 では，データのアップロード・ダウンロードの方法を解説する．
 
-![S3 チュートリアルの概要](imgs/handson-serverless/s3_deploy.png)
+![S3 チュートリアルの概要](./assets/handson-serverless/s3_deploy.png)
 
 このハンズオンは，基本的に [S3 の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
@@ -330,9 +330,9 @@ class SimpleS3(core.Stack):
 
 ### デプロイ
 
-デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/serverless/s3
 
@@ -347,7 +347,7 @@ $ cdk deploy
 
 デプロイを実行すると， [figure_title](#fig:s3_deploy_output) のような出力が得られるはずである． ここで表示されている `SimpleS3.BucketName = XXXX` が，新しく作られたバケットの名前である (今回提供しているコードを使うとランダムな名前がバケットに割り当てられる）． これはあとで使うのでメモしておこう．
 
-![デプロイ実行後の出力](imgs/handson-serverless/s3_deploy_output.png)
+![デプロイ実行後の出力](./assets/handson-serverless/s3_deploy_output.png)
 
 ### データの読み書き
 
@@ -355,13 +355,13 @@ $ cdk deploy
 
 まずは，以下のコマンドを実行して， `tmp.txt` という仮のファイルを生成する．
 
-```shell
+```sh
 $ echo "Hello world!" >> tmp.txt
 ```
 
 ハンズオンのディレクトリにある [simple_s3.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/s3/simple_s3.py) に [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) ライブラリを使用した S3 のファイルのアップロード・ダウンロードのスクリプトが書いてある． `simple_s3.py` を使って，上で作成した `tmp.txt` を以下のコマンドによりバケットにアップロードする． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
-```shell
+```sh
 $ python simple_s3.py XXXX upload tmp.txt
 ```
 
@@ -381,7 +381,7 @@ def upload_file(bucket_name, filename, key=None):
 
 S3 においてファイルの識別子として使われるのが **Key** である． これは，従来的なファイルシステムにおけるパス (Path) と相同な概念で，それぞれのファイルに固有な Key が割り当てられる必要がある． Key という呼び方は， S3 が [Object storage](https://en.wikipedia.org/wiki/Object_storage) と呼ばれるシステムに立脚していることに由来する． `--key` のオプションを追加して `simple_s3.py` を実行することで， Key を指定してアップロードを実行することができる．
 
-```shell
+```sh
 $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
 ```
 
@@ -389,7 +389,7 @@ $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
 
 ここまでコマンドを実行し終えたところで，一度 AWS コンソールに行き S3 の中身を確認してみよう． S3 のコンソールに行くと，バケットの一覧が見つかるはずである． その中から， `simples3-bucket` から始まるランダムな名前のついたバケットを探し，クリックする． するとバケットの中に含まれるファイルの一覧が表示される ([figure_title](#fig:s3_bucket_filelist))．
 
-![S3 バケットの中のファイル一覧](imgs/handson-serverless/s3_bucket_filelist.png)
+![S3 バケットの中のファイル一覧](./assets/handson-serverless/s3_bucket_filelist.png)
 
 ここで実行した 2 つのコマンドによって， `tmp.txt` というファイルと， `a/b/tmp.txt` というファイルが見つかることに注目しよう． 従来的なファイルシステムと似た体験を提供するため， S3 では Key が **"/" (スラッシュ)** によって区切られていた場合，**ツリー状の階層構造**によってファイルを管理することができる．
 
@@ -397,7 +397,7 @@ $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
 
 次に，バケットからファイルのダウンロードを実行してみよう． `simple_s3.py` を使って，以下のコマンドを実行すればよい． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
-```shell
+```sh
 $ python simple_s3.py XXXX download tmp.txt
 ```
 
@@ -419,6 +419,6 @@ S3 からのダウンロードはシンプルで， `download_file()` メソッ�
 
 以上のハンズオンで， S3 の一番基本的な使い方を紹介した． ここまでのハンズオンが理解できたら，忘れずにスタックを削除しよう． これまでのハンズオンと同様，スタックを削除するには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cdk destroy
 ```

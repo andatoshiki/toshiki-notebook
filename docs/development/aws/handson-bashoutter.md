@@ -2,13 +2,13 @@
 
 さて，最後のハンズオンとなる第六回では，これまで学んできたサーバーレスクラウドの技術を使って，簡単なウェブサービスを作ってみよう． 具体的には，人々が自分の作った俳句を投稿する SNS サービス (**Bashoutter** と名付ける) を作成してみよう． Lambda, DynamoDB, S3 などの技術をすべて盛り込み，シンプルながらもサーバーレスの利点を生かしたスケーラブルな SNS アプリが誕生する． 最終的には， [figure_title](#handson_05_bashoutter) のような，ミニマルではあるがとても現代風な SNS サイトが完成する！
 
-![ハンズオン#6で作製する SNS アプリケーション "Bashoutter"](imgs/handson-bashoutter/bashoutter.png)
+![ハンズオン#6で作製する SNS アプリケーション "Bashoutter"](./assets/handson-bashoutter/bashoutter.png)
 
 ## 準備
 
 ハンズオンのソースコードは GitHub の [handson/bashoutter](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/bashoutter) に置いてある．
 
-本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
+本ハンズオンの実行には，第一回ハンズオンで説明した準備 ( (#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
 
 このハンズオンは，基本的に [AWS の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行できる．
 
@@ -28,7 +28,7 @@
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_05_architecture) に示す．
 
-![ハンズオン#5で作製するアプリケーションのアーキテクチャ](imgs/handson-bashoutter/handson-05-architecture.png)
+![ハンズオン#5で作製するアプリケーションのアーキテクチャ](./assets/handson-bashoutter/handson-05-architecture.png)
 
 簡単にまとめると，次のような設計である．
 
@@ -240,7 +240,7 @@ table.grant_read_write_data(delete_haiku_lambda)
 
 これまでは説明の簡略化のためにあえて触れてこなかったが， AWS には [IAM (Identity and Access Management)](https://aws.amazon.com/iam/) という重要な概念がある． IAM は基本的に，あるリソースがほかのリソースに対してどのような権限をもっているか，を規定するものである． Lambda は，デフォルトの状態ではほかのリソースにアクセスする権限をなにも有していない． したがって， Lambda 関数が DynamoDB のデータを読み書きするためには，それを許可するような IAM が Lambda 関数に付与されていなければならない．今回の S3 バケットには， AWS によって付与されたランダムな URL がついている． これを． `example.com` のような自分のドメインでホストしたければ， AWS によって付与された URL を自分のドメインの DNS レコードに追加すればよい．
 
-CDK による `dynamodb.Table` オブジェクトには `grant_read_write_data()` という便利なメソッドが備わっており，アクセスを許可したい Lambda 関数を引数としてこのメソッドを呼ぶことで，データベースへの読み書きを許可する IAM を付与することができる． 同様に，CDK の `s3.Bucket` オブジェクトにも `grant_read_write()` というメソッドが備わっており，これによってバケットへの読み書きを許可することができる． このメソッドは，実は [???](#sec_aws_batch) で AWS Batch によるクラスターを構成した際に使用した． 興味のある読者は振り返ってコードを確認してみよう．
+CDK による `dynamodb.Table` オブジェクトには `grant_read_write_data()` という便利なメソッドが備わっており，アクセスを許可したい Lambda 関数を引数としてこのメソッドを呼ぶことで，データベースへの読み書きを許可する IAM を付与することができる． 同様に，CDK の `s3.Bucket` オブジェクトにも `grant_read_write()` というメソッドが備わっており，これによってバケットへの読み書きを許可することができる． このメソッドは，実は (#sec_aws_batch) で AWS Batch によるクラスターを構成した際に使用した． 興味のある読者は振り返ってコードを確認してみよう．
 
 各リソースに付与する IAM は，**必要最低限の権限を与えるにとどめる**というのが基本方針である． これにより，セキュリティを向上させるだけでなく，意図していないプログラムからのデータベースへの読み書きを防止するという点で，バグを未然に防ぐことができる．
 
@@ -250,7 +250,7 @@ CDK による `dynamodb.Table` オブジェクトには `grant_read_write_data()
 
 [API Gateway](https://aws.amazon.com/api-gateway/) とは， API の"入り口"として，API のリクエストパスに従って Lambda や EC2 などに接続を行うという機能を担う ([figure_title](#fig:bashoutter_api_gateway))． Lambda や EC2 によって行われた処理の結果は，再び API Gateway を経由してクライアントに返される． このように，クライアントとバックエンドサーバーの間に立ち， API のリソースパスに応じて接続先を振り分けるようなサーバーを**ルーター**，あるいは**リバースプロキシ**とよんだりする． 従来的には，ルーターにはそれ専用の仮想サーバーが置かれることが一般的であった． しかし， API Gateway はサーバーレスなルーターとして，固定されたサーバーを配置することなく， API のリクエストが来たときのみ起動し，API のルーティングを実行する． サーバーレスであることの当然の帰結として，アクセスの件数が増大したときにはそれにルーティングの処理能力を自動で増やす機能も備わっている．
 
-![API Gateway](imgs/handson-bashoutter/api_gateway.png)
+![API Gateway](./assets/handson-bashoutter/api_gateway.png)
 
 API Gateway を配置することで，大量 (1 秒間に数千から数万件) の API リクエストに対応することのできるシステムを容易に構築することができる． API Gateway の料金は [table_title](#tab_handson_05_apigateway_price) のように設定されている． また，無料利用枠により，月ごとに 100 万件までのリクエストは 0 円で利用できる．
 
@@ -311,9 +311,9 @@ API Gateway で新規 API を作成したとき， `default_cors_preflight_optio
 
 ## アプリケーションのデプロイ
 
-アプリケーションの中身が理解できたところで，早速デプロイを行ってみよう． デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+アプリケーションの中身が理解できたところで，早速デプロイを行ってみよう． デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd intro-aws/handson/bashoutter
 
@@ -328,25 +328,25 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_05_cdk_output) のような出力が得られるはずである． ここで表示されている `Bashoutter.BashoutterApiEndpoint = XXXX`, `Bashoutter.BucketUrl = YYYY` の二つ文字列はあとで使うのでメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-bashoutter/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-bashoutter/cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックを確認してみよう． まずは，コンソールから API Gateway のページに行く． すると， [figure_title](#handson_05_apigw_console_list) のような画面が表示され，デプロイ済みの API エンドポイントの一覧が確認できる．
 
-![API Gateway コンソール画面 (1)](imgs/handson-bashoutter/apigw_console_list.png)
+![API Gateway コンソール画面 (1)](./assets/handson-bashoutter/apigw_console_list.png)
 
 今回デプロイした "BashoutterApi" という名前の API をクリックすることで [figure_title](#handson_05_apigw_console_detail) のような画面に遷移し，詳細情報を閲覧できる． `GET /haiku`, `POST /haiku` などが定義されていることが確認できる．
 
 それぞれのメソッドをクリックすると，そのメソッドの詳細情報を確認できる． API Gateway は，前述したルーティングの機能だけでなく，認証機能などを追加することも可能である． このハンズオンではとくにこれらの機能は使用しないが， "Method Request" と書いてある項目などがそれに相当する． 次に， [figure_title](#handson_05_apigw_console_detail) で画面右端の赤色で囲った部分に，この API で呼ばれる Lambda 関数が指定されていることに注目しよう． 関数名をクリックと，該当する Lambda のコンソールに遷移し，関数の中身を閲覧することが可能である．
 
-![API Gateway コンソール画面 (2)](imgs/handson-bashoutter/apigw_console_detail.png)
+![API Gateway コンソール画面 (2)](./assets/handson-bashoutter/apigw_console_detail.png)
 
 次に， S3 のコンソール画面に移ってみよう． `bashouter-` で始まるランダムな名前のバケットが見つかるはずである ([figure_title](#handson_05_s3_console))．
 
-![S3 コンソール画面](imgs/handson-bashoutter/s3_console.png)
+![S3 コンソール画面](./assets/handson-bashoutter/s3_console.png)
 
 バケットの名前をクリックすることで，バケットの中身を確認してみよう． `index.html` のほか， `css/`, `js/` などのディレクトリがあるのが確認できるだろう ([figure_title](#handson_05_s3_contents))． これらが，ウェブページの"枠"を定義している静的コンテンツである．
 
-![S3 バケットの中身](imgs/handson-bashoutter/s3_contents.png)
+![S3 バケットの中身](./assets/handson-bashoutter/s3_contents.png)
 
 ## API リクエストを送信する
 
@@ -356,13 +356,13 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 まず，先ほどデプロイを実行したときに得られた API のエンドポイントの URL (`Bashoutter.BashoutterApiEndpoint = XXXX` で得られた `XXXX` の文字列) をコマンドラインの変数に設定しておく．
 
-```shell
+```sh
 $ export ENDPOINT_URL=XXXX
 ```
 
 次に，俳句の一覧を取得するため， `GET /haiku` の API を送信してみよう．
 
-```shell
+```sh
 $ http GET "${ENDPOINT_URL}/haiku"
 ```
 
@@ -370,7 +370,7 @@ $ http GET "${ENDPOINT_URL}/haiku"
 
 それでは次に， `POST /haiku` を使って俳句を投稿してみよう．
 
-```shell
+```sh
 $ http POST "${ENDPOINT_URL}/haiku" \
 username="松尾芭蕉" \
 first="閑さや" \
@@ -380,7 +380,7 @@ third="蝉の声"
 
 次のような出力が得られるだろう．
 
-```shell
+```sh
 HTTP/1.1 201 Created
 Connection: keep-alive
 Content-Length: 49
@@ -393,7 +393,7 @@ Content-Type: application/json
 
 新しい俳句を投稿することに成功したようである． 本当に俳句が追加されたか，再び GET リクエストを呼ぶことで確認してみよう．
 
-```shell
+```sh
 $ http GET "${ENDPOINT_URL}/haiku"
 
 HTTP/1.1 200 OK
@@ -418,13 +418,13 @@ Content-Type: application/json
 
 次に， `PATCH /haiku/{item_id}` を呼ぶことでこの俳句にいいねを追加してみよう． 一つ前のコマンドで取得した俳句の `item_id` を，次のコマンドの `XXXX` に代入した上で実行しよう．
 
-```shell
+```sh
 $ http PATCH "${ENDPOINT_URL}/haiku/XXXX"
 ```
 
 `{"description": "OK"}` という出力が得られるはずである． 再び GET リクエストを送ることで，いいね (`likes`) が 1 増えたことを確認しよう．
 
-```shell
+```sh
 $ http GET "${ENDPOINT_URL}/haiku"
 ...
 [
@@ -438,7 +438,7 @@ $ http GET "${ENDPOINT_URL}/haiku"
 
 最後に， DELETE リクエストを送ることで俳句をデータベースから削除しよう． `XXXX` は `item_id` の値で置き換えたうえで次のコマンドを実行する．
 
-```shell
+```sh
 $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
 ```
 
@@ -454,7 +454,7 @@ $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
 
 テストとして， API を 300 回実行してみよう． 次のコマンドを実行する．
 
-```shell
+```sh
 $ python client.py $ENDPOINT_URL post_many 300
 ```
 
@@ -462,17 +462,17 @@ $ python client.py $ENDPOINT_URL post_many 300
 
 先述のコマンドにより大量の俳句を投稿するとデータベースに無駄なデータがどんどん溜まってしまう． データベースを完全に空にするには，次のコマンドを使用する．
 
-```shell
+```sh
 $ python client.py $ENDPOINT_URL clear_database
 ```
 
 ## Bashoutter GUI を動かしてみる
 
-前節ではコマンドラインから API を送信する演習を行った． ウェブアプリケーションでは，これと同じことがウェブブラウザの背後で行われ，ページのコンテンツが表示されている ([???](#fig:web_server) 参照)． 最後に， API が GUI と統合されるとどうなるのか，見てみよう．
+前節ではコマンドラインから API を送信する演習を行った． ウェブアプリケーションでは，これと同じことがウェブブラウザの背後で行われ，ページのコンテンツが表示されている ( (#fig:web_server) 参照)． 最後に， API が GUI と統合されるとどうなるのか，見てみよう．
 
 CDK のコードで， Public access mode の S3 バケットを作成したことを思い出してほしい． 最初のステップとして，ここにウェブサイトのコンテンツをアップロードしよう． ハンズオンのソースコードの中に `gui/dist` というフォルダが見つかるはずである． ここにはビルド済みのウェブサイトの静的コンテンツ (HTML/CSS/JavaScript) が入っている． AWS CLI のコマンドを使うことでこれらのファイルを S3 にアップロードしよう．
 
-```shell
+```sh
 $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
 ```
 
@@ -484,7 +484,7 @@ $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
 
 ウェブブラウザを開き，アドレスバーに S3 の URL を入力しへアクセスしてみよう． すると， [figure_title](#handson_05_bashoutter_2) のようなページが表示されるはずである．
 
-!["Bashoutter" の GUI 画面](imgs/handson-bashoutter/bashoutter_2.png)
+!["Bashoutter" の GUI 画面](./assets/handson-bashoutter/bashoutter_2.png)
 
 ページが表示されたら，一番上の "API Endpoint URL" と書いてあるテキストボックスに，今回デプロイした **API Gateway の URL を入力**する (今回のアプリケーションでは，API Gateway の URL はランダムに割り当てられるのでこのような GUI の仕様になっている)． そうしたら，画面の "REFRESH" と書いてあるボタンを押してみよう． データベースに俳句が登録済みであれば，俳句の一覧が表示されるはずである． 各俳句の左下にあるハートのアイコンをクリックすることで， "like" の票を入れることができる．
 
@@ -498,7 +498,7 @@ Bashoutter アプリを存分に楽しむことができたら，最後に忘れ
 
 コマンドラインからスタックの削除を実行するには，次のコマンドを使う．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -508,7 +508,7 @@ CDK のバージョンによっては S3 のバケットが空でないと， `c
 
 コマンドラインから実行するには， 次のコマンドを使う． &lt;BUCKET NAME&gt; のところは，自分の バケットの名前 ("BashoutterBucketXXXX" というパターンの名前がついているはずである) に置き換えることを忘れずに．
 
-```shell
+```sh
 $ aws s3 rm <BUCKET NAME> --recursive
 ```
 
@@ -516,6 +516,6 @@ $ aws s3 rm <BUCKET NAME> --recursive
 
 ここまでが，本書第三部の内容であった．
 
-第三部では，クラウドの応用として，一般の人に使ってもらうようなウェブアプリケーション・データベースをどのようにして作るのか，という点に焦点を当てて，説明を行った． その中で，従来的なクラウドシステムの設計と，ここ数年の最新の設計方法であるサーバーレスアーキテクチャについて解説した． [???](#sec_intro_serverless) では， AWS でのサーバーレスの実践として， Lambda, S3, DynamoDB のハンズオンを行った． 最後に， [Hands-on \#6: Bashoutter](#sec_bashoutter) では，これらの技術を統合することで，完全サーバーレスなウェブアプリケーション "Bashoutter" を作成した．
+第三部では，クラウドの応用として，一般の人に使ってもらうようなウェブアプリケーション・データベースをどのようにして作るのか，という点に焦点を当てて，説明を行った． その中で，従来的なクラウドシステムの設計と，ここ数年の最新の設計方法であるサーバーレスアーキテクチャについて解説した． (#sec_intro_serverless) では， AWS でのサーバーレスの実践として， Lambda, S3, DynamoDB のハンズオンを行った． 最後に， [Hands-on \#6: Bashoutter](#sec_bashoutter) では，これらの技術を統合することで，完全サーバーレスなウェブアプリケーション "Bashoutter" を作成した．
 
 これらの演習を通じて，世の中のウェブサービスがどのようにしてでき上がっているのか，少し理解が深まっただろうか？ また，そのようなウェブアプリケーションを自分が作りたいと思ったとき，今回のハンズオンがその出発点となることができたならば幸いである．

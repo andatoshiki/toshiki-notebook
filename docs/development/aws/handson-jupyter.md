@@ -6,7 +6,7 @@
 
 ハンズオンのソースコードは GitHub の [handson/mnist](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/mnist) に置いてある．
 
-本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
+本ハンズオンの実行には，第一回ハンズオンで説明した準備 ( (#handson_01_prep)) が整っていることを前提とする． それ以外に必要な準備はない．
 
 初期状態の AWS アカウントでは， GPU 搭載の G タイプのインスタンスの起動上限が 0 になっていることがある． これを確認するには， AWS コンソールから EC2 の画面を開き，左のメニューから `Limits` を選択する． その中の `Running On-Demand All G instances` という数字が G インスタンスの起動上限を表している．
 
@@ -20,7 +20,7 @@ AWS Educate Starter Account を使用している読者へ: 執筆時点にお�
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_02_architecture) に示す．
 
-![ハンズオン#2で作製するアプリケーションのアーキテクチャ](imgs/handson-jupyter/handson-02-architecture.png)
+![ハンズオン#2で作製するアプリケーションのアーキテクチャ](./assets/handson-jupyter/handson-02-architecture.png)
 
 図の多くの部分が，第一回ハンズオンで作成したアプリケーションと共通していることに気がつくだろう． 少しの変更で，簡単にディープラーニングを走らせる環境を構築することができるのである！主な変更点は次の３点である．
 
@@ -75,7 +75,7 @@ class Ec2ForDl(core.Stack):
         )
 ```
 
--   ここで， `g4dn.xlarge` インスタンスタイプを選択している (第一回では， CPU のみの `t2.micro` だった)． `g4dn.xlarge` のインスタンスタイプは， [???](#sec_scientific_computing) ですでに触れた通り， `NVIDIA T4` と呼ばれる廉価版モデルの GPU を搭載したインスタンスである． CPU は 4 core, メインメモリーは 16GB が割り当てあられている．
+-   ここで， `g4dn.xlarge` インスタンスタイプを選択している (第一回では， CPU のみの `t2.micro` だった)． `g4dn.xlarge` のインスタンスタイプは， (#sec_scientific_computing) ですでに触れた通り， `NVIDIA T4` と呼ばれる廉価版モデルの GPU を搭載したインスタンスである． CPU は 4 core, メインメモリーは 16GB が割り当てあられている．
 
 -   ここでは，Deep Learning 用の諸々のソフトウェアがプリンストールされた AMI ([Deep Learning Amazon Machine Image; DLAMI](https://docs.aws.amazon.com/dlami/latest/devguide/what-is-dlami.html)) を選択している (第一回では，Amazon Linux という AMI を使用していた)． 使用する AMI の ID は リージョンごとに指定する必要があり，ここでは `us-east-1` と `ap-northeast-1` でそれぞれ定義している．
 
@@ -91,7 +91,7 @@ AMI が `us-east-1` と `ap-northeast-1` でしか定義されていないので
 
 AMI は， AWS 公式のものに加えて，サードパーティから提供されているものもある． また，自分自身の AMI を作って登録することも可能である ([参考](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html))． AMI は EC2 のコンソールから検索することが可能である． あるいは，AWS CLI を使って，次のコマンドでリストを取得することができる ([参考](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html))．
 
-```shell
+```sh
 $ aws ec2 describe-images --owners amazon
 ```
 
@@ -99,11 +99,11 @@ $ aws ec2 describe-images --owners amazon
 
 本ハンズオンでは， Amazon Linux 2 をベースにした DLAMI を使用する (AMI ID = ami-09c0c16fc46a29ed9．この AMI は ap-northeast-1 でしか使用できない点に注意)． AWS CLI を使って，この AMI の詳細情報を取得してみよう．
 
-```shell
+```sh
 $ aws ec2 describe-images --owners amazon --image-ids "ami-09c0c16fc46a29ed9" --region ap-northeast-1
 ```
 
-![AMI ID = ami-09c0c16fc46a29ed9 の詳細情報](imgs/handson-jupyter/ami-info.png)
+![AMI ID = ami-09c0c16fc46a29ed9 の詳細情報](./assets/handson-jupyter/ami-info.png)
 
 [figure_title](#handson_02_ami-info) のような出力が得られるはずである．得られた出力から，この DLAMI には PyTorch のバージョン 1.4.0 と 1.5.0 がインストールされていることがわかる． この DLAMI を使って，早速ディープラーニングの計算を実行してみよう．
 
@@ -117,9 +117,9 @@ DLAMI には具体的には何がインストールされているのだろう�
 
 スタックの中身が理解できたところで，早速スタックをデプロイしてみよう．
 
-デプロイの手順は，ハンズオン 1 とほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれのコマンドの意味を忘れてしまった場合は，ハンズオン 1 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+デプロイの手順は，ハンズオン 1 とほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれのコマンドの意味を忘れてしまった場合は，ハンズオン 1 に戻って復習していただきたい． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/mnist
 
@@ -142,19 +142,19 @@ $ cdk deploy -c key_name="HirakeGoma"
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_02_cdk_output) のような出力が得られるはずである．AWS により割り振られた IP アドレス (`InstancePublicIp` に続く文字列) をメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-jupyter/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-jupyter/cdk_output.png)
 
 ## ログイン
 
 早速，デプロイしたインスタンスに SSH でログインしてみよう． ここでは，この後で使う Jupyter Notebook に接続するため，**ポートフォワーディング (port forwarding)** のオプション (`-L`) をつけてログインする．
 
-```shell
+```sh
 $ ssh -i ~/.ssh/HirakeGoma.pem -L localhost:8931:localhost:8888 ec2-user@<IP address>
 ```
 
 ポートフォワーディングとは，クライアントマシンの特定のアドレスへの接続を， SSH の暗号化された通信を介して，リモートマシンの特定のアドレスへ転送する，という意味である． このコマンドの `-L localhost:8931:localhost:8888` は，自分のローカルマシンの `localhost:8931` へのアクセスを，リモートサーバーの `localhost:8888` のアドレスに転送せよ，という意味である (`:` につづく数字は TCP/IP ポートの番号を意味している)． リモートサーバーのポート 8888 には，後述する Jupyter Notebook が起動している． したがって，ローカルマシンの `localhost:8931` にアクセスすることで，リモートサーバーの Jupyter Notebook にアクセスすることができるのである ([figure_title](#fig:ssh_port_forwarding))． このような SSH による接続方式を**トンネル接続**とよぶ．
 
-![SSH のポートフォワーディングによる Jupyter Notebook へのアクセス](imgs/ssh_port_forwarding.png)
+![SSH のポートフォワーディングによる Jupyter Notebook へのアクセス](./assets/ssh_port_forwarding.png)
 
 ポートフォワーディングのオプションで，ポートの番号 (`:8931`, `:8888` など) には 1 から 65535 までの任意の整数を指定できる． しかし，たとえば ポート 22 (SSH) やポート 80 (HTTP) など，いくつかすでに使われているポート番号もあることに注意する． また， Jupyter Notebook はデフォルトではポート 8888 番を使用する． したがって，リモート側のポート番号は，8888 を使うのがよい．
 
@@ -168,32 +168,32 @@ SSH によるログインは， **Docker の外** (すなわちクライアン�
 
 SSH によるログインができたら，早速， GPU の状態を確認してみよう． 次のコマンドを実行する．
 
-```shell
+```sh
 $ nvidia-smi
 ```
 
 [figure_title](#handson_02_nvidia-smi) のような出力が得られるはずである． 出力を見ると， Tesla T4 型の GPU が 1 台搭載されていることが確認できる． その他，GPU Driver や CUDA のバージョン， GPU の負荷・メモリー使用率などの情報を確認することができる．
 
-![nvidia-smi の出力](imgs/handson-jupyter/nvidia-smi.png)
+![nvidia-smi の出力](./assets/handson-jupyter/nvidia-smi.png)
 
 ## Jupyter Notebook の起動
 
 [Jupyter Notebook](https://jupyter.org/) とは，インタラクティブに Python のプログラムを書いたり実行したりするためのツールである． Jupyter は GUI としてウェブブラウザを介してアクセスする形式をとっており，まるでノートを書くように，プロットやテーブルのデータも美しく表示することができる ([figure_title](#handson_02_welcome_jupyter))． Python に慣れている読者は，きっと一度は使ったことがあるだろう．
 
-![Jupyter Notebook の画面](imgs/handson-jupyter/welcome_to_jupyter.png)
+![Jupyter Notebook の画面](./assets/handson-jupyter/welcome_to_jupyter.png)
 
 このハンズオンでは， Jupyter Notebook を使ってディープラーニングのプログラムをインタラクティブに実行していく． DLAMI には既に Jupyter がインストールされているので，特段の設定なしに使い始めることができる．
 
 早速， Jupyter を起動しよう． SSH でログインした先の EC2 インスタンスで，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cd ~ # go to home directory
 $ jupyter notebook
 ```
 
 このコマンドを実行すると， [figure_title](#handson_02_jupyter_launch) のような出力が確認できるだろう． この出力から，Jupyter のサーバーが EC2 インスタンスの `localhost:8888` というアドレスに起動していることがわかる． また， `localhost:8888` に続く `?token=XXXX` は，アクセスに使うための一時的なトークンである．
 
-![Jupyter Notebook サーバーを起動](imgs/handson-jupyter/jupyter_launch.png)
+![Jupyter Notebook サーバーを起動](./assets/handson-jupyter/jupyter_launch.png)
 
 Jupyter Notebook を初回に起動するときは，起動に数分程度の時間がかかることがある． ほかの動作も起動直後は遅く，いくつかプログラムを走らせていくうちに俊敏に反応するようになってくる． これは， AWS の GPU 搭載型仮想マシンの運用方法に起因する現象だと考えられる．
 
@@ -207,7 +207,7 @@ http://localhost:8931/?token=XXXX&lt;/programlisting&gt;
 
 上のアドレスにアクセスすると， Jupyter のホーム画面が起動するはずである ([figure_title](#handson_02_jupyter_home))． これで， Jupyter の準備が整った！
 
-![Jupyter ホーム画面](imgs/handson-jupyter/jupyter_home.png)
+![Jupyter ホーム画面](./assets/handson-jupyter/jupyter_home.png)
 
 Jupyter Notebook の使い方 (超簡易版)
 
@@ -235,11 +235,11 @@ Facebook は PyTorch のほかに Caffe2 とよばれるディープラーニン
 
 まずは，新しいノートブックを作成する． Jupyter のホーム画面の右上の "New" を押し，"conda_pytorch_p36" という環境を選択したうえで，新規ノートブックを作成する ([figure_title](#handson_02_jupyeter_new))． "conda_pytorch_p36" の仮想環境には， PyTorch がインストール済みである．
 
-![新規ノートブックの作成． "conda_pytorch_p36" の環境を選択する．](imgs/handson-jupyter/jupyter_new.png)
+![新規ノートブックの作成． "conda_pytorch_p36" の環境を選択する．](./assets/handson-jupyter/jupyter_new.png)
 
 ここでは，次のようなプログラムを書いて，実行していく． ([figure_title](#handson_02_jupyeter_pytorch))．
 
-![PyTorch始めの一歩](imgs/handson-jupyter/jupyter_pytorch.png)
+![PyTorch始めの一歩](./assets/handson-jupyter/jupyter_pytorch.png)
 
 まずは， PyTorch をインポートする．さらに， GPU が使える環境にあるか，確認する．
 
@@ -343,13 +343,13 @@ PyTorch において， GPU での演算は asynchronous (非同期) で実行�
 
 ここでは，機械学習のタスクで最も初歩的かつ有名な **MNIST データセットを使った数字認識**を扱う ([figure_title](#handson_02_mnist_examples))． これは，0 から 9 までの手書きの数字の画像が与えられ，その数字が何の数字なのかを当てる，というシンプルなタスクである．
 
-![MNIST 手書き数字データセット](imgs/handson-jupyter/mnist_examples.png)
+![MNIST 手書き数字データセット](./assets/handson-jupyter/mnist_examples.png)
 
 今回は， MNIST 文字認識タスクを，**畳み込みニューラルネットワーク (Convolutional Neural Network; CNN)** を使って解く． ソースコードは [/handson/minist/pytorch/](https://github.com/tomomano/learn-aws-by-coding-source-code/tree/main/handson/mnist/pytorch) にある `mnist.ipynb` と `simple_mnist.py` である． なお，このプログラムは， [PyTorch の公式 Example Project 集](https://github.com/pytorch/examples/tree/master/mnist) を参考に，多少の改変を行ったものである．
 
 まずは，カスタムのクラスや関数が定義された `simple_mnist.py` をアップロードしよう ([figure_title](#handson_02_jupyter_upload))． 画面右上の "Upload" ボタンをクリックし，ファイルを選択することでアップロードができる． この Python プログラムの中に，CNN のモデルや，学習の各イテレーションにおけるパラメータの更新などが記述されている． 今回はこの中身を説明することはしないが，興味のある読者は自身でソースコードを読んでみるとよい．
 
-![`simple_mnist.py` をアップロード](imgs/handson-jupyter/jupyter_upload.png)
+![`simple_mnist.py` をアップロード](./assets/handson-jupyter/jupyter_upload.png)
 
 `simple_mnist.py` をアップロードできたら，次に新しい notebook を作成しよう． "conda_pytorch_p36" の環境を選択することを忘れずに．
 
@@ -400,7 +400,7 @@ for i in range(10):
 plt.show()
 ```
 
-![MNIST の手書き数字画像とその教師ラベル](imgs/handson-jupyter/mnist_ground_truth.png)
+![MNIST の手書き数字画像とその教師ラベル](./assets/handson-jupyter/mnist_ground_truth.png)
 
 次に， CNN のモデルを定義する．
 
@@ -411,7 +411,7 @@ model.to("cuda") # load to GPU
 
 今回使う `Model` は `simple_mnist.py` の中で定義されている． このモデルは，[figure_title](#handson_02_cnn_architecture) に示したような，２層の畳み込み層と 2 層の全結合層からなるネットワークである． 出力層 (output layer) には Softmax 関数を使用し，損失関数 (Loss function) には 負の対数尤度関数 (Negative log likelyhood; NLL) を使用している．
 
-![本ハンズオンで使用するニューラルネットの構造．](imgs/handson-jupyter/cnn_architecture.png)
+![本ハンズオンで使用するニューラルネットの構造．](./assets/handson-jupyter/cnn_architecture.png)
 
 続いて， CNN のパラメータを更新する最適化アルゴリズムを定義する． ここでは， **確率的勾配降下法 (Stochastic Gradient Descent; SGD)** を使用している．
 
@@ -440,11 +440,11 @@ plt.show()
 
 出力として， [figure_title](#handson_02_train_loss) のようなプロットが得られるはずである． イテレーションを重ねるにつれて，損失関数 (Loss function) の値が減少している (=精度が向上している) ことがわかる．
 
-![学習の進行に対する Train loss の変化](imgs/handson-jupyter/train_loss.png)
+![学習の進行に対する Train loss の変化](./assets/handson-jupyter/train_loss.png)
 
 出力にはテキスト形式で各エポック終了後のテストデータに対する精度も表示されている． 最終的には 98% 以上の極めて高い精度を実現できていることが確認できるだろう ([figure_title](#handson_02_mnist_final_score))．
 
-![学習したCNNのテストデータに対するスコア (5エポック後)](imgs/handson-jupyter/mnist_final_score.png)
+![学習したCNNのテストデータに対するスコア (5エポック後)](./assets/handson-jupyter/mnist_final_score.png)
 
 学習した CNN の推論結果を可視化してみよう． 次のコードを実行することで， [figure_title](#handson_02_mnist_mnist_prediction) のような出力が得られるだろう． この図で，下段右から二番目は，"1"に近い見た目をしているが，きちんと"9"と推論できている． なかなか賢い CNN を作り出すことができたようだ！
 
@@ -465,7 +465,7 @@ for i in range(10):
 plt.show()
 ```
 
-![学習した CNN による，MNIST画像の推論結果](imgs/handson-jupyter/mnist_prediction.png)
+![学習した CNN による，MNIST画像の推論結果](./assets/handson-jupyter/mnist_prediction.png)
 
 最後に，学習したニューラルネットワークのパラメータを `mnist_cnn.pt` というファイル名で保存しておこう． これで，将来いつでも今回学習したモデルを再現し，別の実験に使用することができる．
 
@@ -479,9 +479,9 @@ torch.save(model.state_dict(), "mnist_cnn.pt")
 
 これにて，ハンズオン第二回の内容はすべて説明した． クラウドの利用料金を最小化するため，使い終わった EC2 インスタンスはすぐさま削除しよう．
 
-ハンズオン第一回と同様に， AWS の CloudFormation コンソールか， AWS CLI により削除を実行する (詳細は [???](#handson_01_delete_stack) 参照)．
+ハンズオン第一回と同様に， AWS の CloudFormation コンソールか， AWS CLI により削除を実行する (詳細は (#handson_01_delete_stack) 参照)．
 
-```shell
+```sh
 $ cdk destroy
 ```
 

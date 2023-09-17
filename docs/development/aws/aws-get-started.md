@@ -12,7 +12,7 @@
 
 [figure_title](#fig_aws_services) は，執筆時点において AWS で提供されている主要な機能・サービスの一覧である．
 
-![AWSで提供されている主要なサービス一覧](imgs/aws_services.png)
+![AWSで提供されている主要なサービス一覧](./assets/aws_services.png)
 
 計算，ストレージ，データベース，ネットワーク，セキュリティなど，クラウドの構築に必要な様々な要素が**独立したコンポーネント**として提供されている． 基本的に，これらを組み合わせることで一つのクラウドシステムができあがる．
 
@@ -24,39 +24,46 @@ AWS の初心者が陥りがちなのは，**大量のサービスの数に圧�
 
 ### 計算
 
-![S3](imgs/aws_logos/EC2.png) **EC2 (Elastic Compute Cloud)** 様々なスペックの仮想マシンを作成し，計算を実行することができる． クラウドの最も基本となる構成要素である． [???](#sec_first_ec2), [???](#sec_jupyter_and_deep_learning), [???](#sec_aws_batch) で詳しく触れる．
+![S3](./assets/aws_logos/EC2.png) **EC2 (Elastic Compute Cloud)** 様々なスペックの仮想マシンを作成し，計算を実行することができる． クラウドの最も基本となる構成要素である． (#sec_first_ec2), (#sec_jupyter_and_deep_learning), (#sec_aws_batch) で詳しく触れる．
 
-![S3](imgs/aws_logos/Lambda.png) **Lambda** Function as a Service (FaaS) とよばれる，小さな計算を**サーバーなし**で実行するためのサービス． サーバーレスアーキテクチャの章 ([???](#sec_serverless)) で詳しく解説する．
+![S3](./assets/aws_logos/Lambda.png) **Lambda** Function as a Service (FaaS) とよばれる，小さな計算を**サーバーなし**で実行するためのサービス． サーバーレスアーキテクチャの章 ( (#sec_serverless)) で詳しく解説する．
 
 ### ストレージ
 
-![S3](imgs/aws_logos/EBS.png) **EBS (Elastic Block Store)** EC2 に付与することのできる仮想データドライブ． いわゆる"普通の"(一般的な OS で使われている)ファイルシステムを思い浮かべてくれたらよい．
+![S3](./assets/aws_logos/EBS.png)
+**EBS (Elastic Block Store)** EC2 に付与することのできる仮想データドライブ． いわゆる"普通の"(一般的な OS で使われている)ファイルシステムを思い浮かべてくれたらよい．
 
-![S3](imgs/aws_logos/S3.png) **S3 (Simple Storage Service)** Object Storage とよばれる，API を使ってデータの読み書きを行う，いうなれば”クラウド・ネイティブ”なデータの格納システムである． サーバーレスアーキテクチャの章 ([???](#sec_serverless)) で詳しく解説する．
+![S3](./assets/aws_logos/S3.png)
+
+**S3 (Simple Storage Service)** Object Storage とよばれる，API を使ってデータの読み書きを行う，いうなれば”クラウド・ネイティブ”なデータの格納システムである． サーバーレスアーキテクチャの章 ( (#sec_serverless)) で詳しく解説する．
 
 ### データベース
 
-![S3](imgs/aws_logos/DynamoDB.png) **DynamoDB** NoSQL 型のデータベースサービス (知っている人は `mongoDB` などを思い浮かべたらよい)． サーバーレスアーキテクチャの章 ([???](#sec_serverless)) で詳しく解説する．
+![S3](./assets/aws_logos/DynamoDB.png)
+
+**DynamoDB** NoSQL 型のデータベースサービス (知っている人は `mongoDB` などを思い浮かべたらよい)． サーバーレスアーキテクチャの章 ( (#sec_serverless)) で詳しく解説する．
 
 ### ネットワーク
 
-![S3](imgs/aws_logos/VPC.png) **VPC(Virtual Private Cloud)** AWS 上に仮想ネットワーク環境を作成し，仮想サーバー間の接続を定義したり，外部からのアクセスなどを管理する． EC2 は VPC の内部に配置されなければならない．
+![S3](./assets/aws_logos/VPC.png) **VPC(Virtual Private Cloud)** AWS 上に仮想ネットワーク環境を作成し，仮想サーバー間の接続を定義したり，外部からのアクセスなどを管理する． EC2 は VPC の内部に配置されなければならない．
 
-**API Gateway** ![S3](imgs/aws_logos/APIGateway.png) API のエンドポイントとバックエンドのサービス (Lambda など) を接続する際に用いる，リバースプロキシとしての役割を担う． [???](#sec_bashoutter) で詳しく解説する．
+**API Gateway** ![S3](./assets/aws_logos/APIGateway.png)
+
+API のエンドポイントとバックエンドのサービス (Lambda など) を接続する際に用いる，リバースプロキシとしての役割を担う． (#sec_bashoutter) で詳しく解説する．
 
 ## Region と Availability Zone
 
 AWS を使用する際に知っておかなければならない重要な概念として， **リージョン (Region)** と **Availability Zone (AZ)** がある ([figure_title](#fig_aws_regions_and_azs))． 以下ではこの概念について簡単に記述する．
 
-![AWSにおける Region と Availability Zones](imgs/aws_region_and_az.png)
+![AWSにおける Region と Availability Zones](./assets/aws_region_and_az.png)
 
 **リージョン (Region)** とは，おおまかに言うとデータセンターの所在地のことである． 執筆時点において， AWS は世界の 25 の国と地域でデータセンターを所有している． [figure_title](#fig_aws_regions) は執筆時点で利用できるリージョンの世界地図を示している． 日本では東京と大阪にデータセンターがある． 各リージョンには固有の ID がついており，例えば東京は `ap-northeast-1`, 米国オハイオ州は `us-east-2`，などと定義されている．
 
-![Regions in AWS(出典: <https://aws.amazon.com/about-aws/global-infrastructure/>)](imgs/aws_regions.png)
+![Regions in AWS(出典: <https://aws.amazon.com/about-aws/global-infrastructure/>)](./assets/aws_regions.png)
 
 AWS コンソールにログインすると，画面右上のメニューバーでリージョンを選択することができる([figure_title](#fig_aws_console_regions), 赤丸で囲った箇所)． EC2, S3 などの AWS のリソースは，リージョンごとに完全に独立である． したがって，**リソースを新たにデプロイする際，あるいはデプロイ済みのリソースを閲覧する際は，コンソールのリージョンが正しく設定されているか，確認する必要がある**． ウェブビジネスを展開する場合などは，世界の各地にクラウドを展開する必要があるが，個人的な研究用途として用いる場合は，最寄りのリージョン (i.e. 東京) を使えば基本的に問題ない．
 
-![AWSコンソールでリージョンを選択](imgs/aws_regions2.png)
+![AWSコンソールでリージョンを選択](./assets/aws_regions2.png)
 
 `Avaialibity Zone (AZ)` とは，リージョン内で地理的に隔離されたデータセンターのことである． それぞれのリージョンは 2 個以上の AZ を有しており，もし一つの AZ で火災や停電などが起きた場合でも，ほかの AZ がその障害をカバーすることができる． また， AZ 間は高速な AWS 専用ネットワーク回線で結ばれているため， AZ 間のデータ転送は極めて早い． AZ は，ビジネスなどでサーバーダウンが許容されない場合などに注意すべき概念であり，個人的な用途で使う限りにおいてはあまり深く考慮する必要はない．言葉の意味だけ知っておけば十分である．
 
@@ -78,7 +85,7 @@ AWS のリソースを追加・編集・削除するなどの操作を実行す�
 
 AWS のアカウントにログインすると，まず最初に表示されるのが**AWS コンソール**である ([figure_title](#aws_console_window))．
 
-![AWSマネージメントコンソール画面](imgs/aws_console.png)
+![AWSマネージメントコンソール画面](./assets/aws_console.png)
 
 コンソールを使うことで， EC2 のインスタンスを立ち上げたり，S3 のデータを追加・削除したり，ログを閲覧したりなど，AWS 上のあらゆるリソースの操作を GUI (Graphical User Interface) を通して実行することができる． **初めて触る機能をポチポチと試したり，デバッグを行うときなどにとても便利である**．
 
@@ -86,7 +93,7 @@ AWS のアカウントにログインすると，まず最初に表示される�
 
 ### API からリソースを操作する
 
-**API (Application Programming Interface)** を使うことで，コマンドを AWS に送信し，クラウドのリソースの操作をすることができる． API とは，端的に言えば AWS が公開しているコマンドの一覧であり，`GET`, `POST`, `DELETE` などの **REST API** から構成されている (REST API については [???](#sec_rest_api) で簡単に解説する)． が，直接 REST API を入力するのは面倒であるので，その手間を解消するための様々なツールが提供されている．
+**API (Application Programming Interface)** を使うことで，コマンドを AWS に送信し，クラウドのリソースの操作をすることができる． API とは，端的に言えば AWS が公開しているコマンドの一覧であり，`GET`, `POST`, `DELETE` などの **REST API** から構成されている (REST API については (#sec_rest_api) で簡単に解説する)． が，直接 REST API を入力するのは面倒であるので，その手間を解消するための様々なツールが提供されている．
 
 例えば， [AWS CLI](https://docs.aws.amazon.com/cli/latest/index.html) は， UNIX コンソールから AWS API を実行するための CLI (Command Line Interface) である． CLI に加えて，いろいろなプログラミング言語での SDK (Software Development Kit) が提供されている．以下に一例を挙げる．
 
@@ -100,7 +107,7 @@ AWS のアカウントにログインすると，まず最初に表示される�
 
 S3 に新しい保存領域 (`Bucket (バケット)` とよばれる) を追加したいとしよう． AWS CLI を使った場合は，次のようなコマンドを打てばよい．
 
-```shell
+```sh
 $ aws s3 mb s3://my-bucket --region ap-northeast-1
 ```
 
@@ -119,11 +126,11 @@ s3_client.create_bucket(Bucket="my-bucket")
 
 新しい EC2 のインスタンス(インスタンスとは，起動状態にある仮想サーバーの意味である)を起動するには，次のようなコマンドを打てば良い．
 
-```shell
+```sh
 $ aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
 ```
 
-このコマンドにより， [t2.micro](https://aws.amazon.com/ec2/instance-types/t2/) というタイプ (1 vCPU, 1.0 GB RAM) のインスタンスが起動する． ここではその他のパラメータの詳細の説明は省略する (ハンズオン ([???](#sec_first_ec2)) で詳しく解説する)．
+このコマンドにより， [t2.micro](https://aws.amazon.com/ec2/instance-types/t2/) というタイプ (1 vCPU, 1.0 GB RAM) のインスタンスが起動する． ここではその他のパラメータの詳細の説明は省略する (ハンズオン ( (#sec_first_ec2)) で詳しく解説する)．
 
 Python から上記と同じ操作を実行するには，以下のようなスクリプトを使う．
 
@@ -148,15 +155,15 @@ ec2_client.run_instances(
 
 ここでは，ミニ・ハンズオンとして，AWS CLI を実際に使ってみる． AWS CLI は先述のとおり， AWS 上の任意のリソースの操作が可能であるが，ここでは一番シンプルな，**S3 を使ったファイルの読み書きを実践する** (EC2 の操作は少し複雑なので，第一回ハンズオンで行う)． `aws s3` コマンドの詳しい使い方は [公式ドキュメンテーション](https://docs.aws.amazon.com/cli/latest/reference/s3/index.html#cli-aws-s3)を参照．
 
-AWS CLI のインストールについては， [???](#aws_cli_install) を参照．
+AWS CLI のインストールについては， (#aws_cli_install) を参照．
 
 以下に紹介するハンズオンは，基本的に [S3 の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
-以下のコマンドを実行する前に，AWS の認証情報が正しく設定されていることを確認する． これには `~/.aws/credentials` のファイルに設定が書き込まれているか，環境変数 (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`) が定義されている必要がある． 詳しくは [???](#aws_cli_install) を参照．
+以下のコマンドを実行する前に，AWS の認証情報が正しく設定されていることを確認する． これには `~/.aws/credentials` のファイルに設定が書き込まれているか，環境変数 (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_DEFAULT_REGION`) が定義されている必要がある． 詳しくは (#aws_cli_install) を参照．
 
 まずは，S3 にデータの格納領域 (`Bucket` とよばれる．一般的な OS での"ドライブ"に相当する) を作成するところから始めよう．
 
-```shell
+```sh
 $ bucketName="mybucket-$(openssl rand -hex 12)"
 $ echo $bucketName
 $ aws s3 mb "s3://${bucketName}"
@@ -166,7 +173,7 @@ S3 のバケットの名前は， AWS 全体で一意的でなければならな
 
 次に，バケットの一覧を取得してみよう．
 
-```shell
+```sh
 $ aws s3 ls
 
 2020-06-07 23:45:44 mybucket-c6f93855550a72b5b66f5efe
@@ -178,7 +185,7 @@ $ aws s3 ls
 
 次に，バケットにファイルをアップロードする．
 
-```shell
+```sh
 $ echo "Hello world" > hello_world.txt
 $ aws s3 cp hello_world.txt "s3://${bucketName}/hello_world.txt"
 ```
@@ -187,7 +194,7 @@ $ aws s3 cp hello_world.txt "s3://${bucketName}/hello_world.txt"
 
 それでは，バケットの中にあるファイルの一覧を取得してみる．
 
-```shell
+```sh
 $ aws s3 ls "s3://${bucketName}" --human-readable
 
 2020-06-07 23:54:19   13 Bytes hello_world.txt
@@ -197,7 +204,7 @@ $ aws s3 ls "s3://${bucketName}" --human-readable
 
 最後に，使い終わったバケットを削除する．
 
-```shell
+```sh
 $ aws s3 rb "s3://${bucketName}" --force
 ```
 
@@ -219,7 +226,7 @@ S3 バケットや EC2 インスタンスなどには ARN に加えて，人間�
 
 しかし，ここで実用上考慮しなければならない点が一つある． AWS API には大きく分けて，**リソースを操作する**コマンドと，**タスクを実行する**コマンドがあることである ([figure_title](#fig_aws_iac))．
 
-![AWS APIはリソースを操作するコマンドとタスクを実行するコマンドに大きく分けられる．リソースを記述・管理するのに使われるのが， CloudFormation と CDK である．](imgs/iac.png)
+![AWS APIはリソースを操作するコマンドとタスクを実行するコマンドに大きく分けられる．リソースを記述・管理するのに使われるのが， CloudFormation と CDK である．](./assets/iac.png)
 
 **リソースを操作する**とは，EC2 のインスタンスを起動したり，S3 のバケットを作成したり，データベースに新たなテーブルを追加する，などの**静的なリソースを準備する** 操作を指す． "ハコ"を作る操作とよんでも良いだろう． このようなコマンドは，**クラウドのデプロイ時にのみ，一度だけ実行されればよい**．
 

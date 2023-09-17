@@ -8,7 +8,7 @@
 
 ハンズオンに入っていく前に， **Auto scaling groups (ASG)** とよばれる EC2 の概念を知っておく必要がある．
 
-ECS の概要を示した [???](#ecs_overview) を振り返って見てほしい． 前章 ([???](#sec_fargate_qabot)) でも説明したが， ECS のクラスターで計算を担う実体としては EC2 と Fargate を指定することができる． Fargate については前章で記述した． Fargate を用いると，自在にスケールする計算環境をとても簡単な設定で構築することができた． しかし， GPU を利用することができないなど，いくつかの制約があった． EC2 を使用した計算環境を指定することで，プログラミングの複雑度は増すが， GPU やその他のより高度かつ複雑な設定を伴ったクラスターを構築することができる．
+ECS の概要を示した (#ecs_overview) を振り返って見てほしい． 前章 ( (#sec_fargate_qabot)) でも説明したが， ECS のクラスターで計算を担う実体としては EC2 と Fargate を指定することができる． Fargate については前章で記述した． Fargate を用いると，自在にスケールする計算環境をとても簡単な設定で構築することができた． しかし， GPU を利用することができないなど，いくつかの制約があった． EC2 を使用した計算環境を指定することで，プログラミングの複雑度は増すが， GPU やその他のより高度かつ複雑な設定を伴ったクラスターを構築することができる．
 
 EC2 クラスターには **ASG** と呼ばれるサービスが配置される． ASG は複数の EC2 インスタンスをロジカルな単位でグループ化することでクラスターを構成する． ASG はクラスター内に新しいインスタンスを起動する，あるいは不要になったインスタンスを停止するなどのスケーリングを担う． ASG で重要な概念として， **desired capacity**, **minimum capacity**, **maximum capacity** というパラメータがある． minimum capacity， maximum capacity は，それぞれクラスター内に配置できるインスタンスの数の最小値・最大値を指定するパラメータである． 前者は，クラスターに負荷がかかっていない場合でもアイドリング状態にあるインスタンスを維持することで，急に負荷が増大した時などのバッファーとして作用することができる． 後者は，負荷が急に増えたときに，過剰な数のインスタンスが起動する事態を防ぎ，経済的なコストの上限を定める役割を果たす．
 
@@ -18,7 +18,7 @@ desired capacity が，その時々でシステムが要求するインスタン
 
 ## AWS Batch
 
-![AWS Batch のアイコン](imgs/aws_logos/Batch.png)
+![AWS Batch のアイコン](./assets/aws_logos/Batch.png)
 
 先に説明したように， ECS と ASG を組み合わせることで，所望の計算クラスターを構築することが可能である． しかしながら， ECS と ASG にはかなり込み入った設定が必要であり，初心者にとっても経験者にとってもなかなか面倒なプログラミングが要求される． そこで， ECS と ASG によるクラスターの設計を自動化してくれるサービスが提供されている． それが **AWS Batch** である．
 
@@ -28,7 +28,7 @@ AWS Batch では，ジョブの投入・管理をスムーズに行うため，�
 
 以上が AWS Batch を使用するうえで理解しておかなければならない概念であるが，くどくど言葉で説明してもなかなかピンとこないだろう． ここからは，実際に自分で手を動かしながら学んでいこう．
 
-![AWS Batch の主要な概念](imgs/aws_batch/batch_concepts.png)
+![AWS Batch の主要な概念](./assets/aws_batch/batch_concepts.png)
 
 **EC2 or Fargate?**
 
@@ -44,15 +44,15 @@ ECS でクラスターを構成する際，計算を実行する場として EC2
 
 ハンズオンのソースコードは GitHub の [handson/aws-batch](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/aws-batch) にある．
 
-本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
+本ハンズオンの実行には，第一回ハンズオンで説明した準備 ( (#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
 
 このハンズオンは， `g4dn.xlarge` タイプの EC2 インスタンスを使うので，アメリカ東部 (`us-east-1`) リージョンでは 0.526 $/hour のコストが発生する． 東京 (`ap-northeast-1`) を選択した場合は 0.71 $/hour のコストが発生する．
 
-[???](#sec:jupyter_and_deep_learning_setup) でも注意したが，このハンズオンを始める前に G タイプインスタンスの起動上限を AWS コンソールの EC2 管理画面から確認しよう． もし上限が 0 になっていた場合は，上限緩和の申請を行う必要がある． [アプリケーションの説明](#sec:aws_batch_code) にも関連した情報を記載しているので，併せて参照されたい．
+(#sec:jupyter_and_deep_learning_setup) でも注意したが，このハンズオンを始める前に G タイプインスタンスの起動上限を AWS コンソールの EC2 管理画面から確認しよう． もし上限が 0 になっていた場合は，上限緩和の申請を行う必要がある． [アプリケーションの説明](#sec:aws_batch_code) にも関連した情報を記載しているので，併せて参照されたい．
 
 ## MNIST 手書き文字認識 (再訪)
 
-今回のハンズオンでは，機械学習のハイパーパラメータ調整を取り上げると冒頭で述べた． その最もシンプルな例題として， [???](#sec_mnist_using_jupyter) で扱った MNIST 手書き文字認識の問題を再度取り上げよう． [???](#sec_mnist_using_jupyter) では，適当にチョイスしたハイパーパラメータを用いてモデルの訓練を行った． ここで使用したプログラムのハイパーパラメータとしては，確率的勾配降下法 (SGD) における学習率やモメンタムが含まれる． コードでいうと，次の行が該当する．
+今回のハンズオンでは，機械学習のハイパーパラメータ調整を取り上げると冒頭で述べた． その最もシンプルな例題として， (#sec_mnist_using_jupyter) で扱った MNIST 手書き文字認識の問題を再度取り上げよう． (#sec_mnist_using_jupyter) では，適当にチョイスしたハイパーパラメータを用いてモデルの訓練を行った． ここで使用したプログラムのハイパーパラメータとしては，確率的勾配降下法 (SGD) における学習率やモメンタムが含まれる． コードでいうと，次の行が該当する．
 
 ```python
 optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
@@ -74,11 +74,11 @@ optimizer = optim.SGD(model.parameters(), lr=0.01, momentum=0.5)
 
 まずは，本ハンズオンで使用する Docker イメージをローカルで実行してみよう．
 
-Docker イメージのソースコードは [handson/aws-batch/docker](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/docker) にある． 基本的に [???](#sec_mnist_using_jupyter) のハンズオンを元にし，本ハンズオン専用の軽微な変更が施してある． 興味のある読者はソースコードも含めて読んでいただきたい．
+Docker イメージのソースコードは [handson/aws-batch/docker](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/aws-batch/docker) にある． 基本的に (#sec_mnist_using_jupyter) のハンズオンを元にし，本ハンズオン専用の軽微な変更が施してある． 興味のある読者はソースコードも含めて読んでいただきたい．
 
 練習として，この Docker イメージを手元でビルドするところからはじめてみよう． `Dockerfile` が保存されているディレクトリに移動し， `mymnist` という名前 (Tag) をつけてビルドを実行する．
 
-```shell
+```sh
 $ cd handson/aws-batch/docker
 $ docker build -t mymnist .
 ```
@@ -87,19 +87,19 @@ $ docker build -t mymnist .
 
 手元でビルドするかわりに， Docker Hub から pull することも可能である． その場合は次のコマンドを実行する．
 
-```shell
+```sh
 $ docker pull tomomano/mymnist:latest
 ```
 
 イメージの準備ができたら，次のコマンドでコンテナを起動し， MNIST の学習を実行する．．
 
-```shell
+```sh
 $ docker run mymnist --lr 0.1 --momentum 0.5 --epochs 10
 ```
 
-このコマンドを実行すると，指定したハイパーパラメータ (`--lr` で与えられる学習率と `--momentum` で与えられるモメンタム) を使ってニューラルネットの最適化が始まる． 学習を行う最大のエポック数は `--epochs` パラメータで指定する． [???](#sec_jupyter_and_deep_learning) のハンズオンで見たような， Loss の低下がコマンドライン上に出力されるだろう ([figure_title](#fig_mnist_log_output))．
+このコマンドを実行すると，指定したハイパーパラメータ (`--lr` で与えられる学習率と `--momentum` で与えられるモメンタム) を使ってニューラルネットの最適化が始まる． 学習を行う最大のエポック数は `--epochs` パラメータで指定する． (#sec_jupyter_and_deep_learning) のハンズオンで見たような， Loss の低下がコマンドライン上に出力されるだろう ([figure_title](#fig_mnist_log_output))．
 
-![Docker を実行した際の出力](imgs/aws_batch/mnist_log_output.png)
+![Docker を実行した際の出力](./assets/aws_batch/mnist_log_output.png)
 
 上に示したコマンドを使うと，計算は CPU を使って実行される． もし，ローカルの計算機に GPU が備わっており， [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) の設定が済んでいるならば， 次のコマンドにより GPU を使って計算を実行できる．
 
@@ -109,7 +109,7 @@ $ docker run mymnist --lr 0.1 --momentum 0.5 --epochs 10
 
 CPU/GPU どちらで実行した場合でも，エポックを重ねるにつれて訓練データ (Train データ) の Loss は単調に減少していくのが見て取れるだろう． 一方，**検証データ (Validation データ) の Loss および Accuracy は，ある程度まで減少した後，それ以上性能が向上しない**ことに気がつくだろう． これを実際にプロットしてみると [figure_title](#fig_loss_epoch_profile) のようになるはずである．
 
-![(左) Train/Validation データそれぞれの Loss のエポックごとの変化． (右) Validation データの Accuracy のエポックごとの変化](imgs/aws_batch/loss_epoch_profile.png)
+![(左) Train/Validation データそれぞれの Loss のエポックごとの変化． (右) Validation データの Accuracy のエポックごとの変化](./assets/aws_batch/loss_epoch_profile.png)
 
 これは**オーバーフィッティング**とよばれる現象で，ニューラルネットが訓練データに過度に最適化され，訓練データの外のデータに対しての精度 (汎化性能) が向上していないことを示している． このような場合の対処法として， **Early stopping** とよばれるテクニックが知られている． Early stopping とは，検証データの Loss を追跡し，それが減少から増加に転じるエポックで学習をうち止め，そのエポックでのウェイトパラメータを採用する，というものである． 本ハンズオンでも， Early stopping によって訓練の終了を判断し，モデルの性能評価を行っていく．
 
@@ -119,7 +119,7 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#fig_batch_architecture) に示す．
 
-![アプリケーションのアーキテクチャ](imgs/aws_batch/architecture.png)
+![アプリケーションのアーキテクチャ](./assets/aws_batch/architecture.png)
 
 簡単にまとめると，次のような設計である．
 
@@ -227,7 +227,7 @@ class SimpleBatch(core.Stack):
 
 -   で， &lt;2&gt; で作成した Compute environment と紐付いた Job queue を定義している．
 
--   で，ジョブが計算結果を S3 に書き込むことができるよう， IAM ロールを定義している． (IAM とはリソースがもつ権限を管理する仕組みである．詳しくは [???](#sec:bashoutter_iam) を参照)
+-   で，ジョブが計算結果を S3 に書き込むことができるよう， IAM ロールを定義している． (IAM とはリソースがもつ権限を管理する仕組みである．詳しくは (#sec:bashoutter_iam) を参照)
 
 -   では， Docker image を配置するための ECR を定義している．
 
@@ -237,15 +237,15 @@ class SimpleBatch(core.Stack):
 
 ここで注意が一点ある． AWS では各アカウントごとに EC2 で起動できるインスタンスの上限が設定されている． この上限は AWS コンソールにログインし， EC2 コンソールの左側メニューバーの `Limits` をクリックすることで確認できる ([figure_title](#fig_ec2_limits))． `g4dn.xlarge` (EC2 の区分でいうと G ファミリーに属する) の制限を確認するには， `Running On-Demand All G instances` という名前の項目を見る． ここにある数字が， AWS によって課されたアカウントの上限であり，この上限を超えたインスタンスを起動することはできない． もし，自分の用途に対して上限が低すぎる場合は，上限の緩和申請を行うことができる． 詳しくは [公式ドキュメンテーション "Amazon EC2 service quotas"](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html) を参照のこと．
 
-![EC2コンソールから各種の上限を確認する](imgs/aws_batch/ec2_limits.png)
+![EC2コンソールから各種の上限を確認する](./assets/aws_batch/ec2_limits.png)
 
 ## スタックのデプロイ
 
 スタックの中身が理解できたところで，早速スタックをデプロイしてみよう．
 
-デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (\# で始まる行はコメントである)． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (\# で始まる行はコメントである)． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/aws-batch
 
@@ -260,7 +260,7 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されたことが確認できたら，AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールの検索バーで `batch` と入力し， AWS Batch の管理画面を開く ([figure_title](#fig_batch_console))．
 
-![AWS Batch のコンソール画面 (ダッシュボード)](imgs/aws_batch/batch_console.png)
+![AWS Batch のコンソール画面 (ダッシュボード)](./assets/aws_batch/batch_console.png)
 
 まず目を向けてほしいのが，画面の一番下にある Compute environment overview の中の `SimpleBatchcompute-env` という名前の項目だ． Compute environment とは，先ほど述べたとおり，計算が実行される環境 (クラスターと読み替えてもよい) である． プログラムで指定したとおり， `g4dn.xlarge` が実際に使用されるインスタンスタイプとして表示されている． また， `Minimum vCPUs` が 0，`Maximum vCPUs` が 64 と設定されていることも見て取れる． 加えて，この時点では一つもジョブが走っていないので， `Desired vCPUs` は 0 になっている． より詳細な Compute environment の情報を閲覧したい場合は，名前をクリックすることで詳細画面が開く．
 
@@ -268,11 +268,11 @@ $ cdk deploy
 
 最後に，今回作成した Job definition を確認しよう． 左側のメニューから　`Job definitions` を選択し，次の画面で `SimpleBatchjob-definition` という項目を見つけて開く． ここから Job definition の詳細を閲覧することができる ([figure_title](#fig:batch_job_definition))． 中でも重要な情報としては，　`vCPUs`, `Memory`, `GPU` がそれぞれ Docker に割り当てられる vCPU・メモリー・ GPU の量を規定している． また， `Image` と書いてあるところに，ジョブで使用される Docker イメージが指定されている． ここでは， ECR のレポジトリを参照している． 現時点ではこの ECR は空である． 次のステップとして，この ECR にイメージを配置する作業を行おう．
 
-![AWS Batch から Job definition を確認](imgs/aws_batch/batch_job_definition.png)
+![AWS Batch から Job definition を確認](./assets/aws_batch/batch_job_definition.png)
 
 ## Docker image を ECR に配置する
 
-さて， Batch がジョブを実行するには，どこか指定された場所から Docker イメージをダウンロード (pull) してくる必要がある． 前回のハンズオン ([???](#sec_fargate_qabot)) では，公開設定にしてある Docker Hub からイメージを pull してきた． 今回のハンズオンでは， AWS から提供されているレジストリである **ECR (Elastic Container Registry)** に image を配置するという設計を採用する． ECR を利用する利点は，自分だけがアクセスすることのできるプライベートなイメージの置き場所を用意できる点である． Batch は ECR からイメージを pull してくることで，タスクを実行する ([figure_title](#fig_batch_architecture))．
+さて， Batch がジョブを実行するには，どこか指定された場所から Docker イメージをダウンロード (pull) してくる必要がある． 前回のハンズオン ( (#sec_fargate_qabot)) では，公開設定にしてある Docker Hub からイメージを pull してきた． 今回のハンズオンでは， AWS から提供されているレジストリである **ECR (Elastic Container Registry)** に image を配置するという設計を採用する． ECR を利用する利点は，自分だけがアクセスすることのできるプライベートなイメージの置き場所を用意できる点である． Batch は ECR からイメージを pull してくることで，タスクを実行する ([figure_title](#fig_batch_architecture))．
 
 スタックのソースコードでいうと，次の箇所が ECR を定義している．
 
@@ -301,11 +301,11 @@ job_def = batch.JobDefinition(
 
 そのために，まずは AWS コンソールから ECR の画面を開こう (検索バーに `Elastic Container Registry` と入力すると出てくる)． `Private` というタブを選択すると， `simplebatch-repositoryXXXXXX` という名前のレポジトリが見つかるだろう ([figure_title](#fig_ecr_console1))．
 
-![ECR のコンソール画面](imgs/aws_batch/ecr_console1.png)
+![ECR のコンソール画面](./assets/aws_batch/ecr_console1.png)
 
 次に，このレポジトリの名前をクリックするとレポジトリの詳細画面に遷移する． そうしたら，画面右上にある `View push commands` というボタンをクリックする． すると [figure_title](#fig_ecr_push_command) のようなポップアップ画面が立ち上がる．
 
-![ECR への push コマンド](imgs/aws_batch/ecr_push_command.png)
+![ECR への push コマンド](./assets/aws_batch/ecr_push_command.png)
 
 このポップアップ画面で表示されている四つのコマンドを順番に実行していくことで，手元の Docker イメージを ECR に push することができる． **push を実行する前に， AWS の認証情報が設定されている**ことを確認しよう． そのうえで，ハンズオンのソースコードの中にある **`docker/` という名前のディレクトリに移動**する． そうしたら，ポップアップ画面で表示されたコマンドを上から順に実行していく．
 
@@ -313,7 +313,7 @@ job_def = batch.JobDefinition(
 
 四つ目のコマンドは，数 GB あるイメージを ECR にアップロードするので少し時間がかかるかもしれないが，これが完了するとめでたくイメージが ECR に配置されたことになる． もう一度 ECR のコンソールを見てみると，確かにイメージが配置されていることが確認できる ([figure_title](#fig_ecr_console2))． これで，AWS Batch を使ってジョブを実行させるための最後の準備が完了した．
 
-![ECR へ image の配置が完了した](imgs/aws_batch/ecr_console2.png)
+![ECR へ image の配置が完了した](./assets/aws_batch/ecr_console2.png)
 
 ## 単一のジョブを実行する
 
@@ -323,7 +323,7 @@ job_def = batch.JobDefinition(
 
 今回のハンズオンでは， `venv` による仮想環境の中に Jupyter notebook もインストール済みである． なので，ローカルマシンから以下のコマンドで Jupyter notebook を立ち上げる．
 
-```shell
+```sh
 # .env の仮想環境にいることを確認
 (.env) $ cd notebook
 (.env) $ jupyter notebook
@@ -367,7 +367,7 @@ def submit_job(lr:float, momentum:float, epochs:int, profile_name="default"):
 
 `submit_job()` 関数について簡単に説明しよう． [MNIST 手書き文字認識 (再訪)](#sec_run_mnist_docker_local) で， MNIST の Docker をローカルで実行したとき，次のようなコマンドを使用した．
 
-```shell
+```sh
 $ docker run -it mymnist --lr 0.1 --momentum 0.5 --epochs 10
 ```
 
@@ -393,11 +393,11 @@ submit_job(0.01, 0.1, 100)
 
 AWS の認証情報は， Jupyter Notebook の内部から再度定義する必要がある． これを手助けするため， Notebook の \[2\] 番のセル (デフォルトではすべてコメントアウトされている) を用意した． これを使うにはコメントアウトを解除すればよい． このセルを実行すると， AWS の認証情報を入力する対話的なプロンプトが表示される． プロンプトに従って aws secret key などを入力することで， (Jupyter のセッションに固有な) 環境変数に AWS の認証情報が記録される．
 
-もう一つの認証方法として， `submit_job()` 関数に `profile_name` というパラメータを用意した． もし `~/.aws/credentials` に認証情報が書き込まれているのならば (詳しくは [???](#aws_cli_install))， `profile_name` に使用したいプロファイルの名前を渡すだけで， 認証を行うことができる． 慣れている読者は後者のほうが便利であると感じるだろう．
+もう一つの認証方法として， `submit_job()` 関数に `profile_name` というパラメータを用意した． もし `~/.aws/credentials` に認証情報が書き込まれているのならば (詳しくは (#aws_cli_install))， `profile_name` に使用したいプロファイルの名前を渡すだけで， 認証を行うことができる． 慣れている読者は後者のほうが便利であると感じるだろう．
 
 \[4\] 番のセルを実行したら，ジョブが実際に投入されたかどうかを AWS コンソールから確認してみよう． AWS Batch の管理コンソールを開くと， [figure_title](#fig_batch_running_job) のような画面が表示されるだろう．
 
-![AWS Batch でジョブが実行されている様子](imgs/aws_batch/batch_running_job.png)
+![AWS Batch でジョブが実行されている様子](./assets/aws_batch/batch_running_job.png)
 
 [figure_title](#fig_batch_running_job) で赤で囲った箇所に注目してほしい． 一つのジョブが投入されると，それは `SUBMITTED` という状態を経て `RUNNABLE` という状態に遷移する． `RUNNABLE` とは， ジョブを実行するためのインスタンスが Compute environment に不足しているため，新たなインスタンスが起動されるのを待っている状態に相当する． インスタンスの準備が整うと，ジョブの状態は `STARTING` を経て `RUNNING` に至る．
 
@@ -409,7 +409,7 @@ AWS の認証情報は， Jupyter Notebook の内部から再度定義する必�
 
 S3 のコンソールに行くと `simplebatch-bucketXXXX` (XXXX の部分はユーザーによって異なる) という名前のバケットが見つかるはずである． これをクリックして中身を見てみると， `metrics_lr0.0100_m0.1000.csv` という名前の CSV があることが確認できるだろう ([figure_title](#fig_s3_saved_file))． これが， 学習率 = 0.01, モメンタム = 0.1 として学習を行ったときの結果である．
 
-![ジョブの実行結果は S3 に保存される](imgs/aws_batch/s3_saved_file.png)
+![ジョブの実行結果は S3 に保存される](./assets/aws_batch/s3_saved_file.png)
 
 さて，ここで `run_single.ipynb` に戻ってこよう． \[5\] から \[7\] 番のセルでは，学習結果の CSV ファイルのダウンロードを行っている．
 
@@ -466,7 +466,7 @@ print("Best accuracy:", df["val_accuracy"].max())
 print("Best accuracy epoch:", df["val_accuracy"].argmax())
 ```
 
-![AWS Batch で行った MNIST モデルの学習の結果](imgs/aws_batch/loss_epoch_profile2.png)
+![AWS Batch で行った MNIST モデルの学習の結果](./assets/aws_batch/loss_epoch_profile2.png)
 
 ## 並列に複数の Job を実行する
 
@@ -500,15 +500,15 @@ for lr in [0.1, 0.01, 0.001]:
 
 セル \[4\] を実行したら， Batch のコンソールを開こう． 先ほどと同様に，ジョブのステータスは `SUBMITTED` &gt; `RUNNABLE` &gt; `STARTING` &gt; `RUNNING` と移り変わっていくことがわかるだろう． 最終的に 9 個のジョブがすべて `RUNNING` の状態になることを確認しよう ([figure_title](#fig_batch_many_parallel_jobs))． また，このとき Compute environment の `Desired vCPUs` は 4x9=36 となっていることを確認しよう ([figure_title](#fig_batch_many_parallel_jobs))．
 
-![複数のジョブを同時投入したときの Batch コンソール](imgs/aws_batch/batch_many_parallel_jobs.png)
+![複数のジョブを同時投入したときの Batch コンソール](./assets/aws_batch/batch_many_parallel_jobs.png)
 
 次に，Batch のコンソールの左側のメニューから `Jobs` をクリックしてみよう． ここでは，実行中のジョブの一覧が確認することができる ([figure_title](#fig_batch_parallel_job_list))． ジョブのステータスでフィルタリングをすることも可能である． 9 個のジョブがどれも `RUNNING` 状態にあることが確認できるだろう．
 
-![複数のジョブを同時投入したときの Job 一覧](imgs/aws_batch/batch_parallel_job_list.png)
+![複数のジョブを同時投入したときの Job 一覧](./assets/aws_batch/batch_parallel_job_list.png)
 
 今度は EC2 コンソールを見てみよう． 左のメニューから `Instances` を選択すると， [figure_title](#fig_ec2_instances_list) に示すような起動中のインスタンスの一覧が表示される． `g4dn.xlarge` が 9 台稼働しているのが確認できる． Batch がジョブの投下に合わせて必要な数のインスタンスを起動してくれたのだ！
 
-![複数のジョブを同時投入したときの EC2 インスタンスの一覧](imgs/aws_batch/ec2_instances_list.png)
+![複数のジョブを同時投入したときの EC2 インスタンスの一覧](./assets/aws_batch/ec2_instances_list.png)
 
 ここまで確認できたら，それぞれの Job が終了するまでしばらく待とう (だいたい 10-15 分くらいで終わる)． すべてのジョブが終了すると，ダッシュボードの `SUCCEEDED` が 9 となっているはずだ． また， Compute environment の `Desired vCPUs` も 0 に落ちていることを確認しよう． 最後に EC2 コンソールに行って，すべての g4dn インスタンスが停止していることを確認しよう．
 
@@ -559,7 +559,7 @@ for i in range(3):
 
 最終的に出力されるプロットが [figure_title](#fig_grid_search_result) である．
 
-![ハイパーパラメータのグリッドサーチの結果](imgs/aws_batch/grid_search_result.png)
+![ハイパーパラメータのグリッドサーチの結果](./assets/aws_batch/grid_search_result.png)
 
 このプロットから，差は僅かであるが，学習率が 0.1 のときに精度は最大となることがわかる． また，学習率 0.1 のときはモメンタムを変えても大きな差は生じないことが見て取れる．
 
@@ -577,37 +577,37 @@ for i in range(3):
 
 ECR の Docker image を削除するには， ECR のコンソールに行き，イメージが配置されたレポジトリを開く． そして，画面右上の `DELETE` ボタンを押して削除する ([figure_title](#fig_delete_ecr))．
 
-![ECR から Docker image を削除する](imgs/aws_batch/delete_ecr.png)
+![ECR から Docker image を削除する](./assets/aws_batch/delete_ecr.png)
 
 あるいは， AWS CLI から同様の操作を行うには，以下のコマンドを用いる (`XXXX` は自分の ECR レポジトリ名に置き換える)．
 
-```shell
+```sh
 $ aws ecr batch-delete-image --repository-name XXXX --image-ids imageTag=latest
 ```
 
 image の削除が完了したうえで，次のコマンドでスタックを削除する．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
-[???](#sec:batch_development_and_debug) === クラウドを用いた機械学習アプリケーションの開発とデバッグ
+(#sec:batch_development_and_debug) === クラウドを用いた機械学習アプリケーションの開発とデバッグ
 
 本章で紹介したハンズオンでは， AWS Batch を使用することでニューラルネットの学習を複数並列に実行し，高速化を実現した． 本章の最後の話題として，クラウドを用いた機械学習アプリケーションの開発とデバッグの方法について述べよう．
 
-ローカルに GPU を搭載した強力なマシンがなく，クラウドを利用する予算が確保されているのであれば， [figure_title](#fig:cloud_development) のような開発のスキームが理想的であると考える． 最初の段階では， [???](#sec_jupyter_and_deep_learning) で見たような方法で， GPU 搭載型の EC2 インスタンスを作成し， Jupyter Notebook などのインタラクティブな環境で様々なモデルを試し実験を行う． Jupyter である程度アプリケーションが完成してきたタイミングで，作成したアプリケーションを Docker イメージにパッケージングする． そして， EC2 上で `docker run` を行い，作成したイメージがバグなく動作するか確認を行う． その次に，ハイパーパラメータの最適化などのチューニングを， [Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する](#sec_aws_batch) のハンズオンで学んだ AWS Batch などの計算システムを利用して行う． よい深層学習モデルが完成したら，仕上げに大規模データへの推論処理を行うシステムを [???](#sec_fargate_qabot) を参考に構築する．
+ローカルに GPU を搭載した強力なマシンがなく，クラウドを利用する予算が確保されているのであれば， [figure_title](#fig:cloud_development) のような開発のスキームが理想的であると考える． 最初の段階では， (#sec_jupyter_and_deep_learning) で見たような方法で， GPU 搭載型の EC2 インスタンスを作成し， Jupyter Notebook などのインタラクティブな環境で様々なモデルを試し実験を行う． Jupyter である程度アプリケーションが完成してきたタイミングで，作成したアプリケーションを Docker イメージにパッケージングする． そして， EC2 上で `docker run` を行い，作成したイメージがバグなく動作するか確認を行う． その次に，ハイパーパラメータの最適化などのチューニングを， [Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する](#sec_aws_batch) のハンズオンで学んだ AWS Batch などの計算システムを利用して行う． よい深層学習モデルが完成したら，仕上げに大規模データへの推論処理を行うシステムを (#sec_fargate_qabot) を参考に構築する．
 
 実際，本書ではこの流れに沿って演習を進めてきた． MNIST タスクを解くモデルを，最初 Jupyter Notebook を使用して実験し，そのコードをほとんどそのまま Docker にパッケージし， AWS Batch を用いてハイパーパラメータサーチを行った． このサイクルを繰り返すことで，クラウドを最大限に活用した機械学習アプリケーションの開発を進めることができる．
 
-![クラウドを活用した機械学習アプリケーションの開発フロー](imgs/aws_batch/cloud_development.png)
+![クラウドを活用した機械学習アプリケーションの開発フロー](./assets/aws_batch/cloud_development.png)
 
 ## 小括
 
 ここまでが，本書第二部の内容である． 第一部に引き続き盛りだくさんの内容であったが，ついてこれたであろうか？
 
-第二部ではまず最初に，深層学習の計算をクラウドで実行するため， GPU 搭載型の EC2 インスタンスの起動について解説した． さらに，ハンズオンでは，クラウドに起動した仮想サーバーを使って MNIST 文字認識タスクを解くニューラルネットを訓練した ([???](#sec_jupyter_and_deep_learning))．
+第二部ではまず最初に，深層学習の計算をクラウドで実行するため， GPU 搭載型の EC2 インスタンスの起動について解説した． さらに，ハンズオンでは，クラウドに起動した仮想サーバーを使って MNIST 文字認識タスクを解くニューラルネットを訓練した ( (#sec_jupyter_and_deep_learning))．
 
-また，より大規模な機械学習アプリケーションを作るための手段として， Docker と ECS によるクラスターの初歩を説明した ([???](#sec_docker_introduction))． その応用として，英語で与えられた文章問題への回答を自動で生成するボットをクラウドに展開した ([???](#sec_fargate_qabot))． タスクの投入に応じて動的に計算リソースが作成・削除される様子を実際に体験できただろう．
+また，より大規模な機械学習アプリケーションを作るための手段として， Docker と ECS によるクラスターの初歩を説明した ( (#sec_docker_introduction))． その応用として，英語で与えられた文章問題への回答を自動で生成するボットをクラウドに展開した ( (#sec_fargate_qabot))． タスクの投入に応じて動的に計算リソースが作成・削除される様子を実際に体験できただろう．
 
 さらに， [Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する](#sec_aws_batch) では AWS Batch を用いてニューラルネットの学習を並列に実行する方法を紹介した． ここで紹介した方法は，ミニマムであるが，計算機システムを大規模化していくためのエッセンスが網羅されている． これらのハンズオン体験から，クラウド技術を応用してどのように現実世界の問題を解いていくのか，なんとなくイメージが伝わっただろうか？
 

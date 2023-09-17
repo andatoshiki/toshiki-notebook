@@ -34,11 +34,11 @@
 
 決して楽な搭乗体験ではないかもしれないが，このロケットにしがみついてきてもらえれば，とてもエキサイティングな景色が見られることを約束したい．
 
-![宇宙からみた地球 (Image from NASA <https://www.nasa.gov/image-feature/planet-of-clouds>)](imgs/earth_from_earth.jpg)
+![宇宙からみた地球 (Image from NASA <https://www.nasa.gov/image-feature/planet-of-clouds>)](./assets/earth_from_earth.jpg)
 
 ## AWS アカウント
 
-本書では，ハンズオン形式で AWS のクラウドを実際に動かす演習を提供する． 自分でハンズオンを実行してみたい読者は，各自で AWS のアカウントの作成をしていただく． AWS のアカウントの作成の仕方は巻末付録 ([???](#sec:create_aws_account)) に簡単に記載したので，必要に応じて参照していただきたい．
+本書では，ハンズオン形式で AWS のクラウドを実際に動かす演習を提供する． 自分でハンズオンを実行してみたい読者は，各自で AWS のアカウントの作成をしていただく． AWS のアカウントの作成の仕方は巻末付録 ( (#sec:create_aws_account)) に簡単に記載したので，必要に応じて参照していただきたい．
 
 AWS にはいくつかの機能に対して無料利用枠が設定されており，いくつかのハンズオンは無料の範囲内で実行できる． 一方，ほかのハンズオン (とくに機械学習を扱うもの) では数ドル程度のコストが発生する． ハンズオンごとに発生するおおよそのコストについて記述があるので，注意をしながらハンズオンに取り組んでいただきたい．
 
@@ -46,21 +46,21 @@ AWS にはいくつかの機能に対して無料利用枠が設定されてお�
 
 ## 環境構築
 
-本書では， AWS 上にクラウドアプリケーションを展開するハンズオンを実施する． そこで紹介するプログラムを実行するためには，以下の計算機環境が必要である． インストールの方法については，巻末付録 ([???](#sec:appendix_settingup)) に記してある． 必要に応じて参照し，環境構築を各自実施していただきたい．
+本書では， AWS 上にクラウドアプリケーションを展開するハンズオンを実施する． そこで紹介するプログラムを実行するためには，以下の計算機環境が必要である． インストールの方法については，巻末付録 ( (#sec:appendix_settingup)) に記してある． 必要に応じて参照し，環境構築を各自実施していただきたい．
 
--   **UNIX 系コンソール**: ハンズオンで紹介するコマンドを実行したり， SSH でサーバーにアクセスするため， UNIX 系のコンソール環境が必要である． Mac または Linux のユーザーは， OS に標準搭載のコンソール(ターミナルとも呼ばれる)を使用すればよい． Windows のユーザーは， [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about) を使い， Linux の仮想環境のインストールを推奨する ([???](#sec:install_wsl) 参照)．
+-   **UNIX 系コンソール**: ハンズオンで紹介するコマンドを実行したり， SSH でサーバーにアクセスするため， UNIX 系のコンソール環境が必要である． Mac または Linux のユーザーは， OS に標準搭載のコンソール(ターミナルとも呼ばれる)を使用すればよい． Windows のユーザーは， [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/about) を使い， Linux の仮想環境のインストールを推奨する ( (#sec:install_wsl) 参照)．
 
--   **Docker**: 本書では Docker とよばれる仮想計算環境の利用方法を解説する． インストール手順については [???](#sec:install_docker) を参照のこと．
+-   **Docker**: 本書では Docker とよばれる仮想計算環境の利用方法を解説する． インストール手順については (#sec:install_docker) を参照のこと．
 
--   **Python**: Version 3.6 以上をインストールする． とくに，ハンズオンでは `venv` モジュールを使用する． `venv` の使い方は [???](#venv_quick_guide) 参照のこと．
+-   **Python**: Version 3.6 以上をインストールする． とくに，ハンズオンでは `venv` モジュールを使用する． `venv` の使い方は (#venv_quick_guide) 参照のこと．
 
 -   **Node.js**: version 12.0 以上 をインストールする．
 
--   **AWS CLI**: [Version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) をインストールする． インストール手順については [???](#aws_cli_install) 参照のこと．
+-   **AWS CLI**: [Version 2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) をインストールする． インストール手順については (#aws_cli_install) 参照のこと．
 
--   **AWS CDK**: Version 1.100 以上をインストールする． Version 2 以降には未対応である． インストール手順については [???](#aws_cdk_install) 参照のこと．
+-   **AWS CDK**: Version 1.100 以上をインストールする． Version 2 以降には未対応である． インストール手順については (#aws_cdk_install) 参照のこと．
 
--   **AWS 認証鍵の設定**: AWS API をコマンドラインから呼ぶには，認証鍵 (secret key) が設定されている必要がある． 認証鍵の設定については [???](#aws_cli_install) 参照のこと．
+-   **AWS 認証鍵の設定**: AWS API をコマンドラインから呼ぶには，認証鍵 (secret key) が設定されている必要がある． 認証鍵の設定については (#aws_cli_install) 参照のこと．
 
 ### ハンズオン実行用の Docker Image
 
@@ -68,11 +68,11 @@ Python, Node.js, AWS CDK など，ハンズオンのプログラムを実行す�
 
 次のコマンドで起動する．
 
-```shell
+```sh
 $ docker run -it tomomano/labc
 ```
 
-この Docker image の使い方や詳細は [???](#sec_handson_docker) に記載している．
+この Docker image の使い方や詳細は (#sec_handson_docker) に記載している．
 
 ## 前提知識
 

@@ -34,7 +34,7 @@
 
 決して楽な搭乗体験ではないかもしれないが，このロケットにしがみついてきてもらえれば，とてもエキサイティングな景色が見られることを約束したい．
 
-![宇宙からみた地球 (Image from NASA <https://www.nasa.gov/image-feature/planet-of-clouds>)](imgs/earth_from_earth.jpg)
+![宇宙からみた地球 (Image from NASA <https://www.nasa.gov/image-feature/planet-of-clouds>)](./assets/earth_from_earth.jpg)
 
 ## AWS アカウント
 
@@ -68,7 +68,7 @@ Python, Node.js, AWS CDK など，ハンズオンのプログラムを実行す�
 
 次のコマンドで起動する．
 
-```shell
+```sh
 $ docker run -it tomomano/labc
 ```
 
@@ -108,13 +108,13 @@ $ docker run -it tomomano/labc
 
 ## クラウドとは？
 
-![Cloud](imgs/cloud_word_art.png)
+![Cloud](./assets/cloud_word_art.png)
 
 クラウドとはなにか？ クラウドという言葉は，それ自身がとても広い意味をもつので，厳密な定義付けを行うことは難しい．
 
 学術的な意味でのクラウドの定義づけをするとしたら，NIST(米国・国立標準技術研究所) による [The NIST Definition of Cloud Computing](https://csrc.nist.gov/publications/detail/sp/800-145/final) が引用されることが多い． ここに記載されたクラウドの定義・モデルを図示したのが [figure_title](#fig:nist_cloud_definition) である．
 
-![The NIST Definition of Cloud Computing](imgs/nist_cloud_definition.png)
+![The NIST Definition of Cloud Computing](./assets/nist_cloud_definition.png)
 
 これによると，クラウドとは以下の要件が満たされたハードウェア/ソフトウェアの総体のことをいう．
 
@@ -174,7 +174,7 @@ SaaS は本書の文脈では開発による"成果物"と捉えられるだろ�
 
     自前の計算環境とクラウドの，経済的なコストのイメージを示したのが [figure_title](#cloud_economic_curve) である． クラウドを利用する場合の初期コストは基本的に 0 である． その後，使った利用量に応じてコストが増大していく． 一方，自前の計算環境では，大きな初期コストが生じる． その分，初期投資後のコストの増加は，電気利用料やサーバー維持費などに留まるため，クラウドを利用した場合よりも傾きは小さくなる． 自前の計算機では，ある一定期間後，サーバーのアップグレードなどによる支出が生じることがある． 一方，クラウドを利用する場合は，そのような非連続なコストの増大は基本的に生じない． クラウドのコストのカーブが，自前計算環境のコストのカーブの下にある範囲においては，クラウドを使うことは経済的なコスト削減につながる．
 
-    ![クラウドと自前計算機環境の経済的コストの比較](imgs/cloud_cost.png)
+    ![クラウドと自前計算機環境の経済的コストの比較](./assets/cloud_cost.png)
 
 とくに，**1.**の点は研究の場面では重要であると筆者は感じる． 研究をやっていて，四六時中計算を走らせ続けるという場合は少ない． むしろ，新しいアルゴリズムが完成したとき・新しいデータが届いたとき，集中的・突発的に計算タスクが増大することが多いだろう． そういったときに，フレキシブルに計算力を増強させることができるのは，クラウドを使う大きなメリットである．
 
@@ -190,9 +190,9 @@ SaaS は本書の文脈では開発による"成果物"と捉えられるだろ�
 
 Mac/Linux などでコマンドを入力するときに使用する，あの黒い画面のことを Terminal とよんだりする． この言葉の語源をご存知だろうか？
 
-![Terminal](imgs/terminal.png)
+![Terminal](./assets/terminal.png)
 
-この言葉の語源は，コンピュータが誕生して間もない頃の時代に遡る． その頃のコンピュータというと，何千何万のという数の真空管が接続された，会議室一個分くらいのサイズのマシンであった． そのような高価でメンテが大変な機材であるから，当然みんなでシェアして使うことが前提となる． ユーザーがコンピュータにアクセスするため，マシンからは何本かのケーブルが伸び，それぞれにキーボードとスクリーンが接続されていた… これを **Terminal** とよんでいたのである． 人々は，代わる代わる Terminal の前に座って，計算機との対話を行っていた．
+この言葉の語源は，コンピュータが誕生して間もない頃の時代に遡る． その頃のコンピュータというと，何千何万のという数の真空管が接続された，会議室一個分くらいのサイズのマシンであった． そのような高価でメンテが大変な機材であるから，当然みんなでシェアして使うことが前提となる． ユーザーがコンピュータにアクセスするため，マシンからは何本かのケーブルが伸び，それぞれにキーボードとスクリーンが接続されていた… これを **Terminal** とよんでいたのである． 人々は，代わる代わる Terminal の前に座って，計算機との対話を行っていた.
 
 時代は流れ，Windows や Mac などのいわゆるパーソナルコンピュータの出現により，コンピュータはみんなで共有するものではなく，個人が所有するものになった．
 
@@ -212,7 +212,7 @@ Mac/Linux などでコマンドを入力するときに使用する，あの黒�
 
 [figure_title](#fig_aws_services) は，執筆時点において AWS で提供されている主要な機能・サービスの一覧である．
 
-![AWSで提供されている主要なサービス一覧](imgs/aws_services.png)
+![AWSで提供されている主要なサービス一覧](./assets/aws_services.png)
 
 計算，ストレージ，データベース，ネットワーク，セキュリティなど，クラウドの構築に必要な様々な要素が**独立したコンポーネント**として提供されている． 基本的に，これらを組み合わせることで一つのクラウドシステムができあがる．
 
@@ -224,39 +224,39 @@ AWS の初心者が陥りがちなのは，**大量のサービスの数に圧�
 
 ### 計算
 
-![S3](imgs/aws_logos/EC2.png) **EC2 (Elastic Compute Cloud)** 様々なスペックの仮想マシンを作成し，計算を実行することができる． クラウドの最も基本となる構成要素である． [Hands-on \#1: 初めての EC2 インスタンスを起動する](#sec_first_ec2), [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning), [Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する](#sec_aws_batch) で詳しく触れる．
+![S3](./assets/aws_logos/EC2.png) **EC2 (Elastic Compute Cloud)** 様々なスペックの仮想マシンを作成し，計算を実行することができる． クラウドの最も基本となる構成要素である． [Hands-on \#1: 初めての EC2 インスタンスを起動する](#sec_first_ec2), [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning), [Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する](#sec_aws_batch) で詳しく触れる．
 
-![S3](imgs/aws_logos/Lambda.png) **Lambda** Function as a Service (FaaS) とよばれる，小さな計算を**サーバーなし**で実行するためのサービス． サーバーレスアーキテクチャの章 ([Serverless architecture](#sec_serverless)) で詳しく解説する．
+![S3](./assets/aws_logos/Lambda.png) **Lambda** Function as a Service (FaaS) とよばれる，小さな計算を**サーバーなし**で実行するためのサービス． サーバーレスアーキテクチャの章 ([Serverless architecture](#sec_serverless)) で詳しく解説する．
 
 ### ストレージ
 
-![S3](imgs/aws_logos/EBS.png) **EBS (Elastic Block Store)** EC2 に付与することのできる仮想データドライブ． いわゆる"普通の"(一般的な OS で使われている)ファイルシステムを思い浮かべてくれたらよい．
+![S3](./assets/aws_logos/EBS.png) **EBS (Elastic Block Store)** EC2 に付与することのできる仮想データドライブ． いわゆる"普通の"(一般的な OS で使われている)ファイルシステムを思い浮かべてくれたらよい．
 
-![S3](imgs/aws_logos/S3.png) **S3 (Simple Storage Service)** Object Storage とよばれる，API を使ってデータの読み書きを行う，いうなれば”クラウド・ネイティブ”なデータの格納システムである． サーバーレスアーキテクチャの章 ([Serverless architecture](#sec_serverless)) で詳しく解説する．
+![S3](./assets/aws_logos/S3.png) **S3 (Simple Storage Service)** Object Storage とよばれる，API を使ってデータの読み書きを行う，いうなれば”クラウド・ネイティブ”なデータの格納システムである． サーバーレスアーキテクチャの章 ([Serverless architecture](#sec_serverless)) で詳しく解説する．
 
 ### データベース
 
-![S3](imgs/aws_logos/DynamoDB.png) **DynamoDB** NoSQL 型のデータベースサービス (知っている人は `mongoDB` などを思い浮かべたらよい)． サーバーレスアーキテクチャの章 ([Serverless architecture](#sec_serverless)) で詳しく解説する．
+![S3](./assets/aws_logos/DynamoDB.png) **DynamoDB** NoSQL 型のデータベースサービス (知っている人は `mongoDB` などを思い浮かべたらよい)． サーバーレスアーキテクチャの章 ([Serverless architecture](#sec_serverless)) で詳しく解説する．
 
 ### ネットワーク
 
-![S3](imgs/aws_logos/VPC.png) **VPC(Virtual Private Cloud)** AWS 上に仮想ネットワーク環境を作成し，仮想サーバー間の接続を定義したり，外部からのアクセスなどを管理する． EC2 は VPC の内部に配置されなければならない．
+![S3](./assets/aws_logos/VPC.png) **VPC(Virtual Private Cloud)** AWS 上に仮想ネットワーク環境を作成し，仮想サーバー間の接続を定義したり，外部からのアクセスなどを管理する． EC2 は VPC の内部に配置されなければならない．
 
-**API Gateway** ![S3](imgs/aws_logos/APIGateway.png) API のエンドポイントとバックエンドのサービス (Lambda など) を接続する際に用いる，リバースプロキシとしての役割を担う． [Hands-on \#6: Bashoutter](#sec_bashoutter) で詳しく解説する．
+**API Gateway** ![S3](./assets/aws_logos/APIGateway.png) API のエンドポイントとバックエンドのサービス (Lambda など) を接続する際に用いる，リバースプロキシとしての役割を担う． [Hands-on \#6: Bashoutter](#sec_bashoutter) で詳しく解説する．
 
 ## Region と Availability Zone
 
 AWS を使用する際に知っておかなければならない重要な概念として， **リージョン (Region)** と **Availability Zone (AZ)** がある ([figure_title](#fig_aws_regions_and_azs))． 以下ではこの概念について簡単に記述する．
 
-![AWSにおける Region と Availability Zones](imgs/aws_region_and_az.png)
+![AWSにおける Region と Availability Zones](./assets/aws_region_and_az.png)
 
 **リージョン (Region)** とは，おおまかに言うとデータセンターの所在地のことである． 執筆時点において， AWS は世界の 25 の国と地域でデータセンターを所有している． [figure_title](#fig_aws_regions) は執筆時点で利用できるリージョンの世界地図を示している． 日本では東京と大阪にデータセンターがある． 各リージョンには固有の ID がついており，例えば東京は `ap-northeast-1`, 米国オハイオ州は `us-east-2`，などと定義されている．
 
-![Regions in AWS(出典: <https://aws.amazon.com/about-aws/global-infrastructure/>)](imgs/aws_regions.png)
+![Regions in AWS(出典: <https://aws.amazon.com/about-aws/global-infrastructure/>)](./assets/aws_regions.png)
 
 AWS コンソールにログインすると，画面右上のメニューバーでリージョンを選択することができる([figure_title](#fig_aws_console_regions), 赤丸で囲った箇所)． EC2, S3 などの AWS のリソースは，リージョンごとに完全に独立である． したがって，**リソースを新たにデプロイする際，あるいはデプロイ済みのリソースを閲覧する際は，コンソールのリージョンが正しく設定されているか，確認する必要がある**． ウェブビジネスを展開する場合などは，世界の各地にクラウドを展開する必要があるが，個人的な研究用途として用いる場合は，最寄りのリージョン (i.e. 東京) を使えば基本的に問題ない．
 
-![AWSコンソールでリージョンを選択](imgs/aws_regions2.png)
+![AWSコンソールでリージョンを選択](./assets/aws_regions2.png)
 
 `Avaialibity Zone (AZ)` とは，リージョン内で地理的に隔離されたデータセンターのことである． それぞれのリージョンは 2 個以上の AZ を有しており，もし一つの AZ で火災や停電などが起きた場合でも，ほかの AZ がその障害をカバーすることができる． また， AZ 間は高速な AWS 専用ネットワーク回線で結ばれているため， AZ 間のデータ転送は極めて早い． AZ は，ビジネスなどでサーバーダウンが許容されない場合などに注意すべき概念であり，個人的な用途で使う限りにおいてはあまり深く考慮する必要はない．言葉の意味だけ知っておけば十分である．
 
@@ -278,7 +278,7 @@ AWS のリソースを追加・編集・削除するなどの操作を実行す�
 
 AWS のアカウントにログインすると，まず最初に表示されるのが**AWS コンソール**である ([figure_title](#aws_console_window))．
 
-![AWSマネージメントコンソール画面](imgs/aws_console.png)
+![AWSマネージメントコンソール画面](./assets/aws_console.png)
 
 コンソールを使うことで， EC2 のインスタンスを立ち上げたり，S3 のデータを追加・削除したり，ログを閲覧したりなど，AWS 上のあらゆるリソースの操作を GUI (Graphical User Interface) を通して実行することができる． **初めて触る機能をポチポチと試したり，デバッグを行うときなどにとても便利である**．
 
@@ -300,7 +300,7 @@ AWS のアカウントにログインすると，まず最初に表示される�
 
 S3 に新しい保存領域 (`Bucket (バケット)` とよばれる) を追加したいとしよう． AWS CLI を使った場合は，次のようなコマンドを打てばよい．
 
-```shell
+```sh
 $ aws s3 mb s3://my-bucket --region ap-northeast-1
 ```
 
@@ -319,7 +319,7 @@ s3_client.create_bucket(Bucket="my-bucket")
 
 新しい EC2 のインスタンス(インスタンスとは，起動状態にある仮想サーバーの意味である)を起動するには，次のようなコマンドを打てば良い．
 
-```shell
+```sh
 $ aws ec2 run-instances --image-id ami-xxxxxxxx --count 1 --instance-type t2.micro --key-name MyKeyPair --security-group-ids sg-903004f8 --subnet-id subnet-6e7f829e
 ```
 
@@ -356,7 +356,7 @@ AWS CLI のインストールについては， [AWS CLI のインストール](
 
 まずは，S3 にデータの格納領域 (`Bucket` とよばれる．一般的な OS での"ドライブ"に相当する) を作成するところから始めよう．
 
-```shell
+```sh
 $ bucketName="mybucket-$(openssl rand -hex 12)"
 $ echo $bucketName
 $ aws s3 mb "s3://${bucketName}"
@@ -366,7 +366,7 @@ S3 のバケットの名前は， AWS 全体で一意的でなければならな
 
 次に，バケットの一覧を取得してみよう．
 
-```shell
+```sh
 $ aws s3 ls
 
 2020-06-07 23:45:44 mybucket-c6f93855550a72b5b66f5efe
@@ -378,7 +378,7 @@ $ aws s3 ls
 
 次に，バケットにファイルをアップロードする．
 
-```shell
+```sh
 $ echo "Hello world" > hello_world.txt
 $ aws s3 cp hello_world.txt "s3://${bucketName}/hello_world.txt"
 ```
@@ -387,7 +387,7 @@ $ aws s3 cp hello_world.txt "s3://${bucketName}/hello_world.txt"
 
 それでは，バケットの中にあるファイルの一覧を取得してみる．
 
-```shell
+```sh
 $ aws s3 ls "s3://${bucketName}" --human-readable
 
 2020-06-07 23:54:19   13 Bytes hello_world.txt
@@ -397,7 +397,7 @@ $ aws s3 ls "s3://${bucketName}" --human-readable
 
 最後に，使い終わったバケットを削除する．
 
-```shell
+```sh
 $ aws s3 rb "s3://${bucketName}" --force
 ```
 
@@ -419,7 +419,7 @@ S3 バケットや EC2 インスタンスなどには ARN に加えて，人間�
 
 しかし，ここで実用上考慮しなければならない点が一つある． AWS API には大きく分けて，**リソースを操作する**コマンドと，**タスクを実行する**コマンドがあることである ([figure_title](#fig_aws_iac))．
 
-![AWS APIはリソースを操作するコマンドとタスクを実行するコマンドに大きく分けられる．リソースを記述・管理するのに使われるのが， CloudFormation と CDK である．](imgs/iac.png)
+![AWS APIはリソースを操作するコマンドとタスクを実行するコマンドに大きく分けられる．リソースを記述・管理するのに使われるのが， CloudFormation と CDK である．](./assets/iac.png)
 
 **リソースを操作する**とは，EC2 のインスタンスを起動したり，S3 のバケットを作成したり，データベースに新たなテーブルを追加する，などの**静的なリソースを準備する** 操作を指す． "ハコ"を作る操作とよんでも良いだろう． このようなコマンドは，**クラウドのデプロイ時にのみ，一度だけ実行されればよい**．
 
@@ -528,7 +528,7 @@ class MyFirstEc2(core.Stack):
 -   **AWS CDK**: AWS CDK のインストールについては， [AWS CDK のインストール](#aws_cdk_install) を参照．
 -   **ソースコードのダウンロード**: 本ハンズオンで使用するプログラムのソースコードを，以下のコマンドを使って GitHub からダウンロードする．
 
-```shell
+```sh
 $ git clone https://github.com/tomomano/learn-aws-by-coding.git
 ```
 
@@ -548,7 +548,7 @@ SSH による通信はすべて暗号化されているので，機密情報を�
 
 SSH コマンドの基本的な使い方を次に示す． `<host name>` はアクセスする先のサーバーの IP アドレスや DNS によるホストネームが入る． `<user name>` は接続する先のユーザー名である．
 
-```shell
+```sh
 $ ssh <user name>@<host name>
 ```
 
@@ -556,7 +556,7 @@ SSH は平文のパスワードによる認証を行うこともできるが，�
 
 SSH コマンドでは，ログインのために使用する秘密鍵ファイルを `-i` もしくは `--identity_file` のオプションで指定することができる． たとえば，次のように使う．
 
-```shell
+```sh
 $ ssh -i Ec2SecretKey.pem <user name>@<host name>
 ```
 
@@ -564,7 +564,7 @@ $ ssh -i Ec2SecretKey.pem <user name>@<host name>
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_01_architecture) に示す．
 
-![ハンズオン#1で作製するアプリケーションのアーキテクチャ](imgs/handson-01/app_architecture.png)
+![ハンズオン#1で作製するアプリケーションのアーキテクチャ](./assets/handson-01/app_architecture.png)
 
 このアプリケーションではまず，**VPC (Virtual Private Cloud)** を使ってプライベートな仮想ネットワーク環境を立ち上げている． その VPC の public subnet の内側に，**EC2 (Elatic Compute Cloud)** の仮想サーバーを配置する． さらに，セキュリティのため， **Security Group** による EC2 インスタンスへのアクセス制限を設定している． このようにして作成された仮想サーバーに，SSH を使ってアクセスし，簡単な計算を行う．
 
@@ -627,7 +627,7 @@ class MyFirstEc2(core.Stack):
 
 **VPC のアイコン.**
 
-![VPC](imgs/aws_logos/VPC.png)
+![VPC](./assets/aws_logos/VPC.png)
 
 VPC は AWS 上にプライベートな仮想ネットワーク環境を構築するツールである．高度な計算システムを構築するには，複数のサーバーを連動させて計算を行う必要があるが，そのような場合に互いのアドレスなどを管理する必要があり，そういった目的で VPC は有用である．
 
@@ -686,7 +686,7 @@ SSH はデフォルトでは 22 番ポートを使用するのが慣例である
 
 **EC2 のアイコン.**
 
-![EC2](imgs/aws_logos/EC2.png)
+![EC2](./assets/aws_logos/EC2.png)
 
 EC2 は AWS 上に仮想サーバーを立ち上げるサービスである． 個々の起動状態にある仮想サーバーのことをインスタンス (instance) とよぶ (しかし，口語的なコミュニケーションにおいては，サーバーとインスタンスという言葉は相互互換的に用いられることが多い)．
 
@@ -730,13 +730,13 @@ host = ec2.Instance(
 
 まずは， `handson/ec2-get-started` のディレクトリに移動しよう．
 
-```shell
+```sh
 $ cd handson/ec2-get-started
 ```
 
 ディレクトリを移動したら， `venv` で新しい仮想環境を作成し，インストールを実行する．
 
-```shell
+```sh
 $ python3 -m venv .env
 $ source .env/bin/activate
 $ pip install -r requirements.txt
@@ -760,14 +760,14 @@ EC2 インスタンスには SSH を使ってログインする． EC2 インス
 
 次の AWS CLI コマンドにより， `HirakeGoma` という名前のついた鍵を生成する．
 
-```shell
+```sh
 $ export KEY_NAME="HirakeGoma"
 $ aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}.pem
 ```
 
 このコマンドを実行すると，現在のディレクトリに `HirakeGoma.pem` というファイルが作成される．これが，サーバーにアクセスするための秘密鍵である． SSH でこの鍵を使うため， `~/.ssh/` のディレクトリに鍵を移動する． さらに，秘密鍵が書き換えられたり第三者に閲覧されないよう，ファイルのアクセス権限を `400` に設定する．
 
-```shell
+```sh
 $ mv HirakeGoma.pem ~/.ssh/
 $ chmod 400 ~/.ssh/HirakeGoma.pem
 ```
@@ -776,19 +776,19 @@ $ chmod 400 ~/.ssh/HirakeGoma.pem
 
 これまでのステップで， EC2 インスタンスをデプロイするための準備が整った！ 早速，次のコマンドによりアプリケーションを AWS にデプロイしよう． `-c key_name="HirakeGoma"` というオプションで，先ほど生成した `HirakeGoma` という名前の鍵を使うよう指定している．
 
-```shell
+```sh
 $ cdk deploy -c key_name="HirakeGoma"
 ```
 
 このコマンドを実行すると， VPC， EC2 などが AWS 上に展開される． そして，コマンドの出力の最後に [figure_title](#handson_01_cdk_output) のような出力が得られるはずである． **出力の中で `InstancePublicIp` に続く数字が，起動したインスタンスのパブリック IP アドレスである．** IP アドレスはデプロイごとにランダムなアドレスが割り当てられる．
 
-![CDKデプロイ実行後の出力](imgs/handson-01/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-01/cdk_output.png)
 
 ### SSH でログイン
 
 早速，SSH 　で接続してみよう．
 
-```shell
+```sh
 $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
 ```
 
@@ -796,7 +796,7 @@ $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
 
 ログインに成功すると， [figure_title](#fig_handson_01_ssh_login) のような画面が表示される． リモートのサーバーにログインしているので，プロンプトが `[ec2-user@ip-10-10-1-217 ~]$` のようになっていることを確認しよう．
 
-![SSH で EC2 インスタンスにログイン](imgs/handson-01/ssh_login.png)
+![SSH で EC2 インスタンスにログイン](./assets/handson-01/ssh_login.png)
 
 **おめでとう！これで，めでたく AWS 上に EC2 仮想サーバーを起動し，リモートからアクセスできるようになった！**
 
@@ -806,7 +806,7 @@ $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
 
 ログインした EC2 インスタンスで，次のコマンドを実行してみよう． CPU の情報を取得することができる．
 
-```shell
+```sh
 $ cat /proc/cpuinfo
 
 processor       : 0
@@ -822,7 +822,7 @@ cache size      : 30720 KB
 
 次に，実行中のプロセスやメモリの消費を見てみよう．
 
-```shell
+```sh
 $  top -n 1
 
 top - 09:29:19 up 43 min,  1 user,  load average: 0.00, 0.00, 0.00
@@ -841,14 +841,14 @@ Swap:        0k total,        0k used,        0k free,   185856k cached
 
 今回起動したインスタンスには Python 2 はインストール済みだが， Python 3 は入っていない． Python 3.6 のインストールを行ってみよう． インストールは簡単である．
 
-```shell
+```sh
 $ sudo yum update -y
 $ sudo yum install -y python36
 ```
 
 インストールした Python を起動してみよう．
 
-```shell
+```sh
 $ python3
 Python 3.6.10 (default, Feb 10 2020, 19:55:14)
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
@@ -860,7 +860,7 @@ Python のインタープリタが起動した！ `Ctrl + D` あるいは `exit(
 
 さて，サーバーでのお遊びはこんなところにしておこう (興味があれば各自いろいろと試してみると良い) ． 次のコマンドでログアウトする．
 
-```shell
+```sh
 $ exit
 ```
 
@@ -870,13 +870,13 @@ $ exit
 
 まず，ウェブブラウザを開いて AWS コンソールにログインする． ログインしたら， `Services` から `EC2` を検索(選択)する． 次に，左のサイドバーの `Instances` とページをたどる. すると， [figure_title](#aws_ec2_console) のような画面が得られるはずである． この画面で，自分のアカウントの管理下にあるインスタンスを確認できる． 同様に，VPC・SG についてもコンソールから確認できる．
 
-![EC2 コンソール画面](imgs/handson-01/ec2_console.png)
+![EC2 コンソール画面](./assets/handson-01/ec2_console.png)
 
 **コンソール右上で，正しいリージョン (今回の場合は ap-northeast-1, Tokyo) が選択されているか，注意する！**
 
 前章で CloudFormation について触れたが，今回デプロイしたアプリケーションも，CloudFormation のスタックとして管理されている． **スタック (stack)** とは， AWS リソースの集合のことを指す． 今回の場合は， VPC/EC2/SG などがスタックの中に含まれている． コンソールで `CloudFormation` のページに行ってみよう ([figure_title](#aws_cloudformation_console))．
 
-![CloudFormation コンソール画面](imgs/handson-01/cloudformation_console.png)
+![CloudFormation コンソール画面](./assets/handson-01/cloudformation_console.png)
 
 "MyFirstEc2" という名前のスタックがあることが確認できる． クリックをして中身を見てみると，EC2, VPC などのリソースがこのスタックに紐付いていることがわかる．
 
@@ -886,11 +886,11 @@ $ exit
 
 一つ目の方法は，前節の Cloudformation のコンソール画面で， "Delete" ボタンを押すことである ([figure_title](#cloudformation_delete))． すると，スタックの状態が `"DELETE_IN_PROGRESS"` に変わり，削除が完了すると CloudFormation のスタックの一覧から消える．
 
-![CloudFormationコンソール画面から，スタックを削除](imgs/handson-01/cloudformation_delete.png)
+![CloudFormationコンソール画面から，スタックを削除](./assets/handson-01/cloudformation_delete.png)
 
 二つ目の方法は，コマンドラインから行う方法である． 先ほど，デプロイを行ったコマンドラインに戻ろう． そうしたら，次のコマンドを実行する．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -902,17 +902,17 @@ $ cdk destroy
 
 コンソールから実行するには， `EC2` の画面に行き，左のサイドバーの `Key Pairs` を選択する． 鍵の一覧が表示されるので， `HirakeGoma` とある鍵にチェックを入れ，画面右上の `Actions` から， `Delete` を実行する ([figure_title](#delete_ec2_key_pair))．
 
-![EC2でSSH鍵ペアを削除](imgs/handson-01/ec2_keypair_console.png)
+![EC2でSSH鍵ペアを削除](./assets/handson-01/ec2_keypair_console.png)
 
 コマンドラインから実行するには，次のコマンドを使う．
 
-```shell
+```sh
 $ aws ec2 delete-key-pair --key-name "HirakeGoma"
 ```
 
 最後に，ローカルのコンピュータから鍵を削除する．
 
-```shell
+```sh
 $ rm -f ~/.ssh/HirakeGoma.pem
 ```
 
@@ -950,13 +950,13 @@ GPT-3 に限らず，最近の SOTA (State-of-the-art) の性能を達成する�
 
 GPU は，その名のとおり，元々はコンピュータグラフィックスを出力するための専用計算チップである． CPU (Central Processing Unit) に対し，グラフィックスの演算に特化した設計がなされている． 身近なところでは， XBox や PS5 などのゲームコンソールなどに搭載されているし，ハイエンドなノート型・デスクトップ型計算機にも搭載されていることがある． コンピュータグラフィックスでは，スクリーンにアレイ状に並んだ数百万個の画素をビデオレート (30 fps) 以上で処理する必要がある． そのため，GPU はコアあたりの演算能力は比較的小さいかわりに，チップあたり数百から数千のコアを搭載しており ([figure_title](#gpu_architecture))，スクリーンの画素を並列的に処理することで，リアルタイムでの描画を実現している．
 
-![GPUのアーキテクチャ．GPUには数百から数千の独立した計算コアが搭載されている． (画像出典: <https://devblogs.nvidia.com/nvidia-turing-architecture-in-depth/>)](imgs/gpu_architecture.jpg)
+![GPUのアーキテクチャ．GPUには数百から数千の独立した計算コアが搭載されている． (画像出典: <https://devblogs.nvidia.com/nvidia-turing-architecture-in-depth/>)](./assets/gpu_architecture.jpg)
 
 このように，コンピュータグラフィクスの目的で生まれた GPU だが，2010 年前後から，その高い並列計算能力をグラフィックス以外の計算 (科学計算など) に用いるという流れ (**General-purpose computing on GPU; GPGPU**) が生まれた． GPU のコアは，その設計から，行列の計算など，単純かつ規則的な演算が得意であり，そのような演算に対しては数個程度のコアしかもたない CPU に比べて圧倒的に高い計算速度を実現することができる． 現在では GPGPU は分子動力学や気象シミュレーション，そして機械学習など多くの分野で使われている．
 
 ディープラーニングで最も頻繁に起こる演算が，ニューロンの出力を次の層のニューロンに伝える**畳み込み (Convolution)** 演算である ([figure_title](#fig:convolution))． 畳み込み演算は，まさに GPU が得意とする演算であり， CPU ではなく GPU を用いることで学習を飛躍的に (最大で数百倍程度) 加速させることができる．
 
-![ニューラルネットワークにおける畳み込み演算．](imgs/cnn.png)
+![ニューラルネットワークにおける畳み込み演算．](./assets/cnn.png)
 
 このように GPU は機械学習の計算で欠かせないものであるが，なかなか高価である． たとえば，科学計算・機械学習に専用設計された NVIDIA 社の Tesla V100 というチップは，一台で約百万円の価格が設定されている． 機械学習を始めるのに，いきなり百万円の投資はなかなか大きい． だが，クラウドを使えば，初期コスト０で GPU を使用することができる．
 
@@ -1008,7 +1008,7 @@ AWS Educate Starter Account を使用している読者へ: 執筆時点にお�
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_02_architecture) に示す．
 
-![ハンズオン#2で作製するアプリケーションのアーキテクチャ](imgs/handson-jupyter/handson-02-architecture.png)
+![ハンズオン#2で作製するアプリケーションのアーキテクチャ](./assets/handson-jupyter/handson-02-architecture.png)
 
 図の多くの部分が，第一回ハンズオンで作成したアプリケーションと共通していることに気がつくだろう． 少しの変更で，簡単にディープラーニングを走らせる環境を構築することができるのである！主な変更点は次の３点である．
 
@@ -1079,7 +1079,7 @@ AMI が `us-east-1` と `ap-northeast-1` でしか定義されていないので
 
 AMI は， AWS 公式のものに加えて，サードパーティから提供されているものもある． また，自分自身の AMI を作って登録することも可能である ([参考](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami-instance-store.html))． AMI は EC2 のコンソールから検索することが可能である． あるいは，AWS CLI を使って，次のコマンドでリストを取得することができる ([参考](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/finding-an-ami.html))．
 
-```shell
+```sh
 $ aws ec2 describe-images --owners amazon
 ```
 
@@ -1087,11 +1087,11 @@ $ aws ec2 describe-images --owners amazon
 
 本ハンズオンでは， Amazon Linux 2 をベースにした DLAMI を使用する (AMI ID = ami-09c0c16fc46a29ed9．この AMI は ap-northeast-1 でしか使用できない点に注意)． AWS CLI を使って，この AMI の詳細情報を取得してみよう．
 
-```shell
+```sh
 $ aws ec2 describe-images --owners amazon --image-ids "ami-09c0c16fc46a29ed9" --region ap-northeast-1
 ```
 
-![AMI ID = ami-09c0c16fc46a29ed9 の詳細情報](imgs/handson-jupyter/ami-info.png)
+![AMI ID = ami-09c0c16fc46a29ed9 の詳細情報](./assets/handson-jupyter/ami-info.png)
 
 [figure_title](#handson_02_ami-info) のような出力が得られるはずである．得られた出力から，この DLAMI には PyTorch のバージョン 1.4.0 と 1.5.0 がインストールされていることがわかる． この DLAMI を使って，早速ディープラーニングの計算を実行してみよう．
 
@@ -1107,7 +1107,7 @@ DLAMI には具体的には何がインストールされているのだろう�
 
 デプロイの手順は，ハンズオン 1 とほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれのコマンドの意味を忘れてしまった場合は，ハンズオン 1 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/mnist
 
@@ -1130,19 +1130,19 @@ $ cdk deploy -c key_name="HirakeGoma"
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_02_cdk_output) のような出力が得られるはずである．AWS により割り振られた IP アドレス (`InstancePublicIp` に続く文字列) をメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-jupyter/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-jupyter/cdk_output.png)
 
 ## ログイン
 
 早速，デプロイしたインスタンスに SSH でログインしてみよう． ここでは，この後で使う Jupyter Notebook に接続するため，**ポートフォワーディング (port forwarding)** のオプション (`-L`) をつけてログインする．
 
-```shell
+```sh
 $ ssh -i ~/.ssh/HirakeGoma.pem -L localhost:8931:localhost:8888 ec2-user@<IP address>
 ```
 
 ポートフォワーディングとは，クライアントマシンの特定のアドレスへの接続を， SSH の暗号化された通信を介して，リモートマシンの特定のアドレスへ転送する，という意味である． このコマンドの `-L localhost:8931:localhost:8888` は，自分のローカルマシンの `localhost:8931` へのアクセスを，リモートサーバーの `localhost:8888` のアドレスに転送せよ，という意味である (`:` につづく数字は TCP/IP ポートの番号を意味している)． リモートサーバーのポート 8888 には，後述する Jupyter Notebook が起動している． したがって，ローカルマシンの `localhost:8931` にアクセスすることで，リモートサーバーの Jupyter Notebook にアクセスすることができるのである ([figure_title](#fig:ssh_port_forwarding))． このような SSH による接続方式を**トンネル接続**とよぶ．
 
-![SSH のポートフォワーディングによる Jupyter Notebook へのアクセス](imgs/ssh_port_forwarding.png)
+![SSH のポートフォワーディングによる Jupyter Notebook へのアクセス](./assets/ssh_port_forwarding.png)
 
 ポートフォワーディングのオプションで，ポートの番号 (`:8931`, `:8888` など) には 1 から 65535 までの任意の整数を指定できる． しかし，たとえば ポート 22 (SSH) やポート 80 (HTTP) など，いくつかすでに使われているポート番号もあることに注意する． また， Jupyter Notebook はデフォルトではポート 8888 番を使用する． したがって，リモート側のポート番号は，8888 を使うのがよい．
 
@@ -1156,32 +1156,32 @@ SSH によるログインは， **Docker の外** (すなわちクライアン�
 
 SSH によるログインができたら，早速， GPU の状態を確認してみよう． 次のコマンドを実行する．
 
-```shell
+```sh
 $ nvidia-smi
 ```
 
 [figure_title](#handson_02_nvidia-smi) のような出力が得られるはずである． 出力を見ると， Tesla T4 型の GPU が 1 台搭載されていることが確認できる． その他，GPU Driver や CUDA のバージョン， GPU の負荷・メモリー使用率などの情報を確認することができる．
 
-![nvidia-smi の出力](imgs/handson-jupyter/nvidia-smi.png)
+![nvidia-smi の出力](./assets/handson-jupyter/nvidia-smi.png)
 
 ## Jupyter Notebook の起動
 
 [Jupyter Notebook](https://jupyter.org/) とは，インタラクティブに Python のプログラムを書いたり実行したりするためのツールである． Jupyter は GUI としてウェブブラウザを介してアクセスする形式をとっており，まるでノートを書くように，プロットやテーブルのデータも美しく表示することができる ([figure_title](#handson_02_welcome_jupyter))． Python に慣れている読者は，きっと一度は使ったことがあるだろう．
 
-![Jupyter Notebook の画面](imgs/handson-jupyter/welcome_to_jupyter.png)
+![Jupyter Notebook の画面](./assets/handson-jupyter/welcome_to_jupyter.png)
 
 このハンズオンでは， Jupyter Notebook を使ってディープラーニングのプログラムをインタラクティブに実行していく． DLAMI には既に Jupyter がインストールされているので，特段の設定なしに使い始めることができる．
 
 早速， Jupyter を起動しよう． SSH でログインした先の EC2 インスタンスで，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cd ~ # go to home directory
 $ jupyter notebook
 ```
 
 このコマンドを実行すると， [figure_title](#handson_02_jupyter_launch) のような出力が確認できるだろう． この出力から，Jupyter のサーバーが EC2 インスタンスの `localhost:8888` というアドレスに起動していることがわかる． また， `localhost:8888` に続く `?token=XXXX` は，アクセスに使うための一時的なトークンである．
 
-![Jupyter Notebook サーバーを起動](imgs/handson-jupyter/jupyter_launch.png)
+![Jupyter Notebook サーバーを起動](./assets/handson-jupyter/jupyter_launch.png)
 
 Jupyter Notebook を初回に起動するときは，起動に数分程度の時間がかかることがある． ほかの動作も起動直後は遅く，いくつかプログラムを走らせていくうちに俊敏に反応するようになってくる． これは， AWS の GPU 搭載型仮想マシンの運用方法に起因する現象だと考えられる．
 
@@ -1193,7 +1193,7 @@ http://localhost:8931/?token=XXXX&lt;/programlisting&gt;
 
 上のアドレスにアクセスすると， Jupyter のホーム画面が起動するはずである ([figure_title](#handson_02_jupyter_home))． これで， Jupyter の準備が整った！
 
-![Jupyter ホーム画面](imgs/handson-jupyter/jupyter_home.png)
+![Jupyter ホーム画面](./assets/handson-jupyter/jupyter_home.png)
 
 Jupyter Notebook の使い方 (超簡易版)
 
@@ -1221,11 +1221,11 @@ Facebook は PyTorch のほかに Caffe2 とよばれるディープラーニン
 
 まずは，新しいノートブックを作成する． Jupyter のホーム画面の右上の "New" を押し，"conda_pytorch_p36" という環境を選択したうえで，新規ノートブックを作成する ([figure_title](#handson_02_jupyeter_new))． "conda_pytorch_p36" の仮想環境には， PyTorch がインストール済みである．
 
-![新規ノートブックの作成． "conda_pytorch_p36" の環境を選択する．](imgs/handson-jupyter/jupyter_new.png)
+![新規ノートブックの作成． "conda_pytorch_p36" の環境を選択する．](./assets/handson-jupyter/jupyter_new.png)
 
 ここでは，次のようなプログラムを書いて，実行していく． ([figure_title](#handson_02_jupyeter_pytorch))．
 
-![PyTorch始めの一歩](imgs/handson-jupyter/jupyter_pytorch.png)
+![PyTorch始めの一歩](./assets/handson-jupyter/jupyter_pytorch.png)
 
 まずは， PyTorch をインポートする．さらに， GPU が使える環境にあるか，確認する．
 
@@ -1329,13 +1329,13 @@ PyTorch において， GPU での演算は asynchronous (非同期) で実行�
 
 ここでは，機械学習のタスクで最も初歩的かつ有名な **MNIST データセットを使った数字認識**を扱う ([figure_title](#handson_02_mnist_examples))． これは，0 から 9 までの手書きの数字の画像が与えられ，その数字が何の数字なのかを当てる，というシンプルなタスクである．
 
-![MNIST 手書き数字データセット](imgs/handson-jupyter/mnist_examples.png)
+![MNIST 手書き数字データセット](./assets/handson-jupyter/mnist_examples.png)
 
 今回は， MNIST 文字認識タスクを，**畳み込みニューラルネットワーク (Convolutional Neural Network; CNN)** を使って解く． ソースコードは [/handson/minist/pytorch/](https://github.com/tomomano/learn-aws-by-coding-source-code/tree/main/handson/mnist/pytorch) にある `mnist.ipynb` と `simple_mnist.py` である． なお，このプログラムは， [PyTorch の公式 Example Project 集](https://github.com/pytorch/examples/tree/master/mnist) を参考に，多少の改変を行ったものである．
 
 まずは，カスタムのクラスや関数が定義された `simple_mnist.py` をアップロードしよう ([figure_title](#handson_02_jupyter_upload))． 画面右上の "Upload" ボタンをクリックし，ファイルを選択することでアップロードができる． この Python プログラムの中に，CNN のモデルや，学習の各イテレーションにおけるパラメータの更新などが記述されている． 今回はこの中身を説明することはしないが，興味のある読者は自身でソースコードを読んでみるとよい．
 
-![`simple_mnist.py` をアップロード](imgs/handson-jupyter/jupyter_upload.png)
+![`simple_mnist.py` をアップロード](./assets/handson-jupyter/jupyter_upload.png)
 
 `simple_mnist.py` をアップロードできたら，次に新しい notebook を作成しよう． "conda_pytorch_p36" の環境を選択することを忘れずに．
 
@@ -1386,7 +1386,7 @@ for i in range(10):
 plt.show()
 ```
 
-![MNIST の手書き数字画像とその教師ラベル](imgs/handson-jupyter/mnist_ground_truth.png)
+![MNIST の手書き数字画像とその教師ラベル](./assets/handson-jupyter/mnist_ground_truth.png)
 
 次に， CNN のモデルを定義する．
 
@@ -1397,7 +1397,7 @@ model.to("cuda") # load to GPU
 
 今回使う `Model` は `simple_mnist.py` の中で定義されている． このモデルは，[figure_title](#handson_02_cnn_architecture) に示したような，２層の畳み込み層と 2 層の全結合層からなるネットワークである． 出力層 (output layer) には Softmax 関数を使用し，損失関数 (Loss function) には 負の対数尤度関数 (Negative log likelyhood; NLL) を使用している．
 
-![本ハンズオンで使用するニューラルネットの構造．](imgs/handson-jupyter/cnn_architecture.png)
+![本ハンズオンで使用するニューラルネットの構造．](./assets/handson-jupyter/cnn_architecture.png)
 
 続いて， CNN のパラメータを更新する最適化アルゴリズムを定義する． ここでは， **確率的勾配降下法 (Stochastic Gradient Descent; SGD)** を使用している．
 
@@ -1426,11 +1426,11 @@ plt.show()
 
 出力として， [figure_title](#handson_02_train_loss) のようなプロットが得られるはずである． イテレーションを重ねるにつれて，損失関数 (Loss function) の値が減少している (=精度が向上している) ことがわかる．
 
-![学習の進行に対する Train loss の変化](imgs/handson-jupyter/train_loss.png)
+![学習の進行に対する Train loss の変化](./assets/handson-jupyter/train_loss.png)
 
 出力にはテキスト形式で各エポック終了後のテストデータに対する精度も表示されている． 最終的には 98% 以上の極めて高い精度を実現できていることが確認できるだろう ([figure_title](#handson_02_mnist_final_score))．
 
-![学習したCNNのテストデータに対するスコア (5エポック後)](imgs/handson-jupyter/mnist_final_score.png)
+![学習したCNNのテストデータに対するスコア (5エポック後)](./assets/handson-jupyter/mnist_final_score.png)
 
 学習した CNN の推論結果を可視化してみよう． 次のコードを実行することで， [figure_title](#handson_02_mnist_mnist_prediction) のような出力が得られるだろう． この図で，下段右から二番目は，"1"に近い見た目をしているが，きちんと"9"と推論できている． なかなか賢い CNN を作り出すことができたようだ！
 
@@ -1451,7 +1451,7 @@ for i in range(10):
 plt.show()
 ```
 
-![学習した CNN による，MNIST画像の推論結果](imgs/handson-jupyter/mnist_prediction.png)
+![学習した CNN による，MNIST画像の推論結果](./assets/handson-jupyter/mnist_prediction.png)
 
 最後に，学習したニューラルネットワークのパラメータを `mnist_cnn.pt` というファイル名で保存しておこう． これで，将来いつでも今回学習したモデルを再現し，別の実験に使用することができる．
 
@@ -1467,7 +1467,7 @@ torch.save(model.state_dict(), "mnist_cnn.pt")
 
 ハンズオン第一回と同様に， AWS の CloudFormation コンソールか， AWS CLI により削除を実行する (詳細は [スタックを削除](#handson_01_delete_stack) 参照)．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -1489,11 +1489,11 @@ AWS の初心者が (あるいは経験者も) しばしば陥る失敗が，イ
 
 [クラウドで行う科学計算・機械学習](#sec_scientific_computing) で紹介した [GPT-3](https://github.com/openai/gpt-3) のような，超巨大な数のパラメータを有する深層学習モデルを学習させたいとしよう． そのような計算を行いたい場合，一つのサーバーでは計算力が到底足りない． したがって，典型的には [figure_title](#big_dnn_training) に示すような計算システムの設計がなされる． すなわち，大量の教師データを小さなチャンクとして複数のマシンに分散し，並列的にニューラルネットのパラメータを最適化していくという構造である．
 
-![複数の計算機を使った大規模な深層学習モデルの訓練](imgs/big_dnn_training.png)
+![複数の計算機を使った大規模な深層学習モデルの訓練](./assets/big_dnn_training.png)
 
 あるいは，学習済みのモデルを大量のデータに適用し，解析を行いたいとしよう． たとえば， SNS のプラットフォームで大量の画像が与えられて，それぞれの写真に何が写っているのかをラベルづけする，などのアプリケーションを想定できる． そのような場合は， [figure_title](#big_dnn_inference) のようなアーキテクチャが考えられるだろう． すなわち，大量のデータを複数のマシンで分割し，それぞれのマシンで推論の計算を行うというような構造である．
 
-![複数の計算機による深層学習モデルを使った推論計算](imgs/big_dnn_inference.png)
+![複数の計算機による深層学習モデルを使った推論計算](./assets/big_dnn_inference.png)
 
 このような複数の計算機を同時に走らせるようなアプリケーションをクラウド上で実現するには，どのようにすればよいのだろうか？
 
@@ -1503,7 +1503,7 @@ AWS の初心者が (あるいは経験者も) しばしば陥る失敗が，イ
 
 ## Docker とは
 
-![Docker のアイコン](imgs/docker_log.png)
+![Docker のアイコン](./assets/docker_log.png)
 
 Docker とは， **コンテナ (Container)** とよばれる仮想環境下で，ホスト OS とは独立した別の計算環境を走らせるためのソフトウェアである． Docker を使うことで， OS を含めたすべてのプログラムをコンパクトにパッケージングすることが可能になる (パッケージされた一つの計算環境のことを **イメージ (Image)**とよぶ)． Docker を使うことで，クラウドのサーバー上に瞬時に計算環境を複製することが可能になり， [figure_title](#big_dnn_inference) で見たような複数の計算機を同時に走らせるためのシステムが実現できる．
 
@@ -1515,7 +1515,7 @@ Docker も， VM と同様に，仮想化された OS をホストの OS 上に�
 
 その他， VM との相違点などはたくさんあるのだが，ここではこれ以上詳細には立ち入らない． 大事なのは， **Docker とはとてもコンパクトかつハイパフォーマンスな仮想計算環境を作るツールである**，という点である． その手軽さゆえに，2013 年の登場以降，クラウドシステムでの利用が急速に増加し，現代のクラウドでは欠くことのできない中心的な技術になっている．
 
-![Docker (左) と VM (右) の比較 (画像出典: <https://www.docker.com/blog/containers-replacing-virtual-machines/>)](imgs/docker_vs_vm.png)
+![Docker (左) と VM (右) の比較 (画像出典: <https://www.docker.com/blog/containers-replacing-virtual-machines/>)](./assets/docker_vs_vm.png)
 
 職業的プログラマーにとっての"三種の神器"とはなんだろうか？ 多様な意見があると思うが，筆者は **Git**, **Vim** そして **Docker** を挙げたい．
 
@@ -1539,7 +1539,7 @@ Docker を使い始めるに当たり，最初に主要な用語を解説しよ�
 
 Docker を起動する際の大まかなステップを示したのが [figure_title](#fig:docker_image_container) である． パッケージされた一つの計算環境のことを **イメージ (Image)**とよぶ． イメージは， Docker Hub などのリポジトリで配布されているものをダウンロードするか，自分でカスタムのイメージを作成することも可能である． イメージを作成するための”レシピ”を記述したファイルが **Dockerfile** である． Dockerfile からイメージを作成する操作を **build** とよぶ． イメージがホストマシンのメモリにロードされ，起動状態にある計算環境のことを **コンテナ (Container)** とよぶ． Container を起動するために使用されるコマンドが **run** である．
 
-![Image と Container](imgs/docker_image_container.png)
+![Image と Container](./assets/docker_image_container.png)
 
 ### イメージをダウンロード
 
@@ -1547,7 +1547,7 @@ Docker を起動する際の大まかなステップを示したのが [figure_t
 
 たとえば， Ubuntu のイメージは [Ubuntu の公式リポジトリ](https://hub.docker.com/_/ubuntu) で公開されており， `pull` コマンドを使うことでローカルにダウンロードすることができる．
 
-```shell
+```sh
 $ docker pull ubuntu:18.04
 ```
 
@@ -1559,7 +1559,7 @@ $ docker pull ubuntu:18.04
 
 Pull してきたイメージを起動するには， `run` コマンドを使う．
 
-```shell
+```sh
 $ docker run -it ubuntu:18.04
 ```
 
@@ -1567,13 +1567,13 @@ $ docker run -it ubuntu:18.04
 
 このコマンドを実行すると，仮想化された Ubuntu が起動され，コマンドラインからコマンドが打ち込めるようになる ([figure_title](#docker_shell))． このように起動状態にある計算環境 (ランタイム) のことを **Container (コンテナ)** とよぶ．
 
-![Docker を使って ubuntu:18.04 イメージを起動](imgs/docker_shell.png)
+![Docker を使って ubuntu:18.04 イメージを起動](./assets/docker_shell.png)
 
 ここで使用した `ubuntu:18.04` のイメージは，空の Ubuntu OS だが，すでにプログラムがインストール済みのものもある． これは， [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning) でみた DLAMI と概念として似ている． たとえば， PyTorch がインストール済みのイメージは [PyTorch 公式の Docker Hub リポジトリ](https://hub.docker.com/r/pytorch/pytorch) で公開されている．
 
 これを起動してみよう．
 
-```shell
+```sh
 $ docker run -it pytorch/pytorch
 ```
 
@@ -1581,7 +1581,7 @@ $ docker run -it pytorch/pytorch
 
 pytorch のコンテナが起動したら， Python のシェルを立ち上げて， pytorch をインポートしてみよう．
 
-```shell
+```sh
 $ python3
 Python 3.7.7 (default, May  7 2020, 21:25:33)
 [GCC 7.3.0] :: Anaconda, Inc. on linux
@@ -1647,7 +1647,7 @@ COPY handson/ /root/handson
 
 ## Elastic Container Service (ECS)
 
-![ECS のアイコン](imgs/aws_logos/ECS.png)
+![ECS のアイコン](./assets/aws_logos/ECS.png)
 
 ここまでに説明してきたように， Docker を使うことで仮想計算環境を簡単に複製・起動することが可能になる． 本章の最後の話題として， AWS 上で Docker を使った計算システムを構築する方法を解説しよう．
 
@@ -1663,7 +1663,7 @@ ECS の次の重要な役割はタスクの配置である． あらかじめ定
 
 さて，ここまで説明的な話が続いてしまったが，次章からは早速 Docker と AWS を使って大規模な並列計算システムを構築していこう！
 
-![ECS の概要](imgs/ecs.png)
+![ECS の概要](./assets/ecs.png)
 
 # Hands-on \#3: AWS で自動質問回答ボットを走らせる
 
@@ -1675,7 +1675,7 @@ ECS の次の重要な役割はタスクの配置である． あらかじめ定
 
 ハンズオンに入っていく前に， **Fargate** という AWS の機能を知っておく必要がある ([figure_title](#fig:fargate_logo))．
 
-![Fargate のアイコン](imgs/aws_logos/Fargate.png)
+![Fargate のアイコン](./assets/aws_logos/Fargate.png)
 
 ECS の概要を示した [figure_title](#ecs_overview) をもう一度見てみよう． この図で， ECS の管理下にあるクラスターが示されているが，このクラスターの中で計算を行う実体としては二つの選択肢がある． **EC2 あるいは Fargate** のいずれかである． EC2 を用いた場合は，先の章 ([Hands-on \#1: 初めての EC2 インスタンスを起動する](#sec_first_ec2), [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning)) で説明したような流れでインスタンスが起動し，計算が実行される． しかし， EC2 を用いた計算機クラスターの作成・管理は技術的な難易度がやや高いので，次章 ([Hands-on \#4: AWS Batch を使って機械学習のハイパーパラメータサーチを並列化する](#sec_aws_batch)) で説明することにする．
 
@@ -1707,7 +1707,7 @@ question: In what year did Einstein win the Nobel prize?
 
 今回作成する自動回答システムは，このような問題に対して， context に含まれる文字列から正解となる言葉を見つけ出すものとする． 上の問題では，次のような回答を返すべきである．
 
-```shell
+```sh
 answer: 1921
 ```
 
@@ -1715,26 +1715,26 @@ answer: 1921
 
 今回は， [huggingface/transformers](https://github.com/huggingface/transformers) で公開されている学習済みの言語モデルを利用することで，上で定義した問題を解く Q&A ボットを作る． この Q&A ボットは [Transformer](<https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)>) とよばれるモデルを使った自然言語処理に支えられえている ([figure_title](#transformer_architecture))． このプログラムを， Docker にパッケージしたものが [著者の Docker Hub リポジトリ](https://hub.docker.com/repository/docker/tomomano/qabot) に用意してある． クラウドの設計に入る前に，まずはこのプログラムを単体で動かしてみよう．
 
-![Transformer モデルアーキテクチャ (画像出典: [Vaswani+ 2017](https://arxiv.org/abs/1706.03762))](imgs/transformer.png)
+![Transformer モデルアーキテクチャ (画像出典: [Vaswani+ 2017](https://arxiv.org/abs/1706.03762))](./assets/transformer.png)
 
 なお，今回は学習済みのモデルを用いているので，私達が行うのは与えられた入力をモデルに投入して予測を行う (推論) のみである． 推論の演算は， CPU だけでも十分高速に行うことができるので，コストの削減と，実装をシンプルにする目的で，このハンズオンでは GPU は利用しない． 一般的に， ニューラルネットは学習のほうが圧倒的に計算コストが大きく，そのような場合に GPU はより威力を発揮する．
 
 次のコマンドで，今回使う Docker image を ローカルにダウンロード (pull) してこよう．
 
-```shell
+```sh
 $ docker pull tomomano/qabot:latest
 ```
 
 pull できたら，早速この Docker に質問を投げかけてみよう． まずは context と question をコマンドラインの変数として定義する．
 
-```shell
+```sh
 $ context="Albert Einstein (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence on the philosophy of science. He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed the world's most famous equation. He received the 1921 Nobel Prize in Physics for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect, a pivotal step in the development of quantum theory."
 $ question="In what year did Einstein win the Nobel prize ?"
 ```
 
 そうしたら，次のコマンドによってコンテナを実行する．
 
-```shell
+```sh
 $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 ```
 
@@ -1742,7 +1742,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 このコマンドを実行すると，次のような出力が得られるはずである．
 
-```shell
+```sh
 {'score': 0.9881729286683587, 'start': 437, 'end': 441, 'answer': '1921'}
 ```
 
@@ -1750,14 +1750,14 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 もう少し難しい質問を投げかけてみよう．
 
-```shell
+```sh
 $ question="Why did Einstein win the Nobel prize ?"
 $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 ```
 
 出力：
 
-```shell
+```sh
 {'score': 0.5235594527494207, 'start': 470, 'end': 506, 'answer': 'his services to theoretical physics,'}
 ```
 
@@ -1773,7 +1773,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_03_architecture) に示す．
 
-![アプリケーションのアーキテクチャ](imgs/handson-03/handson-03-architecture.png)
+![アプリケーションのアーキテクチャ](./assets/handson-03/handson-03-architecture.png)
 
 簡単にまとめると，以下のような設計である．
 
@@ -1795,7 +1795,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 それでは，プログラムのソースコードを見てみよう ([handson/qa-bot/app.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/qa-bot/app.py))．
 
-```shell
+```sh
 class EcsClusterQaBot(core.Stack):
 
     def __init__(self, scope: core.App, name: str, **kwargs) -> None:
@@ -1864,7 +1864,7 @@ class EcsClusterQaBot(core.Stack):
 
 ECS と Fargate の部分について，コードをくわしく見てみよう．
 
-```shell
+```sh
 cluster = ecs.Cluster(
     self, "EcsClusterQaBot-Cluster",
     vpc=vpc,
@@ -1902,7 +1902,7 @@ container = taskdef.add_container(
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． SSH によるログインの必要がないので，むしろ単純なくらいである． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/qa-bot
 
@@ -1917,17 +1917,17 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_03_cdk_output) のような出力が得られるはずである．
 
-![CDKデプロイ実行後の出力](imgs/handson-03/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-03/cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックの中身を確認してみよう． コンソールから，ECS のページに行くと [figure_title](#handson_03_ecs_console) のような画面が表示されるはずである． `EcsClusterQaBot-XXXX` という名前ついたクラスターを見つけよう．
 
 Cluster というのが，先ほど説明したとおり，複数の仮想インスタンスを束ねる一つの単位である． [figure_title](#handson_03_ecs_console) で， FARGATE という文字の下に `0 Running tasks`, `0 Pending tasks` と表示されていることを確認しよう． この時点では一つもタスクが走っていないので，数字はすべて 0 になっている．
 
-![ECS コンソール画面](imgs/handson-03/ecs_console.png)
+![ECS コンソール画面](./assets/handson-03/ecs_console.png)
 
 続いて，この画面の左のメニューバーから `Task Definitions` という項目を見つけ，クリックしよう． 移動した先のページで `EcsClusterQaBotEcsClusterQaBotTaskDefXXXX` という項目が見つかるので，開く． 開いた先のページをスクロールすると [figure_title](#handson_03_ecs_task_definition) に示したような情報が見つかるだろう． 使用する CPU ・メモリーの量や， Docker container の実行に関する設定などが，この Task Definition の画面から確認することができる．
 
-![Task definition の確認](imgs/handson-03/ecs_task_definition.png)
+![Task definition の確認](./assets/handson-03/ecs_task_definition.png)
 
 ## タスクの実行
 
@@ -1937,7 +1937,7 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 次のようなコマンドで，ECS クラスターに新しい質問を投入することができる．
 
-```shell
+```sh
 $ python run_task.py ask "A giant peach was flowing in the river. She picked it up and brought it home. Later, a healthy baby was born from the peach. She named the baby Momotaro." "What is the name of the baby?"
 ```
 
@@ -1949,7 +1949,7 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 先ほどの ECS コンソール画面にもどり，クラスターの名前をクリックすることで，クラスターの詳細画面を開く． 次に， "Tasks" という名前のタブがあるので，それを開く ([figure_title](#ecs_task_monitoring))． すると，実行中のタスクの一覧が表示されるだろう．
 
-![ECS のタスクの実行状況をモニタリング](imgs/handson-03/ecs_task_monitoring.png)
+![ECS のタスクの実行状況をモニタリング](./assets/handson-03/ecs_task_monitoring.png)
 
 [figure_title](#ecs_task_monitoring) で見て取れるように， "Last status = Pending" となっていることから，この時点では，タスクを実行する準備をしている段階である，ということがわかる． Fargate のインスタンスを起動し， Docker image を配置するまでおよそ 1-2 分の時間がかかる．
 
@@ -1957,11 +1957,11 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 [figure_title](#ecs_task_monitoring) の画面から， "Task" の列にあるタスク ID クリックすることで，タスクの詳細画面を開いてみよう ([figure_title](#ecs_task_detail))． "Last status", "Platform version" など，タスクの情報が表示されている． また， "Logs" のタブを開くことで，コンテナの吐き出した実行ログを閲覧することができる．
 
-![質問タスクの実行結果](imgs/handson-03/ecs_task_detail.png)
+![質問タスクの実行結果](./assets/handson-03/ecs_task_detail.png)
 
 さて， `run_task.py` を実行したコマンドラインに戻ってきてみると， [figure_title](#ask_question_output) のような出力が得られているはずである． "Momotaro" という正しい回答が返ってきている！
 
-![質問タスクの実行結果](imgs/handson-03/ask_question_output.png)
+![質問タスクの実行結果](./assets/handson-03/ask_question_output.png)
 
 ## タスクの同時実行
 
@@ -1969,29 +1969,29 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 次のようなコマンドを実行しよう．
 
-```shell
+```sh
 $ python run_task.py ask_many
 ```
 
 このコマンドを実行した後で，先ほどの ECS コンソールに行き，タスクの一覧を見てみよう ([figure_title](#ecs_many_tasks))． 複数の Fargate インスタンスが起動され，タスクが並列に実行されているのがわかる．
 
-![複数の質問タスクを同時に投入する](imgs/handson-03/ecs_many_tasks.png)
+![複数の質問タスクを同時に投入する](./assets/handson-03/ecs_many_tasks.png)
 
 すべてのタスクのステータスが "STOPPED" になったことを確認した上で，質問への回答を取得しよう． それには，次のコマンドを実行する．
 
-```shell
+```sh
 $ python run_task.py list_answers
 ```
 
 結果として， [figure_title](#ask_many_output) のような出力が得られるだろう． 複雑な文章問題に対し，高い正答率で回答できていることがわかるだろう．
 
-![`$ python run_task.py list_answers` の実行結果](imgs/handson-03/ask_many_output.png)
+![`$ python run_task.py list_answers` の実行結果](./assets/handson-03/ask_many_output.png)
 
 おめでとう！ ここまでついてこれた読者はとても初歩的ながらも，深層学習による言語モデルを使って自動で質問への回答を生成するシステムを創り上げることができた！ それも，数百の質問にも同時に対応できるような，とても高いスケーラビリティーをもったシステムである！ 今回は GUI (Graphical User Interface) を用意することはしなかったが，このシステムに簡単な GUI を追加すればなかなか立派なウェブサービスとして運用できるだろう．
 
 `run_task.py` で質問を投入し続けると，回答を記録しているデータベースにどんどんエントリーが溜まっていく． これらのエントリーをすべて消去するには，次のコマンドを使う．
 
-```shell
+```sh
 $ python run_task.py clear
 ```
 
@@ -2001,7 +2001,7 @@ $ python run_task.py clear
 
 スタックを削除するには，前回までと同様に， AWS コンソールにログインし CloudFormation の画面から DELETE ボタンをクリックするか，コマンドラインからコマンドを実行する． コマンドラインから行う場合は，次のコマンドを使用する．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -2025,7 +2025,7 @@ desired capacity が，その時々でシステムが要求するインスタン
 
 ## AWS Batch
 
-![AWS Batch のアイコン](imgs/aws_logos/Batch.png)
+![AWS Batch のアイコン](./assets/aws_logos/Batch.png)
 
 先に説明したように， ECS と ASG を組み合わせることで，所望の計算クラスターを構築することが可能である． しかしながら， ECS と ASG にはかなり込み入った設定が必要であり，初心者にとっても経験者にとってもなかなか面倒なプログラミングが要求される． そこで， ECS と ASG によるクラスターの設計を自動化してくれるサービスが提供されている． それが **AWS Batch** である．
 
@@ -2035,7 +2035,7 @@ AWS Batch では，ジョブの投入・管理をスムーズに行うため，�
 
 以上が AWS Batch を使用するうえで理解しておかなければならない概念であるが，くどくど言葉で説明してもなかなかピンとこないだろう． ここからは，実際に自分で手を動かしながら学んでいこう．
 
-![AWS Batch の主要な概念](imgs/aws_batch/batch_concepts.png)
+![AWS Batch の主要な概念](./assets/aws_batch/batch_concepts.png)
 
 **EC2 or Fargate?**
 
@@ -2085,7 +2085,7 @@ Docker イメージのソースコードは [handson/aws-batch/docker](https://g
 
 練習として，この Docker イメージを手元でビルドするところからはじめてみよう． `Dockerfile` が保存されているディレクトリに移動し， `mymnist` という名前 (Tag) をつけてビルドを実行する．
 
-```shell
+```sh
 $ cd handson/aws-batch/docker
 $ docker build -t mymnist .
 ```
@@ -2094,23 +2094,23 @@ $ docker build -t mymnist .
 
 手元でビルドするかわりに， Docker Hub から pull することも可能である． その場合は次のコマンドを実行する．
 
-```shell
+```sh
 $ docker pull tomomano/mymnist:latest
 ```
 
 イメージの準備ができたら，次のコマンドでコンテナを起動し， MNIST の学習を実行する．．
 
-```shell
+```sh
 $ docker run mymnist --lr 0.1 --momentum 0.5 --epochs 10
 ```
 
 このコマンドを実行すると，指定したハイパーパラメータ (`--lr` で与えられる学習率と `--momentum` で与えられるモメンタム) を使ってニューラルネットの最適化が始まる． 学習を行う最大のエポック数は `--epochs` パラメータで指定する． [Hands-on \#2: AWS でディープラーニングを実践](#sec_jupyter_and_deep_learning) のハンズオンで見たような， Loss の低下がコマンドライン上に出力されるだろう ([figure_title](#fig_mnist_log_output))．
 
-![Docker を実行した際の出力](imgs/aws_batch/mnist_log_output.png)
+![Docker を実行した際の出力](./assets/aws_batch/mnist_log_output.png)
 
 上に示したコマンドを使うと，計算は CPU を使って実行される． もし，ローカルの計算機に GPU が備わっており， [nvidia-docker](https://github.com/NVIDIA/nvidia-docker) の設定が済んでいるならば， 次のコマンドにより GPU を使って計算を実行できる．
 
-```shell
+```sh
 $ docker run --gpus all mymnist --lr 0.1 --momentum 0.5 --epochs 10
 ```
 
@@ -2118,7 +2118,7 @@ $ docker run --gpus all mymnist --lr 0.1 --momentum 0.5 --epochs 10
 
 CPU/GPU どちらで実行した場合でも，エポックを重ねるにつれて訓練データ (Train データ) の Loss は単調に減少していくのが見て取れるだろう． 一方，**検証データ (Validation データ) の Loss および Accuracy は，ある程度まで減少した後，それ以上性能が向上しない**ことに気がつくだろう． これを実際にプロットしてみると [figure_title](#fig_loss_epoch_profile) のようになるはずである．
 
-![(左) Train/Validation データそれぞれの Loss のエポックごとの変化． (右) Validation データの Accuracy のエポックごとの変化](imgs/aws_batch/loss_epoch_profile.png)
+![(左) Train/Validation データそれぞれの Loss のエポックごとの変化． (右) Validation データの Accuracy のエポックごとの変化](./assets/aws_batch/loss_epoch_profile.png)
 
 これは**オーバーフィッティング**とよばれる現象で，ニューラルネットが訓練データに過度に最適化され，訓練データの外のデータに対しての精度 (汎化性能) が向上していないことを示している． このような場合の対処法として， **Early stopping** とよばれるテクニックが知られている． Early stopping とは，検証データの Loss を追跡し，それが減少から増加に転じるエポックで学習をうち止め，そのエポックでのウェイトパラメータを採用する，というものである． 本ハンズオンでも， Early stopping によって訓練の終了を判断し，モデルの性能評価を行っていく．
 
@@ -2128,7 +2128,7 @@ MNIST 手書き文字データセットでは，訓練データとして 60,000 
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#fig_batch_architecture) に示す．
 
-![アプリケーションのアーキテクチャ](imgs/aws_batch/architecture.png)
+![アプリケーションのアーキテクチャ](./assets/aws_batch/architecture.png)
 
 簡単にまとめると，次のような設計である．
 
@@ -2246,7 +2246,7 @@ class SimpleBatch(core.Stack):
 
 ここで注意が一点ある． AWS では各アカウントごとに EC2 で起動できるインスタンスの上限が設定されている． この上限は AWS コンソールにログインし， EC2 コンソールの左側メニューバーの `Limits` をクリックすることで確認できる ([figure_title](#fig_ec2_limits))． `g4dn.xlarge` (EC2 の区分でいうと G ファミリーに属する) の制限を確認するには， `Running On-Demand All G instances` という名前の項目を見る． ここにある数字が， AWS によって課されたアカウントの上限であり，この上限を超えたインスタンスを起動することはできない． もし，自分の用途に対して上限が低すぎる場合は，上限の緩和申請を行うことができる． 詳しくは [公式ドキュメンテーション "Amazon EC2 service quotas"](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-resource-limits.html) を参照のこと．
 
-![EC2コンソールから各種の上限を確認する](imgs/aws_batch/ec2_limits.png)
+![EC2コンソールから各種の上限を確認する](./assets/aws_batch/ec2_limits.png)
 
 ## スタックのデプロイ
 
@@ -2254,7 +2254,7 @@ class SimpleBatch(core.Stack):
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (\# で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/aws-batch
 
@@ -2269,7 +2269,7 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されたことが確認できたら，AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールの検索バーで `batch` と入力し， AWS Batch の管理画面を開く ([figure_title](#fig_batch_console))．
 
-![AWS Batch のコンソール画面 (ダッシュボード)](imgs/aws_batch/batch_console.png)
+![AWS Batch のコンソール画面 (ダッシュボード)](./assets/aws_batch/batch_console.png)
 
 まず目を向けてほしいのが，画面の一番下にある Compute environment overview の中の `SimpleBatchcompute-env` という名前の項目だ． Compute environment とは，先ほど述べたとおり，計算が実行される環境 (クラスターと読み替えてもよい) である． プログラムで指定したとおり， `g4dn.xlarge` が実際に使用されるインスタンスタイプとして表示されている． また， `Minimum vCPUs` が 0，`Maximum vCPUs` が 64 と設定されていることも見て取れる． 加えて，この時点では一つもジョブが走っていないので， `Desired vCPUs` は 0 になっている． より詳細な Compute environment の情報を閲覧したい場合は，名前をクリックすることで詳細画面が開く．
 
@@ -2277,7 +2277,7 @@ $ cdk deploy
 
 最後に，今回作成した Job definition を確認しよう． 左側のメニューから　`Job definitions` を選択し，次の画面で `SimpleBatchjob-definition` という項目を見つけて開く． ここから Job definition の詳細を閲覧することができる ([figure_title](#fig:batch_job_definition))． 中でも重要な情報としては，　`vCPUs`, `Memory`, `GPU` がそれぞれ Docker に割り当てられる vCPU・メモリー・ GPU の量を規定している． また， `Image` と書いてあるところに，ジョブで使用される Docker イメージが指定されている． ここでは， ECR のレポジトリを参照している． 現時点ではこの ECR は空である． 次のステップとして，この ECR にイメージを配置する作業を行おう．
 
-![AWS Batch から Job definition を確認](imgs/aws_batch/batch_job_definition.png)
+![AWS Batch から Job definition を確認](./assets/aws_batch/batch_job_definition.png)
 
 ## Docker image を ECR に配置する
 
@@ -2310,11 +2310,11 @@ job_def = batch.JobDefinition(
 
 そのために，まずは AWS コンソールから ECR の画面を開こう (検索バーに `Elastic Container Registry` と入力すると出てくる)． `Private` というタブを選択すると， `simplebatch-repositoryXXXXXX` という名前のレポジトリが見つかるだろう ([figure_title](#fig_ecr_console1))．
 
-![ECR のコンソール画面](imgs/aws_batch/ecr_console1.png)
+![ECR のコンソール画面](./assets/aws_batch/ecr_console1.png)
 
 次に，このレポジトリの名前をクリックするとレポジトリの詳細画面に遷移する． そうしたら，画面右上にある `View push commands` というボタンをクリックする． すると [figure_title](#fig_ecr_push_command) のようなポップアップ画面が立ち上がる．
 
-![ECR への push コマンド](imgs/aws_batch/ecr_push_command.png)
+![ECR への push コマンド](./assets/aws_batch/ecr_push_command.png)
 
 このポップアップ画面で表示されている四つのコマンドを順番に実行していくことで，手元の Docker イメージを ECR に push することができる． **push を実行する前に， AWS の認証情報が設定されている**ことを確認しよう． そのうえで，ハンズオンのソースコードの中にある **`docker/` という名前のディレクトリに移動**する． そうしたら，ポップアップ画面で表示されたコマンドを上から順に実行していく．
 
@@ -2322,7 +2322,7 @@ job_def = batch.JobDefinition(
 
 四つ目のコマンドは，数 GB あるイメージを ECR にアップロードするので少し時間がかかるかもしれないが，これが完了するとめでたくイメージが ECR に配置されたことになる． もう一度 ECR のコンソールを見てみると，確かにイメージが配置されていることが確認できる ([figure_title](#fig_ecr_console2))． これで，AWS Batch を使ってジョブを実行させるための最後の準備が完了した．
 
-![ECR へ image の配置が完了した](imgs/aws_batch/ecr_console2.png)
+![ECR へ image の配置が完了した](./assets/aws_batch/ecr_console2.png)
 
 ## 単一のジョブを実行する
 
@@ -2332,7 +2332,7 @@ job_def = batch.JobDefinition(
 
 今回のハンズオンでは， `venv` による仮想環境の中に Jupyter notebook もインストール済みである． なので，ローカルマシンから以下のコマンドで Jupyter notebook を立ち上げる．
 
-```shell
+```sh
 # .env の仮想環境にいることを確認
 (.env) $ cd notebook
 (.env) $ jupyter notebook
@@ -2376,7 +2376,7 @@ def submit_job(lr:float, momentum:float, epochs:int, profile_name="default"):
 
 `submit_job()` 関数について簡単に説明しよう． [MNIST 手書き文字認識 (再訪)](#sec_run_mnist_docker_local) で， MNIST の Docker をローカルで実行したとき，次のようなコマンドを使用した．
 
-```shell
+```sh
 $ docker run -it mymnist --lr 0.1 --momentum 0.5 --epochs 10
 ```
 
@@ -2406,7 +2406,7 @@ AWS の認証情報は， Jupyter Notebook の内部から再度定義する必�
 
 \[4\] 番のセルを実行したら，ジョブが実際に投入されたかどうかを AWS コンソールから確認してみよう． AWS Batch の管理コンソールを開くと， [figure_title](#fig_batch_running_job) のような画面が表示されるだろう．
 
-![AWS Batch でジョブが実行されている様子](imgs/aws_batch/batch_running_job.png)
+![AWS Batch でジョブが実行されている様子](./assets/aws_batch/batch_running_job.png)
 
 [figure_title](#fig_batch_running_job) で赤で囲った箇所に注目してほしい． 一つのジョブが投入されると，それは `SUBMITTED` という状態を経て `RUNNABLE` という状態に遷移する． `RUNNABLE` とは， ジョブを実行するためのインスタンスが Compute environment に不足しているため，新たなインスタンスが起動されるのを待っている状態に相当する． インスタンスの準備が整うと，ジョブの状態は `STARTING` を経て `RUNNING` に至る．
 
@@ -2418,7 +2418,7 @@ AWS の認証情報は， Jupyter Notebook の内部から再度定義する必�
 
 S3 のコンソールに行くと `simplebatch-bucketXXXX` (XXXX の部分はユーザーによって異なる) という名前のバケットが見つかるはずである． これをクリックして中身を見てみると， `metrics_lr0.0100_m0.1000.csv` という名前の CSV があることが確認できるだろう ([figure_title](#fig_s3_saved_file))． これが， 学習率 = 0.01, モメンタム = 0.1 として学習を行ったときの結果である．
 
-![ジョブの実行結果は S3 に保存される](imgs/aws_batch/s3_saved_file.png)
+![ジョブの実行結果は S3 に保存される](./assets/aws_batch/s3_saved_file.png)
 
 さて，ここで `run_single.ipynb` に戻ってこよう． \[5\] から \[7\] 番のセルでは，学習結果の CSV ファイルのダウンロードを行っている．
 
@@ -2475,7 +2475,7 @@ print("Best accuracy:", df["val_accuracy"].max())
 print("Best accuracy epoch:", df["val_accuracy"].argmax())
 ```
 
-![AWS Batch で行った MNIST モデルの学習の結果](imgs/aws_batch/loss_epoch_profile2.png)
+![AWS Batch で行った MNIST モデルの学習の結果](./assets/aws_batch/loss_epoch_profile2.png)
 
 ## 並列に複数の Job を実行する
 
@@ -2509,15 +2509,15 @@ for lr in [0.1, 0.01, 0.001]:
 
 セル \[4\] を実行したら， Batch のコンソールを開こう． 先ほどと同様に，ジョブのステータスは `SUBMITTED` &gt; `RUNNABLE` &gt; `STARTING` &gt; `RUNNING` と移り変わっていくことがわかるだろう． 最終的に 9 個のジョブがすべて `RUNNING` の状態になることを確認しよう ([figure_title](#fig_batch_many_parallel_jobs))． また，このとき Compute environment の `Desired vCPUs` は 4x9=36 となっていることを確認しよう ([figure_title](#fig_batch_many_parallel_jobs))．
 
-![複数のジョブを同時投入したときの Batch コンソール](imgs/aws_batch/batch_many_parallel_jobs.png)
+![複数のジョブを同時投入したときの Batch コンソール](./assets/aws_batch/batch_many_parallel_jobs.png)
 
 次に，Batch のコンソールの左側のメニューから `Jobs` をクリックしてみよう． ここでは，実行中のジョブの一覧が確認することができる ([figure_title](#fig_batch_parallel_job_list))． ジョブのステータスでフィルタリングをすることも可能である． 9 個のジョブがどれも `RUNNING` 状態にあることが確認できるだろう．
 
-![複数のジョブを同時投入したときの Job 一覧](imgs/aws_batch/batch_parallel_job_list.png)
+![複数のジョブを同時投入したときの Job 一覧](./assets/aws_batch/batch_parallel_job_list.png)
 
 今度は EC2 コンソールを見てみよう． 左のメニューから `Instances` を選択すると， [figure_title](#fig_ec2_instances_list) に示すような起動中のインスタンスの一覧が表示される． `g4dn.xlarge` が 9 台稼働しているのが確認できる． Batch がジョブの投下に合わせて必要な数のインスタンスを起動してくれたのだ！
 
-![複数のジョブを同時投入したときの EC2 インスタンスの一覧](imgs/aws_batch/ec2_instances_list.png)
+![複数のジョブを同時投入したときの EC2 インスタンスの一覧](./assets/aws_batch/ec2_instances_list.png)
 
 ここまで確認できたら，それぞれの Job が終了するまでしばらく待とう (だいたい 10-15 分くらいで終わる)． すべてのジョブが終了すると，ダッシュボードの `SUCCEEDED` が 9 となっているはずだ． また， Compute environment の `Desired vCPUs` も 0 に落ちていることを確認しよう． 最後に EC2 コンソールに行って，すべての g4dn インスタンスが停止していることを確認しよう．
 
@@ -2568,7 +2568,7 @@ for i in range(3):
 
 最終的に出力されるプロットが [figure_title](#fig_grid_search_result) である．
 
-![ハイパーパラメータのグリッドサーチの結果](imgs/aws_batch/grid_search_result.png)
+![ハイパーパラメータのグリッドサーチの結果](./assets/aws_batch/grid_search_result.png)
 
 このプロットから，差は僅かであるが，学習率が 0.1 のときに精度は最大となることがわかる． また，学習率 0.1 のときはモメンタムを変えても大きな差は生じないことが見て取れる．
 
@@ -2586,21 +2586,21 @@ for i in range(3):
 
 ECR の Docker image を削除するには， ECR のコンソールに行き，イメージが配置されたレポジトリを開く． そして，画面右上の `DELETE` ボタンを押して削除する ([figure_title](#fig_delete_ecr))．
 
-![ECR から Docker image を削除する](imgs/aws_batch/delete_ecr.png)
+![ECR から Docker image を削除する](./assets/aws_batch/delete_ecr.png)
 
 あるいは， AWS CLI から同様の操作を行うには，以下のコマンドを用いる (`XXXX` は自分の ECR レポジトリ名に置き換える)．
 
-```shell
+```sh
 $ aws ecr batch-delete-image --repository-name XXXX --image-ids imageTag=latest
 ```
 
 image の削除が完了したうえで，次のコマンドでスタックを削除する．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
-[???](#sec:batch_development_and_debug) === クラウドを用いた機械学習アプリケーションの開発とデバッグ
+(#sec:batch_development_and_debug) === クラウドを用いた機械学習アプリケーションの開発とデバッグ
 
 本章で紹介したハンズオンでは， AWS Batch を使用することでニューラルネットの学習を複数並列に実行し，高速化を実現した． 本章の最後の話題として，クラウドを用いた機械学習アプリケーションの開発とデバッグの方法について述べよう．
 
@@ -2608,7 +2608,7 @@ $ cdk destroy
 
 実際，本書ではこの流れに沿って演習を進めてきた． MNIST タスクを解くモデルを，最初 Jupyter Notebook を使用して実験し，そのコードをほとんどそのまま Docker にパッケージし， AWS Batch を用いてハイパーパラメータサーチを行った． このサイクルを繰り返すことで，クラウドを最大限に活用した機械学習アプリケーションの開発を進めることができる．
 
-![クラウドを活用した機械学習アプリケーションの開発フロー](imgs/aws_batch/cloud_development.png)
+![クラウドを活用した機械学習アプリケーションの開発フロー](./assets/aws_batch/cloud_development.png)
 
 ## 小括
 
@@ -2636,7 +2636,7 @@ $ cdk destroy
 
 HTTP を通じたサーバーとクライアントのデータのやり取りは，すでに知っている読者も多いだろうし，逆にすべて解説しようとすると紙面が足りないので，ここではエッセンスの説明のみにとどめる． 以降では [Twitter](https://twitter.com) を具体例として，背後にあるサーバーとクライアントの間の通信を概説しよう． 概念図としては [figure_title](#fig:web_server) のような通信がクライアントとサーバーの間で行われていることになる．
 
-![クライアントと Web サーバーの通信の概念図](imgs/web_server.png)
+![クライアントと Web サーバーの通信の概念図](./assets/web_server.png)
 
 前提として，クライアントとサーバーの通信は **HTTP (Hypertext Transfer Protocol)** を使って行われる． また，最近では，暗号化された HTTP である **HTTPS (HTTPS (Hypertext Transfer Protocol Secure))** を用いることがスタンダードになってきている． 第一のステップとして，クライアントは HTTP(S) 通信によってサーバーから静的なコンテンツを取得する． 静的なコンテンツとは， **HTML (Hyptertext Markup Language)** で記述されたウェブページの文書本体， **CSS (Cascading Style Sheets)** で記述されたページのデザインやレイアウトファイル，そして **JavaScript (JS)** で記述されたページの動的な挙動を定義したプログラム，が含まれる． Twitter を含む現代的なウェブアプリケーションの設計では，この静的なファイル群はページの”枠”を定義するだけで，中身となるコンテンツ (例: ツイートの一覧) は別途 **API (Application Programming Interface)** によって取得されなければならない． そこで，クライアントは先のステップで取得された JavaScript で定義されたプログラムに従って，サーバーに API を送信し，ツイートや画像データを取得する． この際，テキストデータのやり取りには **JSON (JavaScript Object Notation)** というフォーマットが用いられることが多い． 画像や動画などのコンテンツも同様に API により取得される． このようにして取得されたテキストや画像が，HTML の文書に埋め込まれることで，最終的にユーザーに提示されるページが完成するのである． また，新しいツイートを投稿するときにも，クライアントから API を通じてサーバーのデータベースにデータが書き込まれる．
 
@@ -2648,7 +2648,7 @@ API (Application Programming Interface) とはこれまで何度も出てきた�
 
 REST API は， [figure_title](#rest_api) に示したような **Method** と **URI (Universal Resource Identifier)** の組からなる．
 
-![REST API](imgs/rest_api.png)
+![REST API](./assets/rest_api.png)
 
 Method (メソッド) とは，どのような操作を行いたいかを抽象的に表す，**"動詞"** として捉えることができる． メソッドには HTTP 規格で定義された 9 個の動詞 (verb) を使用することができる． この中でも， `GET`, `POST`, `PUT`, `PATCH`, `DELETE` の 5 個が最も頻繁に使用される ([table_title](#tab:rest_api_methods))． この 5 つのメソッドによる操作を総称して **CRUD** (create, read, update, and delete) とよぶ．
 
@@ -2698,7 +2698,7 @@ Serverless とは，文字どおりの意味としてはサーバーなしで計
 
 さらに問題を複雑にするのは，API サーバーで処理されるべきタスクが，非一様な点である． 非一様であるとは，たとえばタスク A は 3000 ミリ秒の実行時間と 512MB のメモリーを消費し，別のタスク B は 1000 ミリ秒の実行時間と 128MB のメモリーを消費する，というような状況を指している． 一つのサーバーマシンが計算負荷が異なる複数のタスクを処理する場合，クラスターのスケーリングはより複雑になる． この状況をシンプルにするために，１サーバーで実行するタスクは１種類に限る，という設計も可能であるが，そうするとで生まれる弊害も多い (ほとんど使われないタスクに対してもサーバー一台をまるまる割り当てなければならない = ほとんどアイドリング状態になってしまう，など)．
 
-![Serverful なクラウドシステム](imgs/serverful.png)
+![Serverful なクラウドシステム](./assets/serverful.png)
 
 ## Serverless クラウドへ
 
@@ -2710,7 +2710,7 @@ Serverless とは，文字どおりの意味としてはサーバーなしで計
 
 サーバーレスアーキテクチャは，このような **独占的に割り当てられた計算リソースというものを完全に廃止する**ことを出発点とする． サーバーレスアーキテクチャでは，計算のリソースは，クラウドプロバイダーがすべて管理する． クライアントは，仮想インスタンスを一台まるごと借りるのではなく，計算のタスクの需要が生まれる毎に，**実行したいプログラム・コマンドをクラウドに提出する**． クラウドプロバイダーは，自身のもつ巨大な計算リソースから空きを探し，提出されたプログラムを実行し，実行結果をクライアントに返す． 言い換えると，計算リソースのスケーリングやアロケーションなどはクラウドプロバイダーが一手に引き受け，ユーザーはジョブをサブミットすることに注力する，という枠組みである． これを図示すると， [figure_title](#serverless) のようになる．
 
-![従来のクラウドと Serverless クラウドの比較](imgs/serverless.png)
+![従来のクラウドと Serverless クラウドの比較](./assets/serverless.png)
 
 サーバーレスクラウドでは，スケーリングはすべてクラウドプロバイダーが引き受けるので，スケーラビリティーが保証されている． クライアントが同時に大量のタスクを送信した場合でも，クラウドプロバイダー側の独自の仕組みによってすべてのタスクが遅延なく実行される． また，サーバーレスクラウドを利用することで，**クラウドのコストは実際に使用した計算の総量 (稼働時間) で決定される**ことになる． これは，計算の実行総量に関わらずインスタンスの起動時間で料金が決定されていた従来のシステムと比べて大きな違いである．
 
@@ -2724,13 +2724,13 @@ Serverless とは，文字どおりの意味としてはサーバーなしで計
 
 サーバーレスアーキテクチャの概要がわかってきたところで，ここでは AWS においてサーバーレスクラウドを構成する様々なコンポーネントを紹介していこう． 特に， **Lambda**, **S3**, **DynamoDB** を取り上げ，解説する ([figure_title](#fig:serverless_logos))． サーバーレスクラウドは，これらのコンポーネントを統合することで一つのシステムが出来上がる． ここでは， Lambda，S3，DynamoDB を利用する際に押さえておかなければならない知識を一通り説明しきる都合上，具体的なイメージがわきにくいかもしれない． が，続く [Hands-on \#5: サーバーレス入門](#sec_intro_serverless) でそれぞれについてハンズオン形式で演習を行うので，そこでさらに理解を深めれば大丈夫である．
 
-![Lambda, S3, DynamoDB のアイコン](imgs/serverless_logos.png)
+![Lambda, S3, DynamoDB のアイコン](./assets/serverless_logos.png)
 
 ### Lambda
 
 AWS でサーバーレスコンピューティングの中心を担うのが， [Lambda](https://aws.amazon.com/lambda/) である． Lambda の使い方を [figure_title](#lambda_workflow) に図示している． Lambda の仕組みはシンプルで，まずユーザーは実行したいプログラムのコードを事前に登録しておく． プログラムは， Python, Node.js, Ruby などの主要な言語がサポートされている． Lambda に登録されたひとつひとつのプログラムを関数 (Function) とよぶ． そして，関数を実行したいときに，invoke コマンドを Lambda に送信する． Lambda では， invoke のリクエストを受け取るとただちに (数ミリセカンドから数百ミリセカンド程度の時間で) プログラムの実行を開始する． そして，実行結果をクライアントやその他の計算機に返す．
 
-![AWS Lambda](imgs/lambda_workflow.png)
+![AWS Lambda](./assets/lambda_workflow.png)
 
 このように，Lambda では占有された仮想インスタンスは存在せず，実行を待っているプログラムだけがある状態である． invoke のリクエストに応じて，プログラムが AWS の巨大な計算機プールのどこかに配置され，実行される． 同時に複数のリクエストが来た場合でも， AWS はそれらを実行するための計算リソースを割り当て，並列的に処理を行ってくれる． 原理上は，**数千から数万のリクエストが同時に来たとしても， Lambda はそれらを同時に実行することができる**． このような，占有された仮想サーバーの存在なしに，動的に関数を実行するサービスのことを総称して **FaaS (Function as a Service)** とよぶ．
 
@@ -2752,7 +2752,7 @@ Lambda は比較的短時間で完了する，反復性の高いタスクの実�
 
 [Simple Storage Service (S3)](https://aws.amazon.com/s3/) は，サーバーレスなストレージシステムを提供する ([figure_title](#fig:s3_vs_filesystem))． S3 は従来的なストレージシステムと異なり， OS に"マウントする”という概念はない． 基本的に API を通じてデータの読み書きの操作が行われる． また，データの冗長化や暗号化，バックアップの作成など，通常ならば OS と CPU が介在しなければならない操作も， API を通じて行うことができる． S3 では事前に決められたディスク領域のサイズはなく，データを入れれば入れた分だけ，保存領域は拡大していく (仕様上はペタバイトスケールのデータを保存することが可能である)． ストレージにかかる料金は，保存してあるデータの総容量で決定される．
 
-![S3 と従来的なファイルシステムの比較](imgs/s3_vs_filesystem.png)
+![S3 と従来的なファイルシステムの比較](./assets/s3_vs_filesystem.png)
 
 S3 を利用する際に，料金に関わってくる主要な事項をまとめたのが [table_title](#tab:s3_pricing) である (`us-east-1` リージョンのもの． 説明のため主要な事項のみ取り出している． 詳細は [公式ドキュメンテーション "Amazon S3 pricing"](https://aws.amazon.com/s3/pricing/?nc=sn&loc=4) を参照)．
 
@@ -2810,7 +2810,7 @@ DynamoDB ではデータの書き込み操作の単位を write request unit と
 
 このハンズオンで使用するアプリケーションのスケッチを [figure_title](#fig:lambda_deploy) に示す． STEP 1 では，AWS CDK を使用して Python で書かれたコードを Lambda に登録する． 続いて STEP 2 では， Invoke API を使用して，同時にいくつもの Lambda を起動し，並列な計算を行う． Lambda のワークフローを体験する目的で最小限の設定である．
 
-![Lambda チュートリアルの概要](imgs/handson-serverless/lambda_deploy.png)
+![Lambda チュートリアルの概要](./assets/handson-serverless/lambda_deploy.png)
 
 このハンズオンは，基本的に [AWS Lambda の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
@@ -2868,7 +2868,7 @@ class SimpleLambda(core.Stack):
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/serverless/lambda
 
@@ -2883,15 +2883,15 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_04_lambda_cdk_output) のような出力が得られるはずである． ここで表示されている `SimpleLambda.FunctionName = XXXX` の XXXX の文字列は後で使うのでメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-serverless/handson_04_lambda_cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-serverless/handson_04_lambda_cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールから，Lambda のページに行くと [figure_title](#handson_04_lambda_console_func_list) のような画面から Lambda の関数の一覧が確認できる．
 
-![Lambda コンソール - 関数の一覧](imgs/handson-serverless/lambda_console_func_list.png)
+![Lambda コンソール - 関数の一覧](./assets/handson-serverless/lambda_console_func_list.png)
 
 今回のアプリケーションで作成したのが `SimpleLambda` で始まるランダムな名前のついた関数だ． 関数の名前をクリックして，詳細を見てみる． すると [figure_title](#handson_04_lambda_console_func_detail) のような画面が表示されるはずだ． 先ほどプログラムの中で定義した Python の関数がエディターから確認できる． さらに下の方にスクロールすると，関数の各種設定も確認できる．
 
-![Lambda コンソール - 関数の詳細](imgs/handson-serverless/lambda_console_func_detail.png)
+![Lambda コンソール - 関数の詳細](./assets/handson-serverless/lambda_console_func_detail.png)
 
 Lambda で実行されるコードは， Lambda のコンソール画面 ([figure_title](#handson_04_lambda_console_func_detail)) のエディターで編集することもできる． デバッグをするときなどは，こちらを直接いじる方が早い場合もある． その場合は， CDK のコードに行った編集を反映させなおすことを忘れずに．
 
@@ -2901,7 +2901,7 @@ Lambda で実行されるコードは， Lambda のコンソール画面 ([figur
 
 以下のコマンドで，Lambda の関数を実行する． コマンドの `XXXX` の部分は，先ほどデプロイしたときに `SimpleLambda.FunctionName = XXXX` で得られた XXXX の文字列で置換する．
 
-```shell
+```sh
 $ python invoke_one.py XXXX
 ```
 
@@ -2911,20 +2911,20 @@ $ python invoke_one.py XXXX
 
 次のコマンドを実行しよう． XXXX の部分は前述と同様に置き換える． 第二引数の `100` は 100 個のタスクを投入せよ，という意味である．
 
-```shell
+```sh
 $ python invoke_many.py XXXX 100
 ```
 
 すると次のような出力が得られるはずだ．
 
-```shell
+```sh
 ....................................................................................................
 Submitted 100 tasks to Lambda!
 ```
 
 実際に，100 個のタスクが同時に実行されていることを確認しよう． [figure_title](#handson_04_lambda_console_func_detail) の画面に戻り， "Monitoring" というタブがあるので，それをクリックする． すると， [figure_title](#handson_04_lambda_console_monitoring) のようなグラフが表示されるだろう．
 
-![Lambda コンソール - 関数の実行のモニタリング](imgs/handson-serverless/lambda_console_monitoring.png)
+![Lambda コンソール - 関数の実行のモニタリング](./assets/handson-serverless/lambda_console_monitoring.png)
 
 [figure_title](#handson_04_lambda_console_monitoring) のグラフの更新には数分かかることがあるので，なにも表示されない場合は少し待つ．
 
@@ -2940,7 +2940,7 @@ Submitted 100 tasks to Lambda!
 
 最後にスタックを削除しよう． スタックを削除するには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -2950,7 +2950,7 @@ $ cdk destroy
 
 このハンズオンで使用するアプリケーションのスケッチを [figure_title](#fig:dynamodb_deploy) に示す． STEP 1 では，AWS CDK を使用して DynamoDB のテーブルを初期化し，デプロイする． 続いて STEP 2 では， API を使用してデータベースのデータの書き込み・読み出し・削除などの操作を練習する．
 
-![DynamoDB チュートリアルの概要](imgs/handson-serverless/dynamodb_deploy.png)
+![DynamoDB チュートリアルの概要](./assets/handson-serverless/dynamodb_deploy.png)
 
 このハンズオンは，基本的に [AWS DynamoDB の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行できる．
 
@@ -2987,7 +2987,7 @@ class SimpleDynamoDb(core.Stack):
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/serverless/dynamodb
 
@@ -3002,15 +3002,15 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_04_dynamodb_cdk_output) のような出力が得られるはずである． ここで表示されている `SimpleDynamoDb.TableName = XXXX` の XXXX の文字列は後で使うのでメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-serverless/handson_04_dynamodb_cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-serverless/handson_04_dynamodb_cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックを確認してみよう． コンソールから， DynamoDB のページに行き，左のメニューバーから "Tables" を選択する． すると， [figure_title](#handson_04_dynamodb_table_list) のような画面からテーブルの一覧が確認できる．
 
-![DynamoDB のコンソール (テーブルの一覧)](imgs/handson-serverless/dynamodb_table_list.png)
+![DynamoDB のコンソール (テーブルの一覧)](./assets/handson-serverless/dynamodb_table_list.png)
 
 今回のアプリケーションで作成したのが `SimpleDynamoDb` で始まるランダムな名前のついたテーブルだ． テーブルの名前をクリックして，詳細を見てみる． すると [figure_title](#handson_04_dynamodb_table_detail) のような画面が表示されるはずだ． "Items" のタブをクリックすると，テーブルの中のレコードを確認できる． 現時点ではなにもデータを書き込んでいないので，空である．
 
-![DynamoDB のコンソール (テーブルの詳細画面)](imgs/handson-serverless/dynamodb_table_detail.png)
+![DynamoDB のコンソール (テーブルの詳細画面)](./assets/handson-serverless/dynamodb_table_detail.png)
 
 ### データの読み書き
 
@@ -3039,13 +3039,13 @@ def write_item(table_name):
 
 では， `simple_write.py` を実行してみよう． "XXXX" の部分を自分がデプロイしたテーブルの名前 (`SimpleDynamoDb` で始まる文字列) に置き換えたうえで，次のコマンドを実行する．
 
-```shell
+```sh
 $ python simple_write.py XXXX
 ```
 
 新しい要素が正しく書き込めたか， AWS コンソールから確認してみよう． [figure_title](#handson_04_dynamodb_table_detail) と同じ手順で，テーブルの中身の要素の一覧を表示する． すると [figure_title](#fig:dynamodb_table_new_item) のように，期待通り新しい要素が見つかるだろう．
 
-![DynamoDB に新しい要素が追加されたことを確認](imgs/handson-serverless/dynamodb_table_new_item.png)
+![DynamoDB に新しい要素が追加されたことを確認](./assets/handson-serverless/dynamodb_table_new_item.png)
 
 boto3 を使ってテーブルから要素を読みだすことも可能である． ハンズオンのディレクトリにある [simple_read.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/dynamodb/simple_read.py) を見てみよう．
 
@@ -3063,7 +3063,7 @@ def scan_table(table_name):
 
 次のコマンドで，このスクリプトを実行してみよう ("XXXX" の部分を正しく置き換えることを忘れずに）．
 
-```shell
+```sh
 $ python simple_read.py XXXX
 ```
 
@@ -3077,7 +3077,7 @@ DynamoDB の利点は，最初に述べたとおり，負荷に応じて自在�
 
 次のコマンドを実行してみよう (XXXX は自分のテーブルの名前に置き換える)．
 
-```shell
+```sh
 $ python batch_rw.py XXXX write 1000
 ```
 
@@ -3085,7 +3085,7 @@ $ python batch_rw.py XXXX write 1000
 
 さらに，データベースの検索をかけてみよう． 今回書き込んだデータには `age` という属性に 1 から 50 のランダムな整数が割り当てられている． `age` が 2 以下であるような要素だけを検索し拾ってくるには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ python batch_rw.py XXXX search_under_age 2
 ```
 
@@ -3097,7 +3097,7 @@ DynamoDB で十分に遊ぶことができたら，忘れずにスタックを�
 
 これまでのハンズオンと同様，スタックを削除するには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -3107,7 +3107,7 @@ $ cdk destroy
 
 [figure_title](#fig:s3_deploy) が今回提供する S3 チュートリアルの概要である． STEP 1 として， AWS CDK を用いて S3 に新しい空のバケット (Bucket) を作成する． 続いて STEP 2 では，データのアップロード・ダウンロードの方法を解説する．
 
-![S3 チュートリアルの概要](imgs/handson-serverless/s3_deploy.png)
+![S3 チュートリアルの概要](./assets/handson-serverless/s3_deploy.png)
 
 このハンズオンは，基本的に [S3 の無料枠](https://aws.amazon.com/free/?all-free-tier.sort-by=item.additionalFields.SortRank&all-free-tier.sort-order=asc) の範囲内で実行することができる．
 
@@ -3134,7 +3134,7 @@ class SimpleS3(core.Stack):
 
 デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/serverless/s3
 
@@ -3149,7 +3149,7 @@ $ cdk deploy
 
 デプロイを実行すると， [figure_title](#fig:s3_deploy_output) のような出力が得られるはずである． ここで表示されている `SimpleS3.BucketName = XXXX` が，新しく作られたバケットの名前である (今回提供しているコードを使うとランダムな名前がバケットに割り当てられる）． これはあとで使うのでメモしておこう．
 
-![デプロイ実行後の出力](imgs/handson-serverless/s3_deploy_output.png)
+![デプロイ実行後の出力](./assets/handson-serverless/s3_deploy_output.png)
 
 ### データの読み書き
 
@@ -3157,13 +3157,13 @@ $ cdk deploy
 
 まずは，以下のコマンドを実行して， `tmp.txt` という仮のファイルを生成する．
 
-```shell
+```sh
 $ echo "Hello world!" >> tmp.txt
 ```
 
 ハンズオンのディレクトリにある [simple_s3.py](https://github.com/andatoshiki/toshiki-notebookblob/main/handson/serverless/s3/simple_s3.py) に [boto3](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html) ライブラリを使用した S3 のファイルのアップロード・ダウンロードのスクリプトが書いてある． `simple_s3.py` を使って，上で作成した `tmp.txt` を以下のコマンドによりバケットにアップロードする． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
-```shell
+```sh
 $ python simple_s3.py XXXX upload tmp.txt
 ```
 
@@ -3183,7 +3183,7 @@ def upload_file(bucket_name, filename, key=None):
 
 S3 においてファイルの識別子として使われるのが **Key** である． これは，従来的なファイルシステムにおけるパス (Path) と相同な概念で，それぞれのファイルに固有な Key が割り当てられる必要がある． Key という呼び方は， S3 が [Object storage](https://en.wikipedia.org/wiki/Object_storage) と呼ばれるシステムに立脚していることに由来する． `--key` のオプションを追加して `simple_s3.py` を実行することで， Key を指定してアップロードを実行することができる．
 
-```shell
+```sh
 $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
 ```
 
@@ -3191,7 +3191,7 @@ $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
 
 ここまでコマンドを実行し終えたところで，一度 AWS コンソールに行き S3 の中身を確認してみよう． S3 のコンソールに行くと，バケットの一覧が見つかるはずである． その中から， `simples3-bucket` から始まるランダムな名前のついたバケットを探し，クリックする． するとバケットの中に含まれるファイルの一覧が表示される ([figure_title](#fig:s3_bucket_filelist))．
 
-![S3 バケットの中のファイル一覧](imgs/handson-serverless/s3_bucket_filelist.png)
+![S3 バケットの中のファイル一覧](./assets/handson-serverless/s3_bucket_filelist.png)
 
 ここで実行した 2 つのコマンドによって， `tmp.txt` というファイルと， `a/b/tmp.txt` というファイルが見つかることに注目しよう． 従来的なファイルシステムと似た体験を提供するため， S3 では Key が **"/" (スラッシュ)** によって区切られていた場合，**ツリー状の階層構造**によってファイルを管理することができる．
 
@@ -3199,7 +3199,7 @@ $ python simple_s3.py XXXX upload tmp.txt --key a/b/tmp.txt
 
 次に，バケットからファイルのダウンロードを実行してみよう． `simple_s3.py` を使って，以下のコマンドを実行すればよい． `XXXX` のところは，自分自身のバケットの名前で置き換えること．
 
-```shell
+```sh
 $ python simple_s3.py XXXX download tmp.txt
 ```
 
@@ -3221,7 +3221,7 @@ S3 からのダウンロードはシンプルで， `download_file()` メソッ�
 
 以上のハンズオンで， S3 の一番基本的な使い方を紹介した． ここまでのハンズオンが理解できたら，忘れずにスタックを削除しよう． これまでのハンズオンと同様，スタックを削除するには，次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -3229,7 +3229,7 @@ $ cdk destroy
 
 さて，最後のハンズオンとなる第六回では，これまで学んできたサーバーレスクラウドの技術を使って，簡単なウェブサービスを作ってみよう． 具体的には，人々が自分の作った俳句を投稿する SNS サービス (**Bashoutter** と名付ける) を作成してみよう． Lambda, DynamoDB, S3 などの技術をすべて盛り込み，シンプルながらもサーバーレスの利点を生かしたスケーラブルな SNS アプリが誕生する． 最終的には， [figure_title](#handson_05_bashoutter) のような，ミニマルではあるがとても現代風な SNS サイトが完成する！
 
-![ハンズオン#6で作製する SNS アプリケーション "Bashoutter"](imgs/handson-bashoutter/bashoutter.png)
+![ハンズオン#6で作製する SNS アプリケーション "Bashoutter"](./assets/handson-bashoutter/bashoutter.png)
 
 ## 準備
 
@@ -3255,7 +3255,7 @@ $ cdk destroy
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_05_architecture) に示す．
 
-![ハンズオン#5で作製するアプリケーションのアーキテクチャ](imgs/handson-bashoutter/handson-05-architecture.png)
+![ハンズオン#5で作製するアプリケーションのアーキテクチャ](./assets/handson-bashoutter/handson-05-architecture.png)
 
 簡単にまとめると，次のような設計である．
 
@@ -3477,7 +3477,7 @@ CDK による `dynamodb.Table` オブジェクトには `grant_read_write_data()
 
 [API Gateway](https://aws.amazon.com/api-gateway/) とは， API の"入り口"として，API のリクエストパスに従って Lambda や EC2 などに接続を行うという機能を担う ([figure_title](#fig:bashoutter_api_gateway))． Lambda や EC2 によって行われた処理の結果は，再び API Gateway を経由してクライアントに返される． このように，クライアントとバックエンドサーバーの間に立ち， API のリソースパスに応じて接続先を振り分けるようなサーバーを**ルーター**，あるいは**リバースプロキシ**とよんだりする． 従来的には，ルーターにはそれ専用の仮想サーバーが置かれることが一般的であった． しかし， API Gateway はサーバーレスなルーターとして，固定されたサーバーを配置することなく， API のリクエストが来たときのみ起動し，API のルーティングを実行する． サーバーレスであることの当然の帰結として，アクセスの件数が増大したときにはそれにルーティングの処理能力を自動で増やす機能も備わっている．
 
-![API Gateway](imgs/handson-bashoutter/api_gateway.png)
+![API Gateway](./assets/handson-bashoutter/api_gateway.png)
 
 API Gateway を配置することで，大量 (1 秒間に数千から数万件) の API リクエストに対応することのできるシステムを容易に構築することができる． API Gateway の料金は [table_title](#tab_handson_05_apigateway_price) のように設定されている． また，無料利用枠により，月ごとに 100 万件までのリクエストは 0 円で利用できる．
 
@@ -3540,7 +3540,7 @@ API Gateway で新規 API を作成したとき， `default_cors_preflight_optio
 
 アプリケーションの中身が理解できたところで，早速デプロイを行ってみよう． デプロイの手順は，これまでのハンズオンとほとんど共通である． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． シークレットキーの設定も忘れずに ([AWS CLI のインストール](#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd intro-aws/handson/bashoutter
 
@@ -3555,25 +3555,25 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_05_cdk_output) のような出力が得られるはずである． ここで表示されている `Bashoutter.BashoutterApiEndpoint = XXXX`, `Bashoutter.BucketUrl = YYYY` の二つ文字列はあとで使うのでメモしておこう．
 
-![CDKデプロイ実行後の出力](imgs/handson-bashoutter/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-bashoutter/cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックを確認してみよう． まずは，コンソールから API Gateway のページに行く． すると， [figure_title](#handson_05_apigw_console_list) のような画面が表示され，デプロイ済みの API エンドポイントの一覧が確認できる．
 
-![API Gateway コンソール画面 (1)](imgs/handson-bashoutter/apigw_console_list.png)
+![API Gateway コンソール画面 (1)](./assets/handson-bashoutter/apigw_console_list.png)
 
 今回デプロイした "BashoutterApi" という名前の API をクリックすることで [figure_title](#handson_05_apigw_console_detail) のような画面に遷移し，詳細情報を閲覧できる． `GET /haiku`, `POST /haiku` などが定義されていることが確認できる．
 
 それぞれのメソッドをクリックすると，そのメソッドの詳細情報を確認できる． API Gateway は，前述したルーティングの機能だけでなく，認証機能などを追加することも可能である． このハンズオンではとくにこれらの機能は使用しないが， "Method Request" と書いてある項目などがそれに相当する． 次に， [figure_title](#handson_05_apigw_console_detail) で画面右端の赤色で囲った部分に，この API で呼ばれる Lambda 関数が指定されていることに注目しよう． 関数名をクリックと，該当する Lambda のコンソールに遷移し，関数の中身を閲覧することが可能である．
 
-![API Gateway コンソール画面 (2)](imgs/handson-bashoutter/apigw_console_detail.png)
+![API Gateway コンソール画面 (2)](./assets/handson-bashoutter/apigw_console_detail.png)
 
 次に， S3 のコンソール画面に移ってみよう． `bashouter-` で始まるランダムな名前のバケットが見つかるはずである ([figure_title](#handson_05_s3_console))．
 
-![S3 コンソール画面](imgs/handson-bashoutter/s3_console.png)
+![S3 コンソール画面](./assets/handson-bashoutter/s3_console.png)
 
 バケットの名前をクリックすることで，バケットの中身を確認してみよう． `index.html` のほか， `css/`, `js/` などのディレクトリがあるのが確認できるだろう ([figure_title](#handson_05_s3_contents))． これらが，ウェブページの"枠"を定義している静的コンテンツである．
 
-![S3 バケットの中身](imgs/handson-bashoutter/s3_contents.png)
+![S3 バケットの中身](./assets/handson-bashoutter/s3_contents.png)
 
 ## API リクエストを送信する
 
@@ -3583,13 +3583,13 @@ AWS コンソールにログインして，デプロイされたスタックを�
 
 まず，先ほどデプロイを実行したときに得られた API のエンドポイントの URL (`Bashoutter.BashoutterApiEndpoint = XXXX` で得られた `XXXX` の文字列) をコマンドラインの変数に設定しておく．
 
-```shell
+```sh
 $ export ENDPOINT_URL=XXXX
 ```
 
 次に，俳句の一覧を取得するため， `GET /haiku` の API を送信してみよう．
 
-```shell
+```sh
 $ http GET "${ENDPOINT_URL}/haiku"
 ```
 
@@ -3597,7 +3597,7 @@ $ http GET "${ENDPOINT_URL}/haiku"
 
 それでは次に， `POST /haiku` を使って俳句を投稿してみよう．
 
-```shell
+```sh
 $ http POST "${ENDPOINT_URL}/haiku" \
 username="松尾芭蕉" \
 first="閑さや" \
@@ -3607,7 +3607,7 @@ third="蝉の声"
 
 次のような出力が得られるだろう．
 
-```shell
+```sh
 HTTP/1.1 201 Created
 Connection: keep-alive
 Content-Length: 49
@@ -3620,7 +3620,7 @@ Content-Type: application/json
 
 新しい俳句を投稿することに成功したようである． 本当に俳句が追加されたか，再び GET リクエストを呼ぶことで確認してみよう．
 
-```shell
+```sh
 $ http GET "${ENDPOINT_URL}/haiku"
 
 HTTP/1.1 200 OK
@@ -3645,13 +3645,13 @@ Content-Type: application/json
 
 次に， `PATCH /haiku/{item_id}` を呼ぶことでこの俳句にいいねを追加してみよう． 一つ前のコマンドで取得した俳句の `item_id` を，次のコマンドの `XXXX` に代入した上で実行しよう．
 
-```shell
+```sh
 $ http PATCH "${ENDPOINT_URL}/haiku/XXXX"
 ```
 
 `{"description": "OK"}` という出力が得られるはずである． 再び GET リクエストを送ることで，いいね (`likes`) が 1 増えたことを確認しよう．
 
-```shell
+```sh
 $ http GET "${ENDPOINT_URL}/haiku"
 ...
 [
@@ -3665,7 +3665,7 @@ $ http GET "${ENDPOINT_URL}/haiku"
 
 最後に， DELETE リクエストを送ることで俳句をデータベースから削除しよう． `XXXX` は `item_id` の値で置き換えたうえで次のコマンドを実行する．
 
-```shell
+```sh
 $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
 ```
 
@@ -3681,7 +3681,7 @@ $ http DELETE "${ENDPOINT_URL}/haiku/XXXX"
 
 テストとして， API を 300 回実行してみよう． 次のコマンドを実行する．
 
-```shell
+```sh
 $ python client.py $ENDPOINT_URL post_many 300
 ```
 
@@ -3689,7 +3689,7 @@ $ python client.py $ENDPOINT_URL post_many 300
 
 先述のコマンドにより大量の俳句を投稿するとデータベースに無駄なデータがどんどん溜まってしまう． データベースを完全に空にするには，次のコマンドを使用する．
 
-```shell
+```sh
 $ python client.py $ENDPOINT_URL clear_database
 ```
 
@@ -3699,7 +3699,7 @@ $ python client.py $ENDPOINT_URL clear_database
 
 CDK のコードで， Public access mode の S3 バケットを作成したことを思い出してほしい． 最初のステップとして，ここにウェブサイトのコンテンツをアップロードしよう． ハンズオンのソースコードの中に `gui/dist` というフォルダが見つかるはずである． ここにはビルド済みのウェブサイトの静的コンテンツ (HTML/CSS/JavaScript) が入っている． AWS CLI のコマンドを使うことでこれらのファイルを S3 にアップロードしよう．
 
-```shell
+```sh
 $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
 ```
 
@@ -3711,7 +3711,7 @@ $ aws s3 cp --recursive ./gui/dist s3://<BUCKET_NAME>
 
 ウェブブラウザを開き，アドレスバーに S3 の URL を入力しへアクセスしてみよう． すると， [figure_title](#handson_05_bashoutter_2) のようなページが表示されるはずである．
 
-!["Bashoutter" の GUI 画面](imgs/handson-bashoutter/bashoutter_2.png)
+!["Bashoutter" の GUI 画面](./assets/handson-bashoutter/bashoutter_2.png)
 
 ページが表示されたら，一番上の "API Endpoint URL" と書いてあるテキストボックスに，今回デプロイした **API Gateway の URL を入力**する (今回のアプリケーションでは，API Gateway の URL はランダムに割り当てられるのでこのような GUI の仕様になっている)． そうしたら，画面の "REFRESH" と書いてあるボタンを押してみよう． データベースに俳句が登録済みであれば，俳句の一覧が表示されるはずである． 各俳句の左下にあるハートのアイコンをクリックすることで， "like" の票を入れることができる．
 
@@ -3725,7 +3725,7 @@ Bashoutter アプリを存分に楽しむことができたら，最後に忘れ
 
 コマンドラインからスタックの削除を実行するには，次のコマンドを使う．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -3735,7 +3735,7 @@ CDK のバージョンによっては S3 のバケットが空でないと， `c
 
 コマンドラインから実行するには， 次のコマンドを使う． &lt;BUCKET NAME&gt; のところは，自分の バケットの名前 ("`BashoutterBucketXXXX`" というパターンの名前がついているはずである) に置き換えることを忘れずに．
 
-```shell
+```sh
 $ aws s3 rm <BUCKET NAME> --recursive
 ```
 
@@ -3779,31 +3779,31 @@ $ aws s3 rm <BUCKET NAME> --recursive
 
 まず，ウェブブラウザから [AWS コンソール](https://aws.amazon.com/console/) にアクセスし，右上の `Create an AWS Account` をクリックする ([figure_title](#fig:aws-signup-1) で実線で囲った部分)．
 
-![サインアップ (1): AWS コンソールにアクセス](imgs/signup-1.png)
+![サインアップ (1): AWS コンソールにアクセス](./assets/signup-1.png)
 
 次に，遷移した先のページでメールアドレスとパスワードなどの登録を行う ([figure_title](#fig:aws-signup-3))．
 
-![サインアップ (2): メールアドレス・パスワードなどの登録．](imgs/signup-3.png)
+![サインアップ (2): メールアドレス・パスワードなどの登録．](./assets/signup-3.png)
 
 続いて，住所や電話番号などを訊かれるので，すべて入力しよう ([figure_title](#fig:aws-signup-4))．
 
-![サインアップ (3): 住所・電話番号の入力](imgs/signup-4.png)
+![サインアップ (3): 住所・電話番号の入力](./assets/signup-4.png)
 
 次に，クレジットカードの情報の登録を求められる ([figure_title](#fig:aws-signup-5))． 個人で AWS を利用する場合は，利用料金の請求はクレジットカードを経由して行われる． クレジットカードの登録なしには AWS を使い始めることはできないことに注意．
 
-![サインアップ (4): クレジットカードの登録](imgs/signup-5.png)
+![サインアップ (4): クレジットカードの登録](./assets/signup-5.png)
 
 次の画面では，携帯電話の SMS またはボイスメッセージを利用した本人確認が求められる ([figure_title](#fig:aws-signup-6))． 希望の認証方法を選択し，自分の携帯電話番号を入力しよう．
 
-![サインアップ (5): 携帯電話による本人確認](imgs/signup-6.png)
+![サインアップ (5): 携帯電話による本人確認](./assets/signup-6.png)
 
 無事に本人確認が完了すると，最後にサポートプランの選択を求められる ([figure_title](#fig:aws-signup-8))． 無料の Basic support を選択しておけば問題ない．
 
-![サインアップ (6): サポートプランの選択](imgs/signup-8.png)
+![サインアップ (6): サポートプランの選択](./assets/signup-8.png)
 
 以上のステップにより，アカウントの作成が完了する ([figure_title](#fig:aws-signup-9))． 早速ログインをして， AWS コンソールにアクセスできるか確認しておこう．
 
-![サインアップ (7): アカウントの作成が完了した](imgs/signup-9.png)
+![サインアップ (7): アカウントの作成が完了した](./assets/signup-9.png)
 
 ## AWS のシークレットキーの作成
 
@@ -3821,9 +3821,9 @@ AWS シークレットキーとは， AWS CLI や AWS CDK から AWS の API を
 
 6.  発行したシークレットキーは， `~/.aws/credentials` のファイルに書き込むか，環境変数に設定するなどして使う (詳しくは [AWS CLI のインストール](#aws_cli_install))．
 
-![AWS シークレットキーの発行1](imgs/aws_secret_key_1.png)
+![AWS シークレットキーの発行1](./assets/aws_secret_key_1.png)
 
-![AWS シークレットキーの発行2](imgs/aws_secret_key_2.png)
+![AWS シークレットキーの発行2](./assets/aws_secret_key_2.png)
 
 **AWS Educate Starter Account** を用いている場合は，次の手順でシークレットキーを確認する．
 
@@ -3841,15 +3841,15 @@ AWS シークレットキーとは， AWS CLI や AWS CDK から AWS の API を
 
 -   上記の説明ではプロファイル名が `default` となっていたが，これは自分の好きな名前に変更してもよい． `default` 以外の名前を使用する場合は，コマンドを実行するときにプロファイル名を指定する必要がある (詳しくは [AWS CLI のインストール](#aws_cli_install))．
 
-![vocareum コンソール](imgs/vocareum_console.png)
+![vocareum コンソール](./assets/vocareum_console.png)
 
-![vocareum から AWS シークレットキーの発行](imgs/vocareum_secret.png)
+![vocareum から AWS シークレットキーの発行](./assets/vocareum_secret.png)
 
 ## AWS CLI のインストール
 
 読者のために，執筆時点におけるインストールの手順 (Linux 向け) を簡単に記述する． 将来のバージョンでは変更される可能性があるので，常に [公式のドキュメンテーション](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) で最新の情報をチェックすることを忘れずに．
 
-```shell
+```sh
 $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 $ unzip awscliv2.zip
 $ sudo ./aws/install
@@ -3857,13 +3857,13 @@ $ sudo ./aws/install
 
 インストールできたか確認するため，次のコマンドを打ってバージョン情報が出力されることを確認する．
 
-```shell
+```sh
 $ aws --version
 ```
 
 インストールができたら，次のコマンドにより初期設定を行う ([参照](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html))．
 
-```shell
+```sh
 $ aws configure
 ```
 
@@ -3871,7 +3871,7 @@ $ aws configure
 
 このコマンドを完了すると， `~/.aws/credentials` と `~/.aws/config`　という名前のファイルが生成されているはずである． 念のため， `cat` コマンドを使って中身を確認してみるとよい．
 
-```shell
+```sh
 $ cat ~/.aws/credentials
 [default]
 aws_access_key_id = XXXXXXXXXXXXXXXXXX
@@ -3889,7 +3889,7 @@ output = json
 
 AWS CLI でコマンドを打つときに，プロファイルを使い分けるには，
 
-```shell
+```sh
 $ aws s3 ls --profile myprofile
 ```
 
@@ -3897,13 +3897,13 @@ $ aws s3 ls --profile myprofile
 
 いちいち `--profile` オプションをつけるのが面倒だと感じる場合は， `AWS_PROFILE` という環境変数を設定するとよい．
 
-```shell
+```sh
 $ export AWS_PROFILE=myprofile
 ```
 
 あるいは，認証情報などを環境変数に設定するテクニックもある．
 
-```shell
+```sh
 export AWS_ACCESS_KEY_ID=XXXXXX
 export AWS_SECRET_ACCESS_KEY=YYYYYY
 export AWS_DEFAULT_REGION=ap-northeast-1
@@ -3919,25 +3919,25 @@ export AWS_DEFAULT_REGION=ap-northeast-1
 
 Node.js がインストールされていれば，基本的に次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ sudo npm install -g aws-cdk
 ```
 
 本書のハンズオンは AWS CDK version 1.100.0 で開発した． CDK は開発途上のライブラリなので，将来的に API が変更される可能性がある． API の変更によりエラーが生じた場合は， version 1.100.0 を使用することを推奨する．
 
-```shell
+```sh
 $ npm install -g aws-cdk@1.100
 ```
 
 インストールできたか確認するため，次のコマンドを打って正しくバージョンが表示されることを確認する．
 
-```shell
+```sh
 $ cdk --version
 ```
 
 インストールができたら，次のコマンドにより AWS 側の初期設定を行う． これは一度実行すれば OK．
 
-```shell
+```sh
 $ cdk bootstrap
 ```
 
@@ -3957,7 +3957,7 @@ WSL とは， Windows の OS 上で Linux の仮想環境を起動するため�
 
 まず最初に， Administrator 権限で PowerShell を起動する ([figure_title](#fig:powershell))． 左下の Windows メニューの検索バーに `powershell` と入力すると， PowerShell のプログラムが見つかるはずである， これを右クリックし、 `Run as administrator` を選択し起動する．
 
-![管理者権限での PowerShell の起動](imgs/wsl/powershell.png)
+![管理者権限での PowerShell の起動](./assets/wsl/powershell.png)
 
 PowerShell が起動したら、次のコマンドを実行する．
 
@@ -3981,7 +3981,7 @@ dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /nores
 
 そうしたら，再び PowerShell を開き次のコマンドを実行する。
 
-```shell
+```sh
 wsl --set-default-version 2
 ```
 
@@ -3989,17 +3989,17 @@ wsl --set-default-version 2
 
 Microsoft store のアプリを起動し，検索バーに `Ubuntu` と入力する． Ubuntu 20.04 LTS という項目が見つかるはずなので，それを開き， “Get” ボタンをクリックする ([figure_title](#fig:microsoft_store))． しばらく待つと， Ubuntu 20.04 のインストールが完了する．
 
-![Microsoft store から Ubuntu 20.04 をインストール](imgs/wsl/microsoft_store.png)
+![Microsoft store から Ubuntu 20.04 をインストール](./assets/wsl/microsoft_store.png)
 
 Ubuntu 20.04 を初回に起動すると，初期設定が自動で開始され，数分待つことになる． 初期設定が終わると，ユーザー名・パスワードを設定するようプロンプトが出るので，プロンプトに従い入力する．
 
 これで WSL2 のインストールが完了した． 早速 WSL2 を起動してみよう． 左下の Windows メニューの検索バーに `Ubuntu` と入力すると， Ubuntu 20.04 のプログラムが見つかるはずである ([figure_title](#fig:ubuntu))． クリックして起動しよう．
 
-![Ubuntu 20.04 の起動](imgs/wsl/ubuntu2004.png)
+![Ubuntu 20.04 の起動](./assets/wsl/ubuntu2004.png)
 
 すると，ターミナルの黒い画面が立ち上がるだろう ([figure_title](#fig:wsl_window))． `ls`, `top` などのコマンドを打ってみて， WSL がきちんと動作していることを確認しよう．
 
-![WSL の起動画面](imgs/wsl/wsl_window.png)
+![WSL の起動画面](./assets/wsl/wsl_window.png)
 
 オプションとして， [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started) というマイクロソフトから提供されているツールを使うと，より快適に WSL を使用することができる． 興味のある読者はこちらのインストールも推奨する．
 
@@ -4015,7 +4015,7 @@ Linux ユーザー (特に Ubuntu ユーザー) については，インスト�
 
 最も簡単な方法は， Docker が公式で提供しているインストールスクリプトを用いる方法である． この場合，次のコマンドを実行することで Docker がインストールされる．
 
-```shell
+```sh
 $ curl -fsSL https://get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh
 ```
@@ -4070,7 +4070,7 @@ $ source .env/bin/activate
 
 シェルのプロンプトに `(.env)` という文字が追加されていることを確認しよう ([figure_title](#fig_venv_prompt))． これが， "いまあなたは venv の中にいますよ" というしるしになる．
 
-![venv を起動したときのプロンプト](imgs/venv_shell.png)
+![venv を起動したときのプロンプト](./assets/venv_shell.png)
 
 仮想環境を起動すると，それ以降実行する `pip` コマンドは， `.env/` 以下にインストールされる．このようにして，プロジェクトごとに使うライブラリのバージョンを切り分けることができる．
 

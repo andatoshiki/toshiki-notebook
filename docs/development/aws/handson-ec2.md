@@ -10,17 +10,17 @@
 
 まずは，ハンズオンを実行するための環境を整える． これらの環境整備は，後のハンズオンでも前提となるものなので確実にミスなく行っていただきたい．
 
--   **AWS Account**: ハンズオンを実行するには個人の AWS アカウントが必要である． AWS アカウントの取得については [???](#sec:create_aws_account) を参照のこと．
+-   **AWS Account**: ハンズオンを実行するには個人の AWS アカウントが必要である． AWS アカウントの取得については (#sec:create_aws_account) を参照のこと．
 
 -   **Python と Node.js**: 本ハンズオンを実行するには，Python (3.6 以上)，Node.js (12.0 以上) がインストールされていなければならない．
 
--   **AWS CLI**: AWS CLI のインストールについては， [???](#aws_cli_install) を参照． ここに記載されている認証鍵の設定も済ませておくこと．
+-   **AWS CLI**: AWS CLI のインストールについては， (#aws_cli_install) を参照． ここに記載されている認証鍵の設定も済ませておくこと．
 
--   **AWS CDK**: AWS CDK のインストールについては， [???](#aws_cdk_install) を参照．
+-   **AWS CDK**: AWS CDK のインストールについては， (#aws_cdk_install) を参照．
 
 -   **ソースコードのダウンロード**: 本ハンズオンで使用するプログラムのソースコードを，以下のコマンドを使って GitHub からダウンロードする．
 
-```shell
+```sh
 $ git clone https://github.com/tomomano/learn-aws-by-coding.git
 ```
 
@@ -30,17 +30,17 @@ $ git clone https://github.com/tomomano/learn-aws-by-coding.git
 
 Python, Node.js, AWS CDK など，ハンズオンのプログラムを実行するために必要なプログラム/ライブラリがインストール済みの Docker image を用意した． また，ハンズオンのソースコードもパッケージ済みである． Docker の使い方を知っている読者は，これを使えば，諸々のインストールをする必要なく，すぐにハンズオンのプログラムを実行できる．
 
-使用方法については [???](#sec_handson_docker) を参照のこと．
+使用方法については (#sec_handson_docker) を参照のこと．
 
 ## SSH
 
 **SSH (secure shell)** は Unix 系のリモートサーバーに安全にアクセスするためのツールである． 本ハンズオンでは， SSH を使って仮想サーバーにアクセスする． SSH に慣れていない読者のため，簡単な説明をここで行おう．
 
-SSH による通信はすべて暗号化されているので，機密情報をインターネットを介して安全に送受信することができる． 本ハンズオンで，リモートのサーバーにアクセスするための SSH クライアントがローカルマシンにインストールされている必要がある． SSH クライアントは Linux/Mac には標準搭載されている． Windows の場合は WSL をインストールすることで SSH クライアントを利用することを推奨する ([???](#environments) を参照)．
+SSH による通信はすべて暗号化されているので，機密情報をインターネットを介して安全に送受信することができる． 本ハンズオンで，リモートのサーバーにアクセスするための SSH クライアントがローカルマシンにインストールされている必要がある． SSH クライアントは Linux/Mac には標準搭載されている． Windows の場合は WSL をインストールすることで SSH クライアントを利用することを推奨する ( (#environments) を参照)．
 
 SSH コマンドの基本的な使い方を次に示す． `<host name>` はアクセスする先のサーバーの IP アドレスや DNS によるホストネームが入る． `<user name>` は接続する先のユーザー名である．
 
-```shell
+```sh
 $ ssh <user name>@<host name>
 ```
 
@@ -48,7 +48,7 @@ SSH は平文のパスワードによる認証を行うこともできるが，�
 
 SSH コマンドでは，ログインのために使用する秘密鍵ファイルを `-i` もしくは `--identity_file` のオプションで指定することができる． たとえば，次のように使う．
 
-```shell
+```sh
 $ ssh -i Ec2SecretKey.pem <user name>@<host name>
 ```
 
@@ -56,7 +56,7 @@ $ ssh -i Ec2SecretKey.pem <user name>@<host name>
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_01_architecture) に示す．
 
-![ハンズオン#1で作製するアプリケーションのアーキテクチャ](imgs/handson-01/app_architecture.png)
+![ハンズオン#1で作製するアプリケーションのアーキテクチャ](./assets/handson-01/app_architecture.png)
 
 このアプリケーションではまず，**VPC (Virtual Private Cloud)** を使ってプライベートな仮想ネットワーク環境を立ち上げている． その VPC の public subnet の内側に，**EC2 (Elatic Compute Cloud)** の仮想サーバーを配置する． さらに，セキュリティのため， **Security Group** による EC2 インスタンスへのアクセス制限を設定している． このようにして作成された仮想サーバーに，SSH を使ってアクセスし，簡単な計算を行う．
 
@@ -119,7 +119,7 @@ class MyFirstEc2(core.Stack):
 
 **VPC のアイコン.**
 
-![VPC](imgs/aws_logos/VPC.png)
+![VPC](./assets/aws_logos/VPC.png)
 
 VPC は AWS 上にプライベートな仮想ネットワーク環境を構築するツールである．高度な計算システムを構築するには，複数のサーバーを連動させて計算を行う必要があるが，そのような場合に互いのアドレスなどを管理する必要があり，そういった目的で VPC は有用である．
 
@@ -178,7 +178,7 @@ SSH はデフォルトでは 22 番ポートを使用するのが慣例である
 
 **EC2 のアイコン.**
 
-![EC2](imgs/aws_logos/EC2.png)
+![EC2](./assets/aws_logos/EC2.png)
 
 EC2 は AWS 上に仮想サーバーを立ち上げるサービスである． 個々の起動状態にある仮想サーバーのことをインスタンス (instance) とよぶ (しかし，口語的なコミュニケーションにおいては，サーバーとインスタンスという言葉は相互互換的に用いられることが多い)．
 
@@ -217,7 +217,7 @@ host = ec2.Instance(
 )
 ```
 
-ここでは， `t2.micro` というインスタンスタイプを選択している． さらに， `machine_image` として， [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) を選択している (Machine image は OS と似た概念である． Machine image については， [???](#sec_jupyter_and_deep_learning) でより詳しく触れる)． さらに，上で定義した VPC, SG をこのインスタンスに付与している．
+ここでは， `t2.micro` というインスタンスタイプを選択している． さらに， `machine_image` として， [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/) を選択している (Machine image は OS と似た概念である． Machine image については， (#sec_jupyter_and_deep_learning) でより詳しく触れる)． さらに，上で定義した VPC, SG をこのインスタンスに付与している．
 
 以上が，今回使用するプログラムの簡単な解説であった． ミニマルな形のプログラムではあるが，仮想サーバーを作成するのに必要なステップがおわかりいただけただろうか？
 
@@ -231,13 +231,13 @@ host = ec2.Instance(
 
 まずは， `handson/ec2-get-started` のディレクトリに移動しよう．
 
-```shell
+```sh
 $ cd handson/ec2-get-started
 ```
 
 ディレクトリを移動したら， `venv` で新しい仮想環境を作成し，インストールを実行する．
 
-```shell
+```sh
 $ python3 -m venv .env
 $ source .env/bin/activate
 $ pip install -r requirements.txt
@@ -245,13 +245,13 @@ $ pip install -r requirements.txt
 
 これで Python の環境構築は完了だ．
 
-`venv` の簡単な説明は [???](#venv_quick_guide) に記述してある．
+`venv` の簡単な説明は (#venv_quick_guide) に記述してある．
 
 環境によっては `pip` ではなく `pip3` あるいは `python3 -m pip` に置き換える必要がある．
 
 ### AWS のシークレットキーをセットする
 
-AWS CLI および AWS CDK を使うには， AWS のシークレットキーが設定されている必要がある． シークレットキーの発行については [???](#aws_secrets) を参照のこと． シークレットキーを発行したら， [???](#aws_cli_install) を参照し，コマンドラインの設定を行う．
+AWS CLI および AWS CDK を使うには， AWS のシークレットキーが設定されている必要がある． シークレットキーの発行については (#aws_secrets) を参照のこと． シークレットキーを発行したら， (#aws_cli_install) を参照し，コマンドラインの設定を行う．
 
 手順をここに短く要約すると，一つ目の方法は `AWS_ACCESS_KEY_ID` などの環境変数を設定するやり方である． もう一つの方法は， `~/.aws/credentials` に認証情報を保存しておく方式である． シークレットキーの設定は AWS CLI/CDK を使用するうえで共通のステップになるので，しっかりと理解しておくように．
 
@@ -261,14 +261,14 @@ EC2 インスタンスには SSH を使ってログインする． EC2 インス
 
 次の AWS CLI コマンドにより， `HirakeGoma` という名前のついた鍵を生成する．
 
-```shell
+```sh
 $ export KEY_NAME="HirakeGoma"
 $ aws ec2 create-key-pair --key-name ${KEY_NAME} --query 'KeyMaterial' --output text > ${KEY_NAME}.pem
 ```
 
 このコマンドを実行すると，現在のディレクトリに `HirakeGoma.pem` というファイルが作成される．これが，サーバーにアクセスするための秘密鍵である． SSH でこの鍵を使うため， `~/.ssh/` のディレクトリに鍵を移動する． さらに，秘密鍵が書き換えられたり第三者に閲覧されないよう，ファイルのアクセス権限を `400` に設定する．
 
-```shell
+```sh
 $ mv HirakeGoma.pem ~/.ssh/
 $ chmod 400 ~/.ssh/HirakeGoma.pem
 ```
@@ -277,19 +277,19 @@ $ chmod 400 ~/.ssh/HirakeGoma.pem
 
 これまでのステップで， EC2 インスタンスをデプロイするための準備が整った！ 早速，次のコマンドによりアプリケーションを AWS にデプロイしよう． `-c key_name="HirakeGoma"` というオプションで，先ほど生成した `HirakeGoma` という名前の鍵を使うよう指定している．
 
-```shell
+```sh
 $ cdk deploy -c key_name="HirakeGoma"
 ```
 
 このコマンドを実行すると， VPC， EC2 などが AWS 上に展開される． そして，コマンドの出力の最後に [figure_title](#handson_01_cdk_output) のような出力が得られるはずである． **出力の中で `InstancePublicIp` に続く数字が，起動したインスタンスのパブリック IP アドレスである．** IP アドレスはデプロイごとにランダムなアドレスが割り当てられる．
 
-![CDKデプロイ実行後の出力](imgs/handson-01/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-01/cdk_output.png)
 
 ### SSH でログイン
 
 早速，SSH 　で接続してみよう．
 
-```shell
+```sh
 $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
 ```
 
@@ -297,7 +297,7 @@ $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
 
 ログインに成功すると， [figure_title](#fig_handson_01_ssh_login) のような画面が表示される． リモートのサーバーにログインしているので，プロンプトが `[ec2-user@ip-10-10-1-217 ~]$` のようになっていることを確認しよう．
 
-![SSH で EC2 インスタンスにログイン](imgs/handson-01/ssh_login.png)
+![SSH で EC2 インスタンスにログイン](./assets/handson-01/ssh_login.png)
 
 **おめでとう！これで，めでたく AWS 上に EC2 仮想サーバーを起動し，リモートからアクセスできるようになった！**
 
@@ -307,7 +307,7 @@ $ ssh -i ~/.ssh/HirakeGoma.pem ec2-user@<IP address>
 
 ログインした EC2 インスタンスで，次のコマンドを実行してみよう． CPU の情報を取得することができる．
 
-```shell
+```sh
 $ cat /proc/cpuinfo
 
 processor       : 0
@@ -342,14 +342,14 @@ Swap:        0k total,        0k used,        0k free,   185856k cached
 
 今回起動したインスタンスには Python 2 はインストール済みだが， Python 3 は入っていない． Python 3.6 のインストールを行ってみよう． インストールは簡単である．
 
-```shell
+```sh
 $ sudo yum update -y
 $ sudo yum install -y python36
 ```
 
 インストールした Python を起動してみよう．
 
-```shell
+```sh
 $ python3
 Python 3.6.10 (default, Feb 10 2020, 19:55:14)
 [GCC 4.8.5 20150623 (Red Hat 4.8.5-28)] on linux
@@ -361,7 +361,7 @@ Python のインタープリタが起動した！ `Ctrl + D` あるいは `exit(
 
 さて，サーバーでのお遊びはこんなところにしておこう (興味があれば各自いろいろと試してみると良い) ． 次のコマンドでログアウトする．
 
-```shell
+```sh
 $ exit
 ```
 
@@ -371,13 +371,13 @@ $ exit
 
 まず，ウェブブラウザを開いて AWS コンソールにログインする． ログインしたら， `Services` から `EC2` を検索(選択)する． 次に，左のサイドバーの `Instances` とページをたどる. すると， [figure_title](#aws_ec2_console) のような画面が得られるはずである． この画面で，自分のアカウントの管理下にあるインスタンスを確認できる． 同様に，VPC・SG についてもコンソールから確認できる．
 
-![EC2 コンソール画面](imgs/handson-01/ec2_console.png)
+![EC2 コンソール画面](./assets/handson-01/ec2_console.png)
 
 **コンソール右上で，正しいリージョン (今回の場合は ap-northeast-1, Tokyo) が選択されているか，注意する！**
 
 前章で CloudFormation について触れたが，今回デプロイしたアプリケーションも，CloudFormation のスタックとして管理されている． **スタック (stack)** とは， AWS リソースの集合のことを指す． 今回の場合は， VPC/EC2/SG などがスタックの中に含まれている． コンソールで `CloudFormation` のページに行ってみよう ([figure_title](#aws_cloudformation_console))．
 
-![CloudFormation コンソール画面](imgs/handson-01/cloudformation_console.png)
+![CloudFormation コンソール画面](./assets/handson-01/cloudformation_console.png)
 
 "MyFirstEc2" という名前のスタックがあることが確認できる． クリックをして中身を見てみると，EC2, VPC などのリソースがこのスタックに紐付いていることがわかる．
 
@@ -387,11 +387,11 @@ $ exit
 
 一つ目の方法は，前節の Cloudformation のコンソール画面で， "Delete" ボタンを押すことである ([figure_title](#cloudformation_delete))． すると，スタックの状態が `"DELETE_IN_PROGRESS"` に変わり，削除が完了すると CloudFormation のスタックの一覧から消える．
 
-![CloudFormationコンソール画面から，スタックを削除](imgs/handson-01/cloudformation_delete.png)
+![CloudFormationコンソール画面から，スタックを削除](./assets/handson-01/cloudformation_delete.png)
 
 二つ目の方法は，コマンドラインから行う方法である． 先ほど，デプロイを行ったコマンドラインに戻ろう． そうしたら，次のコマンドを実行する．
 
-```shell
+```sh
 $ cdk destroy
 ```
 
@@ -403,17 +403,17 @@ $ cdk destroy
 
 コンソールから実行するには， `EC2` の画面に行き，左のサイドバーの `Key Pairs` を選択する． 鍵の一覧が表示されるので， `HirakeGoma` とある鍵にチェックを入れ，画面右上の `Actions` から， `Delete` を実行する ([figure_title](#delete_ec2_key_pair))．
 
-![EC2でSSH鍵ペアを削除](imgs/handson-01/ec2_keypair_console.png)
+![EC2でSSH鍵ペアを削除](./assets/handson-01/ec2_keypair_console.png)
 
 コマンドラインから実行するには，次のコマンドを使う．
 
-```shell
+```sh
 $ aws ec2 delete-key-pair --key-name "HirakeGoma"
 ```
 
 最後に，ローカルのコンピュータから鍵を削除する．
 
-```shell
+```sh
 $ rm -f ~/.ssh/HirakeGoma.pem
 ```
 
@@ -425,8 +425,8 @@ $ rm -f ~/.ssh/HirakeGoma.pem
 
 ここまでが，本書の第一部の内容である． 盛りだくさんの内容であったが，ついてこれたであろうか？
 
-[???](#chap_cloud_basics) では，クラウドの定義と用語の説明を行ったあと，なぜクラウドを使うのか，という点を議論した． 続いて [???](#sec_aws_general_introduction) では，クラウドを学ぶ具体的なプラットフォームとして AWS を取り上げ， AWS を使用するにあたり最低限必要な知識と用語の説明を行った． さらに， [Hands-on \#1: 初めての EC2 インスタンスを起動する](#sec_first_ec2) のハンズオンでは AWS CLI と AWS CDK を使って，自身のプライベートなサーバーを AWS 上に立ち上げる演習を行った．
+(#chap_cloud_basics) では，クラウドの定義と用語の説明を行ったあと，なぜクラウドを使うのか，という点を議論した． 続いて (#sec_aws_general_introduction) では，クラウドを学ぶ具体的なプラットフォームとして AWS を取り上げ， AWS を使用するにあたり最低限必要な知識と用語の説明を行った． さらに， [Hands-on \#1: 初めての EC2 インスタンスを起動する](#sec_first_ec2) のハンズオンでは AWS CLI と AWS CDK を使って，自身のプライベートなサーバーを AWS 上に立ち上げる演習を行った．
 
-これらを通じて，いかに簡単に (たった数行のコマンドで！) 仮想サーバーを立ち上げたり，削除したりすることができるか，体験できただろう． 筆者は，[???](#chap_cloud_basics) でクラウドの最も重要な側面はダイナミックに計算リソースを拡大・縮小できることである，と述べた． この言葉の意味が，ハンズオンを通じてより明らかになっただろうか？ ここで学んだ技術を少し応用するだけで，自分のウェブページをホストする仮想サーバーを作成したり，大量のコアを搭載した EC2 インスタンスを用意して科学計算を実行するなど，いろいろなアプリケーションが実現できる．
+これらを通じて，いかに簡単に (たった数行のコマンドで！) 仮想サーバーを立ち上げたり，削除したりすることができるか，体験できただろう． 筆者は， (#chap_cloud_basics) でクラウドの最も重要な側面はダイナミックに計算リソースを拡大・縮小できることである，と述べた． この言葉の意味が，ハンズオンを通じてより明らかになっただろうか？ ここで学んだ技術を少し応用するだけで，自分のウェブページをホストする仮想サーバーを作成したり，大量のコアを搭載した EC2 インスタンスを用意して科学計算を実行するなど，いろいろなアプリケーションが実現できる．
 
 次章からは，今回学んだクラウドの技術を基に，より現実に即した問題を解くことを体験してもらう． お楽しみに！

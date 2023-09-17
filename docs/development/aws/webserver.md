@@ -12,7 +12,7 @@
 
 HTTP を通じたサーバーとクライアントのデータのやり取りは，すでに知っている読者も多いだろうし，逆にすべて解説しようとすると紙面が足りないので，ここではエッセンスの説明のみにとどめる． 以降では [Twitter](https://twitter.com) を具体例として，背後にあるサーバーとクライアントの間の通信を概説しよう． 概念図としては [figure_title](#fig:web_server) のような通信がクライアントとサーバーの間で行われていることになる．
 
-![クライアントと Web サーバーの通信の概念図](imgs/web_server.png)
+![クライアントと Web サーバーの通信の概念図](./assets/web_server.png)
 
 前提として，クライアントとサーバーの通信は **HTTP (Hypertext Transfer Protocol)** を使って行われる． また，最近では，暗号化された HTTP である **HTTPS (HTTPS (Hypertext Transfer Protocol Secure))** を用いることがスタンダードになってきている． 第一のステップとして，クライアントは HTTP(S) 通信によってサーバーから静的なコンテンツを取得する． 静的なコンテンツとは， **HTML (Hyptertext Markup Language)** で記述されたウェブページの文書本体， **CSS (Cascading Style Sheets)** で記述されたページのデザインやレイアウトファイル，そして **JavaScript (JS)** で記述されたページの動的な挙動を定義したプログラム，が含まれる． Twitter を含む現代的なウェブアプリケーションの設計では，この静的なファイル群はページの”枠”を定義するだけで，中身となるコンテンツ (例: ツイートの一覧) は別途 **API (Application Programming Interface)** によって取得されなければならない． そこで，クライアントは先のステップで取得された JavaScript で定義されたプログラムに従って，サーバーに API を送信し，ツイートや画像データを取得する． この際，テキストデータのやり取りには **JSON (JavaScript Object Notation)** というフォーマットが用いられることが多い． 画像や動画などのコンテンツも同様に API により取得される． このようにして取得されたテキストや画像が，HTML の文書に埋め込まれることで，最終的にユーザーに提示されるページが完成するのである． また，新しいツイートを投稿するときにも，クライアントから API を通じてサーバーのデータベースにデータが書き込まれる．
 
@@ -24,7 +24,7 @@ API (Application Programming Interface) とはこれまで何度も出てきた�
 
 REST API は， [figure_title](#rest_api) に示したような **Method** と **URI (Universal Resource Identifier)** の組からなる．
 
-![REST API](imgs/rest_api.png)
+![REST API](./assets/rest_api.png)
 
 Method (メソッド) とは，どのような操作を行いたいかを抽象的に表す，**"動詞"** として捉えることができる． メソッドには HTTP 規格で定義された 9 個の動詞 (verb) を使用することができる． この中でも， `GET`, `POST`, `PUT`, `PATCH`, `DELETE` の 5 個が最も頻繁に使用される ([table_title](#tab:rest_api_methods))． この 5 つのメソッドによる操作を総称して **CRUD** (create, read, update, and delete) とよぶ．
 

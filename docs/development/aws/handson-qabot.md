@@ -2,15 +2,15 @@
 
 ハンズオン第三回では， Docker と ECS を駆使した機械学習アプリケーションを実装しよう． 具体的には，深層学習による自然言語処理を行うことで，クライアントから与えられた文章題に対して回答を生成する，自動 Question & Answering ボットを作成しよう． ECS を利用することで，ジョブの数によって動的にインスタンスの数を制御し，並列にタスクを実行するようなシステムを構築しよう．
 
-通常の機械学習のワークフローでは，モデルの訓練 ⇒ 推論 (データへの適用) が基本的な流れである． しかしながら， GPU 搭載型の EC2 クラスターを使ったモデルの訓練はやや難易度が高いため，次章 ([???](#sec_aws_batch)) で取り扱う． 本章は，クラウド上でのクラスターの構築・タスクの管理などの概念に慣れるため，よりシンプルな実装で実現できる Fargate クラスターを用いた推論計算の並列化を紹介する．
+通常の機械学習のワークフローでは，モデルの訓練 ⇒ 推論 (データへの適用) が基本的な流れである． しかしながら， GPU 搭載型の EC2 クラスターを使ったモデルの訓練はやや難易度が高いため，次章 ( (#sec_aws_batch)) で取り扱う． 本章は，クラウド上でのクラスターの構築・タスクの管理などの概念に慣れるため，よりシンプルな実装で実現できる Fargate クラスターを用いた推論計算の並列化を紹介する．
 
 ## Fargate
 
 ハンズオンに入っていく前に， **Fargate** という AWS の機能を知っておく必要がある ([figure_title](#fig:fargate_logo))．
 
-![Fargate のアイコン](imgs/aws_logos/Fargate.png)
+![Fargate のアイコン](./assets/aws_logos/Fargate.png)
 
-ECS の概要を示した [???](#ecs_overview) をもう一度見てみよう． この図で， ECS の管理下にあるクラスターが示されているが，このクラスターの中で計算を行う実体としては二つの選択肢がある． **EC2 あるいは Fargate** のいずれかである． EC2 を用いた場合は，先の章 ([???](#sec_first_ec2), [???](#sec_jupyter_and_deep_learning)) で説明したような流れでインスタンスが起動し，計算が実行される． しかし， EC2 を用いた計算機クラスターの作成・管理は技術的な難易度がやや高いので，次章 ([???](#sec_aws_batch)) で説明することにする．
+ECS の概要を示した (#ecs_overview) をもう一度見てみよう． この図で， ECS の管理下にあるクラスターが示されているが，このクラスターの中で計算を行う実体としては二つの選択肢がある． **EC2 あるいは Fargate** のいずれかである． EC2 を用いた場合は，先の章 ( (#sec_first_ec2), (#sec_jupyter_and_deep_learning)) で説明したような流れでインスタンスが起動し，計算が実行される． しかし， EC2 を用いた計算機クラスターの作成・管理は技術的な難易度がやや高いので，次章 ( (#sec_aws_batch)) で説明することにする．
 
 Fargate とは， **ECS での利用に特化**して設計された，**コンテナを使用した計算タスク**を走らせるための仕組みである． 計算を走らせるという点では EC2 と役割は似ているが， Fargate は EC2 インスタンスのような物理的実体はもたない． 物理的実体をもたないというのは，たとえば SSH でログインすることは基本的に想定されていないし，なにかのソフトウェアをインストールしたりなどの概念も存在しない． Fargate ではすべての計算は Docker コンテナを介して行われる． すなわち， Fargate を利用するには，ユーザーは最初に所望の Docker イメージを指定しておき， Fargate は `docker run` のコマンドを使用することで計算タスクを実行する． Fargate を用いる利点は， Fargate を ECS のクラスターに指定すると，スケーリングなどの操作が簡単な設定・プログラムで構築できる点である．
 
@@ -24,7 +24,7 @@ Fargate では， EC2 と同様に CPU とメモリーのサイズを必要な�
 
 ハンズオンのソースコードは GitHub の [handson/qa-bot](https://github.com/andatoshiki/toshiki-notebooktree/main/handson/qa-bot) にある．
 
-本ハンズオンの実行には，第一回ハンズオンで説明した準備 ([???](#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
+本ハンズオンの実行には，第一回ハンズオンで説明した準備 ( (#handson_01_prep)) が整っていることを前提とする． また， Docker が自身のローカルマシンにインストール済みであることも必要である．
 
 このハンズオンでは 1CPU/4GB RAM の Fargate インスタンスを使用する． 計算の実行には 0.025 $/hour のコストが発生することに注意．
 
@@ -46,26 +46,26 @@ question: In what year did Einstein win the Nobel prize?
 
 今回は， [huggingface/transformers](https://github.com/huggingface/transformers) で公開されている学習済みの言語モデルを利用することで，上で定義した問題を解く Q&A ボットを作る． この Q&A ボットは [Transformer](<https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)>) とよばれるモデルを使った自然言語処理に支えられえている ([figure_title](#transformer_architecture))． このプログラムを， Docker にパッケージしたものが [著者の Docker Hub リポジトリ](https://hub.docker.com/repository/docker/tomomano/qabot) に用意してある． クラウドの設計に入る前に，まずはこのプログラムを単体で動かしてみよう．
 
-![Transformer モデルアーキテクチャ (画像出典: [Vaswani+ 2017](https://arxiv.org/abs/1706.03762))](imgs/transformer.png)
+![Transformer モデルアーキテクチャ (画像出典: [Vaswani+ 2017](https://arxiv.org/abs/1706.03762))](./assets/transformer.png)
 
 なお，今回は学習済みのモデルを用いているので，私達が行うのは与えられた入力をモデルに投入して予測を行う (推論) のみである． 推論の演算は， CPU だけでも十分高速に行うことができるので，コストの削減と，実装をシンプルにする目的で，このハンズオンでは GPU は利用しない． 一般的に， ニューラルネットは学習のほうが圧倒的に計算コストが大きく，そのような場合に GPU はより威力を発揮する．
 
 次のコマンドで，今回使う Docker image を ローカルにダウンロード (pull) してこよう．
 
-```shell
+```sh
 $ docker pull tomomano/qabot:latest
 ```
 
 pull できたら，早速この Docker に質問を投げかけてみよう． まずは context と question をコマンドラインの変数として定義する．
 
-```shell
+```sh
 $ context="Albert Einstein (14 March 1879 – 18 April 1955) was a German-born theoretical physicist who developed the theory of relativity, one of the two pillars of modern physics (alongside quantum mechanics). His work is also known for its influence on the philosophy of science. He is best known to the general public for his mass–energy equivalence formula E = mc2, which has been dubbed the world's most famous equation. He received the 1921 Nobel Prize in Physics for his services to theoretical physics, and especially for his discovery of the law of the photoelectric effect, a pivotal step in the development of quantum theory."
 $ question="In what year did Einstein win the Nobel prize ?"
 ```
 
 そうしたら，次のコマンドによってコンテナを実行する．
 
-```shell
+```sh
 $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 ```
 
@@ -81,7 +81,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 もう少し難しい質問を投げかけてみよう．
 
-```shell
+```sh
 $ question="Why did Einstein win the Nobel prize ?"
 $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 ```
@@ -89,7 +89,12 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 出力：
 
 ```json
-{ "score": 0.5235594527494207, "start": 470, "end": 506, "answer": "his services to theoretical physics," }
+{
+    "score": 0.5235594527494207,
+    "start": 470,
+    "end": 506,
+    "answer": "his services to theoretical physics,"
+}
 ```
 
 今度は， score が 0.52 と，少し自信がないようだが，それでも正しい答えにたどりつけていることがわかる．
@@ -104,7 +109,7 @@ $ docker run tomomano/qabot "${context}" "${question}" foo --no_save
 
 このハンズオンで作成するアプリケーションの概要を [figure_title](#handson_03_architecture) に示す．
 
-![アプリケーションのアーキテクチャ](imgs/handson-03/handson-03-architecture.png)
+![アプリケーションのアーキテクチャ](./assets/handson-03/handson-03-architecture.png)
 
 簡単にまとめると，以下のような設計である．
 
@@ -231,9 +236,9 @@ container = taskdef.add_container(
 
 スタックの中身が理解できたところで，早速スタックをデプロイしてみよう．
 
-デプロイの手順は，これまでのハンズオンとほとんど共通である． SSH によるログインの必要がないので，むしろ単純なくらいである． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ([???](#aws_cli_install))．
+デプロイの手順は，これまでのハンズオンとほとんど共通である． SSH によるログインの必要がないので，むしろ単純なくらいである． ここでは，コマンドのみ列挙する (`#` で始まる行はコメントである)． それぞれの意味を忘れてしまった場合は，ハンズオン 1, 2 に戻って復習していただきたい． シークレットキーの設定も忘れずに ( (#aws_cli_install))．
 
-```shell
+```sh
 # プロジェクトのディレクトリに移動
 $ cd handson/qa-bot
 
@@ -248,17 +253,17 @@ $ cdk deploy
 
 デプロイのコマンドが無事に実行されれば， [figure_title](#handson_03_cdk_output) のような出力が得られるはずである．
 
-![CDKデプロイ実行後の出力](imgs/handson-03/cdk_output.png)
+![CDKデプロイ実行後の出力](./assets/handson-03/cdk_output.png)
 
 AWS コンソールにログインして，デプロイされたスタックの中身を確認してみよう． コンソールから，ECS のページに行くと [figure_title](#handson_03_ecs_console) のような画面が表示されるはずである． `EcsClusterQaBot-XXXX` という名前ついたクラスターを見つけよう．
 
 Cluster というのが，先ほど説明したとおり，複数の仮想インスタンスを束ねる一つの単位である． [figure_title](#handson_03_ecs_console) で， FARGATE という文字の下に `0 Running tasks`, `0 Pending tasks` と表示されていることを確認しよう． この時点では一つもタスクが走っていないので，数字はすべて 0 になっている．
 
-![ECS コンソール画面](imgs/handson-03/ecs_console.png)
+![ECS コンソール画面](./assets/handson-03/ecs_console.png)
 
 続いて，この画面の左のメニューバーから `Task Definitions` という項目を見つけ，クリックしよう． 移動した先のページで `EcsClusterQaBotEcsClusterQaBotTaskDefXXXX` という項目が見つかるので，開く． 開いた先のページをスクロールすると [figure_title](#handson_03_ecs_task_definition) に示したような情報が見つかるだろう． 使用する CPU ・メモリーの量や， Docker container の実行に関する設定などが，この Task Definition の画面から確認することができる．
 
-![Task definition の確認](imgs/handson-03/ecs_task_definition.png)
+![Task definition の確認](./assets/handson-03/ecs_task_definition.png)
 
 ## タスクの実行
 
@@ -268,7 +273,7 @@ ECS にタスクを投入するのはやや複雑なので，タスクの投入�
 
 次のようなコマンドで，ECS クラスターに新しい質問を投入することができる．
 
-```shell
+```sh
 $ python run_task.py ask "A giant peach was flowing in the river. She picked it up and brought it home. Later, a healthy baby was born from the peach. She named the baby Momotaro." "What is the name of the baby?"
 ```
 
@@ -280,7 +285,7 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 先ほどの ECS コンソール画面にもどり，クラスターの名前をクリックすることで，クラスターの詳細画面を開く． 次に， "Tasks" という名前のタブがあるので，それを開く ([figure_title](#ecs_task_monitoring))． すると，実行中のタスクの一覧が表示されるだろう．
 
-![ECS のタスクの実行状況をモニタリング](imgs/handson-03/ecs_task_monitoring.png)
+![ECS のタスクの実行状況をモニタリング](./assets/handson-03/ecs_task_monitoring.png)
 
 [figure_title](#ecs_task_monitoring) で見て取れるように， "Last status = Pending" となっていることから，この時点では，タスクを実行する準備をしている段階である，ということがわかる． Fargate のインスタンスを起動し， Docker image を配置するまでおよそ 1-2 分の時間がかかる．
 
@@ -288,11 +293,11 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 [figure_title](#ecs_task_monitoring) の画面から， "Task" の列にあるタスク ID クリックすることで，タスクの詳細画面を開いてみよう ([figure_title](#ecs_task_detail))． "Last status", "Platform version" など，タスクの情報が表示されている． また， "Logs" のタブを開くことで，コンテナの吐き出した実行ログを閲覧することができる．
 
-![質問タスクの実行結果](imgs/handson-03/ecs_task_detail.png)
+![質問タスクの実行結果](./assets/handson-03/ecs_task_detail.png)
 
 さて， `run_task.py` を実行したコマンドラインに戻ってきてみると， [figure_title](#ask_question_output) のような出力が得られているはずである． "Momotaro" という正しい回答が返ってきている！
 
-![質問タスクの実行結果](imgs/handson-03/ask_question_output.png)
+![質問タスクの実行結果](./assets/handson-03/ask_question_output.png)
 
 ## タスクの同時実行
 
@@ -300,29 +305,29 @@ $ python run_task.py ask "A giant peach was flowing in the river. She picked it 
 
 次のようなコマンドを実行しよう．
 
-```shell
+```sh
 $ python run_task.py ask_many
 ```
 
 このコマンドを実行した後で，先ほどの ECS コンソールに行き，タスクの一覧を見てみよう ([figure_title](#ecs_many_tasks))． 複数の Fargate インスタンスが起動され，タスクが並列に実行されているのがわかる．
 
-![複数の質問タスクを同時に投入する](imgs/handson-03/ecs_many_tasks.png)
+![複数の質問タスクを同時に投入する](./assets/handson-03/ecs_many_tasks.png)
 
 すべてのタスクのステータスが "STOPPED" になったことを確認した上で，質問への回答を取得しよう． それには，次のコマンドを実行する．
 
-```shell
+```sh
 $ python run_task.py list_answers
 ```
 
 結果として， [figure_title](#ask_many_output) のような出力が得られるだろう． 複雑な文章問題に対し，高い正答率で回答できていることがわかるだろう．
 
-![`$ python run_task.py list_answers` の実行結果](imgs/handson-03/ask_many_output.png)
+![`$ python run_task.py list_answers` の実行結果](./assets/handson-03/ask_many_output.png)
 
 おめでとう！ ここまでついてこれた読者はとても初歩的ながらも，深層学習による言語モデルを使って自動で質問への回答を生成するシステムを創り上げることができた！ それも，数百の質問にも同時に対応できるような，とても高いスケーラビリティーをもったシステムである！ 今回は GUI (Graphical User Interface) を用意することはしなかったが，このシステムに簡単な GUI を追加すればなかなか立派なウェブサービスとして運用できるだろう．
 
 `run_task.py` で質問を投入し続けると，回答を記録しているデータベースにどんどんエントリーが溜まっていく． これらのエントリーをすべて消去するには，次のコマンドを使う．
 
-```shell
+```sh
 $ python run_task.py clear
 ```
 
@@ -332,6 +337,6 @@ $ python run_task.py clear
 
 スタックを削除するには，前回までと同様に， AWS コンソールにログインし CloudFormation の画面から DELETE ボタンをクリックするか，コマンドラインからコマンドを実行する． コマンドラインから行う場合は，次のコマンドを使用する．
 
-```shell
+```sh
 $ cdk destroy
 ```

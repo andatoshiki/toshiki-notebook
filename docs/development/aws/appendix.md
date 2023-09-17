@@ -28,31 +28,31 @@
 
 まず，ウェブブラウザから [AWS コンソール](https://aws.amazon.com/console/) にアクセスし，右上の `Create an AWS Account` をクリックする ([figure_title](#fig:aws-signup-1) で実線で囲った部分)．
 
-![サインアップ (1): AWS コンソールにアクセス](imgs/signup-1.png)
+![サインアップ (1): AWS コンソールにアクセス](./assets/signup-1.png)
 
 次に，遷移した先のページでメールアドレスとパスワードなどの登録を行う ([figure_title](#fig:aws-signup-3))．
 
-![サインアップ (2): メールアドレス・パスワードなどの登録．](imgs/signup-3.png)
+![サインアップ (2): メールアドレス・パスワードなどの登録．](./assets/signup-3.png)
 
 続いて，住所や電話番号などを訊かれるので，すべて入力しよう ([figure_title](#fig:aws-signup-4))．
 
-![サインアップ (3): 住所・電話番号の入力](imgs/signup-4.png)
+![サインアップ (3): 住所・電話番号の入力](./assets/signup-4.png)
 
 次に，クレジットカードの情報の登録を求められる ([figure_title](#fig:aws-signup-5))． 個人で AWS を利用する場合は，利用料金の請求はクレジットカードを経由して行われる． クレジットカードの登録なしには AWS を使い始めることはできないことに注意．
 
-![サインアップ (4): クレジットカードの登録](imgs/signup-5.png)
+![サインアップ (4): クレジットカードの登録](./assets/signup-5.png)
 
 次の画面では，携帯電話の SMS またはボイスメッセージを利用した本人確認が求められる ([figure_title](#fig:aws-signup-6))． 希望の認証方法を選択し，自分の携帯電話番号を入力しよう．
 
-![サインアップ (5): 携帯電話による本人確認](imgs/signup-6.png)
+![サインアップ (5): 携帯電話による本人確認](./assets/signup-6.png)
 
 無事に本人確認が完了すると，最後にサポートプランの選択を求められる ([figure_title](#fig:aws-signup-8))． 無料の Basic support を選択しておけば問題ない．
 
-![サインアップ (6): サポートプランの選択](imgs/signup-8.png)
+![サインアップ (6): サポートプランの選択](./assets/signup-8.png)
 
 以上のステップにより，アカウントの作成が完了する ([figure_title](#fig:aws-signup-9))． 早速ログインをして， AWS コンソールにアクセスできるか確認しておこう．
 
-![サインアップ (7): アカウントの作成が完了した](imgs/signup-9.png)
+![サインアップ (7): アカウントの作成が完了した](./assets/signup-9.png)
 
 ## AWS のシークレットキーの作成
 
@@ -70,9 +70,9 @@ AWS シークレットキーとは， AWS CLI や AWS CDK から AWS の API を
 
 6.  発行したシークレットキーは， `~/.aws/credentials` のファイルに書き込むか，環境変数に設定するなどして使う (詳しくは [AWS CLI のインストール](#aws_cli_install))．
 
-![AWS シークレットキーの発行1](imgs/aws_secret_key_1.png)
+![AWS シークレットキーの発行1](./assets/aws_secret_key_1.png)
 
-![AWS シークレットキーの発行2](imgs/aws_secret_key_2.png)
+![AWS シークレットキーの発行2](./assets/aws_secret_key_2.png)
 
 **AWS Educate Starter Account** を用いている場合は，次の手順でシークレットキーを確認する．
 
@@ -92,15 +92,15 @@ AWS シークレットキーとは， AWS CLI や AWS CDK から AWS の API を
 
 -   上記の説明ではプロファイル名が `default` となっていたが，これは自分の好きな名前に変更してもよい． `default` 以外の名前を使用する場合は，コマンドを実行するときにプロファイル名を指定する必要がある (詳しくは [AWS CLI のインストール](#aws_cli_install))．
 
-![vocareum コンソール](imgs/vocareum_console.png)
+![vocareum コンソール](./assets/vocareum_console.png)
 
-![vocareum から AWS シークレットキーの発行](imgs/vocareum_secret.png)
+![vocareum から AWS シークレットキーの発行](./assets/vocareum_secret.png)
 
 ## AWS CLI のインストール
 
 読者のために，執筆時点におけるインストールの手順 (Linux 向け) を簡単に記述する． 将来のバージョンでは変更される可能性があるので，常に [公式のドキュメンテーション](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) で最新の情報をチェックすることを忘れずに．
 
-```shell
+```sh
 $ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 $ unzip awscliv2.zip
 $ sudo ./aws/install
@@ -108,13 +108,13 @@ $ sudo ./aws/install
 
 インストールできたか確認するため，次のコマンドを打ってバージョン情報が出力されることを確認する．
 
-```shell
+```sh
 $ aws --version
 ```
 
 インストールができたら，次のコマンドにより初期設定を行う ([参照](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html))．
 
-```shell
+```sh
 $ aws configure
 ```
 
@@ -122,7 +122,7 @@ $ aws configure
 
 このコマンドを完了すると， `~/.aws/credentials` と `~/.aws/config`　という名前のファイルが生成されているはずである． 念のため， `cat` コマンドを使って中身を確認してみるとよい．
 
-```shell
+```sh
 $ cat ~/.aws/credentials
 [default]
 aws_access_key_id = XXXXXXXXXXXXXXXXXX
@@ -140,7 +140,7 @@ output = json
 
 AWS CLI でコマンドを打つときに，プロファイルを使い分けるには，
 
-```shell
+```sh
 $ aws s3 ls --profile myprofile
 ```
 
@@ -148,13 +148,13 @@ $ aws s3 ls --profile myprofile
 
 いちいち `--profile` オプションをつけるのが面倒だと感じる場合は， `AWS_PROFILE` という環境変数を設定するとよい．
 
-```shell
+```sh
 $ export AWS_PROFILE=myprofile
 ```
 
 あるいは，認証情報などを環境変数に設定するテクニックもある．
 
-```shell
+```sh
 export AWS_ACCESS_KEY_ID=XXXXXX
 export AWS_SECRET_ACCESS_KEY=YYYYYY
 export AWS_DEFAULT_REGION=ap-northeast-1
@@ -170,25 +170,25 @@ export AWS_DEFAULT_REGION=ap-northeast-1
 
 Node.js がインストールされていれば，基本的に次のコマンドを実行すればよい．
 
-```shell
+```sh
 $ sudo npm install -g aws-cdk
 ```
 
 本書のハンズオンは AWS CDK version 1.100.0 で開発した． CDK は開発途上のライブラリなので，将来的に API が変更される可能性がある． API の変更によりエラーが生じた場合は， version 1.100.0 を使用することを推奨する．
 
-```shell
+```sh
 $ npm install -g aws-cdk@1.100
 ```
 
 インストールできたか確認するため，次のコマンドを打って正しくバージョンが表示されることを確認する．
 
-```shell
+```sh
 $ cdk --version
 ```
 
 インストールができたら，次のコマンドにより AWS 側の初期設定を行う． これは一度実行すれば OK．
 
-```shell
+```sh
 $ cdk bootstrap
 ```
 
@@ -208,7 +208,7 @@ WSL とは， Windows の OS 上で Linux の仮想環境を起動するため�
 
 まず最初に， Administrator 権限で PowerShell を起動する ([figure_title](#fig:powershell))． 左下の Windows メニューの検索バーに `powershell` と入力すると， PowerShell のプログラムが見つかるはずである， これを右クリックし、 `Run as administrator` を選択し起動する．
 
-![管理者権限での PowerShell の起動](imgs/wsl/powershell.png)
+![管理者権限での PowerShell の起動](./assets/wsl/powershell.png)
 
 PowerShell が起動したら、次のコマンドを実行する．
 
@@ -240,17 +240,17 @@ wsl --set-default-version 2
 
 Microsoft store のアプリを起動し，検索バーに `Ubuntu` と入力する． Ubuntu 20.04 LTS という項目が見つかるはずなので，それを開き， “Get” ボタンをクリックする ([figure_title](#fig:microsoft_store))． しばらく待つと， Ubuntu 20.04 のインストールが完了する．
 
-![Microsoft store から Ubuntu 20.04 をインストール](imgs/wsl/microsoft_store.png)
+![Microsoft store から Ubuntu 20.04 をインストール](./assets/wsl/microsoft_store.png)
 
 Ubuntu 20.04 を初回に起動すると，初期設定が自動で開始され，数分待つことになる． 初期設定が終わると，ユーザー名・パスワードを設定するようプロンプトが出るので，プロンプトに従い入力する．
 
 これで WSL2 のインストールが完了した． 早速 WSL2 を起動してみよう． 左下の Windows メニューの検索バーに `Ubuntu` と入力すると， Ubuntu 20.04 のプログラムが見つかるはずである ([figure_title](#fig:ubuntu))． クリックして起動しよう．
 
-![Ubuntu 20.04 の起動](imgs/wsl/ubuntu2004.png)
+![Ubuntu 20.04 の起動](./assets/wsl/ubuntu2004.png)
 
 すると，ターミナルの黒い画面が立ち上がるだろう ([figure_title](#fig:wsl_window))． `ls`, `top` などのコマンドを打ってみて， WSL がきちんと動作していることを確認しよう．
 
-![WSL の起動画面](imgs/wsl/wsl_window.png)
+![WSL の起動画面](./assets/wsl/wsl_window.png)
 
 オプションとして， [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/get-started) というマイクロソフトから提供されているツールを使うと，より快適に WSL を使用することができる． 興味のある読者はこちらのインストールも推奨する．
 
@@ -266,7 +266,7 @@ Linux ユーザー (特に Ubuntu ユーザー) については，インスト�
 
 最も簡単な方法は， Docker が公式で提供しているインストールスクリプトを用いる方法である． この場合，次のコマンドを実行することで Docker がインストールされる．
 
-```shell
+```sh
 $ curl -fsSL https://get.docker.com -o get-docker.sh
 $ sudo sh get-docker.sh
 ```
@@ -275,13 +275,13 @@ $ sudo sh get-docker.sh
 
 まず最初に， `docker` という名前にグループを追加する． インストールによっては，既に `docker` グループが作られている場合もある．
 
-```shell
+```sh
 $ sudo groupadd docker
 ```
 
 次に，現在使用しているユーザーを `docker` グループに加える．
 
-```shell
+```sh
 $ sudo usermod -aG docker $USER
 ```
 
@@ -289,7 +289,7 @@ $ sudo usermod -aG docker $USER
 
 設定が正しくできているかを確認するため，次のコマンドを実行してみる．
 
-```shell
+```sh
 $ docker run hello-world
 ```
 
@@ -305,7 +305,7 @@ $ docker run hello-world
 
 `venv` を使って仮想環境を作成するには，
 
-```shell
+```sh
 $ python -m venv .env
 ```
 
@@ -313,7 +313,7 @@ $ python -m venv .env
 
 この新たな仮想環境を起動するには
 
-```shell
+```sh
 $ source .env/bin/activate
 ```
 
@@ -321,13 +321,13 @@ $ source .env/bin/activate
 
 シェルのプロンプトに `(.env)` という文字が追加されていることを確認しよう ([figure_title](#fig_venv_prompt))． これが， "いまあなたは venv の中にいますよ" というしるしになる．
 
-![venv を起動したときのプロンプト](imgs/venv_shell.png)
+![venv を起動したときのプロンプト](./assets/venv_shell.png)
 
 仮想環境を起動すると，それ以降実行する `pip` コマンドは， `.env/` 以下にインストールされる．このようにして，プロジェクトごとに使うライブラリのバージョンを切り分けることができる．
 
 Python では `requirements.txt` というファイルに依存ライブラリを記述するのが一般的な慣例である．他人からもらったプログラムに， `requirements.txt` が定義されていれば，
 
-```shell
+```sh
 $ pip install -r requirements.txt
 ```
 
@@ -345,7 +345,7 @@ Docker イメージは [Docker Hub](https://hub.docker.com/repository/docker/tom
 
 次のコマンドでコンテナを起動する．
 
-```shell
+```sh
 $ docker run -it tomomano/labc:latest
 ```
 
@@ -357,17 +357,17 @@ root@aws-handson:~$&lt;/programlisting&gt;
 
 この状態で `ls` コマンドを打つと， `handson/` というディレクトリがあるはずである． ここに `cd` する．
 
-```shell
+```sh
 $ cd handson
 ```
 
 すると，各ハンズオンごとのディレクトリが見つかるはずである．
 
-あとは，ハンズオンごとにディレクトリを移動し，ハンズオンごとの virtualenv を作成し，スタックのデプロイを行えばよい ([???](#sec_handson_ec2_run) など参照)． ハンズオンごとに使用する依存ライブラリが異なるので，それぞれのハンズオンごとに virtualenv を作成するという設計になっている．
+あとは，ハンズオンごとにディレクトリを移動し，ハンズオンごとの virtualenv を作成し，スタックのデプロイを行えばよい ( (#sec_handson_ec2_run) など参照)． ハンズオンごとに使用する依存ライブラリが異なるので，それぞれのハンズオンごとに virtualenv を作成するという設計になっている．
 
 AWS の認証情報を設定することも忘れずに． [AWS CLI のインストール](#aws_cli_install) で記述したように， `AWS_ACCESS_KEY_ID` などの環境変数を設定するのが簡単な方法である． あるいは，**ローカルマシンの** `~/.aws/credentials` に認証情報が書き込まれているなら，このディレクトリをコンテナに**マウント**することで，同じ認証ファイルをコンテナ内部から参照することが可能である． この選択肢を取る場合は，次のコマンドでコンテナを起動する．
 
-```shell
+```sh
 $ docker run -it -v ~/.aws:/root/.aws:ro tomomano/labc:latest
 ```
 
