@@ -19,6 +19,9 @@ import './styles/index.scss'
 
 import './styles/component/twoslash.scss'
 
+// original default unocss stylesheets
+import 'uno.css'
+
 // @ts-ignore
 // custom components and vue template layouts
 import CustomLayout from './CustomLayout.vue'
@@ -28,8 +31,6 @@ import AsideSponsors from './components/AsideSponsors.vue'
 import Copyright from './components/Copyright.vue'
 // @ts-ignore
 import Comment from './components/layout/Comment.vue'
-// @ts-ignore
-import ArticleMetadata from './components/ArticleMetadata.vue'
 
 // import CodeTitle from './components/CodeTitle.vue'
 
