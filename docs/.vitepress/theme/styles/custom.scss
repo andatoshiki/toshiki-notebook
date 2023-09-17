@@ -385,3 +385,48 @@ html.dark {
 //     background-image: url("/grid.svg");
 // }
 // vitepress dark mode grid styled notebook background texture style ends
+
+// migrate vitepress homepage and regarded elements custom styles from direct markdown content to global stylesheets for applying effects
+.vp-doc h2 {
+    border-top: 0px;
+    margin-top: 10px;
+}
+
+.VPMenuLink .link {
+    line-height: 28px !important;
+}
+
+.VPSidebarGroup .link {
+    padding: 3px 0 !important;
+}
+
+.VPTeamPageTitle .title {
+    line-height: 32px;
+    font-size: 24px;
+    opacity: 0.5;
+}
+
+.VPTeamPageTitle .lead {
+    font-size: 14px;
+    opacity: 0.4;
+}
+
+.medium-zoom-overlay {
+    z-index: 20;
+}
+
+.m-home-layout .image-src:hover {
+    transform: translate(-50%, -50%) rotate(666turn);
+    transition: transform 59s 1s cubic-bezier(0.3, 0, 0.8, 1);
+}
+
+.m-home-layout .details small {
+    opacity: 0.8;
+}
+
+.m-home-layout .item:last-child .details {
+    display: flex;
+    justify-content: flex-end;
+    align-items: end;
+}
+// vitepress homepage styles end
