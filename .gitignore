@@ -138,3 +138,6 @@ cache
 
 # frontmatter cms config
 .frontmatter
+
+# macos directory config setting file
+.DS_Store
