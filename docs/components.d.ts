@@ -8,13 +8,19 @@ import '@vue/runtime-core'
 export {}
 
 declare module '@vue/runtime-core' {
-  export interface GlobalComponents {
-    AsideSponsors: typeof import('./.vitepress/theme/components/AsideSponsors.vue')['default']
-    CardLink: typeof import('./.vitepress/theme/components/CardLink.vue')['default']
-    Comment: typeof import('./.vitepress/theme/components/layout/Comment.vue')['default']
-    Copyright: typeof import('./.vitepress/theme/components/Copyright.vue')['default']
-    Footer: typeof import('./.vitepress/theme/components/layout/Footer.vue')['default']
-    MediumZoom: typeof import('./.vitepress/theme/components/MediumZoom.vue')['default']
-    Mermaid: typeof import('./.vitepress/theme/components/Mermaid.vue')['default']
-  }
+    export interface GlobalComponents {
+        AsideSponsors: typeof import('./.vitepress/theme/components/AsideSponsors.vue')['default']
+        'Bi:fileEarmarkWordFill': typeof import('~icons/bi/file-earmark-word-fill')['default']
+        CardLink: typeof import('./.vitepress/theme/components/CardLink.vue')['default']
+        Comment: typeof import('./.vitepress/theme/components/layout/Comment.vue')['default']
+        Copyright: typeof import('./.vitepress/theme/components/Copyright.vue')['default']
+        'EosIcons:modifiedDate': typeof import('~icons/eos-icons/modified-date')['default']
+        Footer: typeof import('./.vitepress/theme/components/layout/Footer.vue')['default']
+        MediumZoom: typeof import('./.vitepress/theme/components/MediumZoom.vue')['default']
+        Mermaid: typeof import('./.vitepress/theme/components/Mermaid.vue')['default']
+        'Octicon:feedPerson16': typeof import('~icons/octicon/feed-person16')['default']
+        'Ooui:clock': typeof import('~icons/ooui/clock')['default']
+        PageInfo: typeof import('./.vitepress/theme/components/layout/PageInfo.vue')['default']
+        'RadixIcons:update': typeof import('~icons/radix-icons/update')['default']
+    }
 }
