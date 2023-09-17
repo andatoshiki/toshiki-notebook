@@ -14,7 +14,7 @@ hero:
     actions:
         - theme: brand
           text: 👉 Start Reading
-          link: /development/file-naming-convention
+          link: /development/getting-started
         - theme: alt
           text: '🗒️ View on GitHub'
           link: https://github.com/andatoshiki/toshiki-notebook
