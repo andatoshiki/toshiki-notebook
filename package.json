@@ -1,6 +1,7 @@
 {
   "name": "toshiki-notebook",
   "version": "0.0.1",
+  "type": "module",
   "description": "Toshiki's web notebook built upon Vitepress and deployed via Vercel!",
   "main": "index.js",
   "repository": "https://github.com/andatoshiki/toshiki-note",
@@ -16,8 +17,7 @@
     "rm:cache": "rm -rf /docs/.vitepress/cache",
     "prepare": "node -e \"if (process.env.NODE_ENV !== 'production'){process.exit(1)} \" || husky install",
     "lint": "prettier --write .",
-    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
-    "feed": "node docs/.vitepress/utils/genFeed.js"
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0"
   },
   "lint-staged": {
     "*.{js,jsx,vue,ts,tsx}": [
