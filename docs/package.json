@@ -4,9 +4,9 @@
   "version": "0.0.1",
   "description": "Extra modules and dependencies applied upon the monorepos and used in toshiki-notebook for in-markdown shiki twoslash program node behavior analysis only in docs root",
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview"
+    "dev": "vitepress dev",
+    "build": "vitepress build",
+    "preview": "vitepress preview"
   },
   "devDependencies": {
     "@types/react": "^18.2.9",
