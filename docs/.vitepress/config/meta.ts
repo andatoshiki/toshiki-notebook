@@ -6,8 +6,7 @@ export const site = 'https://note.toshiki.dev'
 export const logo = 'https://note.toshiki.dev/logos/logo-308px.png'
 export const keywords =
     'Toshiki, Anda Toshiki, andatoshiki, GitHub, GitHub action, Vitepress, Vite, Notebook, Knowledge base, Programming, Programming Notes, Academic, Personal, Notebook, Productivity, Journal, Note-taking, Markdown, Notepad, Organization, Tutorial'
-export const description =
-    'Toshiki\'s web notebook served via Vitepress!'
+export const description = "Toshiki's web notebook served via Vitepress!"
 
 // social link
 // export const bilibili = ''
