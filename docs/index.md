@@ -23,7 +23,7 @@ features:
     - icon: 🕒
       title: Tempus Fugit
       details: Tempus Fugit, which means "time flies" in Latin, is a phrase that highlights the fact that every person has the same 24 hours per day to learn. However, this time is never enough to learn everything. That's why recording knowledge for review is essential.
-    - icon: ☕
+    - icon: 🫖
       title: Carpe Diem
       details: Carpe Diem, take it slow, seize the day and savor its moments. Enjoy a cup of coffee while playing blues on a 1980s-style CD player. Turn off the lights, close the curtains, and let the small lamp illuminate the space. The time is yours, relish the day, and unleash the productivity while learning.
     - icon: 💡
@@ -116,19 +116,3 @@ const members = [
     font-size: 24px;
 }
 </style> -->
-<style>
-.m-home-layout .image-src:hover {
-transform: translate(-50%, -50%) rotate(666turn);
-transition: transform 59s 1s cubic-bezier(0.3, 0, 0.8, 1);
-}
-
-.m-home-layout .details small {
-opacity: 0.8;
-}
-
-.m-home-layout .item:last-child .details {
-display: flex;
-justify-content: flex-end;
-align-items: end;
-} 
-</style>
