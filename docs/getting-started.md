@@ -1,7 +1,5 @@
 ---
 title: Git push results in "Authentication Failed”
-author: Anda Toshiki
-date: 2023/2/21/ 10:54
 editLink: true
 lastUpdated: true
 ---
