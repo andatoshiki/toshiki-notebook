@@ -11,7 +11,6 @@ import '@andatoshiki/vitepress-plugin-nprogress/lib/css/index.css'
 
 import { nextTick, onMounted, watch } from 'vue'
 import { inBrowser, useRoute } from 'vitepress'
-
 import '@andatoshiki/vitepress-plugin-shiki-twoslash/styles.css'
 
 // custom styles import
