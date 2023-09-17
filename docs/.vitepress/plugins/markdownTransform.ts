@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite'
-import { replacer } from '../../../scripts/markdownTransform'
 import { getReadingTime } from './../theme/utils'
+// import { replacer } from '../../../scripts/utils'
 
 export function MarkdownTransform(): Plugin {
     return {
@@ -9,7 +9,7 @@ export function MarkdownTransform(): Plugin {
         async transform(code, id) {
             if (!id.match(/\.md\b/)) return null
             // convert links to relative
-            code = code.replace(/https?:\/\/toshiki-notebook\.dev\//g, '/')
+            code = code.replace(/https?:\/\/note.toshiki\.dev\//g, '/')
             const [_name, i] = id.split('/').slice(-2)
 
             // convert img by applying regex
@@ -25,19 +25,22 @@ export function MarkdownTransform(): Plugin {
             // }
 
             // convert links to components
-            const linkRegex = /\[(.+?)\]\((.+?)\)/g
-            let matches = linkRegex.exec(code)
-            while (matches) {
-                const [text, link] = matches.slice(1)
-                code = code.replace(matches[0], `<CustomLink title="${text}" href="${link}" />`)
-                matches = linkRegex.exec(code)
-            }
+            // const linkRegex = /\[(.+?)\]\((.+?)\)/g;
+            // let matches = linkRegex.exec(code);
+            // while (matches) {
+            //   const [text, link] = matches.slice(1);
+            //   code = code.replace(
+            //     matches[0],
+            //     `<CustomLink title="${text}" href="${link}" />`
+            //   );
+            //   matches = linkRegex.exec(code);
+            // }
 
             // cut index.md
             if (_name === 'docs' && i === 'index.md') return code
 
-            const { footer } = await getDocsMarkdown()
-            code = replacer(code, footer, 'FOOTER', 'tail')
+            // const { footer } = await getDocsMarkdown()
+            // code = replacer(code, footer, 'FOOTER', 'tail')
             const { readTime, words } = getReadingTime(code)
             code = code.replace(/(#\s.+?\n)/, `$1\n\n<PageInfo readTime="${readTime}" words="${words}"/>\n`)
 
@@ -46,13 +49,13 @@ export function MarkdownTransform(): Plugin {
     }
 }
 
-export async function getDocsMarkdown() {
-    const CopyRightSection = `
-  <CopyRight/>`
+// export async function getDocsMarkdown() {
+//   const CopyRightSection = `
+//   <CopyRight/>`;
 
-    const footer = `${CopyRightSection}\n`
+//   const footer = `${CopyRightSection}\n`;
 
-    return {
-        footer,
-    }
-}
+//   return {
+//     footer,
+//   };
+// }
