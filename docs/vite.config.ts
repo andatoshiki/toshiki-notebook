@@ -56,10 +56,7 @@ export default defineConfig(async () => {
             chunkSizeWarningLimit: 1600,
             // rollup build options
             rollupOptions: {
-                external: [
-                    'node:*',
-                    './assets/*',
-                ],
+                external: ['node:*', './assets/*'],
             },
         },
     }
