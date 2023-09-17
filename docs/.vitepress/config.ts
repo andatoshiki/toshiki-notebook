@@ -6,7 +6,8 @@ import { head } from './config/head'
 import { themeConfig } from './config/theme'
 import { withTwoslash } from '@andatoshiki/vitepress-plugin-shiki-twoslash'
 
-import { SitemapStream } from 'sitemap'
+import { generateSitemap as sitemap } from 'sitemap-ts'
+import { genFeed } from './plugins/genFeed'
 import { createWriteStream } from 'node:fs'
 import { resolve } from 'node:path'
 
@@ -45,22 +46,9 @@ export default withTwoslash(
             },
         },
         ignoreDeadLinks: true,
-        transformHtml: (_, id, { pageData }) => {
-            if (!/[\\/]404\.html$/.test(id))
-                links.push({
-                    url: pageData.relativePath.replace(/((^|\/)index)?\.md$/, '$2'),
-                    lastmod: pageData.lastUpdated,
-                })
-        },
-        buildEnd: async ({ outDir }) => {
-            const sitemap = new SitemapStream({
-                hostname: 'https://note.toshiki.dev/',
-            })
-            const writeStream = createWriteStream(resolve(outDir, 'sitemap.xml'))
-            sitemap.pipe(writeStream)
-            links.forEach(link => sitemap.write(link))
-            sitemap.end()
-            await new Promise(r => writeStream.on('finish', r))
+        async buildEnd(siteConfig) {
+            await sitemap({ hostname: 'https://chodocs.cn/' })
+            await genFeed(siteConfig)
         },
     })
 )

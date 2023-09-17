@@ -154,6 +154,9 @@ importers:
       sitemap:
         specifier: ^7.1.1
         version: 7.1.1
+      sitemap-ts:
+        specifier: ^1.4.0
+        version: 1.4.0
       ts-node:
         specifier: ^10.9.1
         version: 10.9.1(@types/node@18.17.17)(typescript@5.2.2)
@@ -393,6 +396,10 @@ packages:
     dependencies:
       execa: 5.1.1
       find-up: 5.0.0
+    dev: true
+
+  /@antfu/utils@0.7.2:
+    resolution: {integrity: sha512-vy9fM3pIxZmX07dL+VX1aZe7ynZ+YyB0jY+jE6r3hOK6GNY2t6W8rzpFC4tgpbXUYABkFQwgJq2XYXlxbXAI0g==}
     dev: true
 
   /@antfu/utils@0.7.6:
@@ -5757,6 +5764,17 @@ packages:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
     dev: true
 
+  /fast-glob@3.2.12:
+    resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
+    engines: {node: '>=8.6.0'}
+    dependencies:
+      '@nodelib/fs.stat': 2.0.5
+      '@nodelib/fs.walk': 1.2.8
+      glob-parent: 5.1.2
+      merge2: 1.4.1
+      micromatch: 4.0.5
+    dev: true
+
   /fast-glob@3.3.1:
     resolution: {integrity: sha512-kNFPyjhh5cKjrUltxs+wFx+ZkbRaxxmZ+X0ZU31SOsxCEtP9VPgtq2teZw1DebupL5GmDaNQ6yKMMVcM41iqDg==}
     engines: {node: '>=8.6.0'}
@@ -10091,6 +10109,15 @@ packages:
       totalist: 3.0.1
     dev: true
 
+  /sitemap-ts@1.4.0:
+    resolution: {integrity: sha512-M/UPvSZmTluxLWhy5bGvPRRd0E1U9u87Ridh46GjCU2ZUJ1IvvJ9EggGrje2wGkCK13fXXMhjvQCb2v2oYaSBA==}
+    dependencies:
+      '@antfu/utils': 0.7.2
+      fast-glob: 3.2.12
+      sitemap: 7.1.1
+      xml-formatter: 3.3.2
+    dev: true
+
   /sitemap@7.1.1:
     resolution: {integrity: sha512-mK3aFtjz4VdJN0igpIJrinf3EO8U8mxOPsTBzSsy06UtjZQJ3YY3o3Xa7zSc5nMqcMrRwlChHZ18Kxg0caiPBg==}
     engines: {node: '>=12.0.0', npm: '>=5.6.0'}
@@ -12090,6 +12117,13 @@ packages:
         optional: true
     dev: true
 
+  /xml-formatter@3.3.2:
+    resolution: {integrity: sha512-ld34F1b7+2UQGNkfsAV4MN3/b7cdUstyMj3XJhzKFasOPtMToVCkqmrNcmrRuSlPxgH1K9tXPkqr75gAT3ix2g==}
+    engines: {node: '>= 14'}
+    dependencies:
+      xml-parser-xo: 4.1.1
+    dev: true
+
   /xml-js@1.6.11:
     resolution: {integrity: sha512-7rVi2KMfwfWFl+GpPg6m80IVMWXLRjO+PxTq7V2CDhoGak0wzYzFgUY2m4XJ47OGdXd8eLE8EmwfAmdjw7lC1g==}
     hasBin: true
@@ -12099,6 +12133,11 @@ packages:
 
   /xml-name-validator@3.0.0:
     resolution: {integrity: sha512-A5CUptxDsvxKJEU3yO6DuWBSJz/qizqzJKOMIfUJHETbBw/sFaDxgd6fxm1ewUaM0jZ444Fc5vC5ROYurg/4Pw==}
+    dev: true
+
+  /xml-parser-xo@4.1.1:
+    resolution: {integrity: sha512-Ggf2y90+Y6e9IK5hoPuembVHJ03PhDSdhldEmgzbihzu9k0XBo0sfcFxaSi4W1PlUSSI1ok+MJ0JCXUn+U4Ilw==}
+    engines: {node: '>= 14'}
     dev: true
 
   /xmlchars@2.2.0:
