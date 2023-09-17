@@ -13,13 +13,16 @@ export function MarkdownTransform(): Plugin {
             const [_name, i] = id.split('/').slice(-2)
 
             // convert img by applying regex
-            const imgRegex = /!\[(.+?)\]\((.+?)\)/g
-            let imgMatches = imgRegex.exec(code)
-            while (imgMatches) {
-                const [text, link] = imgMatches.slice(1)
-                code = code.replace(imgMatches[0], `<img src="${link}" alt="${text || 'img'}" />`)
-                imgMatches = imgRegex.exec(code)
-            }
+            // const imgRegex = /!\[(.+?)\]\((.+?)\)/g;
+            // let imgMatches = imgRegex.exec(code);
+            // while (imgMatches) {
+            //   const [text, link] = imgMatches.slice(1);
+            //   code = code.replace(
+            //     imgMatches[0],
+            //     `<img src="${link}" alt="${text || "img"}" />`
+            //   );
+            //   imgMatches = imgRegex.exec(code);
+            // }
 
             // convert links to components
             const linkRegex = /\[(.+?)\]\((.+?)\)/g
