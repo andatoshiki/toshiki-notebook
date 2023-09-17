@@ -66,8 +66,8 @@ export const head: HeadConfig[] = [
         {
             async: 'true',
             defer: 'true',
-            'data-website-id': '86de8554-d4c9-4f2b-b62a-068b71241048',
-            src: 'https://umami.toshiki.dev/umami.js',
+            'data-website-id': `${process.env.UMAMI_WEBSITE_ID || ''}`,
+            src: `${process.env.UMAMI_ENDPOINT || ''}`,
         },
     ],
     // [
