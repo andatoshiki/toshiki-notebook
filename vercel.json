@@ -1,7 +1,7 @@
 {
   "installCommand": "pnpm i",
-  "buildCommand": "pnpm docs:build",
-  "devCommand": "pnpm docs:dev",
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
   "cleanUrls": true,
   "framework": "vite",
   "git": {
