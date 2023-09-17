@@ -1,6 +1,6 @@
 # File Name Conventions
 
-A collection of guidelines for writing file names used in web projects.
+> A collection of guidelines for writing file names used in web projects.
 
 ## Possible characters
 
