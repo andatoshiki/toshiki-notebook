@@ -26,6 +26,11 @@ export default defineConfig({
         UnoCSS(),
         MarkdownTransform(),
     ],
+        css: {
+            postcss: {
+                plugins: [require('postcss-nested')],
+            },
+        },
     ssr: {
         noExternal: ['@andatoshiki/vitepress-plugin-nprogress', '@arco-design/web-vue'],
     },
