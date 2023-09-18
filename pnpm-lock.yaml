@@ -41,8 +41,8 @@ importers:
         specifier: ^2.51.2
         version: 2.51.2(vue@3.3.4)
       '@iconify/json':
-        specifier: ^2.2.116
-        version: 2.2.116
+        specifier: ^2.2.117
+        version: 2.2.117
       '@luckrya/markdown-it-link-to-card':
         specifier: ^0.3.3
         version: 0.3.3
@@ -1057,8 +1057,8 @@ packages:
     engines: {node: '>=6.9.0'}
     dev: true
 
-  /@iconify/json@2.2.116:
-    resolution: {integrity: sha512-CdvzR/yg3dYENV7F6Hi85ubpEWe0noUspNyLkhyyNihs4hrhCj0iJ0q2T9FB3qeJyxFxL6v//Wy7H4pR/CCZFA==}
+  /@iconify/json@2.2.117:
+    resolution: {integrity: sha512-JJO8TzYJHq1geopQOOO2B1n5D0brls9RUcgaZ9+B8qpkJ9FZrwLv0gd50lySLqVEruhp8WJg1ujULispbVcOpw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1
