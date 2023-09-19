@@ -59,7 +59,7 @@ export default {
     ...DefaultTheme,
     Layout: () => {
         // custom layout migrated to custom slots
-        CustomLayout
+        // CustomLayout
 
         const props: Record<string, any> = {}
         // get frontmatter data via vitepress builtin
