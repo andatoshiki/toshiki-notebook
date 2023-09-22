@@ -9,7 +9,7 @@
     "preview": "vitepress preview"
   },
   "devDependencies": {
-    "@types/react": "^18.2.9",
+    "@types/react": "^18.2.22",
     "react": "^18.2.0"
   }
 }
