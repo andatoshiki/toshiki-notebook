@@ -41,7 +41,7 @@
     "artplayer": "^4.6.2",
     "blueimp-md5": "^2.19.0",
     "conventional-changelog-cli": "^2.2.2",
-    "dayjs": "^1.11.9",
+    "dayjs": "^1.11.10",
     "dotenv": "^16.3.1",
     "dplayer": "^1.27.1",
     "feed": "^4.2.2",
