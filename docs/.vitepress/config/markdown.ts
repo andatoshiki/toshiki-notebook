@@ -18,7 +18,7 @@ export const markdown: MarkdownOptions = {
         // use more markdown-it plugins!
         md.use(mdkatex),
             md.use(mdTasklist),
-            md.use(mdCaption),
+            md.use(mdCaption)
             // md.use(mdLink),
             // md.use(
             //     BiDirectionalLinks({
