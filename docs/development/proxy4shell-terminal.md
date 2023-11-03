@@ -6,8 +6,8 @@ date: 2023-11-02
 
 # Proxies Configuration for Shells & Terminal
 
-
 ## TL;DR
+
 This article discusses the configuration of proxies for shells and terminals. It explains the advantages of using proxy servers to bypass network restrictions and surveillance. The article provides examples of the challenges faced when accessing foreign services and shows how to set up a proxy tunnel using the curl command. It also provides scripts and instructions for setting up proxy switches in different shell environments, such as zsh, bash, and Windows CMD and PowerShell. The article concludes with additional information on proxy configurations for applications like ssh and tips for working with authentication procedures.
 
 ## 1. Background
@@ -15,7 +15,7 @@ This article discusses the configuration of proxies for shells and terminals. It
 Proxies or namely proxy servers are by far one of the most affordable or cost-effective option to establish a masked layer connection to bypass the network restrictions with the annoying surveillance tracked by a local network ISP as compared to a click-to-use VPN service, which generically requires more individual invest to protect themselves under the insecure internet environment nowadays. When a user resides within the environment where the local gateways of full, user-dominant open access towards the internet is censored or restricted with domestic network blockages by the country.
 
 <p align="center">
-<img src="assets/2023-11-04-03-15-12.png" width="100" height="100" align="center">
+<img src="./assets/2023-11-04-03-15-12.png" width="100" height="100" align="center">
 </p>
  while I adopt absolute subjective yet objective perspectives on the individual viewpoints towards the MIIT department of each country those of which applies the internet regulatory services within the national range for avoiding pitfalls on misleading information brought by cross-border influences; meanwhile regardlessly such measures are still facing controversial debates amongst publics that vastly limits the independent freedom rights, though advantages must not be underestimated, still.
 
@@ -33,7 +33,7 @@ curl -I google.com
 
 The following screenshot from terminal indicates the the final output of the package availability received without losses on a bare unmasked network environment, which returns `FAIL` in the final connection after a dry run fails 11s after when the TTL expires the connection fails.
 
-![](assets/2023-11-02-04-44-14.png)
+![](./assets/2023-11-02-04-44-14.png)
 
 The next screenshot from terminal indicates a temporary proxy tunnel is established both in `http` and `https` protocol tunneled through a local proxy gateway at the local systemic IP address at `127.0.0.1` and exposes the proxy server at a mix of socks/https/http protocol port at `7890`, just simply with the traditional `export` method by setting up in the nonce, the command is given as followed.
 
@@ -44,7 +44,7 @@ export https_proxy=$http_proxy
 
 And then we re-enter the same command with `curl` from above; surprisingly, the header responses returned `TTP/1.1 200 OK`, thus the conclusion drawn here is the proxy server we launched was successfully up and running with tunneled access towards foreign sites without restrictions! Hooray!
 
-![](assets/2023-11-04-00-42-58.png 'Curl in action with successful response header from Google')
+![](./assets/2023-11-04-00-42-58.png 'Curl in action with successful response header from Google')
 
 Since each proxy configuration might varies atop of the user preferred client, not including ShadowRocket, Clash, V2ray or other proprietary softwares that are licensed either behind a paywall to run with; or simply expensive to purchase a subscription; the proxy ports forwarded varies alongside the changes amongst clients. But the overall approach taken into the account still remains the same with the following traditional formats, the local IP of the machine (normally `127.0.0.1`) followed after with the specified ports. In the scenario of the article is referenced as example, I chose Clash (in spite the entire Clash project repository as well as its affiliated forked projects are being taken down by anonymous reasons by either archiving the overall projects or simply shutting down due to possible legal actions or political reasons regarding the country of residency of various developers).
 
@@ -83,7 +83,7 @@ $ source ~/.zshrc
 
 The proxy essentially provides two shortcut command function defined with `proxy_on` and `proxy_off`. he `proxy_on` function sets the environment variables `http_proxy` and `https_proxy` to `http://127.0.0.1:7890`, which is the default proxy port of the traditional clash protocol, **here is where you could replace the IP with other remote proxy servers or ports of other local proxies** .Enabling a global proxy for the current terminal session. Meanwhile the `proxy_off` function unsets (removes) the `http_proxy` and `https_proxy` environment variables, effectively turning off the global proxy for the current terminal session. When any of the both executed, the indicator message will be echoed on the terminal, see the following screenshot in action.
 
-![](assets/2023-11-04-01-32-28.png 'Enabling the shell session proxy with script')
+![](./assets/2023-11-04-01-32-28.png 'Enabling the shell session proxy with script')
 
 After you reload your shell profile you can test out the scripted command yourself. To test whether the proxy has a successful setup after the proxy has been switched on, run `echo $http_proxy` or `https_proxy` with a dollar sign in front of the alias as an indicator for environmental variable, the third command as shown in the screenshot above, the command will simply print the configured variable value addressed to the specified alias. Contrarily, if your terminal returns the following resultant,
 
@@ -113,7 +113,7 @@ The following is a list of the most common shells with their possible profile fi
 Still, the location might still varies, users might have to perform individual research to precisely locate their configuration file location, which is out of my jurisdiction of concerns (it's just evident action of procrastination and laziness, my apologies if none of the ones above fits your demand) `;)`.
 
 <p align="center">
-<img src="assets/2023-11-04-03-49-38.png" width="100" height="100" align="center">
+<img src="./assets/2023-11-04-03-49-38.png" width="100" height="100" align="center">
 </p>
 
 For Unix-like users, after you have specified your shell as well as your config file name and locations, copy the following code chunk as command and paste it back into your terminal and run to apply permanent changes to the configuration.
@@ -146,7 +146,7 @@ To check whether the proxy script has taken its effect to the current session, d
 
 The documentation above are mainly targeted towards macOS & Linux users, to setup local proxy with Windows machines there is a complete different approach if you are more comfortably working with Powershells and CMD, since I disused windows less and less frequently by the time I decided to upgrade my device to macOS; even if I did use Windows my primary choice of developmental environment is still Linux by the native support of [WSL](https://learn.microsoft.com/en-us/windows/wsl/install) with enhanced Ubuntu version in a virtual environment; the following commands are only done from my prior researches, I do not fully guarantee the usability of the commands, please use them at your own risks if any unexpected errors not only including system crashes or other affiliated damages, I do not relate responsibility to any of those presented.
 
-![](assets/2023-11-04-04-27-59.png)
+![](./assets/2023-11-04-04-27-59.png)
 
 Simple concluding, abandon proprietary software, fall in the hug of open source; Linux even if most of the users might feel overwhelming when getting started with the system first `:)`. Alright, enough with off-topic talkings, let's jump right in the process.
 
@@ -188,18 +188,16 @@ Before we start, quoting from one of the answer from [AskUbuntu](https://askubun
 
 > Terminal is not net application. Maybe is better to say, in your case, terminal is container for net application like `ssh`, `telnet`, `lftp`, `wget`, `lynx` ...
 
-
-
 A terminal provides a command-line interface that allows users to send commands and receive responses from network applications, facilitating communication and control over a network connection. It acts as a mediator between the user and the network applications, enabling the user to send instructions and receive information, but not a proxy client.
 
 <p align="center">
-<img src="assets/2023-11-04-05-01-04.png" width="200" height="145" align="center">
+<img src="./assets/2023-11-04-05-01-04.png" width="200" height="145" align="center">
 </p>
 
-Done with the technical talkings, now let's dive into the actual configuration process of the shell. Other than  simply inputting a host IP and a port followed, the following formats are the default configuration for a proxy server with HTTP connection protocol, follow the exact same process as described based on your shell type, modify the fields with the following,
+Done with the technical talkings, now let's dive into the actual configuration process of the shell. Other than simply inputting a host IP and a port followed, the following formats are the default configuration for a proxy server with HTTP connection protocol, follow the exact same process as described based on your shell type, modify the fields with the following,
 
 ```shell
-export http_proxy=http://username:password@proxyhost:port/ 
+export http_proxy=http://username:password@proxyhost:port/
 export ftp_proxy=http://username:password@proxyhost:port/
 export telnet_proxy=http://username:password@proxyhost:port/
 ```
@@ -210,11 +208,11 @@ Another approach suggested by the same user whom provided the answer on AskUbunt
 sudo -H vim /etc/profile.d/proxy.sh
 ```
 
-And add the exported proxy members aligning the format as above, then save and reinitialize the environment, viola. The patches edited are mainly targeted for incorporating with  `wget`, `ftp`, `lftp`, `telnet` in terminal.
+And add the exported proxy members aligning the format as above, then save and reinitialize the environment, viola. The patches edited are mainly targeted for incorporating with `wget`, `ftp`, `lftp`, `telnet` in terminal.
 
 When working with `ssh` instance over a proxy, a different approach has to be taken since SSH library does not natively support `SOCKS5` client, user will have to pass a `ProxyCommand` option as a workaround to apply proxied connection, below is an instance of `socat`,
 
-``` sh
+```sh
 ssh -o ProxyCommand='socat - SOCKS4A:myproxy:%h:%p,socksuser=nobody' user@host
 ```
 
@@ -231,7 +229,8 @@ ssh -o ProxyCommand='socat - "PROXY:%h:%p|tcp:myproxy:80"' user@host
 ```
 
 ::: tip Reference
-- https://askubuntu.com/questions/583797/how-to-set-a-proxy-for-terminal
-- https://zhuanlan.zhihu.com/p/357875811
-- https://askubuntu.com/questions/158557/setting-proxy-for-apt-from-terminal
-:::
+
+-   https://askubuntu.com/questions/583797/how-to-set-a-proxy-for-terminal
+-   https://zhuanlan.zhihu.com/p/357875811
+-   https://askubuntu.com/questions/158557/setting-proxy-for-apt-from-terminal
+    :::
