@@ -13,6 +13,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     link: '/development/file-naming-convention',
                 },
                 { text: 'RClone for R2', link: '/development/rclone-for-r2' },
+                { text: 'Proxies Configuration for Shells & Terminal', link: '/development/proxy4shell-terminal'}
             ],
         },
         {
