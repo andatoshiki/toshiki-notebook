@@ -48,7 +48,7 @@ And then we re-enter the same command with `curl` from above; surprisingly, the 
 
 Since each proxy configuration might varies atop of the user preferred client, not including ShadowRocket, Clash, V2ray or other proprietary softwares that are licensed either behind a paywall to run with; or simply expensive to purchase a subscription; the proxy ports forwarded varies alongside the changes amongst clients. But the overall approach taken into the account still remains the same with the following traditional formats, the local IP of the machine (normally `127.0.0.1`) followed after with the specified ports. In the scenario of the article is referenced as example, I chose Clash (in spite the entire Clash project repository as well as its affiliated forked projects are being taken down by anonymous reasons by either archiving the overall projects or simply shutting down due to possible legal actions or political reasons regarding the country of residency of various developers).
 
-```shj
+```sh
 # http protocal
 http://127.0.0.1:7890
 # https protocal
