@@ -30,7 +30,7 @@
     "@andatoshiki/vitepress-plugin-shiki-twoslash": "0.0.1",
     "@antv/g2plot": "^2.4.31",
     "@arco-design/web-vue": "^2.51.2",
-    "@iconify/json": "^2.2.116",
+    "@iconify/json": "^2.2.138",
     "@luckrya/markdown-it-link-to-card": "^0.3.3",
     "@mdit-vue/shared": "^0.12.1",
     "@rollup/plugin-alias": "^5.0.0",
