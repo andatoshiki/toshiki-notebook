@@ -86,7 +86,7 @@
   "dependencies": {
     "@andatoshiki/markdown-it-katex": "^0.0.3",
     "markdown-it": "^13.0.1",
-    "vitest": "^0.32.4"
+    "vitest": "^1.0.1"
   },
   "pnpm": {
     "overrides": {
