@@ -13,7 +13,7 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     link: '/development/file-naming-convention',
                 },
                 { text: 'RClone for R2', link: '/development/rclone-for-r2' },
-                { text: 'Proxies Configuration for Shells & Terminal', link: '/development/proxy4shell-terminal'}
+                { text: 'Proxies Configuration for Shells & Terminal', link: '/development/proxy4shell-terminal' },
             ],
         },
         {
@@ -152,6 +152,35 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 {
                     text: '13: 相対性理論',
                     link: '/academic/physics/ipho-formulas-jpn/13',
+                },
+            ],
+        },
+    ],
+
+    '/academic/cis105/': [
+        {
+            text: 'CIS 105: Computer Applications and Information Technology',
+            collapsed: false,
+            items: [
+                {
+                    text: 'Course Overview & Schedule',
+                    link: '/academic/cis105/index',
+                },
+                {
+                    text: 'Lect 1: Everything Changes',
+                    link: '/academic/cis105/cis105-l1-lecture-note',
+                },
+                {
+                    text: 'Lect 2: Application Software',
+                    link: '/academic/cis105/cis105-l2-lecture-note',
+                },
+                {
+                    text: 'Lect 3: Computer Hardware',
+                    link: '/academic/cis105/cis105-l3-lecture-note',
+                },
+                {
+                    text: 'Lect 4: Formulas and Functions',
+                    link: '/academic/cis105/cis105-l4-lecture-note',
                 },
             ],
         },
