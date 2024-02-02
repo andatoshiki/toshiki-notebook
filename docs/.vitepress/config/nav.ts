@@ -26,6 +26,11 @@ export const nav: DefaultTheme.Config['nav'] = [
                         link: '/academic/literature/index',
                         activeMatch: '/academic/literature/',
                     },
+                    {
+                        text: 'CIS105',
+                        link: '/academic/cis105/index',
+                        activeMatch: '/academic/cis105/',
+                    },
                 ],
             },
             {
