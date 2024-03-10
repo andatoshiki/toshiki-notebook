@@ -182,6 +182,26 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     text: 'Lect 4: Formulas and Functions',
                     link: '/academic/cis105/cis105-l4-lecture-note',
                 },
+                {
+                    text: 'Lect 5: Operating System',
+                    link: '/academic/cis105/cis105-l5-lecture-note',
+                },
+                {
+                    text: 'Lect 6 Pt 1: System Software',
+                    link: '/academic/cis105/cis105-l6-pt1-lecture-note',
+                },
+                {
+                    text: 'Lect 6 Pt 2: Logical Functions',
+                    link: '/academic/cis105/cis105-l6-pt2-lecture-note',
+                },
+                {
+                    text: 'Lect 7: Green Business Computing',
+                    link: '/academic/cis105/cis105-l7-lecture-note',
+                },
+                {
+                    text: 'Lect 8: Green Computer Networks',
+                    link: '/academic/cis105/cis105-l8-lecture-note',
+                },
             ],
         },
     ],
