@@ -202,6 +202,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     text: 'Lect 8: Green Computer Networks',
                     link: '/academic/cis105/cis105-l8-lecture-note',
                 },
+                {
+                    text: 'Lect 9: Internet',
+                    link: '/academic/cis105/cis105-l9-lecture-note',
+                },
             ],
         },
     ],
