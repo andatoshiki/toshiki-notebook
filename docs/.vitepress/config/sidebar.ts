@@ -210,6 +210,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     text: 'Lect 10: Business Websites',
                     link: '/academic/cis105/cis105-l10-lecture-note',
                 },
+                {
+                    text: 'Lect 11: Computer Security',
+                    link: '/academic/cis105/cis105-l11-lecture-note',
+                },
             ],
         },
     ],
