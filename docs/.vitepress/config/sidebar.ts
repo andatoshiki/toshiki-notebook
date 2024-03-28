@@ -215,6 +215,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     text: 'Lect 11: Computer Security',
                     link: '/academic/cis105/cis105-l11-lecture-note',
                 },
+                {
+                    text: 'Lect 12: Introduction to SQL'
+                    link: '/academic/cis105/cis105l-12-lecture-note'
+                }
             ],
         },
     ],
