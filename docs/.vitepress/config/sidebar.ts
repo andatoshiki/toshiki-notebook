@@ -14,7 +14,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 },
                 { text: 'RClone for R2', link: '/development/rclone-for-r2' },
                 { text: 'Proxies Configuration for Shells & Terminal', link: '/development/proxy4shell-terminal' },
-                { text: 'Git push results in "Authentication Failed"', link: '/development/git-push-authentication-failed' },
+                {
+                    text: 'Git push results in "Authentication Failed"',
+                    link: '/development/git-push-authentication-failed',
+                },
             ],
         },
         {
@@ -217,8 +220,8 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 },
                 {
                     text: 'Lect 12: Introduction to SQL',
-                    link: '/academic/cis105/cis105l-12-lecture-note',
-                }
+                    link: '/academic/cis105/cis105-l12-lecture-note',
+                },
             ],
         },
     ],
