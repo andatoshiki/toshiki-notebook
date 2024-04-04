@@ -58,9 +58,7 @@
 
   - ﻿﻿'`p_st`" would return '`past`"', but not '`paste`'
 
-  - ﻿﻿`'h__s_n'` would return '`hanson`', 'hensen', or 'hansen'; but not 'harrison' (note that
-
-'h%s_n' would return 'harrison'
+  - ﻿﻿`'h__s_n'` would return '`hanson`', 'hensen', or '`hansen`'; but not '`harrison`' (note that '`h%s_n`' would return '`harrison`')
 
 ### 14.3: Rules to Remember
 
