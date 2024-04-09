@@ -229,6 +229,14 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 {
                     text: 'Lect 14: More SQL Statements',
                     link: '/academic/cis105/cis105-l14-lecture-note'
+                },
+                {
+                    text: 'Lect 15: Business System Reporting',
+                    link: '/academic/cis105/cis105-l15-lecture-note'
+                },
+                {
+                    text: 'Lect 16: Information Technology Careers',
+                    link: '/academic/cis105/cis105-l16-lecture-note'
                 }
             ],
         },
