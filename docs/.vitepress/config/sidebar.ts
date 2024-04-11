@@ -237,6 +237,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                 {
                     text: 'Lect 16: Information Technology Careers',
                     link: '/academic/cis105/cis105-l16-lecture-note'
+                },
+                {
+                    text: 'Lect 17: SQL Clauses: JOIN Query',
+                    link: '/academic/cis105/cis105-l17-lecture-note'
                 }
             ],
         },
