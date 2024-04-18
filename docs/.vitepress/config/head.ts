@@ -66,7 +66,7 @@ export const head: HeadConfig[] = [
         `,
     ],
 
-    // self-hosted umami instance for website analytics tracking
+    // self-hosted UMAMI instance for website analytics tracking
     [
         'script',
         {
