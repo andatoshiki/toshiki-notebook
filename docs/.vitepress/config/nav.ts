@@ -3,7 +3,7 @@ import { DefaultTheme } from 'vitepress/theme'
 export const nav: DefaultTheme.Config['nav'] = [
     {
         text: 'Development',
-        link: '/development/',
+        link: '/development/file-naming-convention',
     },
     {
         text: 'Academic',
