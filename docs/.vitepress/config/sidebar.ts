@@ -18,6 +18,10 @@ export const sidebar: DefaultTheme.Config['sidebar'] = {
                     text: 'Git push results in "Authentication Failed"',
                     link: '/development/git-push-authentication-failed',
                 },
+                {
+                    text: 'Installing NPM Packages Behind Proxy',
+                    link: '/development/installing-npm-package-behind-proxy'
+                }
             ],
         },
         {
