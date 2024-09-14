@@ -6,7 +6,7 @@ import { head } from './config/head'
 import { themeConfig } from './config/theme'
 import { withTwoslash } from '@andatoshiki/vitepress-plugin-shiki-twoslash'
 
-import { generateSitemap as sitemap } from 'sitemap-ts'
+// import { generateSitemap as sitemap } from 'sitemap-ts'
 import { genFeed } from './plugins/genFeed'
 import { createWriteStream } from 'node:fs'
 import { resolve } from 'node:path'
@@ -47,9 +47,12 @@ export default withTwoslash(
         },
         ignoreDeadLinks: true,
         async buildEnd(siteConfig) {
-            await sitemap({ hostname: 'https://chodocs.cn/' })
+            // await sitemap({ hostname: 'https://note.toshiki.dev/' })
             await genFeed(siteConfig)
         },
+        sitemap: {
+            hostname: 'https://note.toshiki.dev'
+        }
     })
 )
 customElements // custom element tags of markdown-it-katex in vitepress
