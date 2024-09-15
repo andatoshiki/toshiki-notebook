@@ -32,6 +32,7 @@ export const themeConfig: DefaultTheme.Config = {
     socialLinks: [
         { icon: 'github', link: 'https://github.com/andatoshiki' },
         { icon: 'twitter', link: 'https://twitter.com/andatoshiki' },
+        { icon: 'mastodon', link: 'https://mastodon.social/@andatoshiki' },
     ],
     // custom vue components
     // @ts-ignore
