@@ -81,8 +81,9 @@
 
 /* fontawesome heart pumping styles */
 .heart {
+    display: inline-block;
     animation: heart 5s ease infinite;
-    color: red;
+    // color: red;
 }
 
 @keyframes heart {
@@ -114,9 +115,9 @@
 /* font awesome heart pumping style ends */
 
 // font awesome coffee brown color style
-.coffee {
-    color: rgb(88, 13, 13);
-}
+// .coffee {
+//     color: rgb(88, 13, 13);
+// }
 // font awesome coffee brown color style ends
 
 /* glonal code font styles */
@@ -430,8 +431,9 @@ html.dark {
     align-items: end;
 }
 // vitepress homepage styles end
+
 // macos styled pre tag code block styles with three colored dots
-.vp-doc div[class*=language-] {
+.vp-doc div[class*='language-'] {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
@@ -440,8 +442,8 @@ html.dark {
 }
 
 /* No line number: add macOS-style small dot */
-.vp-doc div[class*=language-]::before {
-    content: "";
+.vp-doc div[class*='language-']::before {
+    content: '';
     display: block;
     position: relative;
     top: 12px;
@@ -455,17 +457,16 @@ html.dark {
 }
 
 /* With line number: add background shadow */
-div[class*="language-"].vp-adaptive-theme.line-numbers-mode {
+div[class*='language-'].vp-adaptive-theme.line-numbers-mode {
     position: relative;
     border-radius: 8px;
     overflow: hidden;
     // box-shadow: 0 10px 30px 0 rgb(0 0 0 / 40%);
 }
 
-
 /* With line number: add macOS-style small dot */
-.vp-doc div[class*="language-"].line-numbers-mode::before {
-    content: "";
+.vp-doc div[class*='language-'].line-numbers-mode::before {
+    content: '';
     display: block;
     position: relative;
     top: 12px;
@@ -478,8 +479,6 @@ div[class*="language-"].vp-adaptive-theme.line-numbers-mode {
     z-index: 1;
 }
 
-
-
 /* Move line number down to align with code; hide right vertical line */
 .vp-doc .line-numbers-wrapper {
     padding-top: 32px;
@@ -488,7 +487,7 @@ div[class*="language-"].vp-adaptive-theme.line-numbers-mode {
 
 /* Rebuild the right vertical line for line numbers */
 .vp-doc .line-numbers-wrapper::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 38px;
     right: 0;
