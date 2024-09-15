@@ -14,10 +14,14 @@ export const themeConfig: DefaultTheme.Config = {
     outlineBadges: false, // whether to show badge on outline
     lastUpdatedText: 'Last updated', // config for last updated footer text
     // documentation full text search config via algolia
-    algolia: {
-        appId: 'G9IUR45K98',
-        apiKey: '8528cc91281d8112b28f508317a96dd3',
-        indexName: 'toshiki-notebook',
+    // algolia: {
+    //     appId: 'G9IUR45K98',
+    //     apiKey: '8528cc91281d8112b28f508317a96dd3',
+    //     indexName: 'toshiki-notebook',
+    // },
+    // documentation full local index search
+    search: {
+        provider: 'local',
     },
     // documentation edit link
     editLink: {
