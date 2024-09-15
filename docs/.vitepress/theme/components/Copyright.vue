@@ -101,6 +101,7 @@ const homepageLink = `https://www.toshiki.dev`
     border-color: var(--vp-custom-block-tip-border);
     border-style: solid;
     border-width: 1px;
+    border-color: var(--vp-c-green-2);
     background-color: var(--vp-custom-block-tip-bg);
     border-radius: 6px;
     color: var(--vp-c-text-2);
